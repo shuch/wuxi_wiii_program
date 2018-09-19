@@ -28,7 +28,7 @@
     <view class="message-box" wx:for="{{isSentAdviserList}}" wx:for-item='item' wx:key='index' data-item='{{item}}' bindtap='goChat'>
         <view class="head-box">
             <view class="newRed" wx:if="{{item.hasNewMsg>0}}">{{item.hasNewMsg}}</view>
-            <image mode="aspectFill" wx:if="{{item.head}}" src="{{item.head}}" alt=""></image>
+            <image wx:if="{{item.head}}" src="{{item.head}}" alt=""></image>
             <image wx:else src="{{defaultImg}}" alt=""></image>
         </view>
         <view class="message-right-box">

@@ -187,6 +187,12 @@
   left:12.5vw;
   overflow: hidden;
 }
+/* .leftBtn{
+  left:16px;
+}
+.rightBtn{
+  right:16px;
+} */
 .upBtn{
   width:36px;
   height:18px;
@@ -226,11 +232,8 @@
 .liveTitle{
   width:90%;
   color:#fff;
-  font-size: 18rpx;
+  font-size: 20rpx;
   position: absolute;
   bottom:calc(20rpx + 1.8vw);
   left:10rpx;
-  white-space:initial;
-  word-wrap: break-word;
-  word-break: normal;
 }

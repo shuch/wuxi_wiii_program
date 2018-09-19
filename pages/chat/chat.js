@@ -233,15 +233,6 @@ Page({
       this.setData({toView:'hei'})
   },
     goVideo:function(){
-        let param = {
-            type:'CLK',//埋点类型
-            pvPageStayTime:(new Date().getTime()-wx.getStorageSync('loadTime'))/1000,
-            clkDesPage:'ekanfangjietongye',//点击前往的页面名称
-            clkName:'shipin_guwentuisong',//点击前往的页面名称
-            clkId:'clk_2cmina_40',//点击ID
-            clkParams:'',//点击参数
-        }
-        util.trackRequest(param,app)
         wx.getSetting({
             success: (response) => {
                 console.log("***chat.onLoad***getSetting",response)
@@ -818,7 +809,6 @@ Page({
       this.setData({
         videoFlag:false
       })
-
         wx.navigateTo({
             url: '../video/video?source='+e.currentTarget.dataset.url
         })
@@ -867,7 +857,18 @@ Page({
                   };
                   webimhandler.sendCustomMsg({text:'您好，我现在在忙，请您留下电话号码，我会尽快联系您',ext:JSON.stringify(data),data:''},{TYPE:webim.SESSION_TYPE.C2C,myselToID:that.data.adviserId},app.globalData.identifier,function (msg) {
                       that.receiveMsgs({content:parm.text,type:false},false);
-
+                      let param={
+                          type:'CLK',//埋点类型
+                          adviserId:that.data.adviserInfo.id,
+                          imTalkId:that.data.adviserInfo.id+'_'+app.globalData.single.id+'_'+config.houseId,
+                          imTalkType:'1',
+                          clkName:'dianjifasong',//点击前往的页面名称
+                          pvCurPageName:'liaotianchuangkou',//当前页面名称
+                          pvCurPageParams:'',//当前页面参数
+                          pvLastPageName:getCurrentPages()[getCurrentPages().length-2]?getCurrentPages()[getCurrentPages().length-2].data.despageForChat:'',//上一页页面名称
+                          clkId:'clk_2cmina_27',//点击ID
+                          clkParams:'',//点击参数
+                      }
                   });
                   clearInterval(timeout)
               }
@@ -878,19 +879,6 @@ Page({
       if (!content.replace(/^\s*|\s*$/g, '')) return;
       webimhandler.onSendMsg(this.data.currentMessage,{TYPE:webim.SESSION_TYPE.C2C,myselToID:that.data.adviserId},app.globalData.identifier, function (msg) {
           wx.setStorageSync('isSend'+config.houseId,true);
-          let para={
-              type:'CLK',//埋点类型
-              adviserId:that.data.adviserInfo.id,
-              imTalkId:that.data.adviserInfo.id+'_'+app.globalData.single.id+'_'+config.houseId,
-              imTalkType:'1',
-              clkName:'dianjifasong',//点击前往的页面名称
-              pvCurPageName:'liaotianchuangkou',//当前页面名称
-              pvCurPageParams:'',//当前页面参数
-              pvLastPageName:getCurrentPages()[getCurrentPages().length-2]?getCurrentPages()[getCurrentPages().length-2].data.despageForChat:'',//上一页页面名称
-              clkId:'clk_2cmina_27',//点击ID
-              clkParams:'',//点击参数
-          }
-          util.trackRequest(para,app)
           that.receiveMsgs(msg,true);
           if(that.data.isBusy){
               that.receiveMsgs({content:'您好，非常抱歉，我正在为其他用户服务，稍后回复您！',type:false},false)

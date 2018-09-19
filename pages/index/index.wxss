@@ -45,7 +45,6 @@ page{
 .titleswiper .titleswiper-image{
   width:100vw;
   height:100%;
-  background-color:black;
 }
 .content2{
   width:100vw;
@@ -72,12 +71,12 @@ page{
   height:387rpx;
 }
 .swiper{
-  width:100%;
+	width:100%;
   height:381rpx;
   margin-bottom:10rpx;
 }
 .swiper .swiper-item{
-  /*margin-right:1vw;*/
+	/*margin-right:1vw;*/
 }
 .swiper .like{
   position:absolute;

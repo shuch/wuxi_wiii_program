@@ -19,7 +19,7 @@ Page({
       assistant:{},
       startTime:null,
       endTime:null,
-      flagStatus:1, // 1 初始状态，2视频接通状态，3对方关闭，4房间关闭 5发生错误 6 自己挂断
+      flagStatus:1, // 1 初始状态，2视频接通状态，3对方关闭，4房间关闭 5发生错误
       selToID:null,
       dynatownId:null,
       hideBg:false,
@@ -39,7 +39,6 @@ Page({
       evaluateFlag:"", //进入哪个评价页标志
       TextArea:"", //文本输入框的值
       selectTags:[], //标签
-      aliveFlag:false,//是否关闭过的标志
     },
     handlehzdl:function(e){
       // var obj = e.currentTarget.dataset.obj;
@@ -147,6 +146,7 @@ Page({
               hideBg: false,
               endTime:Date.now()
             });
+            self.videoInsert(30,10);//正常退出
             // self.updateDynatown("0"); //修改置业顾问当前忙碌状态 videoTime
             app.globalData.dataJson+=JSON.stringify({"getMessage":self.data.selToID,"text":"对方已挂断"});
             self.exit();
@@ -158,7 +158,6 @@ Page({
             // self.videoInsert(20,10);//对方进入房间
             app.globalData.dataJson+=JSON.stringify({"getMessage":self.data.selToID,"text":"对方接收到视频请求并进入房间"});
             console.log("***对方接收到视频请求并进入房间***",self.data.hideBg)
-
             // startTime=Date.now()
           }
           if(obj.textMsg.indexOf("108")>0){
@@ -170,7 +169,7 @@ Page({
                   hideBg: true,
                 });
                 app.globalData.dataJson+=JSON.stringify({"getMessage":obj.textMsg,"text":"对方接通视频"});
-                console.log("***对方接通视频***",self.data.hideBg);
+                console.log("***对方接通视频***",self.data.hideBg)
               }
             }catch(e){
             }
@@ -275,24 +274,16 @@ Page({
     },
     exit:function(){
       var self = this;
-      if(self.data.aliveFlag===true){
-        return false;
-      }
-      self.data.aliveFlag=true;
       var second=0;
       var mini=0;
-      var talkStartTime=self.data.startTime||"";
-      var talkEndTime="";
-      var talkLongTime="";
-      // if(self.data.flagStatus!=3){  // 1 初始状态，2视频接通状态，3对方关闭，4房间关闭 5发生错误 6 自己挂断
+      // if(self.data.flagStatus!=3){  // 1 初始状态，2视频接通状态，3对方关闭，4房间关闭 5发生错误
       //   console.log("&&&&&self.data.flagStatus&&&&&",self.data.flagStatus);
       // }
       //配置结束时间
-      talkEndTime=self.data.endTime=self.data.endTime?self.data.endTime:Date.now();
+      self.data.endTime=self.data.endTime?self.data.endTime:Date.now();
       console.log("&&&&&exit-self.data.flagStatus&&&&&",self.data.flagStatus,self.data.startTime,self.data.endTime);
       if(self.data.endTime&&self.data.startTime){
         var st = Math.floor((self.data.endTime - self.data.startTime)/1000);
-        talkLongTime=st*1000;
         mini=Math.floor(st/60);
         second=st%60;
         videoTime = (mini>9?mini:("0"+mini)) +":"+(second>9?second:("0"+second))
@@ -303,6 +294,20 @@ Page({
         this.setData({
           evaluateFlag:"0",
         })
+        var para={
+          clkId:'clk_2cmina_28',
+          clkDesPage:'fankuiyemian',//点击前往的页面名称
+          type:'CLK',//埋点类型
+          adviserId:app.globalData.videoCustomer.id,//顾问id
+          // imTalkId:app.globalData.single.id+'_'+app.globalData.videoCustomer.id+'_'+config.houseId,//对话编号
+          imTalkType:'2',//对话类型
+          pvCurPageName:'ekanfangjietongye',//当前页面名称
+          clkName:'bodaguaduan',//当前页面
+          // clkParams:this.data.tel,//点击参数
+          pvCurPageParams:'',//当前页面参数
+        }
+        console.log(para,'视频通话挂断点击埋点pv');
+        util.trackRequest(para,app)
         let param = {
           ip:app.globalData.ip,
           type:'PV',
@@ -310,13 +315,10 @@ Page({
           // imTalkId:app.globalData.single.id+'_'+app.globalData.videoCustomer.id+'_'+config.houseId,//对话编号
           imTalkType:'2',//对话类型
           pvId:'P_2cMINA_7',
-          pvCurPageName:'fankuiyemian', //当前页面名称
-          pvCurPageParams:'',           //当前页面参数
-          pvLastPageName:'',//上一页页面名称
+          pvCurPageName:'fankuiyemian',//当前页面名称
+          pvCurPageParams:'',//当前页面参数
+          pvLastPageName:getCurrentPages()[getCurrentPages().length-2]?getCurrentPages()[getCurrentPages().length-2].data.despage:'ekanfangjietongye',//上一页页面名称
           pvLastPageParams:'',//上一页页面参数
-          talkStartTime:talkStartTime,//视频通话开始时间
-          talkEndTime:talkEndTime,    //视频通话结束时间
-          talkLongTime:talkLongTime,  //视频通话持续时间
           pvPageLoadTime:(new Date().getTime() - wx.getStorageSync('loadTime')),//加载时间
         }
         console.log(param,'视频通话反馈埋点pv');
@@ -326,6 +328,20 @@ Page({
         this.setData({
           evaluateFlag:"1",
         })
+        var para={
+          clkId:'clk_2cmina_28',
+          clkDesPage:'pingjiayemian',//点击前往的页面名称
+          type:'CLK',//埋点类型
+          adviserId:app.globalData.videoCustomer.id,//顾问id
+          // imTalkId:app.globalData.single.id+'_'+app.globalData.videoCustomer.id+'_'+config.houseId,//对话编号
+          imTalkType:'2',//对话类型
+          pvCurPageName:'ekanfangjietongye',//当前页面名称
+          clkName:'bodaguaduan',//当前页面
+          // clkParams:this.data.tel,//点击参数
+          pvCurPageParams:'',//当前页面参数
+        }
+        console.log(para,'视频通话挂断点击埋点pv');
+        util.trackRequest(para,app)
         let param = {
           ip:app.globalData.ip,
           type:'PV',
@@ -335,11 +351,8 @@ Page({
           pvId:'P_2cMINA_8',
           pvCurPageName:'pingjiayemian',//当前页面名称
           pvCurPageParams:'',//当前页面参数
-          pvLastPageName:'',//上一页页面名称
+          pvLastPageName:getCurrentPages()[getCurrentPages().length-2]?getCurrentPages()[getCurrentPages().length-2].data.despage:'ekanfangjietongye',//上一页页面名称
           pvLastPageParams:'',//上一页页面参数
-          talkStartTime:talkStartTime,//视频通话开始时间
-          talkEndTime:talkEndTime,    //视频通话结束时间
-          talkLongTime:talkLongTime,  //视频通话持续时间
           pvPageLoadTime:(new Date().getTime() - wx.getStorageSync('loadTime')),//加载时间
         }
         console.log(param,'视频通话评价埋点pv');
@@ -407,21 +420,6 @@ Page({
           flagStatus: 2,
           startTime: Date.now()
         });
-        let param = {
-          ip:app.globalData.ip,
-          type:'PV',
-          adviserId:app.globalData.videoCustomer.id,//顾问id
-          // imTalkId:app.globalData.single.id+'_'+app.globalData.videoCustomer.id+'_'+config.houseId,//对话编号
-          imTalkType:'2',//对话类型
-          pvId:'P_2cMINA_6',
-          pvCurPageName:'ekanfangjietongye',//当前页面名称
-          pvCurPageParams:'',//当前页面参数
-          pvLastPageName:getCurrentPages()[getCurrentPages().length-2]?getCurrentPages()[getCurrentPages().length-2].data.despage:'',//上一页页面名称
-          pvLastPageParams:'',//上一页页面参数
-          pvPageLoadTime:(new Date().getTime() - wx.getStorageSync('loadTime')),//加载时间
-        }
-        console.log(param,'视频通话埋点pv');
-        util.trackRequest(param,app);
       }
     },
     // 自动发送日志，当日志记录超过1500个字符，系统自动发送日志
@@ -431,8 +429,6 @@ Page({
     decline:function(){
       // this.sendText();
       var self = this;
-      var second=0;
-      var mini=0;
       console.log("***room.js-decline***",self.data.flag,self.data.flagStatus);
       var rtcroomCom = this.selectComponent('#rtcroom');
       let roomInfo = rtcroom.getRoomInfo();
@@ -440,43 +436,15 @@ Page({
       if(!roomInfo.isPush){
         return false;
       }
-      var clkDesPage = "fankuiyemian";    // 默认点击前往的页面名称是反馈页
-      var pvCurPageName="";
-      if(self.data.flagStatus==2){  //顾问接通视频的状态
-        pvCurPageName="ekanfangjietongye";  //当前页面名称 设置为接通页
+      self.videoInsert(30,10);//正常退出
+      // 不是对方挂断的
+      if(self.data.flagStatus!=3){ // 1 初始状态，2视频接通状态，3对方关闭，4房间关闭 5发生错误
+        self.setData({
+          hideBg: false,
+          endTime:Date.now()
+        });
       }
-      //配置结束时间
-      self.data.endTime=self.data.endTime?self.data.endTime:Date.now();
-      self.setData({
-        hideBg: false,
-      });
-      // console.log("&&&&&decline&&&&&",self.data.flagStatus,self.data.startTime,self.data.endTime);
-      if(self.data.endTime&&self.data.startTime){
-        var st = Math.floor((self.data.endTime - self.data.startTime)/1000);
-        mini=Math.floor(st/60);
-        second=st%60;
-        videoTime = (mini>9?mini:("0"+mini)) +":"+(second>9?second:("0"+second))
-        console.log("***decline-exit***",mini,second,videoTime);
-        if(mini>=1){
-          clkDesPage = "pingjiayemian"; //通话时间大于1分钟时，前往的页面是评价页
-        }
-      }
-      var para={
-        clkId:'clk_2cmina_28',
-        clkDesPage:clkDesPage,//点击前往的页面名称
-        type:'CLK',//埋点类型
-        adviserId:app.globalData.videoCustomer.id,//顾问id
-        // imTalkId:app.globalData.single.id+'_'+app.globalData.videoCustomer.id+'_'+config.houseId,//对话编号
-        imTalkType:'2',//对话类型
-        pvCurPageName:pvCurPageName,//当前页面名称
-        clkName:'bodaguaduan',//当前页面
-        // clkParams:this.data.tel,//点击参数
-        pvCurPageParams:'',//当前页面参数
-      }
-      console.log(para,'视频通话挂断点击埋点pv');
-      util.trackRequest(para,app)
-      self.videoInsert(30,10);//正常退出时，发送日志记录
-      self.exit();//执行退出
+      this.exit();
       console.log("***rtcroomCom.exitRoom()***");
       rtcroomCom.exitRoom();// 底层退出接口
     },
@@ -768,7 +736,6 @@ Page({
       time = time.getHours() + ':' + time.getMinutes() + ':' + time.getSeconds();
       console.log('*************开始视频看房：' + time + '**************');
       console.log(options)
-      self.data.aliveFlag=false;// 开启关闭允许标志
       self.data.role = options.type;
       self.data.roomID = options.roomID || '';
       self.data.roomname = options.roomName;
@@ -819,6 +786,21 @@ Page({
       wx.setKeepScreenOn({
         keepScreenOn: true
       });
+      let param = {
+        ip:app.globalData.ip,
+        type:'PV',
+        adviserId:app.globalData.videoCustomer.id,//顾问id
+        // imTalkId:app.globalData.single.id+'_'+app.globalData.videoCustomer.id+'_'+config.houseId,//对话编号
+        imTalkType:'2',//对话类型
+        pvId:'P_2cMINA_6',
+        pvCurPageName:'ekanfangjietongye',//当前页面名称
+        pvCurPageParams:'',//当前页面参数
+        pvLastPageName:getCurrentPages()[getCurrentPages().length-2]?getCurrentPages()[getCurrentPages().length-2].data.despage:'',//上一页页面名称
+        pvLastPageParams:'',//上一页页面参数
+        pvPageLoadTime:(new Date().getTime() - wx.getStorageSync('loadTime')),//加载时间
+      }
+      console.log(param,'视频通话埋点pv');
+      util.trackRequest(param,app);
     },
 
     /**

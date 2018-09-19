@@ -30,7 +30,7 @@
     <view class="adviser-list">
         <view class="adviser-item" wx:for="{{adviserList}}" wx:for-item='item' wx:key='index' data-item='{{item}}' bindtap='goChat'>
             <view class="head-box">
-                <image mode="aspectFill" wx:if="{{item.head}}" src="{{item.head}}" alt=""></image>
+                <image wx:if="{{item.head}}" src="{{item.head}}" alt=""></image>
                 <image wx:else src="{{defaultImg}}" alt=""></image>
             </view>
             <view class="message-box">

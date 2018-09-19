@@ -713,7 +713,7 @@ function smsPicClick() {
 }
 
 //发送消息(普通消息)
-function onSendMsg(msg,typedata,nickname,callback) {
+function onSendMsg(msg,typedata,nickname,callback,errorCallback) {
     // debugger
     console.log('accountMode',typedata);
     if(nickname){
@@ -829,6 +829,7 @@ function onSendMsg(msg,typedata,nickname,callback) {
         webim.Log.error("发消息失败:" + err.ErrorInfo);
         console.log("发消息失败:" + err.ErrorInfo);
         console.error("发消息失败:" + err.ErrorInfo);
+        errorCallback(showMsg(msg))
     });
 }
 

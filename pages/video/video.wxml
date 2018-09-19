@@ -1,6 +1,6 @@
 <view>
 	<video id="myVideo" src="{{source}}" controls="{{false}}" loop="true" autoplay="true" bindplay="play"  direction="90"
-	 class="video" enable-progress-gesture="{{false}}" bindfullscreenchange="queitFull" custom-cache="{{false}}">
+	 class="video" enable-progress-gesture="{{false}}" bindfullscreenchange="queitFull" muted="true" custom-cache="{{false}}">
 	 	<!-- <cover-view class="controls">
 		    <cover-view class="play" bindtap="play">
 		    </cover-view>

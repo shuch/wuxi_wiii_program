@@ -85,7 +85,7 @@ Page({
               let param={
                   pvCurPageName:that.data.title||'',//当前页面名称
                   clkId:'clk_2cmina_37',//点击ID
-                  clkParams:{"imageCode":e.currentTarget.dataset.id},//点击参数
+                  clkParams:e.currentTarget.dataset.id,//点击参数
                   clkName:'dianzan',
                   type:'CLK',//埋点类型
               }
@@ -94,20 +94,6 @@ Page({
       })
     },
     selectTap:function(e){
-      switch(e.currentTarget.dataset.type){
-          case 1:
-              var real_view='xiaoguotu';
-              break;
-          case 2:
-              var real_view='yangbanjiantu';
-              break;
-          case 3:
-              var real_view='shijingtu';
-              break;
-          case 4:
-              var real_view='peitaotu';
-              break;
-      }
       var that = this;
       console.log(e.currentTarget.dataset.type)
       this.setData({
@@ -128,8 +114,7 @@ Page({
             pvCurPageName:'tupianku',//当前页面名称
             clkId:'clk_2cmina_38',//点击ID
             clkName:'tupiankuleixing',//点击ID
-            clkParams:{"imageCode":this.data.currentType.atlasResponseList[this.data.swipIndex].id,
-                real_view:real_view,buttonType:'show_rooom'},//点击参数
+            clkParams:{"imageCode":this.data.currentType.atlasResponseList[this.data.swipIndex].id,buttonTytpe:e.currentTarget.dataset.type},//点击参数
             type:'CLK',//埋点类型
         }
         util.trackRequest(param,app)

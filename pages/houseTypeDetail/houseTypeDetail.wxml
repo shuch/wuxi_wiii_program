@@ -1,7 +1,7 @@
 <scroll-view class="contain">
     <movable-area style="height: 120rpx; width: 100%;" class="top_flex">
-        <movable-view class="top" style="width:{{dataList.length>2?dataList.length*280+'rpx':'100%'}}" direction="horizontal">
-            <view wx:for="{{dataList}}" wx:key="index" data-id="{{item.id}}" data-index="{{index}}"  bindtap="checkOutHouse" class="item" style="background:{{active==item.id? 'linear-gradient(-270deg, '+jbColor1+' 0%, '+jbColor2+' 100%);opacity:1':'#272A34'}}">{{item.name}}</view>
+        <movable-view class="top" style="width:{{dataList.length>3?dataList.length*212+'rpx':'100%'}}" direction="horizontal">
+            <view wx:for="{{dataList}}" wx:key="index" data-id="{{item.id}}"data-index="{{index}}"  bindtap="checkOutHouse" class="item" style="background:{{active==item.id? 'linear-gradient(-270deg, '+jbColor1+' 0%, '+jbColor2+' 100%);opacity:1':'#272A34'}}">{{item.area}}M²</view>
         </movable-view>
     </movable-area>
     <view class="preview">

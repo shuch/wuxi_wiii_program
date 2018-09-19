@@ -39,21 +39,16 @@ Page({
                 },
                 success:function(res){
                     console.log('楼栋数据',res);
-                    if(res.statusCode==200){
-                        if(res.data.success){
-                            if(res.data.list&&res.data.list.length>0){
-                                that.setData({
-                                    list: res.data.list||[]
-                                })
-                                that.getHouseList(res.data.list[0].id,res.data.list[0].name)
-                            }
-                        }else{
-                            wx.showToast({
-                                title: res.data.message + '[' + res.data.errorCode + ']',
-                                icon: 'warn',
-                                duration: 1500,
-                            })
-                        }
+                    if(res.data.success){
+                        that.setData({
+                            list: res.data.list})
+                        that.getHouseList(res.data.list[0].id,res.data.list[0].name)
+                    }else{
+                        wx.showToast({
+                            title: res.data.message + '[' + res.data.errorCode + ']',
+                            icon: 'warn',
+                            duration: 1500,
+                        })
                     }
                 },
                 fail:function(res){

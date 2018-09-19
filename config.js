@@ -29,7 +29,7 @@ var config = function() {
 		  	roomServiceUrl: 'https://dm-api.elab-plus.cn/elab-marketing-rtc',//'https://room.qcloud.com',  http://139.196.5.59:5757 // 测试  http://139.196.5.82:5757 堡垒 https://zb.elab-plus.com//生产
 		  	webrtcServerUrl: 'https://dm-api.elab-plus.cn/elab-marketing-rtc',
 		  	templateUrl:'https://m.elab-plus.com/launch/#/pages/preview?projectId=', // 模板H5链接前缀 
-		  	newTemplateUrl:'https://dm-mng.elab-plus.cn/touFangBao/#/pages/preview?houseId=', // 新的模板H5链接前缀 
+		  	newTemplateUrl:'https://dm-mng.elab-plus.cn/touFangBao/#/pages/preview?houseId=', // 新的模板H5链接前缀
 		}
 	}
 	else if(env==='dev'){
@@ -51,8 +51,8 @@ var config = function() {
 		  	//腾讯云RoomService后台请求域名
 		  	roomServiceUrl: 'http://192.168.0.16:5555/elab-marketing-rtc',
 		  	webrtcServerUrl: 'https://xzb.qcloud.com/webrtc/weapp/webrtc_room',
-		  	templateUrl:'https://h5test.elab-plus.com/launch/#/pages/preview?projectId=', // 模板H5链接前缀 
-		  	newTemplateUrl:'https://h5test.elab-plus.com/touFangBao/#/pages/preview?houseId=', // 新的模板H5链接前缀 
+		  	templateUrl:'https://h5test.elab-plus.com/launch/#/pages/preview?projectId=', // 模板H5链接前缀
+		  	newTemplateUrl:'https://h5test.elab-plus.com/touFangBao/#/pages/preview?houseId=', // 新的模板H5链接前缀
 		}
 	}
 	else if(env==='test'){
@@ -74,8 +74,8 @@ var config = function() {
 		  	//腾讯云RoomService后台请求域名
 		  	roomServiceUrl: 'http://139.196.5.59:5555/elab-marketing-rtc',//测试
 		  	webrtcServerUrl: 'https://xzb.qcloud.com/webrtc/weapp/webrtc_room',
-		  	templateUrl:'https://h5test.elab-plus.com/launch/#/pages/preview?projectId=', // 模板H5链接前缀 
-		  	newTemplateUrl:'https://h5test.elab-plus.com/touFangBao/#/pages/preview?houseId=', // 新的模板H5链接前缀 
+		  	templateUrl:'https://h5test.elab-plus.com/launch/#/pages/preview?projectId=', // 模板H5链接前缀
+		  	newTemplateUrl:'https://h5test.elab-plus.com/touFangBao/#/pages/preview?houseId=', // 新的模板H5链接前缀
 		}
 	}
 	else if(env==='uat'){
@@ -97,8 +97,8 @@ var config = function() {
 		  	//腾讯云RoomService后台请求域名
 		  	roomServiceUrl: 'https://api-uat.elaber.cn/elab-marketing-rtc',
 		  	webrtcServerUrl: 'https://api-uat.elaber.cn/elab-marketing-rtc',
-		  	templateUrl:'https://m.elab-plus.com/launch/#/pages/preview?projectId=', // 模板H5链接前缀 
-		  	newTemplateUrl:'https://mng-uat.elaber.cn/touFangBao/#/pages/preview?houseId=', // 新的模板H5链接前缀 
+		  	templateUrl:'https://m.elab-plus.com/launch/#/pages/preview?projectId=', // 模板H5链接前缀
+		  	newTemplateUrl:'https://mng-uat.elaber.cn/touFangBao/#/pages/preview?houseId=', // 新的模板H5链接前缀
 		}
 	}
 	return result;

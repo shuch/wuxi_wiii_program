@@ -6,9 +6,9 @@ var pvCurPageParams = '';
 // var serverUrl = 'http://skyforest.static.elab-plus.com/wepy_pro/'
 var {authorizeInfo,getUserInfo} = require('../../getlogininfo.js')
 Page({
-    data: {
-        closeImg: serverUrl+'/close-button.png',
-        chatButton: serverUrl+'/im-chat.png',
+	data: {
+		closeImg: serverUrl+'/close-button.png',
+		chatButton: serverUrl+'/im-chat.png',
         showInfoModel:false,
         infoFun:null,
         infoFailFun:null,
@@ -20,14 +20,14 @@ Page({
         loading:false,
         title:'在线咨询',
         sorry:serverUrl+'/sorry.png',//繁忙
-        defaultImg: serverUrl+'/Avatar_male.png',
-        yuyue: serverUrl+'/yuyue.png',
-        fixImg: serverUrl+'/fix-b.png',//底部固定图片
-        showTel:false,//顾问繁忙控制
-        adviserList: [],
+		defaultImg: serverUrl+'/Avatar_male.png',
+		yuyue: serverUrl+'/yuyue.png',
+		fixImg: serverUrl+'/fix-b.png',//底部固定图片
+		showTel:false,//顾问繁忙控制
+		adviserList: [],
         tryAgainFlag:false,
-    },
-    onShow: function (e) {
+	},
+	onShow: function (e) {
         wx.setStorageSync('loadTime',new Date().getTime())
         var that = this;
 
@@ -76,6 +76,17 @@ Page({
                         util.trackRequest(param,app);
                         return
                     }
+                    let param = {
+                        type:'PV',
+                        pvId:'P_2cMINA_2',
+                        pvCurPageName:'xuanzeguwenliebiao',//当前页面名称
+                        pvCurPageParams:pvCurPageParams,//当前页面参数
+                        pvLastPageName:getCurrentPages()[getCurrentPages().length-2]?getCurrentPages()[getCurrentPages().length-2].data.despage:'',//上一页页面名称
+                        pvLastPageParams:'',//上一页页面参数
+                        pvPageLoadTime:(new Date().getTime() - wx.getStorageSync('loadTime')),//加载时间
+                    }
+                    console.log(param,'埋点2')
+                    util.trackRequest(param,app)
                     let onlineList = [];
                     res.data.single.imAdvisers.forEach((item)=>{
                         if(!item.onlineStatus){
@@ -90,33 +101,11 @@ Page({
                         that.setData({
                             showTel:true
                         })
-                        let param = {
-                            type:'PV',
-                            pvId:'P_2cMINA_4',
-                            pvCurPageName:'wuzaixianguwen',//当前页面名称
-                            pvCurPageParams:pvCurPageParams,//当前页面参数
-                            pvLastPageName:getCurrentPages()[getCurrentPages().length-2]?getCurrentPages()[getCurrentPages().length-2].data.despage:'',//上一页页面名称
-                            pvLastPageParams:'',//上一页页面参数
-                            pvPageLoadTime:(new Date().getTime() - wx.getStorageSync('loadTime')),//加载时间
-                        }
-                        console.log(param,'埋点1');
-                        util.trackRequest(param,app);
                     }else{
                         console.log(that.data.adviserList.length,'你应该走这里啊')
                         that.setData({
                             showTel:false
                         })
-                        let param = {
-                            type:'PV',
-                            pvId:'P_2cMINA_2',
-                            pvCurPageName:'xuanzeguwenliebiao',//当前页面名称
-                            pvCurPageParams:pvCurPageParams,//当前页面参数
-                            pvLastPageName:getCurrentPages()[getCurrentPages().length-2]?getCurrentPages()[getCurrentPages().length-2].data.despage:'',//上一页页面名称
-                            pvLastPageParams:'',//上一页页面参数
-                            pvPageLoadTime:(new Date().getTime() - wx.getStorageSync('loadTime')),//加载时间
-                        }
-                        console.log(param,'埋点2')
-                        util.trackRequest(param,app)
                     }
                     //that.data.adviserList = res.data.pageModel.resultSet||[];
                     console.log(that.data.adviserList,'拿到列表', that.data.showTel)
@@ -131,9 +120,9 @@ Page({
         })
         console.log('app.single',app.globalData.single,app.globalData)
         wx.hideShareMenu();
-        wx.setNavigationBarTitle({
-            title: '在线咨询'
-        })
+		wx.setNavigationBarTitle({
+			title: '在线咨询'
+		})
         console.log(app.globalData.isUserInfo,'isfalse')
         if(!app.globalData.isUserInfo){
             authorizeInfo.call(this,function(){
@@ -142,18 +131,18 @@ Page({
         }
         console.log(wx.getStorageSync('phone'),'有值就不会弹起')
         if(!app.globalData.tmpPhone&&!wx.getStorageSync('phone')){
-            console.log('从未授权过',wx.getStorageSync('phone'))
+		    console.log('从未授权过',wx.getStorageSync('phone'))
             this.authorizeIndexPhone(function () {
             },function () {
             })
         }
 
-    },
-    goMessageList: function (e) {
-        wx.redirectTo({
-            url: '../messagesList/messagesList'
-        })
-    },
+	},
+	goMessageList: function (e) {
+		wx.redirectTo({
+			url: '../messagesList/messagesList'
+		})
+	},
     getPhoneNumber: function (e) {
         var self = this;
         // 隐藏
@@ -246,29 +235,29 @@ Page({
     },
     onUnload:function(){
         util.stopTrackEventTimeObj()
-    },
-    goChat: function (e) {
-        //console.log(e,'===传参===')
-        var item = e.currentTarget.dataset.item;
-        wx.setStorageSync('adviserInfo', JSON.stringify(item));
+	},
+	goChat: function (e) {
+		//console.log(e,'===传参===')
+		var item = e.currentTarget.dataset.item;
+		wx.setStorageSync('adviserInfo', JSON.stringify(item));
       let param = {
           type:'CLK',//埋点类型
           pvPageStayTime:(new Date().getTime()-wx.getStorageSync('loadTime'))/1000,
           adviserId:item.id,
           imTalkId:item.id+'_'+app.globalData.single.id+'_'+config.houseId,
-          imTalkType:'1',
+          imTalkType:'wenziliaotian',
           clkDesPage:'liaotianchuangkou',//点击前往的页面名称
           clkName:'xuanzeguwenliaotian',//点击前往的页面名称
           clkId:'clk_2cmina_24',//点击ID
           clkParams:'',//点击参数
       }
         util.trackRequest(param,app)
-        wx.redirectTo({
-            url: '../chat/chat'
-        })
+		wx.redirectTo({
+			url: '../chat/chat'
+		})
 
-        console.log(item, '------------', JSON.stringify(item))
-    },
+		console.log(item, '------------', JSON.stringify(item))
+	},
     proto_getLoginInfo: function() {
         wx.request({
             url: util.newUrl()+'elab-marketing-authentication/tencent/signature',
@@ -311,22 +300,13 @@ Page({
             }
         });
     },
-    goVideo: function (e) {
+	goVideo: function (e) {
         var that=this;
         if(that.data.tryAgainFlag){
             return
         }
-        let param = {
-            type:'CLK',//埋点类型
-            pvPageStayTime:(new Date().getTime()-wx.getStorageSync('loadTime'))/1000,
-            clkDesPage:'ekanfangjietongye',//点击前往的页面名称
-            clkName:'shipin_xuanguwenliebiao',//点击前往的页面名称
-            clkId:'clk_2cmina_42',//点击ID
-            clkParams:'',//点击参数
-        }
-        util.trackRequest(param,app)
         that.data.tryAgainFlag=true;
-        wx.getSetting({
+		wx.getSetting({
             success: (response) => {
                 console.log("***rtcroomCom.onLoad***getSetting",response)
                 // 没有授权
@@ -383,21 +363,21 @@ Page({
                 })
             }
         })
-    },
-    onLoad: function (options) {
-        var that = this;
+	},
+	onLoad: function (options) {
+	    var that = this;
         pvCurPageParams=JSON.stringify(options)
 
 
-    },
-    goTel:function(){
+	},
+	goTel:function(){
         var phone = wx.getStorageSync('phone');
         var Liudian = wx.getStorageSync('indexLiudian');
-        if(!phone && !Liudian){
-            wx.navigateTo({
-                url: '../savephone/savephone'
-            })
-        }else{
+		if(!phone && !Liudian){
+			wx.navigateTo({
+				url: '../savephone/savephone'
+			})
+		}else{
             var pageid='01011093';
             var key='sfc.nb.xcx.w3.head.shifouliudian';
             var obj={
@@ -405,13 +385,13 @@ Page({
                 "keyvalue":key + ".click",
             }
             util.reqTrackEventObj(obj,app);
-            wx.showToast({
-                title: '留电成功，我们会尽快联系您',
-                icon:"none",
-                duration: 2000
-            })
-        }
-        console.log(12,phone)
-    },
+			wx.showToast({
+				title: '留电成功，我们会尽快联系您',
+				icon:"none",
+				duration: 2000
+			})
+		}
+		console.log(12,phone)
+	},
 
 })

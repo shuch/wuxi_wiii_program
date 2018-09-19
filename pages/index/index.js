@@ -192,7 +192,7 @@ Page({
                 if(res.data.list&&res.data.list[0]){
                     let param={
                         clkId:e.currentTarget.dataset.clkid||'',
-                        clkDesPage:'tupianku',//点击前往的页面名称
+                        clkDesPage:'tupianku'||'',//点击前往的页面名称
                         clkName:e.currentTarget.dataset.despage||'',//点击前往的页面名称
                         type:'CLK',//埋点类型
                         pvCurPageName:'zhuye',//当前页面
@@ -416,7 +416,7 @@ Page({
     goToShareFriend: function() {
         var para={
             clkId:'clk_2cmina_19',
-            clkDesPage:'wodetuijian',//点击前往的页面名称
+            clkDesPage:'wofenxiangdehaoyou',//点击前往的页面名称
             clkName:'wofenxiangdehaoyou',//点击前往的页面名称
             type:'CLK',//埋点类型
             pvCurPageName:'zhuye',//当前页面
@@ -441,6 +441,8 @@ Page({
         })
     },
     goChatList: function(e) {
+
+        app.globalData.userInfo = e.detail.userInfo;
         var isSend = wx.getStorageSync('isSend'+config.houseId);
         if (!isSend) { //没聊天
             var para={
@@ -623,7 +625,6 @@ Page({
                         pvCurPageName:'zhuye',
                         pvCurPageParams:pvCurPageParams,
                         eventModuleDes:item.id.slice(1),//模块描述信息
-                        eventName:item.id.slice(1),//模块描述信息
                         eventInnerModuleId:'',//事件内部模块信息
                     }
                     util.trackRequest(param,app)
@@ -1171,11 +1172,11 @@ Page({
                     });
                     var para={
                         clkId:'clk_2cmina22',
-                        clkDesPage:'zhuye',//点击前往的页面名称
+                        clkDesPage:'zaixianliudian',//点击前往的页面名称
                         clkName:'zaixianliudian',//点击前往的页面名称
                         type:'CLK',//埋点类型
                         pvCurPageName:'zhuye',//当前页面
-                        clkParams:{"mobile":that.data.tel},//点击参数
+                        clkParams:{"mobile":this.data.tel},//点击参数
                         pvCurPageParams:pvCurPageParams,//当前页面参数
                     }
                     util.trackRequest(para,app)

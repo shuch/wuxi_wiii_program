@@ -84,13 +84,13 @@ function reformParam(methodName,para) {
   return parameter
 }
 function trackRequest(para,app){
-    if(JSON.stringify(para.clkParams)==='"{}"'){
+    if(JSON.stringify(para.clkParams)==='{}'){
         para.clkParams = '';
     }
-    if(JSON.stringify(para.expand)==='"{}"'){
+    if(JSON.stringify(para.expand)==='{}'){
         para.expand = '';
     }
-    if(JSON.stringify(para.pvCurPageParams)==='"{}"'){
+    if(JSON.stringify(para.pvCurPageParams)==='{}'){
         para.pvCurPageParams = '';
     }
   let data = {
@@ -99,19 +99,16 @@ function trackRequest(para,app){
       browserName:'',
       browserVersion:app.systemInfo.SDKVersion,
       platform:'miniapp',
-      fromPlatform:'',//
       deviceType:app.systemInfo.model||"",
       ip:app.globalData.ip||'',
       cookieId:'',
       openId:app.globalData.openid||'',
-      customerId:app.globalData.single.id||'',
       userId:app.globalData.single.id||'',
       createTime:this.formatTime(new Date()),
       uploadTime:this.formatTime(new Date()),
       product:config.projectName,
       project:config.houseId,
-      eventId:para.eventId||'',     //埋点ID
-      eventName:para.eventName||'', //埋点ID
+      eventId:para.eventId||'',//埋点ID
       expand:typeof para.expand==='object'?JSON.stringify(para.expand):para.expand,//扩展字段
       imTalkId:para.imTalkId||'',//IM对话编号
       imTalkType:para.imTalkType||'',//IM对话类型
@@ -122,13 +119,10 @@ function trackRequest(para,app){
       clkId:para.clkId||'',//点击ID
       clkName:para.clkName||'',
       pvId:para.pvId||'',//PV埋点ID
-      talkStartTime:para.talkStartTime||'',//视频通话开始时间
-      talkEndTime:para.talkEndTime||'',//视频通话结束时间
-      talkLongTime:para.talkLongTime||'',//视频通话持续时间
       clkParams:typeof para.clkParams==='object'?JSON.stringify(para.clkParams):para.clkParams,//点击参数
       pvPageStayTime:para.pvPageStayTime||'',
       pvCurPageName:para.pvCurPageName||'',//当前页面名称
-      pvCurPageParams:typeof para.pvCurPageParams==='object'?JSON.stringify(para.pvCurPageParams):para.pvCurPageParams,//当前页面参数
+      pvCurPageParams:para.pvCurPageParams||'',//当前页面参数
       pvLastPageName:para.pvLastPageName||'',//上一页页面名称
       pvLastPageParams:para.pvLastPageParams||'',//上一页页面参数
       pvPageLoadTime:para.pvPageLoadTime||'',//加载时间

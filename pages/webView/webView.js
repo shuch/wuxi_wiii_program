@@ -51,14 +51,17 @@ Page({
     }
     if(options.q){ // 针对模板H5的逻辑调整
       var myquery=decodeURIComponent(options.q);
+      // var _request = {
+      //   QueryString: function(val) {
+      //     var uri = myquery;
+      //     var re = new RegExp("" + val + "\=([^\&\?]*)", "ig");
+      //     return ((uri.match(re)) ? (uri.match(re)[0].substr(val.length + 1)) : null);
+      //   }
+      // }
       var last=myquery.substring(myquery.lastIndexOf('/')+1,myquery.length) //app.globalData.templateUrl
-      if(last.startsWith("N")||last.startsWith("n")){
-        newUrl= config.newTemplateUrl+last.replace("N","");
-      }
-      else{
-        // newUrl= "https://m.elab-plus.com/launch/#/pages/preview?projectId="+last;//_request.QueryString('projectId');
-        newUrl= config.templateUrl+last;//_request.QueryString('projectId');
-      }
+      // newUrl= "https://m.elab-plus.com/launch/#/pages/preview?projectId="+last;//_request.QueryString('projectId');
+      newUrl= config.templateUrl+last;//_request.QueryString('projectId');
+      console.log("======options.q******",options.q,myquery,newUrl)
     }
     else{
       newUrl = decodeURIComponent(options.view);
@@ -105,44 +108,44 @@ Page({
     app.globalData.currDespage = null;
   },
   onUnload:function(){
-		// 页面关闭
-		// console.log("onUnload")
-		// 停止当前页面的计时
-		console.log(this.data.isMoment, 'webview-onUnload-ppppp')
-		// util.stopTrackEventTimeObj();
-		// if (this.data.isMoment) {
-		// 	wx.request({
-		// 		url: util.newUrl() + 'elab-marketing-content/module/modifyMomentView',
-		// 		method: 'POST',
-		// 		data: {
-		// 			id: this.data.isMoment,
-		// 			viewNumber: -1
-		// 		},
-		// 		success: function (res) {
-		// 		}
-		// 	})
-		// }
+    // 页面关闭
+    // console.log("onUnload")
+    // 停止当前页面的计时
+    console.log(this.data.isMoment, 'webview-onUnload-ppppp')
+    // util.stopTrackEventTimeObj();
+    // if (this.data.isMoment) {
+    //  wx.request({
+    //    url: util.newUrl() + 'elab-marketing-content/module/modifyMomentView',
+    //    method: 'POST',
+    //    data: {
+    //      id: this.data.isMoment,
+    //      viewNumber: -1
+    //    },
+    //    success: function (res) {
+    //    }
+    //  })
+    // }
 
-		// var data={
-		//   houseId: app.globalData.houseid,
-		//   picUrl:  this.data.linkUrl,
-		//   numberType: '2', // 数字类型(1点赞数|2观看数|3点击数)
-		//   status:"-1", // 1观看，-1 不观看
-		//   uniqueId: app.globalData.openid,
-		// }
-		// wx.request({
-		//   url: util.url(),
-		//   method: 'POST',
-		//   data: util.reformParam(util.likeUrl, data),
-		//   header: {
-		//     'content-type': 'application/json' // 默认值
-		//   },
-		//   success:function(res){
-		//     if(res.data.success && res.data.single){
-		//     }
-		//     else{
-		//     }
-		//   }
-		// })
-	}
+    // var data={
+    //   houseId: app.globalData.houseid,
+    //   picUrl:  this.data.linkUrl,
+    //   numberType: '2', // 数字类型(1点赞数|2观看数|3点击数)
+    //   status:"-1", // 1观看，-1 不观看
+    //   uniqueId: app.globalData.openid,
+    // }
+    // wx.request({
+    //   url: util.url(),
+    //   method: 'POST',
+    //   data: util.reformParam(util.likeUrl, data),
+    //   header: {
+    //     'content-type': 'application/json' // 默认值
+    //   },
+    //   success:function(res){
+    //     if(res.data.success && res.data.single){
+    //     }
+    //     else{
+    //     }
+    //   }
+    // })
+  }
 })

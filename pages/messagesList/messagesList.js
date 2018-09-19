@@ -18,7 +18,6 @@ Page({
         showInfoModel:false,
         infoFun:null,
         despage:'xiaoxiliebiao',
-        despageForChat:"xiaoxiliebiao",
         infoFailFun:null,
         isShowVideoButton:false,
         showPhoneModel:false,
@@ -83,15 +82,6 @@ Page({
 		}
 	},
 	goVideo: function (e) {
-        let param = {
-            type:'CLK',//埋点类型
-            pvPageStayTime:(new Date().getTime()-wx.getStorageSync('loadTime'))/1000,
-            clkDesPage:'ekanfangjietongye',//点击前往的页面名称
-            clkName:'shipin_xiaoxiliebiao',//点击前往的页面名称
-            clkId:'clk_2cmina_39',//点击ID
-            clkParams:'',//点击参数
-        }
-        util.trackRequest(param,app)
 		wx.getSetting({
             success: (response) => {
                 console.log("***rtcroomCom.onLoad***getSetting",response)
@@ -157,7 +147,7 @@ Page({
                     pvId:'P_2cMINA_3',
                     pvCurPageName:'xiaoxiliebiao',//当前页面名称
                     pvCurPageParams:pvCurPageParams,//当前页面参数
-                    pvLastPageName:'',//上一页页面名称
+                    pvLastPageName:getCurrentPages()[getCurrentPages().length-2]?getCurrentPages()[getCurrentPages().length-2].data.despage:'',//上一页页面名称
                     pvLastPageParams:'',//上一页页面参数
                     pvPageLoadTime:(new Date().getTime() - wx.getStorageSync('loadTime')),//加载时间
                 }
@@ -292,10 +282,9 @@ Page({
         let param = {
             type:'CLK',//埋点类型
             pvPageStayTime:(new Date().getTime()-wx.getStorageSync('loadTime'))/1000,
-            imTalkType:'1',
+            imTalkType:'wenziliaotian',
             clkDesPage:'xuanzeguwenliebiao',//点击前往的页面名称
             clkName:'gengduoguwen',//点击前往的页面名称
-            pvCurPageName:'xiaoxiliebiao',
             clkId:'clk_2cmina_26',//点击ID
             clkParams:'',//点击参数
         }
@@ -624,7 +613,7 @@ Page({
             pvPageStayTime:(new Date().getTime()-wx.getStorageSync('loadTime'))/1000,
             adviserId:item.id,
             imTalkId:item.id+'_'+app.globalData.single.id+'_'+config.houseId,
-            imTalkType:'1',
+            imTalkType:'wenziliaotian',
             clkDesPage:'liaotianchuangkou',//点击前往的页面名称
             clkName:'xuanzeguwenliaotian',//点击前往的页面名称
             clkId:'clk_2cmina_25',//点击ID

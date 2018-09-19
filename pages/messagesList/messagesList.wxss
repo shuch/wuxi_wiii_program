@@ -78,7 +78,7 @@
 	position:absolute;
 }
 .head-box image{
-    border-radius:30px;
+    border-radius:100%;
 	width:60px;
 	height:60px;
 }

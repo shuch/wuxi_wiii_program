@@ -48,7 +48,7 @@
 .head-box image{
 	width:60px;
 	height:60px;
-	border-radius:30px;
+	border-radius:100%;
 }
 .message-box{
 	margin-left:10px;
