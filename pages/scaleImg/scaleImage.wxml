@@ -1,0 +1,41 @@
+<view class="container">
+<swiper class="scrollMsgItem" current="{{swipIndex}}">
+	<block wx:for="{{currentType.atlasResponseList}}" class="scrollMsgItem-box">
+		<swiper-item>
+			<scroll-view scroll-y="true" scroll-x="true" class="scroll">
+				<!--<image id="SFimg" class="imgItem" bindtouchend="endtap" bindtouchmove="movetap" bindload = "imgload"-->
+					   <!--style="width:{{ scaleWidth }}px;height:{{ scaleHeight }}px" mode="widthFix" src="{{item.imageUrl}}">-->
+				<!--</image>-->
+				<image class="imgItem" mode="aspectFit" data-src="{{item.imageUrl}}" src="{{item.imageUrl}}" bindtap="previewImage">
+				</image>
+				<view class="swip-desc">
+					<view class="swip-title">
+                        <view>{{index+1}}/{{currentType.atlasResponseList.length}} {{item.name||''}}</view>
+                        <view style="display:flex;align-items:center;"
+							  data-id="{{item.id}}"
+							  data-item="{{item}}"
+							  data-type="{{currentType.groupType}}"
+							  data-like="{{item.like}}"
+							  bindtap="likeAdd">
+                            <image src="{{likeImg}}" wx:if="{{!item.like}}" style="width:34rpx;height:31rpx;margin-right:10rpx;"></image>
+                            <image src="{{likeImgRed}}" wx:else style="width:34rpx;height:31rpx;margin-right:10rpx;"></image>
+                               {{item.likeNumber||0}}
+                        </view>
+                    </view>
+					<view class="swip-text">{{item.remark||''}}</view>
+				</view>
+			</scroll-view>
+		</swiper-item>
+	</block>
+</swiper>
+
+</view>
+<view class="swip-tab">
+<view wx:for="{{imgTotal}}" class="tab-box "
+	  style="{{isChosed==item.groupType?'background-image: linear-gradient(-270deg, '+gradient1+' 0%, '+gradient2+' 100%);border: 2px solid #FFFFFF;color:#fff;':''}}"
+	  data-type="{{item.groupType}}" bindtap="selectTap">
+	{{item.groupName}}
+</view>
+</view>
+
+

@@ -1,0 +1,58 @@
+<view wx:if="{{showInfoModel}}" class="model">
+        <view class="modelTitle">
+            请求获取信息
+        </view>
+        <view class="modelBody">为了更好的为您提供服务，我们请求获取您的昵称、头像等公开信息</view>
+        <view class="btns">
+            <!-- <button open-type="getUserInfo" class="agree" bindgetuserinfo="agreeGetUser" lang="zh_CN">下一步</button> -->
+            <button open-type="getUserInfo" class="agree" bindgetuserinfo="getUserInfo" plain="true" lang="zh_CN">下一步</button>
+        </view>
+    </view>
+<view wx:if="{{showPhoneModel}}" class="model">
+    <view class="modelTitle">
+        请求获取信息
+    </view>
+    <view class="modelBody">为了更好的为您提供服务，我们请求获取您的手机号码</view>
+    <view class="btns">
+        <!-- <button open-type="getUserInfo" class="agree" bindgetuserinfo="agreeGetUser" lang="zh_CN">下一步</button> -->
+        <button open-type="getPhoneNumber" class="agree" bindgetphonenumber="getPhoneNumber" plain="true" lang="zh_CN">下一步</button>
+    </view>
+</view>
+<view wx:if="{{showPhoneModel || showInfoModel}}" class="mask"></view>
+<scroll-view scroll-y="true" class="counList">
+    <!-- <view class="close-button" bindtap="goMessageList">
+        <image src="{{closeImg}}" alt=""></image>
+    </view> -->
+    <view class="title-box">
+        <text class="title-one">项目金牌顾问</text>
+        <text class="title-two">请选择一名顾问带您体验1V1线上实景看房</text>
+    </view>
+    <view class="adviser-list">
+        <view class="adviser-item" wx:for="{{adviserList}}" wx:for-item='item' wx:key='index' data-item='{{item}}' bindtap='goChat'>
+            <view class="head-box">
+                <image mode="aspectFill" wx:if="{{item.head}}" src="{{item.head}}" alt=""></image>
+                <image wx:else src="{{defaultImg}}" alt=""></image>
+            </view>
+            <view class="message-box">
+                <view class="name">{{item.name}}</view>
+                <view class="evaluate">{{item.brief||''}}</view>
+            </view>
+            <view class="time">
+                <image src="{{chatButton}}"></image>
+            </view>
+        </view>
+    </view>
+    <view wx:if="{{showTel}}">
+        <view class="sorry-box">
+            <!-- <view class="sorry-pic" style="background-image:url(../../image/wepy_pro/sorry.png)"></view> -->
+            <!-- <view class="sorry-pic"> -->
+                <image class="sorry-pic" src="{{sorry}}" alt=""></image>
+            <!-- </view> -->
+            <view class="sorry-text">顾问当前繁忙，您可以留电预约或者稍后再试</view>
+        </view>
+        <view class="tel-button" bindtap ='goTel'>
+            <image src="{{yuyue}}" alt=""></image>
+        </view>
+    </view>
+</scroll-view>
+<image style="width:100%" wx:if="{{isShowVideoButton}}" mode="widthFix" src="{{fixImg}}" class="fixImg" bindtap="goVideo"></image>

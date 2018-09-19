@@ -1,0 +1,37 @@
+<scroll-view class="contain">
+    <movable-area style="height: 120rpx; width: 100%;" class="top_flex">
+        <movable-view class="top" style="width:{{dataList.length>2?dataList.length*280+'rpx':'100%'}}" direction="horizontal">
+            <view wx:for="{{dataList}}" wx:key="index" data-id="{{item.id}}" data-index="{{index}}"  bindtap="checkOutHouse" class="item" style="background:{{active==item.id? 'linear-gradient(-270deg, '+jbColor1+' 0%, '+jbColor2+' 100%);opacity:1':'#272A34'}}">{{item.name}}</view>
+        </movable-view>
+    </movable-area>
+    <view class="preview">
+        <view style="overflow: hidden">
+            <text class="left">{{houseType}}</text>
+            <text class="right">{{houseDetail}}</text>
+        </view>
+    </view>
+
+    <view class="con">
+        <swiper class="swipe"  current="{{current}}" bindchange="bindchange">
+            <block wx:for="{{picList}}" wx:key="index">
+                <swiper-item current="{{current}}" bindtap="priviewPic1" data-index="{{index}}">
+                    <image src="{{item.imageUrl}}" class="slide-image"  mode="aspectFit"/>
+                </swiper-item>
+            </block>
+        </swiper>
+        <view class="tip">
+            <view class="text">
+                <image src="{{serverUrl}}left-arrow.png" bindtap="pre" wx:if="{{current!=0}}" class="pre"></image>
+                <text  style="background:{{'linear-gradient(-270deg, '+jbColor1+' 0%, '+jbColor2+' 100%);opacity:1'}}">{{picList[current].name?picList[current].name:'户型'}}</text>
+                <image src="{{serverUrl}}right-arrow.png" bindtap="next" wx:if="{{current!=picList.length-1}}" class="next"></image>
+            </view>
+        </view>
+    </view>
+    <view class="remark">注：本资料提供的所有的信息仅供参考，不作为购房交付标准，最终以政府批准文件及双方签订的买卖合同为准。</view>
+    <view class="IM">
+        <button bindtap="goChatList" class="_title" style="background:url('{{serverUrl}}wenan.png') no-repeat center center/403rpx 38rpx,{{'linear-gradient(-270deg, '+jbColor1+' 0%, '+jbColor2+' 100%);'}}">
+        </button>
+    </view>
+</scroll-view>
+
+

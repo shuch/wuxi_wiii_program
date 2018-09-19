@@ -1,0 +1,133 @@
+scroll-view.contain {
+  color:#fff;
+  min-height: 100vh;
+}
+image{
+  border: 0;
+  vertical-align: bottom;
+}
+.top_flex{
+  border-bottom:2rpx solid #666;
+  position: fixed;
+  top:0;
+  z-index: 90000;
+  background: #474952;
+}
+.top{
+  height: 120rpx;
+}
+.top view{
+  float: left;
+  margin-left: 30rpx;
+  margin-top: 30rpx;
+  line-height: 58rpx;
+  font-family: NotoSansCJKsc-DemiLight;
+  font-size: 24rpx;
+  color: #FFFFFF;
+  letter-spacing: 0;
+  text-align: center;
+  opacity: 0.5;
+}
+
+.item{
+  min-width: 180rpx;
+  display: inline-block;
+}
+.preview{
+  /*background: #fff;*/
+  padding-top: 120rpx;
+}
+
+.preview{
+  padding: 120rpx 30rpx 0 30rpx;
+  overflow: hidden;
+  background: #474952;
+}
+.preview view .left{
+  font-family: NotoSansCJKsc-Regular;
+  font-size: 38rpx;
+  color: #FFFFFF;
+  text-align: right;
+  line-height: 100rpx;
+  float: left;
+}
+.preview view .right{
+  font-family: NotoSansCJKsc-DemiLight;
+  font-size: 20rpx;
+  color: #FFFFFF;
+  line-height: 100rpx;
+  float: right;
+}
+.swipe image{
+  width: 690rpx;
+  height: 697rpx;
+}
+.swipe{
+  background: #fff;
+  width: 690rpx;
+  height: 697rpx;
+  margin: 30rpx auto;
+}
+.tip{
+  display: flex;
+  justify-content: center;
+  height: 60rpx;
+  margin-top: 30rpx;
+}
+.tip image{
+  width: 20rpx;
+  height: 30rpx;
+  padding: 15rpx;
+  position: absolute;
+}
+.pre{
+  left:-50rpx;
+}
+.next{
+  right:-50rpx;
+}
+.tip .text{
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.tip text{
+  padding: 0 54rpx;
+  font-family: NotoSansCJKsc-Regular;
+  font-size: 32rpx;
+  color: #FFFFFF;
+  text-align: center;
+  line-height: 60rpx;
+}
+.con{
+  overflow: hidden;
+  background: #fff;
+}
+.remark{
+  font-family: NotoSansCJKsc-Regular;
+  font-size: 14.5rpx;
+  color: #000000;
+  text-align: center;
+  line-height: 38rpx;
+  background: #F4F4F4;
+  /*margin-top: 31rpx;*/
+  width: 100%;
+  position: fixed;
+  left: 0;
+  bottom: 100rpx;
+
+}
+.IM{
+  position: fixed;
+  left: 0;
+  bottom: 0;
+
+  width: 100%;
+  height: 100rpx;
+}
+.IM button{
+  width: 100%;
+  height: 100rpx;
+  border: 0;
+  border-radius :0;
+}

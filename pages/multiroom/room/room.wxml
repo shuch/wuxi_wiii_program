@@ -1,0 +1,96 @@
+<view class='container-box'>
+	<view style="width:100vw;margin-left:0px;padding-top:0px;"> <!-- style='width:93vw;margin-left:3.5vw;padding-top:3.5vw;' -->
+	    <rtc-room id="rtcroom"
+	      roomID="{{roomID}}"
+	      roomInfo="{{roomname}}"
+	      template="1v1"
+	      beauty="{{beauty}}"
+	      muted="{{muted}}"
+	      debug="{{debug}}"
+	      hideBg="{{hideBg}}"
+	      flag="{{flag}}"
+	      flagStatus="{{flagStatus}}"
+	      startTime="{{startTime}}"
+	      assistant="{{assistant}}"
+	      bindstatechange="onPush"
+	      bind:decline="decline"
+	      bind:onliveplay="onliveplay"
+	      bind:trigVideo="trigVideo"
+	      bindonRoomEvent="onRoomEvent">
+	    </rtc-room>
+	</view> 
+	<view class="operate">
+		<!-- <view class='img-box'>
+			<image src='../../Resources/camera{{frontCamera?"":"-gray"}}.png' bindtap="changeCamera"></image>
+			<text>翻转</text>
+		</view>
+		<view class='img-box'>
+			<image src='../../Resources/{{beauty? "beauty" : "beauty-dis"}}.png' bindtap="setBeauty"></image>
+			<text>美颜</text>
+		</view> -->
+		<image src='../../../image/wepy_pro/decline.png'  bindtap="decline"></image>
+		<!-- <image src='../../../image/wepy_pro/{{muted ? "muted" : "mute"}}.png'  bindtap="changeMute"></image> -->
+		<!-- <view class='img-box'>
+			<image src='../../Resources/{{debug? "log" : "log2"}}.png'  bindtap="showLog"></image>
+			<text>日志</text>
+		</view> -->
+	</view>
+	<view class="info" >
+		<view class="headImg">
+			<!-- <image src="{{assistant.customerhead}}"></image> -->
+			<image src="{{assistant.head}}"></image>
+		</view>
+		<view class="mainInfo">
+			<div class="row1">
+				<text>{{assistant.name||""}}</text>
+				<div class="gw">新房顾问</div>
+			</div>
+			<hr style=" height:1px;border:none;border-top:1px solid #FFFFFF;" />
+			<div class="row2"><text>{{status}}</text></div>
+		</view>
+	</view>
+	<!-- 一分钟一下以及主动挂断 -->
+	<view class="evaluate " wx:if="{{evaluateFlag=='0'}}" style="background-color:{{backColor}};">
+		<image class="phone" src="http://skyforest.static.elab-plus.com/wepy_pro/phone.png"></image>
+		<image class="hzdl" bindtap="handlehzdl"  src="{{hzdlFlag==false?'http://skyforest.static.elab-plus.com/wepy_pro/hzdl.png':'http://skyforest.static.elab-plus.com/wepy_pro/hzdl-select.png'}}"></image>
+		<image class="ysgl" bindtap="handleysgl" src="{{ysglFlag==false?'http://skyforest.static.elab-plus.com/wepy_pro/ysgl.png':'http://skyforest.static.elab-plus.com/wepy_pro/ysgl-select.png'}}"></image>
+		<image class="hqcs" bindtap="handlehqcs" src="{{hqcsFlag==false?'http://skyforest.static.elab-plus.com/wepy_pro/hqcs.png':'http://skyforest.static.elab-plus.com/wepy_pro/hqcs-select.png'}}"></image>
+		<image class="wlkd" bindtap="handlewlkd" src="{{wlkdFlag==false?'http://skyforest.static.elab-plus.com/wepy_pro/wlkd.png':'http://skyforest.static.elab-plus.com/wepy_pro/wlkd-select.png'}}"></image>
+		<image class="fwbj" bindtap="handlefwbj" src="{{fwbjFlag==false?'http://skyforest.static.elab-plus.com/wepy_pro/fwbj.png':'http://skyforest.static.elab-plus.com/wepy_pro/fwbj-select.png'}}"></image>
+		<image class="bmsy" bindtap="handlebmsy" src="{{bmsyFlag==false?'http://skyforest.static.elab-plus.com/wepy_pro/bmsy.png':'http://skyforest.static.elab-plus.com/wepy_pro/bmsy-select.png'}}"></image>
+		<image class="qtyy" bindtap="handleqtyy" src="{{qtyyFlag==false?'http://skyforest.static.elab-plus.com/wepy_pro/qtyy.png':'http://skyforest.static.elab-plus.com/wepy_pro/qtyy-select.png'}}"></image>
+		<view class="section">
+			<p>您有吐槽吗？您的评价是我们前进的不竭动力</p>
+		  	<textarea bindblur="bindTextAreaBlur"  placeholder="您的评价" />
+		</view>
+		<view class="btn" bindtap="submitEvaluate" style="background-image: linear-gradient(-270deg,{{color1}} 0%, {{color2}} 100%);">立即提交</view>
+	</view>
+	<!-- 通话时间超过一分钟 -->
+	<view class="evaluate " wx:if="{{evaluateFlag=='1'}}" style="background-color:{{backColor}};">
+		<p class="t1">您如何评价刚才的服务体验？</p>
+		<view class="row">
+			<view class="item{{goodIndex == '1' ? ' active' : ''}}" bindtap="handleIndex" data-index="1">
+				<image class="good" src="{{goodIndex=='1'?'http://skyforest.static.elab-plus.com/wepy_pro/good-select.png':'http://skyforest.static.elab-plus.com/wepy_pro/good.png'}}"></image>
+				<p>非常棒</p>
+			</view>
+			<view class="item{{goodIndex == '2' ? ' active' : ''}}" bindtap="handleIndex" data-index="2">
+				<image class="nice" src="{{goodIndex=='2'?'http://skyforest.static.elab-plus.com/wepy_pro/nice-select.png':'http://skyforest.static.elab-plus.com/wepy_pro/nice.png'}}"></image>
+				<p>还不错</p>
+			</view>
+			<view class="item{{goodIndex == '3' ? ' active' : ''}}" bindtap="handleIndex" data-index="3">
+				<image class="bad" src="{{goodIndex=='3'?'http://skyforest.static.elab-plus.com/wepy_pro/bad-select.png':'http://skyforest.static.elab-plus.com/wepy_pro/bad.png'}}"></image>
+				<p>需努力</p>
+			</view>
+			
+		</view>
+		<view class="section">
+			<p class="more-p">您有吐槽吗？您的评价是我们前进的不竭动力</p>
+			<!-- <form bindsubmit="bindFormSubmit">
+			    <textarea placeholder="form 中的 textarea" name="textarea"/>
+			    <button form-type="submit"> 提交 </button>
+			 </form> -->
+		  	<textarea bindblur="bindTextAreaBlur"  placeholder="您的评价" />
+		</view>
+		<view class="btn" bindtap="submitEvaluate2" style="background-image: linear-gradient(-270deg,{{color1}} 0%, {{color2}} 100%);">立即提交</view>
+	</view>
+</view>

@@ -1,0 +1,45 @@
+
+<view wx:if="{{showInfoModel||showPhoneModel}}" class="mask">
+</view>
+<view wx:if="{{showInfoModel}}" class="model">
+    <view class="modelTitle">
+      请求获取信息
+    </view>
+    <view class="modelBody">为了更好的为您提供服务，我们请求获取您的昵称、头像等公开信息</view>
+    <view class="btns">
+      <!-- <button open-type="getUserInfo" class="agree" bindgetuserinfo="agreeGetUser" lang="zh_CN">下一步</button> -->
+      <button open-type="getUserInfo" class="agree" bindgetuserinfo="getUserInfo" plain="true" lang="zh_CN">下一步</button>
+    </view>
+</view>
+<!-- 自定义弹框开始 -->
+<view wx:if="{{showPhoneModel}}" class="model">
+    <view class="modelTitle">
+        请求获取信息
+    </view>
+    <view class="modelBody">为了更好的为您提供服务，我们请求获取您的手机号码</view>
+    <view class="btns">
+        <!-- <button open-type="getUserInfo" class="agree" bindgetuserinfo="agreeGetUser" lang="zh_CN">下一步</button> -->
+        <button open-type="getPhoneNumber" class="agree" bindgetphonenumber="getPhoneNumber" plain="true" lang="zh_CN">下一步</button>
+    </view>
+</view>
+<scroll-view>
+    <view class="contain">
+        <view class="tip">{{note}}</view>
+        <view class="item" wx:for="{{list}}" wx:key="key">
+            <image src="{{item.imageUrl}}" class="img" data-path="{{item.addressUrl}}" bindtap="goDetail"></image>
+            <view class="bottom">
+                <text>{{item.title}}</text>
+                <view class="tagBox">
+                    <i wx:for="{{item.tag}}" wx:key="key">{{item}}</i>
+                </view>
+                <button open-type="share" wx:if="{{item.shared}}" class="share" style="background-image: url({{serverUrl}}share.png)" data-path="{{item.addressUrl}}" data-title="{{item.title}}" data-url="{{item.imageUrl}}">
+
+                </button>
+                <!--<image src="../../image/wepy_pro/share.png" class="share"></image>-->
+            </view>
+        </view>
+    </view>
+</scroll-view>
+
+
+

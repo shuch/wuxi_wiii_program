@@ -1,0 +1,261 @@
+.container-box {
+  /*background-image: url(https://mc.qcloudimg.com/static/img/7da57e0050d308e2e1b1e31afbc42929/bg.png);*/
+  background-image: url(http://skyforest.static.elab-plus.com/wepy_pro/mini-wait.jpg);
+  background-color: #333;
+  background-repeat:no-repeat;
+  background-size: cover;
+  height: 100vh;
+}
+
+.img-box {
+  /*position: relative;*/
+  /*display:inline-block;*/
+  /*height: calc(100vh - 134.66vw);*/
+  /*width: 140rpx;*/
+ 
+  /*left:22.8vw;*/
+  vertical-align: middle;
+}
+.operate image {
+  /*position: absolute;*/
+  width: 140rpx;
+  height: 140rpx;
+  /*left: 0px;
+  top: calc(50vh - 75.33vw); */
+}
+.operate image :active{
+  opacity: 0.55
+}
+.img-box text {
+  position: absolute;
+  color: #ffffff;
+  width: 100%;
+  font-size:10px;
+  top: calc(50vh - 65.33vw);
+  text-align: center;
+}
+.operate {
+  /*margin-top: 1vh;*/
+  position:absolute;
+  bottom:0px;
+  left:0px;
+  width:100%;
+  display: flex;
+  flex-direction: row;
+  justify-content:space-around;
+  align-items:flex-start;
+  padding:0rpx 150rpx;
+  padding-bottom:140rpx;
+  box-sizing:border-box;
+}
+.info{
+  position:absolute;
+  top:0px;
+  left:0px;
+  width:100%;
+  height:195rpx;
+  padding:25rpx;
+  text-align:center;
+  box-sizing:border-box;
+  display: flex;
+  flex-direction: row;
+  /*justify-content:space-around;*/
+  /*align-items:flex-start;*/
+}
+.info .headImg{
+  /*display:block;*/
+  width:145rpx;
+  height:145rpx;
+  margin-left:190rpx;
+}
+.info .headImg image{
+  width:145rpx;
+  height:145rpx;
+}
+.info .mainInfo{
+  /*width:50%;*/
+  height:100%;
+  display: flex;
+  flex-direction: column ;
+  /*justify-content:space-around;*/
+  /*align-items:flex-start;*/
+}
+.info .row1{
+  text-align:left;
+  margin-bottom:15rpx;
+  display: flex;
+  flex-direction: row ;
+}
+.info .row1 text{
+  font-size: 40rpx;
+  color: #FFFFFF;
+  margin-right:20rpx;
+  width:180rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.info .row1 .gw{
+  padding:10rpx;
+  width:100rpx;
+  height:40rpx;
+  line-height:40rpx;
+  text-align:center;
+  font-size: 20rpx;
+  background-color: #5FA1FC;
+  border-radius: 10rpx;
+  color: #FFFFFF;
+}
+.info .row2{
+  font-size: 26rpx;
+  color: #FFFFFF;
+  text-align:left;
+  margin-top:15rpx;
+}
+.hide{
+  display:none;
+}
+.evaluate{
+  position:absolute;
+  top:0px;
+  left:0px;
+  width:100%;
+  height:100vh;
+  text-align:center;
+  box-sizing:border-box;
+  padding:52rpx 37rpx;
+  /*display: flex;
+  flex-direction: row;*/
+  /*justify-content:space-around;*/
+  /*align-items:flex-start;*/
+}
+
+.evaluate .phone{
+  width:306rpx;
+  /*height:auto;*/
+}
+
+.hzdl{
+  position:absolute;
+  left:37rpx;
+  top:121rpx;
+  width:252rpx;
+  height:50rpx;
+}
+.ysgl{
+  position:absolute;
+  left:37rpx;
+  top:216rpx;
+  width:213rpx;
+  height:50rpx;
+}
+.hqcs{
+  position:absolute;
+  left:37rpx;
+  top:311rpx;
+  width:210rpx;
+  height:50rpx;
+}
+
+.wlkd{
+  position:absolute;
+  right:37rpx;
+  top:102rpx;
+  width:248rpx;
+  height:74rpx;
+}
+.fwbj{
+  position:absolute;
+  right:37rpx;
+  top:221rpx;
+  width:284rpx;
+  height:71rpx;
+}
+.bmsy{
+  position:absolute;
+  right:37rpx;
+  top:335rpx;
+  width:215rpx;
+  height:50rpx;
+}
+.qtyy{
+  position:absolute;
+  right:37rpx;
+  top:411rpx;
+  width:215rpx;
+  height:50rpx;
+}
+.section p{
+  font-size: 28rpx;
+  color: #FFFFFF;
+  letter-spacing: 0;
+  margin-bottom:20rpx;
+}
+.section textarea{
+  width:100%;
+  box-sizing:border-box;
+  background: #FFFFFF;
+  border: 1px solid #000000;
+  border-radius: 6px;
+  margin-top:20rpx;
+  text-align:left;
+  padding:20rpx;
+  font-size: 32rpx;
+  color: #000000;
+}
+.btn{
+  position:absolute;
+  left:0px;
+  bottom:0px;
+  width:100vw;
+  height:100rpx;
+  line-height:100rpx;
+  text-align:center;
+  font-size: 34rpx;
+  color: #FFFFFF;
+}
+.evaluate .t1{
+  text-align:center;
+  font-size: 28rpx;
+  margin-top:85rpx;
+  
+  color: #FFFFFF;
+}
+.row{
+  display: flex;
+  flex-direction: row;
+  justify-content:space-around;
+  align-items:flex-start;
+  padding:50rpx 0rpx;
+  height:217rpx;
+  border-bottom:2rpx solid #FFFFFF;
+
+}
+.row .item{
+  box-sizing:border-box;
+  width:33%;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content:space-between;
+  align-items:center;
+  height:217rpx;
+}
+.row .item image{
+  width:121.4rpx;
+  height:121.4rpx;
+}
+.row .item p{
+  font-size: 36rpx;
+  color: #6294A6;
+}
+.row .active image{
+  width:142rpx;
+  height:142rpx;
+}
+.row .active p{
+  color:#ffffff;
+}
+.more-p{
+  display:block;
+  margin-top:50rpx;
+}

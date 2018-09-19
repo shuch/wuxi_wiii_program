@@ -1,0 +1,8 @@
+<view>
+	<video id="myVideo" src="{{source}}" controls="{{false}}" loop="true" autoplay="true" bindplay="play"  direction="90"
+	 class="video" enable-progress-gesture="{{false}}" bindfullscreenchange="queitFull" muted="true">
+		<cover-image class="img" src="http://skyforest.static.elab-plus.com/wepy_pro/back.png" class="back-btn" bindtap="goback"/>
+	</video>
+</view>
+
+

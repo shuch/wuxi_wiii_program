@@ -1,0 +1,25 @@
+/**scaleImage.wxss**/
+.scroll{
+	width:100vw;
+	height:100vh;
+	background-color: #000;
+}
+.scroll .like{
+	position:absolute;
+  	font-size: 20rpx;
+  	right:20rpx;
+  	bottom:30rpx;
+  	color: red;
+}
+.sfimg{
+	/*width:100vw;*/
+	margin-top:50vh;
+	transform:translateY(-50%);
+	-ms-transform:translateY(-50%);/* IE 9 */
+	-moz-transform:translateY(-50%);	/* Firefox */
+	-webkit-transform:translateY(-50%); /* Safari 和 Chrome */
+	-o-transform:translateY(-50%);
+
+	-webkit-transform-origin: center;
+  	transform-origin: center;
+}

@@ -1,0 +1,11 @@
+<view class="container">
+	<!--<swiper class="scrollMsgItem" autoplay="false" circular="true">-->
+		<!--<block wx:for="{{currentType.imgList}}" class="scrollMsgItem-box">-->
+			<!--<swiper-item>-->
+				<!--<image class="imgItem" src="{{item.url}}" ></image>-->
+			<!--</swiper-item>-->
+		<!--</block>-->
+	<!--</swiper>-->
+</view>
+
+

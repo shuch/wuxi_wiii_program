@@ -1,0 +1,53 @@
+<view>
+	<video id="myVideo" src="{{source}}" controls="{{false}}" loop="true" autoplay="true" bindplay="play"  direction="90"
+	 class="video" enable-progress-gesture="{{false}}" bindfullscreenchange="queitFull" custom-cache="{{false}}">
+	 	<!-- <cover-view class="controls">
+		    <cover-view class="play" bindtap="play">
+		    </cover-view>
+		    <cover-view class="pause" bindtap="pause">
+		    </cover-view>
+		    <cover-view class="time">00:00</cover-view>
+		 </cover-view> -->
+		<cover-image class="img" src="http://skyforest.static.elab-plus.com/wepy_pro/back.png" class="back-btn" bindtap="goback"/>
+		<cover-view class="{{queit?'text-queit':'text-vieo'}}" wx:if="{{videoFlag}}">
+			<cover-view class="time">{{time}}</cover-view>
+			<cover-view class="time-det">
+				<cover-view class="time1">
+					<cover-image class="img" src="http://skyforest.static.elab-plus.com/wepy_pro/calendar.png" />
+					<cover-view class="text-cover {{appFlag?'':'text-calendar'}}">{{dateTime}}</cover-view>
+				</cover-view>
+				<cover-view class="time2">
+					<cover-image class="img" src="http://skyforest.static.elab-plus.com/wepy_pro/location.png" />
+					<cover-view class="text-cover" style="width:90%;">{{city}}</cover-view>
+				</cover-view>
+				<cover-view class="time3">
+					<cover-image class="img" src="http://skyforest.static.elab-plus.com/wepy_pro/temperture.png" />
+					<cover-view class="text-cover" style="width:90%;">{{temperature}} {{weather}}</cover-view>
+				</cover-view>
+			</cover-view>
+		</cover-view>
+		<cover-image class="moreBtn" bindtap="moreVideo" wx:if="{{videoFlag}}" src="http://skyforest.static.elab-plus.com/mini-program/more-video.png"></cover-image>
+		<!-- <cover-view class="moreBtn" bindtap="moreVideo" wx:if="{{videoFlag}}"><cover-view class="more-text">更多直播场景</cover-view><cover-view class="arrow"></cover-view></cover-view> -->
+		<cover-image class="upBtn" wx:if="{{!videoFlag}}" src="http://skyforest.static.elab-plus.com/mini-program/up-btn.png" bindtap="hideVideo"></cover-image>
+		<cover-view class="moreVide" wx:if="{{!videoFlag}}">
+			<cover-view class="hideBox">
+                <cover-view class="boxVideo" style="left:{{videoLeft}}vw;">
+					<cover-view class="video-list" style="{{index==currentFlag?'border:2px solid #fff':''}}" wx:for="{{videoList}}"  wx:key="index" bindtap="switchVideo" data-id="{{index}}" data-video="{{item}}">
+						<cover-image src="{{item.imageUrl}}"></cover-image>
+						<cover-view class="liveText">直播</cover-view>
+						<cover-view class="liveTitle">{{item.title||''}}</cover-view>
+					</cover-view>
+
+				</cover-view>
+			</cover-view>
+			<cover-view wx:if="{{videoLength}}" class="left-sec" bindtap="moveLeft">
+                <cover-image class="leftBtn" src="http://skyforest.static.elab-plus.com/mini-program/left-arrow.png"></cover-image>
+			</cover-view>
+			<cover-view wx:if="{{videoLength}}" class="right-sec" bindtap="moveRight">
+			    <cover-image class="rightBtn" src="http://skyforest.static.elab-plus.com/mini-program/right-arrow.png"></cover-image>
+			</cover-view>
+		</cover-view>
+	</video>
+</view>
+
+

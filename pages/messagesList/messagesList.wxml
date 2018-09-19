@@ -1,0 +1,51 @@
+<view wx:if="{{showInfoModel}}" class="model">
+    <view class="modelTitle">
+        请求获取信息
+    </view>
+    <view class="modelBody">为了更好的为您提供服务，我们请求获取您的昵称、头像等公开信息</view>
+    <view class="btns">
+            <!-- <button open-type="getUserInfo" class="agree" bindgetuserinfo="agreeGetUser" lang="zh_CN">下一步</button> -->
+        <button open-type="getUserInfo" class="agree" bindgetuserinfo="getUserInfo" plain="true" lang="zh_CN">下一步</button>
+    </view>
+</view>
+
+<view wx:if="{{showPhoneModel}}" class="model">
+<view class="modelTitle">
+    请求获取信息
+</view>
+<view class="modelBody">为了更好的为您提供服务，我们请求获取您的手机号码</view>
+<view class="btns">
+    <!-- <button open-type="getUserInfo" class="agree" bindgetuserinfo="agreeGetUser" lang="zh_CN">下一步</button> -->
+    <button open-type="getPhoneNumber" class="agree" bindgetphonenumber="getPhoneNumber" plain="true" lang="zh_CN">下一步</button>
+</view>
+</view>
+<view wx:if="{{showPhoneModel || showInfoModel}}" class="mask"></view>
+<scroll-view scroll-y="true" class="counList" style="padding-bottom:50px;">
+    <view class="title-box">
+        <view class="title-text">消息列表</view>
+        <!-- <view class="title-right" bindtap="goVideo"><image src="{{ePic}}" alt=""></image></view> -->
+    </view>
+    <view class="message-box" wx:for="{{isSentAdviserList}}" wx:for-item='item' wx:key='index' data-item='{{item}}' bindtap='goChat'>
+        <view class="head-box">
+            <view class="newRed" wx:if="{{item.hasNewMsg>0}}">{{item.hasNewMsg}}</view>
+            <image mode="aspectFill" wx:if="{{item.head}}" src="{{item.head}}" alt=""></image>
+            <image wx:else src="{{defaultImg}}" alt=""></image>
+        </view>
+        <view class="message-right-box">
+            <view class="message-right-top">
+                <view class="name">{{item.name}}</view>
+                <view class="last-message-time">{{item.MsgTimeStamp}}</view>
+            </view>
+            <view class="message-right-bottom">
+                <view class="message-text">{{item.MsgShow}}</view>
+            </view>
+        </view>
+    </view>
+    <view class="more-adviser" bindtap="goAdviserList">
+        <image src="{{moreImg}}" alt=""></image>
+    </view>
+</scroll-view>
+<view wx:if="{{loading}}" class="loadData">
+    <image style="width:100px" mode="widthFix" src="{{loadingImg}}" alt=""></image>
+</view>
+<image wx:if="{{isShowVideoButton}}" style="width:100%" mode="widthFix" src="{{fixImg}}" class="fixImg" bindtap="goVideo"></image>

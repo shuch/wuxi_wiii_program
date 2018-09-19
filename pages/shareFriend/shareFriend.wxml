@@ -1,0 +1,59 @@
+<scroll-view>
+
+    <view wx:if="{{showInfoModel||showPhoneModel}}" class="mask">
+
+        <view wx:if="{{showInfoModel}}" class="model">
+            <view class="modelTitle">
+                请求获取信息
+            </view>
+            <view class="modelBody">为了更好的为您提供服务，我们请求获取您的昵称、头像等公开信息</view>
+            <view class="btns">
+                <!-- <button open-type="getUserInfo" class="agree" bindgetuserinfo="agreeGetUser" lang="zh_CN">下一步</button> -->
+                <button open-type="getUserInfo" class="agree" bindgetuserinfo="getUserInfo" plain="true" lang="zh_CN">下一步</button>
+            </view>
+        </view>
+        <!-- 自定义弹框开始 -->
+        <view wx:if="{{showPhoneModel}}" class="model">
+            <view class="modelTitle">
+                请求获取信息
+            </view>
+            <view class="modelBody">为了更好的为您提供服务，我们请求获取您的手机号码</view>
+            <view class="btns">
+                <!-- <button open-type="getUserInfo" class="agree" bindgetuserinfo="agreeGetUser" lang="zh_CN">下一步</button> -->
+                <button open-type="getPhoneNumber" class="agree" bindgetphonenumber="getPhoneNumber" plain="true" lang="zh_CN">下一步</button>
+            </view>
+        </view>
+    </view>
+    <view style="min-height:100vh;background:#474952">
+        <view class="contain">
+            <view class="top_box" style="background:{{'linear-gradient(-270deg, '+jbColor1+' 0%, '+jbColor2+' 100%);'}}">
+                <view class="border">
+                    <view class="num">{{count}}</view>
+                    <text class="success_tip">成功推荐注册</text>
+                </view>
+            </view>
+        </view>
+        <view class="list">
+            <view class="title">
+                <view class="tel">
+                    手机号码
+                </view>
+                <view class="time">
+                    注册时间
+                </view>
+                <view class="state">
+                    最新状态
+                </view>
+            </view>
+            <view class="con">
+                <view class="item" wx:for="{{list}}" wx:key="key">
+                    <text class="_tel">{{item.customerMobile}}</text>
+                    <text class="_time">{{item.created}}</text>
+                    <text class="_state">{{item.customerTrends}}</text>
+                </view>
+            </view>
+        </view>
+    </view>
+</scroll-view>
+
+

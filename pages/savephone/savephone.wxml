@@ -1,0 +1,29 @@
+<view class="tel-container">
+    <!-- <view class="close-button" bindtap="goAdviserList">
+        <image src="{{serverUrl+'im/close-button.png'}}" alt=""></image>
+    </view> -->
+    <view class="title-box">
+        <view class="title-one">请填写手机号</view>
+        <view class="title-two">置业顾问将以{{projectPhone}}联络您。</view>
+    </view>
+    <view class="input-box">
+        <view class="top-box" >
+            <!-- <el-input v-model.trim="tel" placeholder="请输入手机号" class="tel-input"></el-input>
+            <el-button type="small" class="getVerify" bindtap="getVerifyCode()">{{verifyText}}</el-button> -->
+            <!-- <input placeholder="请输入手机号" class="verify-input" type="number"/> -->
+            <input placeholder="请输入手机号" class="verify-input" type="number" bindinput ="userPhone"/>
+            <button class="getVerify" bindtap="getVerifyCode">{{verifyText}}</button>
+        </view>
+        <view class="bottom-box">
+            <input placeholder="请输入验证码" class="verify-input" type="number" bindinput ="verifyCode"/>
+            <!-- <el-input v-model.trim="verifyCode" placeholder="请输入验证码" class="verify-input" type="text"></el-input> -->
+        </view>
+    </view>
+    <view class="sure" bindtap="sendTel">
+        <image src="{{serverUrl+'im/sure.png'}}" alt=""></image>
+    </view>
+    <view class="dialog" wx:if="{{dialog}}">
+        <view class="dialog-top">已成功预约留电</view>
+        <view class="dialog-bottom">置业顾问将以{{projectPhone}}联络您。</view>
+    </view>
+</view>

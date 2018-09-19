@@ -1,0 +1,153 @@
+.counList{
+	padding:0 25px 40px;
+	box-sizing:border-box;
+	-webkit-box-sizing:border-box;
+	position: relative;
+}
+.close-button{
+	position: absolute;
+	top:22px;
+	right:0;
+	height:24px;
+	width:24px;
+}
+.close-button image{
+	width:16px;
+	height:16px;
+}
+.title-box{
+	box-sizing: border-box;
+	padding:10px 0 0 10px;
+	width:100%;
+}
+.title-one{
+	font-size:35px;
+	font-weight:bold;
+	display: block;
+}
+.title-two{
+	font-size:16px;
+	font-weight: 500;
+	display: block;
+	margin-bottom:44px;
+}
+.adviser-item{
+	border-bottom:1px solid #cccccc;
+	box-sizing: border-box;
+	margin: 0 auto;
+	/* width:calc(100% - 40px); */
+	height:110px;
+	display:flex;
+	align-items: center;
+	justify-content: flex-start;
+}
+.head-box{
+	width:60px;
+	height:60px;
+}
+.head-box image{
+	width:60px;
+	height:60px;
+	border-radius:30px;
+}
+.message-box{
+	margin-left:10px;
+	width:calc(100% - 80px);	
+}
+.message-box .name{
+	height:20px;
+	font-size:22px;
+	font-weight:bold;
+}
+.message-box .evaluate{
+	text-overflow:ellipsis;
+	overflow: hidden;
+	white-space:nowrap;
+	margin-top:8px;
+	color:#999999;
+	max-width:200px;
+}
+.time{
+	width:30px;
+	height:30px;
+}
+.time image{
+	width:30px;
+	height:30px;
+}
+.sorry-box{
+	margin:80px auto;
+	width:100%;
+}
+.sorry-pic{
+	/* background-size: cover; */
+	height:50vw;
+	display: block;
+	/* transform: translateX(5%); */
+	margin:0 auto;
+	width:50vw;
+}
+.tel-button image{
+	width:140px;
+	height:60px;
+	background-size: cover;
+	margin:0 auto;
+	display: block;
+}
+.sorry-text{
+	width:100%;
+	font-weight:600;
+	text-align: center;
+	color:#3EB2AC;
+}
+.fixImg{
+	width:100%;
+	position: fixed;
+	left:0;
+	bottom:0;
+	z-index:10;
+}
+.mask{
+	position:fixed;
+	top:0px;
+	left:0px;
+	width:100vw;
+	height:100vh;
+	background-color:rgba(155,155,155,0.6);
+	z-index:15;
+}
+.model{
+	position:absolute;
+	width:80vw;
+	left:10vw;
+	top:20vh;
+	border-radius:20rpx;
+	background-color:white;
+	z-index:16;
+}
+.model .modelTitle{
+	width:100%;
+	padding:20rpx 0rpx;
+	font-size:40rpx;
+	text-align:center;
+	color:block;
+	border-bottom:1rpx solid rgb(237,237,237);
+}
+.model .modelBody{
+	box-sizing: border-box;
+	width:100%;
+	padding:50rpx 50rpx;
+	text-align:center;
+	color:rgb(178,178,178);
+	font-size:30rpx;
+	border-bottom:1rpx solid rgb(237,237,237);
+}
+.model .btns{
+	width:100%;
+	text-align:center;
+}
+.model .btns .agree{
+	border-width:0px;
+	color:rgb(26,172,25);
+	/*width:100%;*/
+}

@@ -1,0 +1,216 @@
+.bottom-box{
+  display: flex;
+  width:100%;
+  position: fixed;
+  bottom:0;
+  height: 32px;
+  align-items: center;
+  background:#eee;
+  justify-content: space-around;
+}
+.message-box{
+  height:100%;
+}
+.failed{
+  position: absolute;
+  top:calc(50% - 10px);
+  left:-30px;
+  width:20px;
+  height:20px;
+}
+
+.title{
+  z-index:2;
+  background: #eee;
+  font-weight: bold;
+  width:100%;
+  height:40px;
+  position: fixed;
+  justify-content: center;
+  top:0;
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
+.title .back-button{
+  width:20px;
+  height:20px;
+  overflow: hidden;
+  padding-left:20px;
+}
+.title .back-button image{
+  width:15px;
+  height:15px;
+}
+.title .ad-name{
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+.ad-name image{
+  margin-right:3px;
+  width:10px;
+  height:10px;
+}
+
+.input-box{
+  border:0px;
+  background:#eee;
+  width: 100%;
+  height: 24px;
+  margin-left:5px;
+}
+.send{
+  color:#fff;
+  line-height: 32px;
+  height: 32px;
+  width:auto;
+  margin-left:5px;
+}
+.message-text{
+  margin-bottom:20px;
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+}
+.text-content1{
+  position: relative;
+  overflow:hidden;
+  word-wrap: break-word;
+  background-color: #fff;
+  border-radius: 5px;
+}
+.right{
+ margin-right:10px;
+ justify-content: flex-end;
+}
+/* .right::after{
+  content:'';
+  position: absolute;
+  right:10px;
+  bottom:0px;
+  width:0px;
+  border-right:10px solid red;
+  border-top: 10px solid transparent;
+  border-left: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  transform: rotate(-45deg)
+} */
+.right .text-content{
+  position: relative;
+ background-color:#98e165;
+}
+.left .text-content{
+  background-color:#fff;
+
+}
+.left{
+  margin-left:10px;
+  justify-content: flex-start;
+}
+.text-content{
+  max-width:250px;
+  word-wrap: break-word;
+  padding:5px 10px 5px 10px;
+  background-color: #fff;
+  border-radius: 5px;
+}
+.text-content image{
+}
+.left  .time-now{
+  font-size: 12px;
+  color:#cccccc;
+  bottom:-15px;
+  left:10px;
+  position: absolute;
+}
+.right .time-now{
+  font-size: 12px;
+  color:#cccccc;
+  bottom:-15px;
+  right:10px;
+  position: absolute;
+}
+.hei{
+  height:50px;
+}
+.loadData{
+  width:100px;
+  height:100px;
+  position: fixed;
+  left: 50%;
+  top:50%;
+  transform: translate(-50%,-50%);
+  background: rgba(0,0,0,0.6);
+  border-radius: 10px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content:center;
+}
+.dialog{
+  z-index:20;
+  position: fixed;
+  top:0;
+  left:0;
+  background: rgba(0,0,0,0.9);
+  width:100%;
+  height:100%;
+  display: flex;
+  align-items: center;
+}
+image{
+  display:block;
+}
+.line-box{
+  justify-content: center;
+  font-size: 14px;
+  color:#cccccc;
+  width:90%;
+  margin: 45px auto 0;
+  height:40px;
+  display: flex;
+  align-items: center;
+}
+.line{
+
+  width:25%;
+  border-bottom:1px solid #cccccc;
+}
+.line-text{
+  text-align: center;
+  white-space:nowrap;
+  box-sizing: border-box;
+  padding:0 10px 0 10px;
+  line-height: 40px;
+  height:40px;
+}
+.video-text{
+ width:100%;
+  height:30px;
+  padding-left:3px;
+  font-size:14px;
+  line-height: 30px;
+  color:#Fff;
+  background: #656565;
+}
+.down-box{
+  border-top:1px solid #999999;
+  display:flex;
+
+}
+.deny-button{
+  width:50%;
+  background: #fff;
+  border-right:0px;
+  color:#999999;
+  border-radius: 0px;
+}
+.admit-button{
+  width:50%;
+  color:#999999;
+  border-radius: 0px;
+  background:#fff;
+}
