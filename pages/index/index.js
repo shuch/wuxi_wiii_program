@@ -661,7 +661,7 @@ Page({
         query.select(id).boundingClientRect()
         query.selectViewport().scrollOffset()
         return query.exec(function(res){
-            console.log(res[0].top)
+            // console.log(res[0].top)
             if(res[0].top<550&&res[0].top>100){
                 cb()
             }

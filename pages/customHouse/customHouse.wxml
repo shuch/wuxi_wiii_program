@@ -1,0 +1,91 @@
+<view class="container">
+  <view wx:if="{{customStep === 1}}">
+    <view class="title">请选择一种户型</view>
+    <view
+      class="house-card"
+      wx:for="{{houseTypes}}"
+      wx:key="item.id"
+      bind:tap="onSelect"
+      data-item="{{item.id}}"
+    >
+      <view class="house-type {{selectedType && selectedType.id === item.id ? 'selected-type' : ''}}">
+        <view class="house-info">
+          <view class="info-type">
+            <view class="type">户型-{{item.name}}</view>
+            <text class="area">{{item.area}}</text>㎡
+          </view>
+          <image class="room-thumb" src="../../image/custom/house_type_thumb.png" mode="scaleToFill"></image>
+          <view class="info-level">平层/超高单层约{{item.height}}m</view>
+        </view>
+        <image class="house-thumb" src="../../image/custom/house_type_plane.png" mode="scaleToFill" />
+      </view>
+      <view class="select-area">
+        <image
+          wx:if="{{selectedType && selectedType.id === item.id}}"
+          class="select-icon" src="../../image/custom/select.png" mode="scaleToFill"
+        />
+        <image
+          wx:else
+          class="select-icon" src="../../image/custom/un_select.png" mode="scaleToFill"
+        />
+      </view>
+    </view>
+
+    <view class="bottom operate-step1 {{!selectedType ? 'operate-disable' : ''}}">
+      <view class="operate-state">已选择：户型-{{selectedType.name}}</view>
+      <view class="operate-step" bind:tap="onStep">下一步</view>
+    </view>
+
+    <view class="mask" wx:if="{{popup}}">
+      <view class="popup">
+        <view class="h3 margin-4">只需<text class="focus">3</text>步</view>
+        <view class="h4 margin-4">轻松定制您的<text class="focus">心仪户型</text></view>
+        <view class="pop-step">
+          <image class="step-indicate" src="../../image/custom/step_indicate.png"/>
+          <view class="step-desc">
+            <view class="step-title">STEP <text class="step-seq focus">1</text></view>
+            <view class="step-description">选择户型</view>
+          </view>
+        </view>
+        <view class="pop-step">
+          <image class="step-indicate" src="../../image/custom/step_indicate.png"/>
+          <view class="step-desc">
+            <view class="step-title">STEP <text class="step-seq focus">2</text></view>
+            <view class="step-description">选择个性化空间</view>
+          </view>
+        </view>
+        <view class="pop-step">
+          <image class="step-indicate step-end" src="../../image/custom/step_end.png"/>
+          <view class="step-desc">
+            <view class="step-title">STEP <text class="step-seq focus">3</text></view>
+            <view class="step-description">生成专属方案</view>
+          </view>
+        </view>
+        <view class="pop-btn" bind:tap="onKnown">我知道了</view>
+      </view>
+    </view>
+  </view>
+
+  <block wx:if="{{customStep === 2}}">
+    <view class="title">
+      户型-{{selectedType.name}}
+      <view class="custom-btn">修改</view>
+    </view>
+    <view class="huxing">
+      <view class="lt-corner corner">
+        <image class="north" src="../../image/custom/north.png" mode="scaleToFill"></image>N
+      </view>
+      <image class="hx-img" src="../../image/custom/huxing.png" mode="scaleToFill"></image>
+      <view class="rb-corner corner">
+        <image class="comment-btn" src="../../image/custom/comment_button.png" mode="scaleToFill"></image>
+        添加批注
+      </view>
+    </view>
+
+    <view class="bottom operate-save">
+      保存为我的定制方案
+    </view>
+  </block>
+
+</view>
+

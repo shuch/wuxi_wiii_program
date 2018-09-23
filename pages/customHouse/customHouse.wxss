@@ -1,0 +1,277 @@
+.container {
+  background: #F6F6F6;
+  overflow: hidden;
+  height: 100vh;
+  font-weight: 200;
+}
+
+.title {
+  font-size: 16px;
+  color: #9B9B9B;
+  margin: 25rpx;
+  display: flex;
+  align-items: center;
+}
+
+.house-card {
+  display: flex;
+  align-items: center;
+  margin-bottom: 40rpx;
+}
+
+.house-card--select {
+  box-shadow: 0 2px 2px 2px rgba(213,213,213,0.32);
+}
+
+.house-type {
+  display: flex;
+  margin: 0 30rpx;
+  background: #fff;
+  border-radius: 8rpx;
+  box-shadow: 0 2px 2px 2px rgba(213,213,213,0.32);
+}
+
+.house-info {
+  position: relative;
+  width: 440rpx;
+  height: 270rpx;
+  color: #fff;
+  font-size: 12px;
+  border-radius: 8rpx 0 0 8rpx;
+}
+
+
+.room-thumb {
+  width: 100%;
+  height: 270rpx;
+  border-radius: 8rpx 0 0 8rpx;
+}
+
+.select-area {
+  width: 40rpx;
+  height: 40rpx;
+  margin: 0 40rpx 0 0;
+}
+
+.select-icon {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.info-type {
+  position: absolute;
+  width: 156rpx;
+  height: 96rpx;
+  line-height: 16px;
+  top: 0;
+  left: 30rpx;
+  background: rgba(46,46,46,.3);
+}
+
+.info-level {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 40rpx;
+  padding-left: 30rpx;
+  box-sizing: border-box;
+  background: rgba(46,46,46,.2);
+  border-radius: 0 0 8rpx 8rpx;
+}
+
+.house-thumb {
+  width: 170rpx;
+  height: 270rpx;
+  border-radius: 0 8rpx 8rpx 0;
+}
+
+.type {
+  margin-left: 4px;
+}
+
+.area {
+  font-size: 45px;
+  line-height: 1;
+}
+
+.unit {
+  font-size: 16px;
+}
+
+
+.bottom {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 100rpx;
+  line-height: 100rpx;
+  display: flex;
+  font-size: 18px;
+}
+
+.operate-step1 {
+  box-shadow: 0 1px 4px 0 rgba(0,0,0,0.56);
+}
+
+.operate-disable {
+  opacity: 0.2;
+}
+
+.operate-state {
+  color: #9B9B9B;
+  background: #fff;
+  flex: auto;
+  padding-left: 28rpx;
+}
+
+.operate-step {
+  color: #fff;
+  width: 300rpx;
+  text-align: center;
+  background-image: linear-gradient(206deg, #5B5B5B 0%, #12120F 100%);
+}
+
+.operate-save {
+  color: #fff;
+  justify-content: center;
+  background-image: linear-gradient(-41deg, #EDD48D 14%, #B78D4C 100%);
+}
+
+.selected-type {
+  box-shadow: 0 0 0 1px rgba(237,212,141,1);
+}
+
+.mask {
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(216, 216, 216, .6);
+}
+
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 530rpx;
+  background: #fff;
+  border-radius: 20rpx;
+  padding-top: 46rpx;
+  color: #9B9B9B;
+}
+
+.pop-step {
+  display: flex;
+  margin-left: 76rpx;
+  margin-top: 34rpx;
+}
+
+.pop-btn {
+  margin: 70rpx auto 60rpx;
+  box-shadow: 0 0 0 1rpx #000;
+  border-radius: 4rpx;
+  width: 250rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  text-align: center;
+  color: #000;
+  font-size: 16px;
+}
+
+.step-indicate {
+  width: 30rpx;
+  height: 106rpx;
+  margin-right: 102rpx;
+  margin-top: 10rpx;
+}
+
+.step-end {
+  height: 30rpx;
+}
+
+.step-title {
+  font-size: 12px;
+}
+
+.step-seq {
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.step-description {
+  font-weight: 600;
+  font-size: 16px;
+  margin-top: 10rpx;
+}
+
+.h3 {
+  font-size: 28px;
+}
+
+.h4 {
+  font-size: 22px;
+}
+
+.focus {
+  color: #EDD48D;
+}
+
+.margin-4 {
+  margin-left: 45rpx;
+}
+
+/* step 2 */
+.custom-btn {
+  width: 110rpx;
+  line-height: 48rpx;
+  border: 1px solid #D2BE73;
+  color: #D2BE73;
+  margin-left: 20rpx;
+  font-size: 32rpx;
+  text-align: center;
+  border-radius: 4rpx;
+}
+
+.huxing {
+  position: relative;
+  background: #fff;
+  height: calc(100vh - 75rpx);
+  display: flex;
+  justify-content: center;
+}
+
+.hx-img {
+  width: 537rpx;
+  height: 865rpx;
+  margin: 30rpx 0 0;
+}
+
+.corner {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+}
+
+.rb-corner {
+  bottom: 146rpx;
+  right: 60rpx;
+  font-size: 24rpx;
+}
+
+.lt-corner {
+  width: 71rpx;
+  top: 63rpx;
+  left: 60rpx;
+  font-size: 20rpx;
+}
+
+.north {
+  width: 60rpx;
+  height: 60rpx;
+}
+
+.comment-btn {
+  width: 90rpx;
+  height: 90rpx;
+}

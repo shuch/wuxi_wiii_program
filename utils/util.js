@@ -84,15 +84,17 @@ function reformParam(methodName,para) {
   return parameter
 }
 function trackRequest(para,app){
-    if(JSON.stringify(para.clkParams)==='{}'){
-        para.clkParams = '';
-    }
-    if(JSON.stringify(para.expand)==='{}'){
-        para.expand = '';
-    }
-    if(JSON.stringify(para.pvCurPageParams)==='{}'){
-        para.pvCurPageParams = '';
-    }
+  if(JSON.stringify(para.clkParams)==='{}'){
+      para.clkParams = '';
+  }
+  if(JSON.stringify(para.expand)==='{}'){
+      para.expand = '';
+  }
+  if(JSON.stringify(para.pvCurPageParams)==='{}'){
+      para.pvCurPageParams = '';
+  }
+  const { globalData: { single } } = app;
+  const { id } = single || {};
   let data = {
       session:session,
       userAgent:'',
@@ -103,7 +105,7 @@ function trackRequest(para,app){
       ip:app.globalData.ip||'',
       cookieId:'',
       openId:app.globalData.openid||'',
-      userId:app.globalData.single.id||'',
+      userId:id,
       createTime:this.formatTime(new Date()),
       uploadTime:this.formatTime(new Date()),
       product:config.projectName,

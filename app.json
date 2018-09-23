@@ -1,5 +1,5 @@
 {
-  "pages":[
+  "pages": [
     "pages/index/index",
     "pages/chat/chat",
     "pages/multiroom/room/room",
@@ -19,12 +19,13 @@
     "pages/share/share",
     "pages/imgSwip/imgSwip",
     "pages/houseType/houseType",
-    "pages/houseTypeDetail/houseTypeDetail"
+    "pages/houseTypeDetail/houseTypeDetail",
+    "pages/customHouse/customHouse"
   ],
-  "window":{
-    "backgroundTextStyle":"light",
+  "window": {
+    "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#272A34",
     "navigationBarTitleText": "无锡WIII",
-    "navigationBarTextStyle":"#fff"
+    "navigationBarTextStyle": "#fff"
   }
 }
