@@ -1,0 +1,123 @@
+.container {
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  font-size: 16px;
+  background: rgba(155, 155, 155, .7);
+}
+
+.pick-up {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: auto;
+  background: #fff;
+  box-shadow: 0 -1rpx 2rpx 0 rgba(0,0,0,.2);
+}
+
+.pick-list {
+  margin-top: 32rpx;
+  display: flex;
+  overflow-x: scroll;
+  padding-bottom: 2px;
+}
+
+.pick-item {
+  margin-left: 40rpx;
+  background: #D8D8D8;
+  box-shadow: 0 1rpx 1rpx 1rpx rgba(0,0,0, .2);
+}
+
+
+.pick-item:last-child {
+  margin-right: 40rpx;
+}
+
+.pick-item-media {
+  position: relative;
+}
+
+.pick-item--selected .pick-item-media:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: url(http://7xot92.com1.z0.glb.clouddn.com/select.png) center/90rpx no-repeat;
+}
+
+
+.pick-item--selected .pick-item-desc {
+  color: #D2BE73;
+}
+
+.pick-item-img {
+  width: 250rpx;
+  height: 360rpx;
+  vertical-align: top;
+}
+
+.pick-item-desc {
+  color: #2E2E2E;
+  background: #fff;
+  text-align: center;
+  line-height: 65rpx;
+}
+
+.pick-result {
+  color: #9B9B9B;
+  margin-top: 44rpx;
+  margin-left: 40rpx;
+}
+
+.pick-bottom {
+  margin-top: 36rpx;
+  display: flex;
+  height: 100rpx;
+}
+
+.pick-operate {
+  flex: 1;
+  color: #fff;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-cancel {
+  background-image: linear-gradient(-190deg, #5B5B5B 0%, #777777 68%);
+}
+
+.btn-sure {
+  background-image: linear-gradient(-41deg, #EDD48D 14%, #B78D4C 100%);
+}
+
+.menu-type {
+  display: flex;
+  margin-left: 38rpx;
+  margin-top: 40rpx;
+  margin-bottom: 50rpx;
+}
+
+.menu-type-item {
+  line-height: 60rpx;
+  border-radius: 31rpx;
+  border: 1px solid #9B9B9B;
+  padding: 0 20rpx;
+  font-size: 32rpx;
+  color: #9B9B9B;
+  text-align: center;
+  margin-right: 50rpx;
+}
+
+.menu-type--selected {
+  color: #fff;
+  border: none;
+  background-image: linear-gradient(-41deg, #EDD48D 14%, #B78D4C 100%);
+}
