@@ -85,6 +85,23 @@
     <view class="bottom operate-save">
       保存为我的定制方案
     </view>
+
+    <view class="cover-tip" wx:if="{{coverTip === 1}}">
+      <image class="cover-img" src="../../image/custom/mask_top.png" mode="scaleToFill"/>
+      <view class="cover-text">小主，此处可以切换其他户型哦</view>
+      <view class="cover-btn" bind:tap="onCoverTip" data-step="1">知道啦</view>
+    </view>
+    <view class="cover-tip" wx:if="{{coverTip === 2}}">
+      <image class="cover-img" src="../../image/custom/mask_mid.png" mode="scaleToFill"/>
+      <view class="cover-text">点击加号可以更换空间功能哦</view>
+      <view class="cover-btn" bind:tap="onCoverTip" data-step="2">知道啦</view>
+    </view>
+    <view class="cover-tip" wx:if="{{coverTip === 3}}">
+      <image class="cover-img" src="../../image/custom/mask_btm.png" mode="scaleToFill"/>
+      <view class="cover-text">此处可以发表您的任何想法哦</view>
+      <view class="cover-btn" bind:tap="onCoverTip" data-step="3">知道啦</view>
+    </view>
+
   </block>
 
 </view>

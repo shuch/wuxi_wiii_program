@@ -14,10 +14,10 @@ const customState = 0;
 // 定制步骤
 // 1-选择户型
 // 2-户型编辑
-//  11-引导1
-//  12-引导2
-//  13-引导3
-const customStep = 1;
+//  21-引导1
+//  22-引导2
+//  23-引导3
+const customStep = 2;
 
 const CUSTOM_POP_UP = 'CUSTOM_POP_UP';
 
@@ -29,6 +29,7 @@ Page({
     customState: customState,
     customStep: customStep,
     popup: false,
+    coverTip: 1,
   },
 
   onLoad(parmas) {
@@ -60,5 +61,12 @@ Page({
     wx.setStorageSync(CUSTOM_POP_UP, 1);
     this.setData({ popup: false });
     // req save customStep
+  },
+
+  onCoverTip(e) {
+    if (!e) return;
+    const { currentTarget: { dataset: { step } } } = e;
+    const coverTip = step > 2 ? 0 : +step + 1;
+    this.setData({ coverTip });
   },
 });
