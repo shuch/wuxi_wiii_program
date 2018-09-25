@@ -80,14 +80,34 @@
         <text class="space-name">景观小餐厅</text>
         <image class="space-plus" src="{{cdn}}/update_plus.png" mode="scaleToFill" />
       </view>
-      <view class="rb-corner corner">
-        <image class="comment-btn" src="{{cdn}}/comment_button.png" mode="scaleToFill"></image>
-        添加批注
+      <view class="rb-corner corner" bind:tap="onComment">
+        <block wx:if="{{commentMode}}">
+          <image class="comment-btn" src="{{cdn}}/exit_button.png" mode="scaleToFill" />退出评论
+        </block>
+        <block wx:else>
+          <image class="comment-btn" src="{{cdn}}/comment_button.png" mode="scaleToFill" />添加评论
+        </block>
+      </view>
+      <view class="comment-area" wx:if="{{commentList.length}}">
+        <view class="comment-title" wx:if="{{commentList.length > 2}}">收起评论</view>
+        <view class="comment-list">
+          <view class="comment-item" wx:for="{{commentList}}">
+            {{item}}
+          </view>
+        </view>
       </view>
     </view>
 
     <view class="bottom operate-save">
       保存为我的定制方案
+    </view>
+
+    <view class="bottom operate-comment" wx:if="{{commentMode}}">
+      <view class="input-box">
+        <image class="input-icon" src="{{cdn}}/comment_in_icon.png" mode="scaleToFill"></image>
+        <input class="input" bindinput="bindKeyInput" value="{{inputComment}}"/>
+      </view>
+      <view class="btn-send" bind:tap="sendComment">发送</view>
     </view>
 
     <view wx:if="{{guide}}">

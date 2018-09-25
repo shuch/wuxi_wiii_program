@@ -67,6 +67,9 @@ Page({
       name2: spaceTypes[1].subTypes[0].name,
       name3: spaceTypes[2].subTypes[0].name,
     },
+    commentMode: false,
+    commentList: [],
+    inputComment: '',
     coverTip: 1,
     cdn,
   },
@@ -176,8 +179,32 @@ Page({
     const { detail: { update } } = e;
     if (update) {
       // req save houseType
-      console.log('req save space');
+      console.log('req save space', this.data.selectedSpace);
     }
     this.setData({ spaceEdit: false });
   },
+
+  onComment() {
+    console.log('onComment', this.data.commentMode);
+    this.setData({ commentMode: !this.data.commentMode });
+  },
+
+  sendComment() {
+    let { inputComment } = this.data;
+    inputComment = inputComment.trim();
+    if (inputComment.length) {
+      const { commentList } = this.data;
+      commentList.unshift(inputComment);
+      this.setData({ commentList, inputComment: '' })
+    }
+  },
+
+  bindKeyInput(e) {
+    let { detail: { value } } = e;
+    if (!value.length) {
+      return;
+    }
+    value = value.trim();
+    this.setData({ inputComment: value })
+  }
 });
