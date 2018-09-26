@@ -1,3 +1,6 @@
+import endpoint from '../../lib/endpoint';
+import regeneratorRuntime from '../../lib/runtime';
+
 const cdn = 'http://7xot92.com1.z0.glb.clouddn.com/';
 
 const houseTypes = [
@@ -29,7 +32,6 @@ const spaceTypes = [
   { id: 2, houseType: 1, name: '客厅+餐厅', subTypes: spaceSubTypes2 },
   { id: 3, houseType: 1, name: '卧室', subTypes: spaceSubTypes3 },
 ];
-
 
 // 总定制
 // 0-未定制 未支付
@@ -74,8 +76,12 @@ Page({
     cdn,
   },
 
-  onLoad(parmas) {
+  async onLoad(parmas) {
     console.log(parmas);
+    // this.init();
+    const houseId = 1;
+    const res = await endpoint('customList', houseId);
+    console.log(res);
   },
 
   showGuide() {
