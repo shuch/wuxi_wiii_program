@@ -20,7 +20,8 @@
     "pages/imgSwip/imgSwip",
     "pages/houseType/houseType",
     "pages/houseTypeDetail/houseTypeDetail",
-    "pages/customHouse/customHouse"
+    "pages/customHouse/customHouse",
+    "pages/customPay/customPay"
   ],
   "window": {
     "backgroundTextStyle": "light",

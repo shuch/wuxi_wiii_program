@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "预定服务",
+  "navigationBarBackgroundColor": "#fff",
+  "navigationBarTextStyle": "black",
+  "backgroundColor": "#eeeeee",
+  "backgroundTextStyle": "light",
+  "usingComponents": {
+    "component-pick-up": "../../components/pick-up/pick-up"
+  }
+}

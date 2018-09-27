@@ -1,0 +1,47 @@
+<view class="container">
+	<image class="custom-pay-card" src="{{cdn}}/custom_pay_card.png" mode="scaleToFill"/>
+	<view class="privileges">
+		<view class="privilege">
+			<image class="icon-privilege" src="{{cdn}}/icon_design.png" mode="scaleToFill"/>
+			<view class="privilege-detail">
+				<view class="privilege-title">自主设计权</view>
+				<view class="privilege-desc">您的户型定制方案,将成为开发商为您量身打造户型的依据,您心目中完美的家,Elab为您实现.</view>
+			</view>
+		</view>
+		<view class="privilege">
+			<image class="icon-privilege" src="{{cdn}}/icon_refund.png" mode="scaleToFill"/>
+			<view class="privilege-detail">
+				<view class="privilege-title">无忧退款权</view>
+				<view class="privilege-desc">入场券非定金,您可在任意时间随时申请退款,款项将7个工作日内按原路径退至付款微信账户.</view>
+			</view>
+		</view>
+		<view class="privilege">
+			<image class="icon-privilege" src="{{cdn}}/icon_chosen.png" mode="scaleToFill"/>
+			<view class="privilege-detail">
+				<view class="privilege-title">最终入选权</view>
+				<view class="privilege-desc">获得的点赞数和成功邀请好友数将决定方案的排名,排名前列的方案将有机会进入开发商的户型库.</view>
+			</view>
+		</view>
+	</view>
+	<view class="explain">定制服务，elab保有完整解释权</view>
+	<view class="bottom">
+		<view class="share-help">
+			<view class="share-time">
+				<text class="tag">限时活动</text>
+				<view class="date">
+					剩余29天28时10分
+				</view>
+				<image class="icon-info" src="{{cdn}}/info_white.png" mode="scaleToFill"/>
+				活动说明
+			</view>
+			<view class="share-desc">
+				分享转发给好友/朋友圈您和好友均可享受 好友价
+				<text class="share-price">300</text>元
+			</view>
+		</view>
+		<view class="btn-group">
+			<view class="btn-item btn-pay">直接付款</view>
+			<view class="btn-item btn-share">享受减免</view>
+		</view>
+	</view>
+</view>
