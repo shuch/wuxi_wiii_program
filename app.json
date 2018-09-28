@@ -21,7 +21,8 @@
     "pages/houseType/houseType",
     "pages/houseTypeDetail/houseTypeDetail",
     "pages/customHouse/customHouse",
-    "pages/customPay/customPay"
+    "pages/customPay/customPay",
+    "pages/customCenter/customCenter"
   ],
   "window": {
     "backgroundTextStyle": "light",

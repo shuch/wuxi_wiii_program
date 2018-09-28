@@ -31,7 +31,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 1,
+			"current": 2,
 			"list": [
 				{
 					"id": -1,
@@ -42,7 +42,14 @@
 				{
 					"id": -1,
 					"name": "预定支付",
-					"pathName": "pages/customPay/customPay"
+					"pathName": "pages/customPay/customPay",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "我的定制",
+					"pathName": "pages/customCenter/customCenter",
+					"query": ""
 				}
 			]
 		}

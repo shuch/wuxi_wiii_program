@@ -1,0 +1,74 @@
+<view class="container">
+	<view class="section section-top">
+		<view class="card-box">
+			<view class="card">
+				<view class="desc">
+					<image class="icon-info" src="{{cdn}}/info_white.png" mode="scaleToFill"/>
+					用途说明
+				</view>
+				<view class="card-info">
+					<view class="slogan">
+						<view class="logo">无锡WILL公寓</view>
+						<view class="title">户型定制入场券</view>
+					</view>
+					<view class="worth" wx:if="{{!hasPay}}">
+						600<text class="unit">元</text>
+					</view>
+				</view>
+				<view class="card-feature" wx:if="{{!hasPay}}">
+					<view class="feature">
+						<image class="icon-privilege" src="{{cdn}}/icon_design.png" mode="scaleToFill"/>
+						个性定制
+					</view>
+					<view class="feature">
+						<image class="icon-privilege" src="{{cdn}}/icon_refund.png" mode="scaleToFill"/>
+						随时退款
+					</view>
+					<view class="feature">
+						<image class="icon-privilege" src="{{cdn}}/icon_chosen.png" mode="scaleToFill"/>
+						折扣礼遇
+					</view>
+				</view>
+				<view class="card-number" wx:else>
+					NO.652136 <image class="qrcode" src="{{cdn}}/QRcode.png" mode="scaleToFill"></image>
+				</view>
+			</view>
+			<block wx:if="{{!hasPay}}">
+				<view class="card-desc">
+					<view class="tag">限时活动</view>
+					邀请朋友,享5折好友价,还能提升排名哦
+				</view>
+				<view class="group">
+					<view class="btn-card btn-pay">直接付款</view>
+					<view class="btn-card btn-share">邀请立减</view>
+				</view>
+				<view class="date">
+					剩余29天28时10分
+				</view>
+			</block>
+			<block wx:else>
+				<view class="pay-detail">
+					<view class="pay-detial-item">支付时间：2018-12-11 12:40</view>
+					<view class="pay-detial-item">支付金额：600元 定制服务入场券</view>
+					<view class="pay-detial-item">
+						定制状态：方案评估中
+						<view class="pay-more">查看详情 ></view>
+					</view>
+				</view>
+			</block>
+		</view>
+		<view wx:if="{{hasPay}}">
+			<view class="invite-list">
+				<image class="invite-avatar" src="{{cdn}}/avatar_s.png" mode="scaleToFill"></image>
+				<image class="invite-avatar" src="{{cdn}}/avatar_b.png" mode="scaleToFill"></image>
+			</view>
+			<view class="invite-content">您已邀请0人抢定制入场券,为您的方案排名上升了0位</view>
+			<view class="btn-share btn-invite">邀请好友助力</view>
+			<view class="invite-tip">
+				剩余29天28时10分
+				<image class="icon-info icon-info--invite" src="{{cdn}}/info_grey.png" mode="scaleToFill"/>
+				用途说明
+			</view>
+		</view>
+	</view>
+</view>

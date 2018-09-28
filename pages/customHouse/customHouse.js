@@ -79,7 +79,7 @@ Page({
   async onLoad(parmas) {
     console.log(parmas);
     // this.init();
-    const houseId = 1;
+    const houseId = 83;
     const res = await endpoint('customList', houseId);
     console.log(res);
   },

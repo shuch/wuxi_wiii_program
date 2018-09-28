@@ -1,0 +1,244 @@
+.container {
+  background: #f5f5f5;
+}
+
+.section {
+	background: #fff;
+}
+
+.section-top {
+	overflow: hidden;
+}
+
+.card-box {
+	position: relative;
+	margin: 158rpx 40rpx 62rpx;
+	padding-top: 142rpx;
+	padding-bottom: 20rpx; 
+	color: #FFD6BA;
+	box-shadow: 0 0 12px 4px rgba(0,0,0,.04);
+}
+
+.card {
+	position: absolute;
+	top: -130rpx;
+	width: 606rpx;
+	margin: 0 32rpx;
+	padding-bottom: 20rpx;
+	background: url('http://7xot92.com1.z0.glb.clouddn.com/custom_card_bg.png') top/606rpx 250rpx no-repeat;
+}
+
+.desc{
+	display: flex;
+	justify-content: flex-end;
+	font-size: 24rpx;
+	color: #9b9b9b;
+	margin-top: 22rpx;
+	align-items: center;
+	padding-right: 30rpx;
+}
+
+.icon-info {
+	width: 24rpx;
+	height: 24rpx;
+	margin-right: 10rpx;
+}
+
+.card-info{
+	display: flex;
+	margin-left: 40rpx;
+	line-height: 1;
+}
+
+.slogan{
+	flex: 1;
+}
+
+.logo {
+	font-size: 28rpx;
+}
+
+.title {
+	font-size: 38rpx;
+	margin-top: 10rpx;
+}
+
+.worth {
+	font-weight: 200;
+	font-size: 80rpx;
+	margin-right: 24rpx;
+}
+
+.unit {
+	font-size: 24rpx;
+}
+
+.card-feature {
+	display: flex;
+	font-size: 18px;
+	margin-top: 24rpx;
+}
+
+.feature {
+	position: relative;
+	flex: 1;
+	font-size: 18rpx;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.feature:after {
+	content: "";
+	position: absolute;
+	top: 4rpx;
+	right: 0;
+	height: 60rpx;
+	width: 0;
+	border-left: 1px solid rgba(255, 214, 186, .5);
+}
+
+.feature:last-child:after {
+	display: none;
+}
+
+.icon-privilege {
+	display: block;
+	width: 38rpx;
+	height: 38rpx;
+	margin-bottom: 10rpx;
+}
+
+.card-desc {
+	display: flex;
+	font-size: 26rpx;
+	color: #2E2E2E;
+	margin-left: 36rpx;
+	align-items: center;
+}
+
+.tag {
+	width: 130rpx;
+	line-height: 40rpx;
+	color: #FF1515;
+	font-size: 20rpx;
+	border-radius: 20rpx;
+	text-align: center;
+	border: 1px solid #FF1515;
+	margin-right: 20rpx;
+}
+
+.group {
+	display: flex;
+	padding: 0 36rpx;
+	color: #2E2E2E;
+	margin-top: 25rpx;
+}
+
+.btn-card {
+	height: 80rpx;
+	width: 280rpx;
+	border-radius: 40rpx;
+	line-height: 80rpx;
+	text-align: center;
+	font-size: 32rpx;
+}
+
+.btn-card:first-child {
+	margin-right: 30rpx;
+}
+
+.btn-pay {
+	background: #fff;
+	box-shadow: 0 0 10px 4px rgba(0,0,0,.04)
+}
+
+.btn-share {
+	background-image: linear-gradient(47deg, #FAE3A0 0%, #BE985D 100%);
+}
+
+.date {
+	color: #2A453B;
+	font-size: 24rpx;
+	text-align: right;
+	margin-right: 80rpx;
+	margin-top: 20rpx;
+}
+
+.card-number {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	font-size: 28rpx;
+	color: #68696B;
+	margin-right: 30rpx;
+	margin-top:52rpx;
+}
+
+.qrcode {
+	width: 50rpx;
+	height: 50rpx;
+	margin-left: 15rpx;
+}
+
+.pay-detail {
+	color: #2E2E2E;
+	font-size: 28rpx;
+	line-height: 40rpx;
+	margin: 0 40rpx;
+}
+
+.pay-detial-item {
+	margin-bottom: 20rpx;
+}
+
+.pay-more {
+	float: right;
+}
+
+.invite-list {
+	margin-top: 50rpx;
+	display: flex;
+	justify-content: center;
+}
+
+.invite-avatar {
+	width: 50rpx;
+	height: 50rpx;
+	border-radius: 50%;
+	color: #9b9b9b;
+	font-size: 34rpx;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-right: 20rpx;
+}
+
+.invite-content {
+	font-size: 28rpx;
+	text-align: center;
+	margin-top: 20rpx;
+	color: rgba(155,155,155,.6);
+}
+
+.btn-invite {
+	margin: 40rpx auto 15rpx;
+	width: 280rpx;
+	line-height: 80rpx;
+	text-align: center;
+	border-radius: 40rpx;
+	box-shadow: 0 0 10px 4px #FAE3A0;
+	font-size: 32rpx;
+}
+
+.invite-tip {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 24rpx;
+}
+
+.icon-info--invite {
+	margin-left: 20rpx;
+}
