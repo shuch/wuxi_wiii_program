@@ -19,9 +19,12 @@
         bind:tap="onSelectChange"
       >
         <view class="pick-item-media">
-          <image class="pick-item-img" src="{{item.huxing}}" mode="aspectFill" />
+          <image class="pick-item-img" src="{{item.thumbSm}}" mode="aspectFit" />
         </view>
-        <view class="pick-item-desc">户型{{item.name}}-{{item.area}}㎡</view>
+        <view class="pick-item-desc">
+          <view class="nowrap">{{item.name}}</view>
+          <view>{{item.area}}㎡</view>
+        </view>
       </view>
       
       <view
@@ -33,9 +36,9 @@
         bind:tap="onSelectSubSpaceChange"
       >
         <view class="pick-item-media">
-          <image class="pick-item-img" src="{{item.thumb}}" mode="aspectFill" />
+          <image class="pick-item-img" src="{{item.imageUrl}}" mode="aspectFit" />
         </view>
-        <view class="pick-item-desc">{{item.name}}</view>
+        <view class="pick-item-desc nowrap">{{item.name}}</view>
       </view>
     </view>
     <view class="pick-result">
@@ -43,7 +46,7 @@
         已选择 “户型{{houseTypeSelected.name}}-{{houseTypeSelected.area}}㎡”
       </block>
       <block wx:if="{{type === 'space'}}">
-        已选择 “{{spaceSelected.name1}}+{{spaceSelected.name2}}+{{spaceSelected.name3}}”
+        已选择 “{{spaceSelected.name1}}+{{spaceSelected.name2}}”
       </block>
     </view>
     <view class="pick-bottom operate-step1">

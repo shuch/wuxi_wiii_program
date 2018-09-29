@@ -11,7 +11,7 @@
       <view class="house-type {{selectedType && selectedType.id === item.id ? 'selected-type' : ''}}">
         <view class="house-info">
           <view class="info-type">
-            <view class="type">户型-{{item.name}}</view>
+            <view class="type">{{item.name}}</view>
             <text class="area">{{item.area}}</text>㎡
           </view>
           <image class="room-thumb" src="{{item.thumb}}" mode="scaleToFill"></image>
@@ -32,7 +32,7 @@
     </view>
 
     <view class="bottom operate-step1 {{!selectedType ? 'operate-disable' : ''}}">
-      <view class="operate-state">已选择：户型-{{selectedType.name}}</view>
+      <view class="operate-state">已选择：{{selectedType.name}}</view>
       <view class="operate-step" bind:tap="onStep">下一步</view>
     </view>
 
@@ -75,9 +75,13 @@
       <view class="lt-corner corner">
         <image class="north" src="{{cdn}}/north.png" mode="scaleToFill"></image>N
       </view>
-      <image class="hx-img" src="{{cdn}}/huxing.png" mode="scaleToFill" bind:tap="editSpace" />
-      <view class="space-indicator">
-        <text class="space-name">景观小餐厅</text>
+      <image class="hx-img" src="{{customDetial.imageUrl}}" mode="scaleToFill" bind:tap="editSpace" />
+      <view class="space-indicator space-left-top">
+        <text class="space-name">{{customDetial.spaces[0].name}}</text>
+        <image class="space-plus" src="{{cdn}}/update_plus.png" mode="scaleToFill" />
+      </view>
+      <view class="space-indicator space-left-bottom">
+        <text class="space-name">{{customDetial.spaces[1].name}}</text>
         <image class="space-plus" src="{{cdn}}/update_plus.png" mode="scaleToFill" />
       </view>
       <view class="rb-corner corner" bind:tap="onComment">
@@ -91,7 +95,14 @@
       <view class="comment-area" wx:if="{{commentList.length}}">
         <view class="comment-title" wx:if="{{commentList.length > 2}}">收起评论</view>
         <view class="comment-list">
-          <view class="comment-item" wx:for="{{commentList}}">
+          <view
+            class="comment-item"
+            wx:for="{{commentList}}"
+            wx:for-index="idx"
+            wx:key="item"
+            data-index="{{idx}}"
+            bind:tap="delComment"
+          >
             {{item}}
           </view>
         </view>

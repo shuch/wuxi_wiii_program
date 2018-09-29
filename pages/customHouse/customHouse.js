@@ -1,37 +1,32 @@
 import endpoint from '../../lib/endpoint';
 import regeneratorRuntime from '../../lib/runtime';
+import { houseTypesMapper, spaceTypeMapper } from '../../utils/convertor';
 
-const cdn = 'http://7xot92.com1.z0.glb.clouddn.com/';
+const cdn = 'http://7xot92.com1.z0.glb.clouddn.com';
 
-const houseTypes = [
-  { id: 1, area: 30, name: 'A', height: 3.6, thumb: cdn + 'house_type_thumb.png', thumbSm: cdn + 'house_type_plane.png', huxing: cdn + 'huxing.png' },
-  { id: 2, area: 45, name: 'B', height: 2.4, thumb: cdn + 'house_type_thumb.png', thumbSm: cdn + 'house_type_plane.png', huxing: cdn + 'huxing.png' },
-  { id: 3, area: 60, name: 'C', height: 5.2, thumb: cdn + 'house_type_thumb.png', thumbSm: cdn + 'house_type_plane.png', huxing: cdn + 'huxing.png' },
-];
+// const spaceSubTypes = [
+//   { id: 1, spaceType: 1, name: '景观小餐厅', thumb: cdn + 'space_type.png' },
+//   { id: 2, spaceType: 1, name: '阳光下午茶', thumb: cdn + 'space_type2.png' },
+//   { id: 3, spaceType: 1, name: '萌宠小花园', thumb: cdn + 'space_type3.png' },
+// ];
 
-const spaceSubTypes = [
-  { id: 1, spaceType: 1, name: '景观小餐厅', thumb: cdn + 'space_type.png' },
-  { id: 2, spaceType: 1, name: '阳光下午茶', thumb: cdn + 'space_type2.png' },
-  { id: 3, spaceType: 1, name: '萌宠小花园', thumb: cdn + 'space_type3.png' },
-];
+// const spaceSubTypes2 = [
+//   { id: 1, spaceType: 1, name: '迷你图书馆', thumb: cdn + 'space_type.png' },
+//   { id: 2, spaceType: 1, name: '迷你办公区', thumb: cdn + 'space_type2.png' },
+//   { id: 3, spaceType: 1, name: '迷你茶餐厅', thumb: cdn + 'space_type3.png' },
+// ];
 
-const spaceSubTypes2 = [
-  { id: 1, spaceType: 1, name: '迷你图书馆', thumb: cdn + 'space_type.png' },
-  { id: 2, spaceType: 1, name: '迷你办公区', thumb: cdn + 'space_type2.png' },
-  { id: 3, spaceType: 1, name: '迷你茶餐厅', thumb: cdn + 'space_type3.png' },
-];
+// const spaceSubTypes3 = [
+//   { id: 1, spaceType: 1, name: '私人卧榻', thumb: cdn + 'space_type.png' },
+//   { id: 2, spaceType: 1, name: '豪华卧榻', thumb: cdn + 'space_type2.png' },
+//   { id: 3, spaceType: 1, name: '迷你卧榻', thumb: cdn + 'space_type3.png' },
+// ];
 
-const spaceSubTypes3 = [
-  { id: 1, spaceType: 1, name: '私人卧榻', thumb: cdn + 'space_type.png' },
-  { id: 2, spaceType: 1, name: '豪华卧榻', thumb: cdn + 'space_type2.png' },
-  { id: 3, spaceType: 1, name: '迷你卧榻', thumb: cdn + 'space_type3.png' },
-];
-
-const spaceTypes = [
-  { id: 1, houseType: 1, name: '临窗小空间', subTypes: spaceSubTypes },
-  { id: 2, houseType: 1, name: '客厅+餐厅', subTypes: spaceSubTypes2 },
-  { id: 3, houseType: 1, name: '卧室', subTypes: spaceSubTypes3 },
-];
+// const spaceTypes = [
+//   { id: 1, houseType: 1, name: '临窗小空间', subTypes: spaceSubTypes },
+//   { id: 2, houseType: 1, name: '客厅+餐厅', subTypes: spaceSubTypes2 },
+//   { id: 3, houseType: 1, name: '卧室', subTypes: spaceSubTypes3 },
+// ];
 
 // 总定制
 // 0-未定制 未支付
@@ -53,22 +48,14 @@ const CUSTOM_POP_UP = 'CUSTOM_POP_UP';
 Page({
   data: {
     title: 'customHouse',
-    houseTypes: houseTypes,
-    spaceTypes: spaceTypes,
+    // spaceTypes: spaceTypes,
     selectedType: null,
-    customState: customState,
+    // customState: customState,
     customStep: customStep,
     popup: false,
     guide: false,
     houseTypeUpdate: false,
     spaceEdit: false,
-    selectedSpace: {
-      type: spaceTypes[0],
-      subType: spaceTypes[0].subTypes[0],
-      name1: spaceTypes[0].subTypes[0].name,
-      name2: spaceTypes[1].subTypes[0].name,
-      name3: spaceTypes[2].subTypes[0].name,
-    },
     commentMode: false,
     commentList: [],
     inputComment: '',
@@ -80,19 +67,30 @@ Page({
     console.log(parmas);
     // this.init();
     const houseId = 83;
+    const customerId = 1;
+
     const res = await endpoint('customList', houseId);
-    console.log(res);
+    this.setData({
+      houseId,
+      customerId,
+      houseTypes: res.list.map(houseTypesMapper),
+    });
   },
 
   showGuide() {
     const popup = wx.getStorageSync(CUSTOM_POP_UP);
-    const { customState } = this.data;
-    const noCustom = customState === 0 || customState === 3;
-    return !popup || noCustom;
+    // const { customState } = this.data;
+    // const noCustom = customState === 0 || customState === 3;
+    return !popup;
   },
 
-  onShow() {
-    if (this.showGuide()) {
+  async onShow() {
+    const houseId = 83;
+    const customerId = 1;
+    const res = await endpoint('customState', { customerId, houseId });
+    // console.log('status', res.single.customizedStatus);
+    res.single.customizedStatus = 1;
+    if (this.showGuide() || !res.single.customizedStatus) {
       this.setData({ popup: true, guide: true });
     }
   },
@@ -109,9 +107,11 @@ Page({
     this.setData({ houseTypeUpdate: true });
   },
 
-  onStep() {
+  async onStep() {
     if (!this.data.selectedType) return;
-    this.setData({ customStep: 2 });
+    const res = await endpoint('customDetail', this.data.selectedType.id);
+    console.log('res', res);
+    this.setData({ customStep: 2, customDetial: res.single });
   },
 
   onKnown() {
@@ -136,8 +136,21 @@ Page({
     this.setData({ houseTypeUpdate: false });
   },
 
-  editSpace() {
-    this.setData({ spaceEdit: true });
+  async editSpace() {
+    const res = await endpoint('spaceList', this.data.houseId);
+    console.log('res', res);
+    const spaceTypes = res.list.map(spaceTypeMapper);
+    const selectedSpace = {
+      type: spaceTypes[0],
+      subType: spaceTypes[0].subTypes[0],
+      name1: spaceTypes[0].subTypes[0].name,
+      name2: spaceTypes[1].subTypes[0].name,
+    };
+    this.setData({
+      spaceEdit: true,
+      spaceTypes,
+      selectedSpace,
+    });
   },
 
   onSelectSpaceChange(e) {
@@ -164,11 +177,6 @@ Page({
       name2 = subSpaceType.name;
       name3 = selectedSpace.name3;
     }
-    if (selectedSpace.type.id === 3) {
-      name1 = selectedSpace.name1;
-      name2 = selectedSpace.name2;
-      name3 = subSpaceType.name;
-    }
     // console.log('groupName', groupName);
     this.setData({
       selectedSpace: {
@@ -176,7 +184,6 @@ Page({
         subType: subSpaceType,
         name1,
         name2,
-        name3,
       }
     });
   },
@@ -212,5 +219,13 @@ Page({
     }
     value = value.trim();
     this.setData({ inputComment: value })
+  },
+
+  delComment(e) {
+    if (!e) return;
+    const { currentTarget: { dataset: { index } } } = e;
+    const { commentList: newList } = this.data;
+    newList.splice(index, 1);
+    this.setData({ commentList: newList });
   }
 });

@@ -1,8 +1,9 @@
 .container {
   background: #F6F6F6;
   overflow: hidden;
-  height: 100vh;
+  min-height: 100vh;
   font-weight: 200;
+  padding-bottom: 100rpx;
 }
 
 .title {
@@ -114,7 +115,7 @@
 }
 
 .operate-disable {
-  opacity: 0.2;
+  opacity: 1;
 }
 
 .operate-state {
@@ -334,6 +335,16 @@
   position: absolute;
   top:335rpx;
   right:146rpx;
+}
+
+.space-left-top {
+  left: 100rpx;
+  top: 200rpx;
+}
+
+.space-left-bottom {
+  left: 200rpx;
+  top: 700rpx;
 }
 
 .space-name {
