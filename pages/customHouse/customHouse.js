@@ -38,30 +38,41 @@ Page({
     console.log(parmas);
     // this.init();
     const houseId = 83;
-    const customerId = 1;
+    const customerId = 3;
+    const state = await endpoint('customState', { customerId, houseId });
+    const {
+      single: {
+        customizedStatus,
+        paymentStatus,
+        customerProgrammeId,
+      },
+    } = state;
+    if (customizedStatus === 1) {
+      wx.redirectTo({ url: '/pages/customCenter/customCenter' });
+      return;
+    }
 
     const res = await endpoint('customList', houseId);
     this.setData({
       houseId,
       customerId,
+      customizedStatus,
+      customerProgrammeId,
       houseTypes: res.list.map(houseTypesMapper),
     });
   },
 
   showGuide() {
     const popup = wx.getStorageSync(CUSTOM_POP_UP);
-    // const { customState } = this.data;
-    // const noCustom = customState === 0 || customState === 3;
-    return !popup;
+    const { customizedStatus } = this.data;
+    return !popup && !customizedStatus;
   },
 
   async onShow() {
     const houseId = 83;
     const customerId = 1;
-    const res = await endpoint('customState', { customerId, houseId });
-    // console.log('status', res.single.customizedStatus);
-    res.single.customizedStatus = 1;
-    if (this.showGuide() || !res.single.customizedStatus) {
+    
+    if (this.showGuide()) {
       this.setData({ popup: true, guide: true });
     }
   },
@@ -83,6 +94,7 @@ Page({
     const res = await endpoint('customDetail', {
       customizedLayoutId: this.data.selectedType.layoutId,
       houseId: this.data.houseId,
+      customerId: this.data.customerId,
     });
     console.log('res', res);
     this.setData({ customStep: 2, customDetial: res.single });
@@ -213,6 +225,8 @@ Page({
       customerId: this.data.customerId,
       customizedProgrammeId: this.data.selectedType.id,
       houseId: this.data.houseId,
+      id: this.data.customDetial.customerProgrammeId,
+      customizedStatus: 1,
     });
   },
 });
