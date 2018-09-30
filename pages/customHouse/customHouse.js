@@ -3,37 +3,7 @@ import regeneratorRuntime from '../../lib/runtime';
 import { houseTypesMapper, spaceTypeMapper } from '../../utils/convertor';
 
 const cdn = 'http://7xot92.com1.z0.glb.clouddn.com';
-
-// const spaceSubTypes = [
-//   { id: 1, spaceType: 1, name: '景观小餐厅', thumb: cdn + 'space_type.png' },
-//   { id: 2, spaceType: 1, name: '阳光下午茶', thumb: cdn + 'space_type2.png' },
-//   { id: 3, spaceType: 1, name: '萌宠小花园', thumb: cdn + 'space_type3.png' },
-// ];
-
-// const spaceSubTypes2 = [
-//   { id: 1, spaceType: 1, name: '迷你图书馆', thumb: cdn + 'space_type.png' },
-//   { id: 2, spaceType: 1, name: '迷你办公区', thumb: cdn + 'space_type2.png' },
-//   { id: 3, spaceType: 1, name: '迷你茶餐厅', thumb: cdn + 'space_type3.png' },
-// ];
-
-// const spaceSubTypes3 = [
-//   { id: 1, spaceType: 1, name: '私人卧榻', thumb: cdn + 'space_type.png' },
-//   { id: 2, spaceType: 1, name: '豪华卧榻', thumb: cdn + 'space_type2.png' },
-//   { id: 3, spaceType: 1, name: '迷你卧榻', thumb: cdn + 'space_type3.png' },
-// ];
-
-// const spaceTypes = [
-//   { id: 1, houseType: 1, name: '临窗小空间', subTypes: spaceSubTypes },
-//   { id: 2, houseType: 1, name: '客厅+餐厅', subTypes: spaceSubTypes2 },
-//   { id: 3, houseType: 1, name: '卧室', subTypes: spaceSubTypes3 },
-// ];
-
-// 总定制
-// 0-未定制 未支付
-// 1-已定制 未支付
-// 2-已定制 已支付
-// 3-未定制 已支付（直接购买入场券）
-const customState = 1;
+const cdn2 = 'http://oh1n1nfk0.bkt.clouddn.com';
 
 // 定制步骤
 // 1-选择户型
@@ -61,6 +31,7 @@ Page({
     inputComment: '',
     coverTip: 1,
     cdn,
+    cdn2,
   },
 
   async onLoad(parmas) {
@@ -109,7 +80,10 @@ Page({
 
   async onStep() {
     if (!this.data.selectedType) return;
-    const res = await endpoint('customDetail', this.data.selectedType.id);
+    const res = await endpoint('customDetail', {
+      customizedLayoutId: this.data.selectedType.layoutId,
+      houseId: this.data.houseId,
+    });
     console.log('res', res);
     this.setData({ customStep: 2, customDetial: res.single });
   },
@@ -138,7 +112,7 @@ Page({
 
   async editSpace() {
     const res = await endpoint('spaceList', this.data.houseId);
-    console.log('res', res);
+    // console.log('res', res);
     const spaceTypes = res.list.map(spaceTypeMapper);
     const selectedSpace = {
       type: spaceTypes[0],
@@ -146,6 +120,7 @@ Page({
       name1: spaceTypes[0].subTypes[0].name,
       name2: spaceTypes[1].subTypes[0].name,
     };
+    console.log('selectedSpace', selectedSpace);
     this.setData({
       spaceEdit: true,
       spaceTypes,
@@ -158,7 +133,12 @@ Page({
     const { currentTarget: { dataset: { type } } } = event;
     const spaceType = this.data.spaceTypes.find((item) => item.id === type);
     console.log('onSelectSpaceChange', spaceType);
-    this.setData({ selectedSpace: { ...this.data.selectedSpace, type: spaceType }});
+    this.setData({
+      selectedSpace: {
+        ...this.data.selectedSpace,
+        type: spaceType,
+      }
+    });
   },
 
   onSelectSubSpaceChange(e) {
@@ -170,12 +150,10 @@ Page({
     if (selectedSpace.type.id === 1) {
       name1 = subSpaceType.name;
       name2 = selectedSpace.name2;
-      name3 = selectedSpace.name3;
     }
     if (selectedSpace.type.id === 2) {
       name1 = selectedSpace.name1;
       name2 = subSpaceType.name;
-      name3 = selectedSpace.name3;
     }
     // console.log('groupName', groupName);
     this.setData({
@@ -227,5 +205,14 @@ Page({
     const { commentList: newList } = this.data;
     newList.splice(index, 1);
     this.setData({ commentList: newList });
-  }
+  },
+
+  async onSaveCustom() {
+    const res = await endpoint('saveCustom', {
+      commentImageUrl: 'https://xxx/canvas',
+      customerId: this.data.customerId,
+      customizedProgrammeId: this.data.selectedType.id,
+      houseId: this.data.houseId,
+    });
+  },
 });
