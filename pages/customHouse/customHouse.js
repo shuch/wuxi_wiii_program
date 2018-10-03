@@ -20,7 +20,7 @@ Page({
     title: 'customHouse',
     // spaceTypes: spaceTypes,
     selectedType: null,
-    // customState: customState,
+    spaceNames: {},
     customStep: customStep,
     popup: false,
     guide: false,
@@ -38,7 +38,7 @@ Page({
     console.log(parmas);
     // this.init();
     const houseId = 83;
-    const customerId = 3;
+    const customerId = 6;
     const state = await endpoint('customState', { customerId, houseId });
     const {
       single: {
@@ -69,9 +69,6 @@ Page({
   },
 
   async onShow() {
-    const houseId = 83;
-    const customerId = 1;
-    
     if (this.showGuide()) {
       this.setData({ popup: true, guide: true });
     }
@@ -97,7 +94,7 @@ Page({
       customerId: this.data.customerId,
     });
     console.log('res', res);
-    this.setData({ customStep: 2, customDetial: res.single });
+    this.setData({ customStep: 2, customDetail: res.single });
   },
 
   onKnown() {
@@ -113,29 +110,43 @@ Page({
     this.setData({ coverTip });
   },
 
-  onHouseTypeDidUpdate(e) {
+  async onHouseTypeDidUpdate(e) {
     const { detail: { update } } = e;
+    const data = { houseTypeUpdate: false };
     if (update) {
-      // req save houseType
-      console.log('req save houseType');
+      const res = await endpoint('customDetail', {
+        houseId: this.data.houseId,
+        customerId: this.data.customerId,
+        customizedLayoutId: this.data.selectedType.layoutId,
+      });
+      Object.assign(data, { customDetail: res.single });
     }
-    this.setData({ houseTypeUpdate: false });
+    this.setData(data);
   },
 
-  async editSpace() {
-    const res = await endpoint('spaceList', this.data.houseId);
-    // console.log('res', res);
+  async editSpace(e) {
+    if (!e) return;
+    const { currentTarget: { dataset: { space } } } = e;
+    const { customDetail, houseId, spaceNames } = this.data;
+    const res = await endpoint('spaceList', houseId);
     const spaceTypes = res.list.map(spaceTypeMapper);
-    const selectedSpace = {
-      type: spaceTypes[0],
-      subType: spaceTypes[0].subTypes[0],
-      name1: spaceTypes[0].subTypes[0].name,
-      name2: spaceTypes[1].subTypes[0].name,
-    };
-    console.log('selectedSpace', selectedSpace);
+    const selectedSpace = spaceTypes.find((item) => item.id === space.spaceTypeId);
+    spaceTypes.forEach((item) => {
+      if (item.id === space.spaceTypeId) {
+        item.selected = true;
+      }
+      item.subTypes.forEach((sub) => {
+        const defaultSp = customDetail.spaces.find((t) => t.spaceTypeId === sub.spaceTypeId);
+        if (sub.id === defaultSp.id) {
+          sub.selected = true;
+          spaceNames[item.id] = sub.name;
+        }
+      });
+    });
     this.setData({
       spaceEdit: true,
       spaceTypes,
+      spaceNames,
       selectedSpace,
     });
   },
@@ -143,48 +154,55 @@ Page({
   onSelectSpaceChange(e) {
     const event = e.detail && e.detail.currentTarget ? e.detail : e;
     const { currentTarget: { dataset: { type } } } = event;
-    const spaceType = this.data.spaceTypes.find((item) => item.id === type);
-    console.log('onSelectSpaceChange', spaceType);
+    const { spaceTypes: spTypes } = this.data;
+    const selectedSpace = spTypes.find((item) => item.id === type);
+    spTypes.forEach((item) => {
+      item.selected = item.id === type;
+    });
     this.setData({
-      selectedSpace: {
-        ...this.data.selectedSpace,
-        type: spaceType,
-      }
+      spaceTypes: spTypes,
+      selectedSpace,
     });
   },
 
   onSelectSubSpaceChange(e) {
     const event = e.detail && e.detail.currentTarget ? e.detail : e;
     const { currentTarget: { dataset: { type } } } = event;
-    const subSpaceType = this.data.selectedSpace.type.subTypes.find((item) => item.id === type);
-    const { spaceTypes, selectedSpace } = this.data;
-    let name1, name2, name3;
-    if (selectedSpace.type.id === 1) {
-      name1 = subSpaceType.name;
-      name2 = selectedSpace.name2;
-    }
-    if (selectedSpace.type.id === 2) {
-      name1 = selectedSpace.name1;
-      name2 = subSpaceType.name;
-    }
-    // console.log('groupName', groupName);
+    const { selectedSpace, spaceTypes, spaceNames } = this.data;
+    const spType = spaceTypes.find((item) => item.id === selectedSpace.id);
+    spType.subTypes.forEach((item) => {
+      item.selected = item.id === type;
+    });
+    const sub = spType.subTypes.find((item) => item.id === type);
+    spaceNames[selectedSpace.id] = sub.name;
     this.setData({
-      selectedSpace: {
-        ...selectedSpace,
-        subType: subSpaceType,
-        name1,
-        name2,
-      }
+      selectedSpace: spType,
+      spaceNames,
     });
   },
 
-  onSpaceDidUpdate(e) {
+  async onSpaceDidUpdate(e) {
     const { detail: { update } } = e;
+    const data = { spaceEdit: false };
     if (update) {
-      // req save houseType
-      console.log('req save space', this.data.selectedSpace);
+      const spaceId = []; 
+      this.data.spaceTypes.forEach((item) => {
+        item.subTypes.forEach((sub) => {
+          if (sub.selected) {
+            spaceId.push(sub.id);
+          }
+        });
+      });
+      const spaceIds = spaceId.join('_');
+      const res = await endpoint('customDetail', {
+        spaceIds,
+        houseId: this.data.houseId,
+        customerId: this.data.customerId,
+        customizedLayoutId: this.data.selectedType.layoutId,
+      });
+      Object.assign(data, { customDetail: res.single });
     }
-    this.setData({ spaceEdit: false });
+    this.setData(data);
   },
 
   onComment() {
@@ -192,12 +210,23 @@ Page({
     this.setData({ commentMode: !this.data.commentMode });
   },
 
-  sendComment() {
+  async sendComment() {
     let { inputComment } = this.data;
     inputComment = inputComment.trim();
     if (inputComment.length) {
-      const { commentList } = this.data;
-      commentList.unshift(inputComment);
+      const { commentList, customerId } = this.data;
+      const res = await endpoint('addComment', {
+        customerId,
+        commentText: inputComment,
+        customerProgrammeId: 1,
+        houseId: 1,
+        orderNo: 1
+      })
+      const comment = {
+        id: res.id,
+        content: inputComment,
+      };
+      commentList.unshift(comment);
       this.setData({ commentList, inputComment: '' })
     }
   },
@@ -211,11 +240,18 @@ Page({
     this.setData({ inputComment: value })
   },
 
-  delComment(e) {
+  async delComment(e) {
     if (!e) return;
-    const { currentTarget: { dataset: { index } } } = e;
-    const { commentList: newList } = this.data;
+    const { currentTarget: { dataset: { index, id } } } = e;
+    const { commentList: newList, customerId, houseId } = this.data;
     newList.splice(index, 1);
+    endpoint('updateComment', {
+      customerId,
+      customerProgrammeId: 0,
+      houseId,
+      id,
+      status: -1
+    })
     this.setData({ commentList: newList });
   },
 
@@ -225,7 +261,7 @@ Page({
       customerId: this.data.customerId,
       customizedProgrammeId: this.data.selectedType.id,
       houseId: this.data.houseId,
-      id: this.data.customDetial.customerProgrammeId,
+      id: this.data.customDetail.customerProgrammeId,
       customizedStatus: 1,
     });
   },

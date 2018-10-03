@@ -20,6 +20,10 @@ Component({
       type: Object,
       value: {},
     },
+    spaceNames: {
+      type: Object,
+      value: {},
+    },
   },
   methods: {
     attached() {

@@ -4,7 +4,7 @@
       <text
         wx:for="{{spaceTypes}}"
         wx:key="{{item.id}}"
-        class="menu-type-item {{spaceSelected.type.id === item.id ? 'menu-type--selected' : ''}}"
+        class="menu-type-item {{item.selected ? 'menu-type--selected' : ''}}"
         data-type="{{item.id}}"
         bind:tap="onSelectSpaceChange"
       >{{item.name}}</text>
@@ -29,8 +29,8 @@
       
       <view
         wx:if="{{type === 'space'}}"
-        class="pick-item {{spaceSelected.subType.id === item.id ? 'pick-item--selected' : ''}}"
-        wx:for="{{spaceSelected.type.subTypes}}"
+        class="pick-item {{item.selected ? 'pick-item--selected' : ''}}"
+        wx:for="{{spaceSelected.subTypes}}"
         wx:key="{{item.id}}"
         data-type="{{item.id}}"
         bind:tap="onSelectSubSpaceChange"
@@ -46,7 +46,12 @@
         已选择 “户型{{houseTypeSelected.name}}-{{houseTypeSelected.area}}㎡”
       </block>
       <block wx:if="{{type === 'space'}}">
-        已选择 “{{spaceSelected.name1}}+{{spaceSelected.name2}}”
+        已选择 “
+        <block wx:for="{{spaceNames}}" wx:key="{{item}}" wx:for-index="idx">
+          {{item}}
+          <block wx:if="{{idx < 2}}">+</block>
+        </block>
+        ”
       </block>
     </view>
     <view class="pick-bottom operate-step1">

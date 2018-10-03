@@ -75,13 +75,21 @@
       <view class="lt-corner corner">
         <image class="north" src="{{cdn}}/north.png" mode="scaleToFill"></image>N
       </view>
-      <image class="hx-img" src="{{customDetial.imageUrl}}" mode="scaleToFill" bind:tap="editSpace" />
-      <view class="space-indicator space-left-top">
-        <text class="space-name">{{customDetial.spaces[0].name}}</text>
+      <image class="hx-img" src="{{customDetail.imageUrl}}" mode="scaleToFill" />
+      <view
+        class="space-indicator space-left-top"
+        bind:tap="editSpace"
+        data-space="{{customDetail.spaces[0]}}"
+      >
+        <text class="space-name">{{customDetail.spaces[0].name}}</text>
         <image class="space-plus" src="{{cdn}}/update_plus.png" mode="scaleToFill" />
       </view>
-      <view class="space-indicator space-left-bottom">
-        <text class="space-name">{{customDetial.spaces[1].name}}</text>
+      <view
+        class="space-indicator space-left-bottom"
+        bind:tap="editSpace"
+        data-space="{{customDetail.spaces[1]}}"
+      >
+        <text class="space-name">{{customDetail.spaces[1].name}}</text>
         <image class="space-plus" src="{{cdn}}/update_plus.png" mode="scaleToFill" />
       </view>
       <view class="rb-corner corner" bind:tap="onComment">
@@ -100,10 +108,11 @@
             wx:for="{{commentList}}"
             wx:for-index="idx"
             wx:key="item"
+            data-id="{{item.id}}"
             data-index="{{idx}}"
             bind:tap="delComment"
           >
-            {{item}}
+            {{item.content}}
           </view>
         </view>
       </view>
@@ -148,6 +157,7 @@
       type="space"
       space-types="{{spaceTypes}}"
       space-selected="{{selectedSpace}}"
+      space-names="{{spaceNames}}"
       bind:onselectspacechange="onSelectSpaceChange"
       bind:onselectsubspacechange="onSelectSubSpaceChange"
       bind:onspacecancel="onSpaceDidUpdate"
