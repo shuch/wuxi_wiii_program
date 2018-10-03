@@ -31,7 +31,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 2,
+			"current": 3,
 			"list": [
 				{
 					"id": -1,
@@ -50,6 +50,11 @@
 					"name": "我的定制",
 					"pathName": "pages/customCenter/customCenter",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "补充信息",
+					"pathName": "pages/person-info/person-info"
 				}
 			]
 		}
