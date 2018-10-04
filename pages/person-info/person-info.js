@@ -90,5 +90,8 @@ Page({
       nickName: name,
     });
     console.log(res);
+    if (res.success) {
+      wx.navigateTo({ url: '/pages/customPay/customPay' });
+    }
   },
 });

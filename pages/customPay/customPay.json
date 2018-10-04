@@ -5,6 +5,7 @@
   "backgroundColor": "#eeeeee",
   "backgroundTextStyle": "light",
   "usingComponents": {
-    "component-pick-up": "../../components/pick-up/pick-up"
+    "component-pick-up": "../../components/pick-up/pick-up",
+    "component-pop-up": "../../components/pop-up/pop-up"
   }
 }

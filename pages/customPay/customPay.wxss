@@ -91,6 +91,7 @@
 
 .btn-group {
   display: flex;
+  color: #fff;
   font-size: 40rpx;
 }
 
@@ -107,7 +108,7 @@
 }
 
 .btn-share {
-  background-image: linear-gradient(-37deg, #8E09FF 100%, #FFB64F 100%);
+  background: #FFB64F;
 }
 
 .icon-info {

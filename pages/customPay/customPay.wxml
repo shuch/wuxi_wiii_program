@@ -26,7 +26,7 @@
 	<view class="explain">定制服务，elab保有完整解释权</view>
 	<view class="bottom">
 		<view class="share-help">
-			<view class="share-time">
+			<view class="share-time" bind:tap="onShowPopup">
 				<text class="tag">限时活动</text>
 				<view class="date">
 					剩余29天28时10分
@@ -40,8 +40,15 @@
 			</view>
 		</view>
 		<view class="btn-group">
-			<view class="btn-item btn-pay">直接付款</view>
+			<view class="btn-item btn-pay" bind:tap="onPay">直接付款</view>
 			<view class="btn-item btn-share">享受减免</view>
 		</view>
 	</view>
 </view>
+
+<component-pop-up
+	wx:if="{{showPopup}}"
+	has-close="{{true}}"
+	bind:onclose="onClose"
+	content-src="{{cdn}}/pop_up_pay.png"
+/>
