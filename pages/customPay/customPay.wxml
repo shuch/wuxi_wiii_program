@@ -41,7 +41,7 @@
 		</view>
 		<view class="btn-group">
 			<view class="btn-item btn-pay" bind:tap="onPay">直接付款</view>
-			<view class="btn-item btn-share">享受减免</view>
+			<view class="btn-item btn-share" bind:tap="menuShare">享受减免</view>
 		</view>
 	</view>
 </view>
@@ -51,4 +51,11 @@
 	has-close="{{true}}"
 	bind:onclose="onClose"
 	content-src="{{cdn}}/pop_up_pay.png"
+/>
+
+<component-action-sheet
+	wx:if="{{doShare}}"
+	bind:onclose="onClose"
+	timeline-src="{{timelineSrc}}"
+	bind:onsaveimage="onSaveImage"
 />

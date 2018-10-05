@@ -7,8 +7,11 @@ const cdn = 'http://oh1n1nfk0.bkt.clouddn.com';
 
 Page({
   data: {
+    doShare: false,
     showPopup: false,
     cdn,
+    fee: 0.02,
+    timelineSrc: '',
   },
 
   async onLoad(parmas) {
@@ -17,7 +20,8 @@ Page({
     const houseId = 83;
     const appId = "wx393fa65352d1b735";
     const secret = "bda6d7952104872c35239fb6ce751ce1";
-    this.setData({ openid, customerId, houseId, appId, secret });
+    const timelineSrc = `${cdn}/space_type.png`;
+    this.setData({ openid, customerId, houseId, appId, secret, timelineSrc });
   },
 
   onShowPopup() {
@@ -29,10 +33,10 @@ Page({
   },
 
   async onPay() {
-    const { openid, customerId, houseId, appId, secret } = this.data;
+    const { openid, customerId, houseId, appId, secret, fee } = this.data;
     const res = await endpoint('buyCard', {
       customerId,
-      fee: 0.01,
+      fee,
       houseId,
       orderSubject: "无锡WIII公寓户型定制入场券",
       payPlatform: 1,
@@ -58,21 +62,82 @@ Page({
        package: payStr,
        signType,
        paySign,
-       success: (res) => {
+       success: () => {
           wx.showToast({
             title: '成功',
             icon: 'success',
             duration: 2000
-          })
+          });
+          wx.navigateTo({ url: '/pages/customCenter/customCenter' });
        },
-       fail: (res) => {
+       fail: () => {
           wx.showToast({
-            title: '失败',
-            icon: 'success',
+            title: '支付失败',
+            icon: 'fail',
             duration: 2000
-          })
+          });
+          wx.navigateTo({ url: '/pages/customCenter/customCenter' });
        }
     });
+  },
+
+  menuShare() {
+    this.setData({ doShare: true });
+  },
+
+  onShareAppMessage() {
+    console.log('onShareAppMessage', this.route);
+    return {
+      title: '户型定制入场券',
+      path: `${this.route}?from=customPay`,
+      success: () => {
+        this.sharePay();
+      },
+    };
+  },
+
+  onSaveImage() {
+    const that = this;
+    const { timelineSrc } = this.data;
+    wx.downloadFile({
+      url: timelineSrc,
+      success: function (res) {
+        const path = res.tempFilePath;
+        wx.authorize({
+          scope: 'scope.writePhotosAlbum',
+          success: () => {
+            wx.saveImageToPhotosAlbum({
+              filePath: path,
+              success: () => {
+                wx.showToast({
+                  title: '保存成功',
+                });
+                that.sharePay();
+              },
+              fail: (e) => {
+                console.log(e);
+              }
+            });
+          }
+        });
+      },
+    });
+    // const param = {
+    //   filePath: 'http://oh1n1nfk0.bkt.clouddn.com/space_type.png',
+    //   success: () => {
+    //     this.sharePay();
+    //   },
+    //   fail: (res) => {
+    //     console.log(res);
+    //   },
+    // };
+    // console.log('onSaveImage', param);
+    // wx.saveImageToPhotosAlbum(param);
+  },
+
+  sharePay() {
+    this.setData({ fee: 0.02, doShare: false });
+    this.onPay();
   },
 
 });
