@@ -71,4 +71,35 @@
 			</view>
 		</view>
 	</view>
+	<view class="section section-rank">
+		<view class="section-title">
+			我的意向方案 <text class="section-btn">新建方案</text>
+		</view>
+		<view class="custom-item">
+			<view class="custom-card">
+				<view class="custom-card-box">
+					<image class="custom-item-img" src="{{cdn}}/rank_custom_img.png" mode="scaleToFill"/>
+					<view class="custom-feature-list">
+						<view class="custom-feature" wx:for="{{[1,2,3]}}" wx:key="item">户型A</view>
+					</view>
+					<view class="custom-like">
+						<image class="icon-like" src="{{cdn}}/like.png" mode="scaleToFill" />
+						23
+					</view>
+				</view>
+				<view class="custom-item-info">
+					<text class="custom-item-rank">方案1</text>
+					最后编辑 2018-12-05
+				</view>
+			</view>
+			<view class="custom-rank">
+				当前排名:<text class="red">12</text>
+				<view class="section-btn">分享</view>
+				<view class="section-btn margin-right">编辑</view>
+			</view>
+		</view>
+		<view class="divide">
+			向左划可以进行删除操作
+		</view>
+	</view>
 </view>

@@ -1,7 +1,7 @@
 import endpoint from '../../lib/endpoint';
 import regeneratorRuntime from '../../lib/runtime';
 
-const cdn = 'http://7xot92.com1.z0.glb.clouddn.com/';
+const cdn = 'http://oh1n1nfk0.bkt.clouddn.com';
 // 总定制
 // 0-未定制 未支付
 // 1-已定制 未支付
