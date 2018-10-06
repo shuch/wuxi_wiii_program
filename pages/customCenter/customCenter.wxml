@@ -2,7 +2,7 @@
 	<view class="section section-top">
 		<view class="card-box">
 			<view class="card">
-				<view class="desc">
+				<view class="desc" bind:tap="showIntro">
 					<image class="icon-info" src="{{cdn}}/info_white.png" mode="scaleToFill"/>
 					用途说明
 				</view>
@@ -73,33 +73,123 @@
 	</view>
 	<view class="section section-rank">
 		<view class="section-title">
-			我的意向方案 <text class="section-btn">新建方案</text>
+			<text class="flex-1">我的意向方案</text>
+			<text class="section-btn">新建方案</text>
 		</view>
-		<view class="custom-item">
-			<view class="custom-card">
-				<view class="custom-card-box">
-					<image class="custom-item-img" src="{{cdn}}/rank_custom_img.png" mode="scaleToFill"/>
-					<view class="custom-feature-list">
-						<view class="custom-feature" wx:for="{{[1,2,3]}}" wx:key="item">户型A</view>
+		<view class="custom-list" wx:if="{{customList && customList.length}}">
+			<view
+				class="custom-item"
+				wx:for="{{customList}}"
+				wx:key="item"
+			>
+				<view class="custom-card">
+					<view class="custom-card-box">
+						<image class="custom-item-img" src="{{cdn}}/rank_custom_img.png" mode="scaleToFill"/>
+						<view class="custom-feature-list">
+							<view class="custom-feature" wx:for="{{[1,2,3]}}" wx:key="item">户型A</view>
+						</view>
+						<view class="custom-like">
+							<image class="icon-like" src="{{cdn}}/like.png" mode="scaleToFill" />
+							23
+						</view>
 					</view>
+					<view class="custom-item-info">
+						<text class="custom-item-rank">方案1</text>
+						最后编辑 2018-12-05
+					</view>
+				</view>
+				<view class="custom-rank">
+					当前排名:<text class="red">12</text>
+					<view class="section-btn">分享</view>
+					<view class="section-btn margin-right">编辑</view>
+				</view>
+			</view>
+			<view class="divide">
+				向左划可以进行删除操作
+			</view>
+		</view>
+		<view wx:else class="divide-empty">
+			噢噢,您暂时还没有方案哦,快去生成方案吧
+		</view>
+	</view>
+	<view class="section section-rank">
+		<view class="section-title">
+			<text class="flex-1">明星户型排行榜</text>
+			<text class="section-more">查看更多</text>
+			<image class="icon-right" src="{{cdn}}/more_grey.png" mode="scaleToFill"/>
+		</view>
+		<view class="rank-star">
+			<view class="rank-star-box" wx:for="{{[1,2,3]}}" wx:key="item">
+				<view class="rank-star-album">
+					<image class="rank-star-img" src="{{cdn}}/rank_star.png" mode="scaleToFill"/>
 					<view class="custom-like">
 						<image class="icon-like" src="{{cdn}}/like.png" mode="scaleToFill" />
 						23
 					</view>
 				</view>
-				<view class="custom-item-info">
-					<text class="custom-item-rank">方案1</text>
-					最后编辑 2018-12-05
+				<view class="rank-star-info">
+					<image class="rank-star-avatar" src="{{cdn}}/rank_star_avatar.png" mode="scaleToFill"/>
+					海好和
 				</view>
 			</view>
-			<view class="custom-rank">
-				当前排名:<text class="red">12</text>
-				<view class="section-btn">分享</view>
-				<view class="section-btn margin-right">编辑</view>
-			</view>
-		</view>
-		<view class="divide">
-			向左划可以进行删除操作
 		</view>
 	</view>
+	<view class="section section-footer">
+		<image class="banner" src="{{cdn}}/custom_center_banner.png" mode="scaleToFill"/>
+	</view>
+	<view class="mask mask-white" wx:if="{{showIntro}}">
+		<view class="popup popup-intro">
+			<view class="popup-box">
+				<view class="intro-value">
+					仅需 <text class="large">600</text>元
+				</view>
+				<view class="intro-title">
+					无锡WIII公寓户型定制 <text class="theme-color">入场券</text>
+				</view>
+				<view class="privileges">
+					<view class="privilege">
+						<image class="icon-privilege" src="{{cdn}}/icon_design.png" mode="scaleToFill"/>
+						<view class="privilege-detail">
+							<view class="privilege-title">自主设计权</view>
+							<view class="privilege-desc">您的户型定制方案,将成为开发商为您量身打造户型的依据,您心目中完美的家,Elab为您实现.</view>
+						</view>
+					</view>
+					<view class="privilege">
+						<image class="icon-privilege" src="{{cdn}}/icon_refund.png" mode="scaleToFill"/>
+						<view class="privilege-detail">
+							<view class="privilege-title">无忧退款权</view>
+							<view class="privilege-desc">入场券非定金,您可在任意时间随时申请退款,款项将7个工作日内按原路径退至付款微信账户.</view>
+						</view>
+					</view>
+					<view class="privilege">
+						<image class="icon-privilege" src="{{cdn}}/icon_chosen.png" mode="scaleToFill"/>
+						<view class="privilege-detail">
+							<view class="privilege-title">最终入选权</view>
+							<view class="privilege-desc">获得的点赞数和成功邀请好友数将决定方案的排名,排名前列的方案将有机会进入开发商的户型库.</view>
+						</view>
+					</view>
+					<view class="explain">定制服务，elab保有完整解释权</view>
+				</view>
+			</view>
+			<view class="pop-btn" bind:tap="hideIntro">我已知晓</view>
+		</view>
+	</view>
+	<view class="mask" wx:if="{{showProgress}}">
+      <view class="popup popup-progress">
+        <view class="h3 margin-7">我的定制服务进展</view>
+        <view class="pop-step {{item === 4 ? 'progress-end' : ''}}" wx:for="{{[1,2,3,4]}}" wx:key="item">
+          <view class="step-date">
+          	18-11-11 <view class="time">20:34</view>
+          </view>
+          <image wx:if="{{item !== 4}}" class="progress-img" src="{{cdn}}/progress.png" mode="scaleToFill"/>
+          <image wx:else class="progress-img-end" src="{{cdn}}/progress_end.png" mode="scaleToFill" />
+          <view class="step-desc {{item === 4 ? 'step-desc-end' : ''}}">
+            已购买定制入场券
+          </view>
+        </view>
+        <view class="pop-bottom">
+        	<view class="pop-btn pop-btn-progress" bind:tap="onKnown">申请退款</view>
+        </view>
+      </view>
+    </view>
 </view>

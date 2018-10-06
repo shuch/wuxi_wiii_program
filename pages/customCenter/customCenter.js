@@ -12,17 +12,21 @@ const customState = 2;
 Page({
   data: {
     cdn,
+    showIntro: false,
+    showProgress: true,
   },
 
   async onLoad(parmas) {
-    // console.log(parmas);
-    // // this.init();
-    // const houseId = 1;
-    // const res = await endpoint('customList', houseId);
-    // console.log(res);
     const hasPay = customState === 2 || customState === 3;
-    this.setData({ hasPay });
-    console.log(hasPay);
+    const customList = [1,2,3];
+    this.setData({ hasPay, customList });
   },
 
+  showIntro() {
+    this.setData({ showIntro: true });
+  },
+
+  hideIntro() {
+    this.setData({ showIntro: false })
+  }
 });

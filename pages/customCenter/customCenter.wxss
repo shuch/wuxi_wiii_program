@@ -25,7 +25,7 @@
 	width: 606rpx;
 	margin: 0 32rpx;
 	padding-bottom: 20rpx;
-	background: url('http://7xot92.com1.z0.glb.clouddn.com/custom_card_bg.png') top/606rpx 250rpx no-repeat;
+	background: url('http://oh1n1nfk0.bkt.clouddn.com/custom_card_bg.png') top/606rpx 250rpx no-repeat;
 }
 
 .desc{
@@ -250,10 +250,16 @@
 }
 
 .section-title {
+	display: flex;
+	align-items: center;
 	font-weight: bold;
 	font-size: 36rpx;
 	line-height: 50rpx;
 	color: #2E2E2E;
+}
+
+.flex-1 {
+	flex: 1;
 }
 
 .custom-item {
@@ -341,6 +347,7 @@
 	padding: 18rpx 0 44rpx;
 	font-size: 24rpx;
 	color: #9B9B9B;
+	text-align: center;
 }
 
 .margin-right {
@@ -361,4 +368,255 @@
 	width: 40rpx;
 	height: 40rpx;
 	vertical-align: top;
+}
+
+.section-more {
+	font-size: 24rpx;
+	color: #9B9B9B
+}
+
+.icon-right {
+	width: 12rpx;
+	height: 22rpx;
+	margin-left: 10rpx;
+}
+
+.rank-star {
+	display: flex;
+	flex-wrap: nowrap;
+	overflow-x: scroll;
+	margin-top: 50rpx;
+	margin-bottom: 36rpx;
+}
+
+.rank-star-box {
+	background: #FFFFFF;
+	margin-right: 40rpx;
+	box-shadow: 1px 1px 1px 1px rgba(213,213,213,0.47);
+}
+
+.rank-star-album {
+	position: relative;
+}
+
+.rank-star-img {
+	width: 270rpx;
+	height: 256rpx;
+	vertical-align: top;
+}
+
+.rank-star-info {
+	display: flex;
+	font-size: 22rpx;
+	color: #9B9B9B;
+	align-items: center;
+	padding-bottom: 14rpx;
+}
+
+.rank-star-avatar {
+	width: 36rpx;
+	height: 36rpx;
+	margin-right: 10rpx;
+	margin-left: 17rpx;
+}
+
+.float-right {
+	float: right;
+}
+
+.section-footer {
+	margin-top: 20rpx;
+}
+
+.banner {
+	width: 100%;
+	height: 190rpx;
+	vertical-align: top;
+}
+
+.divide-empty {
+	padding: 96rpx 0 85rpx;
+	border-bottom: 1px solid #9B9B9B;
+	text-align: center;
+	font-size: 28rpx;
+	color: #9B9B9B;
+}
+
+
+.mask {
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, .6);
+}
+
+.mask-white {
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(255, 255, 255, .8);
+}
+
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 20rpx;
+  color: #9B9B9B;
+}
+
+.popup-intro {
+  width: 560rpx;
+}
+
+.popup-box {
+  padding: 20rpx 0 10rpx;
+  border-radius: 16rpx;
+  background-image: linear-gradient(-240deg, #5B5B5B 8%, #12120F 100%);
+}
+
+.privileges {
+  margin-left: 70rpx;
+  margin-right: 40rpx;
+}
+
+.privilege {
+  display: flex;
+  margin: 40rpx 0;
+}
+
+.icon-privilege {
+  width: 60rpx;
+  height: 60rpx;
+}
+
+.privilege-detail {
+  flex: 1;
+  margin-left: 30rpx;
+}
+
+.privilege-title {
+  color: #BE985D;
+  font-size: 38rpx;
+  line-height: 50rpx;
+}
+
+.privilege-desc {
+  color: #fff;
+  font-size: 24rpx;
+  line-height: 1.4;
+}
+
+.explain {
+  margin: 0 60rpx;
+  color: #d5d5d5;
+  font-size: 20rpx;
+  padding-bottom: 10rpx;
+  margin-bottom: 20rpx;
+  text-align: center;
+  opacity: .3;
+  border-bottom: 1rpx solid rgba(213, 213, 213, .8);
+}
+
+.intro-value {
+	font-size: 24rpx;
+	margin-left: 55rpx;
+	color: #fff;
+}
+
+.large {
+	font-size: 72rpx;
+}
+
+.intro-title {
+	margin-left: 55rpx;
+	font-size: 36rpx;
+	color: #fff;
+}
+
+.theme-color{
+	color: #FFD6BA;
+}
+
+.pop-btn {
+	width: 250rpx;
+	line-height: 70rpx;
+	font-size: 32rpx;
+	color: #000000;
+	text-align: center;
+	border: 1px solid #000000;
+	border-radius: 1px;
+	margin: 26rpx auto 0;
+	background: #fff;
+}
+
+.h3 {
+	font-size: 48rpx;
+	color: #2E2E2E;
+	text-align: center;
+}
+
+.margin-7{
+	margin-top: 70rpx;
+	margin-bottom: 45rpx;
+}
+
+.popup-progress {
+	width: 590rpx;
+	background: #fff;
+}
+
+.pop-step{
+	padding: 0 45rpx;
+	display: flex;
+	font-size: 24rpx;
+	color: #9B9B9B;
+}
+
+.pop-step:first-child{
+	margin-top: 45rpx;
+}
+
+.time {
+	text-align: right;
+}
+
+.progress-img {
+	width: 10rpx;
+	height: 76rpx;
+	margin: 10rpx 30rpx;
+}
+
+.pop-bottom {
+	margin-top: 75rpx;
+}
+
+.pop-btn-progress {
+	margin-top: 0;
+	border-color: #9B9B9B;
+	color: #9B9B9B;
+}
+
+.pop-bottom {
+	margin-top: 120rpx;
+	padding: 30rpx 0;
+	box-shadow: 0 0 30rpx 1rpx rgba(0,0,0,.1);
+}
+
+.progress-end {
+	color: #2E2E2E;
+}
+
+.progress-img-end {
+	width: 20rpx;
+	height: 20rpx;
+	margin: 10rpx 25rpx;
+}
+
+.step-desc-end {
+	font-size: 26rpx;
+	color: #D7B87A;
 }
