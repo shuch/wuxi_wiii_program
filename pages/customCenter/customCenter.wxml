@@ -52,7 +52,7 @@
 					<view class="pay-detial-item">支付金额：600元 定制服务入场券</view>
 					<view class="pay-detial-item">
 						定制状态：方案评估中
-						<view class="pay-more">查看详情 ></view>
+						<view class="pay-more" bind:tap="didShowProgress">查看详情 ></view>
 					</view>
 				</view>
 			</block>
@@ -188,7 +188,38 @@
           </view>
         </view>
         <view class="pop-bottom">
-        	<view class="pop-btn pop-btn-progress" bind:tap="onKnown">申请退款</view>
+        	<view class="pop-btn pop-btn-progress" bind:tap="onRefund">申请退款</view>
+        </view>
+      </view>
+    </view>
+	<view class="mask" wx:if="{{showRefund}}">
+      <view class="popup popup-progress popup-refund">
+        <view class="h3 margin-1">申请退款</view>
+        <view class="service">
+          抱歉没能让您满意,您是不是遇到什么问题？联系在线客服帮忙解决～
+        </view>
+        <view class="service-btn">联系客服</view>
+        <view class="reason">
+        	选择我的退款原因
+        </view>
+        <view
+        	class="reason-item"
+        	wx:for="{{refundResons}}"
+        	wx:for-index="idx"
+        	wx:key="idx"
+        	bind:tap="selectReason"
+        	data-id="{{idx}}"
+        >
+        	<image wx:if="{{idx === selectedReason}}" class="select-icon" src="{{cdn}}/select.png" mode="scaleToFill" />
+        	<image wx:else class="select-icon" src="{{cdn}}/un_select.png" mode="scaleToFill" />
+        	{{item}}
+        </view>
+        <view class="refund">
+        	申请退款后,7个工作日内将按原路径退还至您支付时所用的微信账户。
+        </view>
+        <view class="button-group">
+	        <view class="refund-button" bind:tap="didRefund">确认退款</view>
+	        <view class="refund-button refund-cancel" bind:tap="cancelRefund">先不退了</view>
         </view>
       </view>
     </view>

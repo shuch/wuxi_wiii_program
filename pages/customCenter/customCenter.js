@@ -13,13 +13,16 @@ Page({
   data: {
     cdn,
     showIntro: false,
-    showProgress: true,
+    showProgress: false,
+    showRefund: false,
+    selectedReason: '',
   },
 
   async onLoad(parmas) {
     const hasPay = customState === 2 || customState === 3;
     const customList = [1,2,3];
-    this.setData({ hasPay, customList });
+    const refundResons = ['我不想要了','设计不满意','其他原因'];
+    this.setData({ hasPay, customList, refundResons });
   },
 
   showIntro() {
@@ -27,6 +30,26 @@ Page({
   },
 
   hideIntro() {
-    this.setData({ showIntro: false })
+    this.setData({ showIntro: false });
+  },
+
+  didShowProgress() {
+    this.setData({ showProgress: true });
+  },
+
+  onRefund() {
+    this.setData({ showProgress: false, showRefund: true });
+  },
+
+  selectReason(e) {
+    this.setData({ selectedReason: e.currentTarget.dataset.id });
+  },
+
+  didRefund() {
+    this.setData({ showRefund: false });
+  },
+
+  cancelRefund() {
+    this.setData({ showRefund: false });
   }
 });
