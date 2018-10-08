@@ -2,8 +2,7 @@ import endpoint from '../../lib/endpoint';
 import regeneratorRuntime from '../../lib/runtime';
 import { houseTypesMapper, spaceTypeMapper } from '../../utils/convertor';
 
-const cdn = 'http://7xot92.com1.z0.glb.clouddn.com';
-const cdn2 = 'http://oh1n1nfk0.bkt.clouddn.com';
+const cdn = 'http://oh1n1nfk0.bkt.clouddn.com';
 
 // 定制步骤
 // 1-选择户型
@@ -31,14 +30,13 @@ Page({
     inputComment: '',
     coverTip: 1,
     cdn,
-    cdn2,
   },
 
   async onLoad(parmas) {
     console.log(parmas);
-    // this.init();
     const houseId = 83;
-    const customerId = 6;
+    const customerId = 1;
+    const isCreate = parmas.create;
     const state = await endpoint('customState', { customerId, houseId });
     const {
       single: {
@@ -47,7 +45,7 @@ Page({
         customerProgrammeId,
       },
     } = state;
-    if (customizedStatus === 1) {
+    if (customizedStatus === 1 && !isCreate) {
       wx.redirectTo({ url: '/pages/customCenter/customCenter' });
       return;
     }
@@ -60,18 +58,23 @@ Page({
       customerProgrammeId,
       houseTypes: res.list.map(houseTypesMapper),
     });
+
+    if (this.showGuide()) {
+      this.setData({ popup: true, guide: true });
+    }
   },
 
   showGuide() {
     const popup = wx.getStorageSync(CUSTOM_POP_UP);
     const { customizedStatus } = this.data;
+    console.log('customizedStatus', customizedStatus);
     return !popup && !customizedStatus;
   },
 
   async onShow() {
-    if (this.showGuide()) {
-      this.setData({ popup: true, guide: true });
-    }
+    // if (this.showGuide()) {
+    //   this.setData({ popup: true, guide: true });
+    // }
   },
 
   onSelect(e) {
@@ -264,5 +267,7 @@ Page({
       id: this.data.customDetail.customerProgrammeId,
       customizedStatus: 1,
     });
+
+    // if (res.)
   },
 });

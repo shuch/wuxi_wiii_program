@@ -1,7 +1,7 @@
 .container {
   height: 100vh;
   overflow: hidden;
-  background: url('http://7xot92.com1.z0.glb.clouddn.com/custom_pay_bg.png') top/100% repeat-y;
+  background: url('http://oh1n1nfk0.bkt.clouddn.com/custom_pay_bg.png') top/100% repeat-y;
 }
 
 .custom-pay-card {

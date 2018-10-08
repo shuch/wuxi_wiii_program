@@ -122,17 +122,6 @@ Page({
         });
       },
     });
-    // const param = {
-    //   filePath: 'http://oh1n1nfk0.bkt.clouddn.com/space_type.png',
-    //   success: () => {
-    //     this.sharePay();
-    //   },
-    //   fail: (res) => {
-    //     console.log(res);
-    //   },
-    // };
-    // console.log('onSaveImage', param);
-    // wx.saveImageToPhotosAlbum(param);
   },
 
   sharePay() {

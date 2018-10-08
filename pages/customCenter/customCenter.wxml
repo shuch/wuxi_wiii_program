@@ -39,8 +39,8 @@
 					邀请朋友,享5折好友价,还能提升排名哦
 				</view>
 				<view class="group">
-					<view class="btn-card btn-pay">直接付款</view>
-					<view class="btn-card btn-share">邀请立减</view>
+					<view class="btn-card btn-pay" bind:tap="onPay">直接付款</view>
+					<view class="btn-card btn-share" bind:tap="menuShare">邀请立减</view>
 				</view>
 				<view class="date">
 					剩余29天28时10分
@@ -63,7 +63,7 @@
 				<image class="invite-avatar" src="{{cdn}}/avatar_b.png" mode="scaleToFill"></image>
 			</view>
 			<view class="invite-content">您已邀请0人抢定制入场券,为您的方案排名上升了0位</view>
-			<view class="btn-share btn-invite">邀请好友助力</view>
+			<view class="btn-share btn-invite" bind:tap="menuShare">邀请好友助力</view>
 			<view class="invite-tip">
 				剩余29天28时10分
 				<image class="icon-info icon-info--invite" src="{{cdn}}/info_grey.png" mode="scaleToFill"/>
@@ -74,7 +74,7 @@
 	<view class="section section-rank">
 		<view class="section-title">
 			<text class="flex-1">我的意向方案</text>
-			<text class="section-btn">新建方案</text>
+			<text class="section-btn" bind:tap="createCustom">新建方案</text>
 		</view>
 		<view class="custom-list" wx:if="{{customList && customList.length}}">
 			<view
@@ -84,24 +84,29 @@
 			>
 				<view class="custom-card">
 					<view class="custom-card-box">
-						<image class="custom-item-img" src="{{cdn}}/rank_custom_img.png" mode="scaleToFill"/>
+						<image class="custom-item-img" src="{{item.imgSrc}}" mode="scaleToFill"/>
 						<view class="custom-feature-list">
-							<view class="custom-feature" wx:for="{{[1,2,3]}}" wx:key="item">户型A</view>
+							<view
+								class="custom-feature"
+								wx:for="{{item.special}}"
+								wx:for-item="special"
+								wx:key="special"
+							>{{special}}</view>
 						</view>
 						<view class="custom-like">
 							<image class="icon-like" src="{{cdn}}/like.png" mode="scaleToFill" />
-							23
+							{{item.like}}
 						</view>
 					</view>
 					<view class="custom-item-info">
-						<text class="custom-item-rank">方案1</text>
-						最后编辑 2018-12-05
+						<text class="custom-item-rank">方案{{item.num}}</text>
+						最后编辑 {{item.editDate}}
 					</view>
 				</view>
 				<view class="custom-rank">
-					当前排名:<text class="red">12</text>
-					<view class="section-btn">分享</view>
-					<view class="section-btn margin-right">编辑</view>
+					当前排名:<text class="red">{{item.rank}}</text>
+					<view class="section-btn" bind:tap="onShare" data-id="{{item.id}}">分享</view>
+					<view class="section-btn margin-right" bind:tap="onEdit" data-id="{{item.id}}">编辑</view>
 				</view>
 			</view>
 			<view class="divide">
@@ -119,17 +124,17 @@
 			<image class="icon-right" src="{{cdn}}/more_grey.png" mode="scaleToFill"/>
 		</view>
 		<view class="rank-star">
-			<view class="rank-star-box" wx:for="{{[1,2,3]}}" wx:key="item">
+			<view class="rank-star-box" wx:for="{{rankList}}" wx:key="{{item.id}}">
 				<view class="rank-star-album">
-					<image class="rank-star-img" src="{{cdn}}/rank_star.png" mode="scaleToFill"/>
+					<image class="rank-star-img" src="{{item.src}}" mode="scaleToFill"/>
 					<view class="custom-like">
 						<image class="icon-like" src="{{cdn}}/like.png" mode="scaleToFill" />
-						23
+						{{item.like}}
 					</view>
 				</view>
 				<view class="rank-star-info">
-					<image class="rank-star-avatar" src="{{cdn}}/rank_star_avatar.png" mode="scaleToFill"/>
-					海好和
+					<image class="rank-star-avatar" src="{{item.avatar}}" mode="scaleToFill"/>
+					{{item.name}}
 				</view>
 			</view>
 		</view>
@@ -148,21 +153,21 @@
 				</view>
 				<view class="privileges">
 					<view class="privilege">
-						<image class="icon-privilege" src="{{cdn}}/icon_design.png" mode="scaleToFill"/>
+						<image class="privilege-img" src="{{cdn}}/icon_design.png" mode="scaleToFill"/>
 						<view class="privilege-detail">
 							<view class="privilege-title">自主设计权</view>
 							<view class="privilege-desc">您的户型定制方案,将成为开发商为您量身打造户型的依据,您心目中完美的家,Elab为您实现.</view>
 						</view>
 					</view>
 					<view class="privilege">
-						<image class="icon-privilege" src="{{cdn}}/icon_refund.png" mode="scaleToFill"/>
+						<image class="privilege-img" src="{{cdn}}/icon_refund.png" mode="scaleToFill"/>
 						<view class="privilege-detail">
 							<view class="privilege-title">无忧退款权</view>
 							<view class="privilege-desc">入场券非定金,您可在任意时间随时申请退款,款项将7个工作日内按原路径退至付款微信账户.</view>
 						</view>
 					</view>
 					<view class="privilege">
-						<image class="icon-privilege" src="{{cdn}}/icon_chosen.png" mode="scaleToFill"/>
+						<image class="privilege-img" src="{{cdn}}/icon_chosen.png" mode="scaleToFill"/>
 						<view class="privilege-detail">
 							<view class="privilege-title">最终入选权</view>
 							<view class="privilege-desc">获得的点赞数和成功邀请好友数将决定方案的排名,排名前列的方案将有机会进入开发商的户型库.</view>
@@ -224,3 +229,10 @@
       </view>
     </view>
 </view>
+
+<component-action-sheet
+	wx:if="{{doShare}}"
+	bind:onclose="onClose"
+	timeline-src="{{timelineSrc}}"
+	bind:onsaveimage="onSaveImage"
+/>

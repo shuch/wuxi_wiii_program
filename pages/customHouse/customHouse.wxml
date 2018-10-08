@@ -132,13 +132,13 @@
 
     <view wx:if="{{guide}}">
       <view class="cover-tip" wx:if="{{coverTip === 1}}">
-        <image class="cover-img" src="{{cdn2}}/guide1.jpg" mode="scaleToFill" bind:tap="onCoverTip" data-step="1"/>
+        <image class="cover-img" src="{{cdn}}/guide1.jpg" mode="scaleToFill" bind:tap="onCoverTip" data-step="1"/>
       </view>
       <view class="cover-tip" wx:if="{{coverTip === 2}}">
-        <image class="cover-img" src="{{cdn2}}/guide2.jpg" mode="scaleToFill" bind:tap="onCoverTip" data-step="2"/>
+        <image class="cover-img" src="{{cdn}}/guide2.jpg" mode="scaleToFill" bind:tap="onCoverTip" data-step="2"/>
       </view>
       <view class="cover-tip" wx:if="{{coverTip === 3}}">
-        <image class="cover-img" src="{{cdn2}}/guide3.jpg" mode="scaleToFill" bind:tap="onCoverTip" data-step="3"/>
+        <image class="cover-img" src="{{cdn}}/guide3.jpg" mode="scaleToFill" bind:tap="onCoverTip" data-step="3"/>
       </view>
     </view>
 

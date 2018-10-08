@@ -6,6 +6,7 @@
   "backgroundTextStyle": "light",
   "usingComponents": {
     "component-pick-up": "../../components/pick-up/pick-up",
-    "component-section": "../../components/section-list/section-list"
+    "component-section": "../../components/section-list/section-list",
+    "component-action-sheet": "../../components/action-sheet/action-sheet"
   }
 }
