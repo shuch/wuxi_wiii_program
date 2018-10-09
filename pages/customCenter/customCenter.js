@@ -1,60 +1,9 @@
 import endpoint from '../../lib/endpoint';
 import regeneratorRuntime from '../../lib/runtime';
-import { randomString, objectToQueryStr } from '../../lib/encrypt';
-import MD5 from '../../lib/md5';
+import { login } from '../../lib/promise';
+import { rankMapper } from '../../utils/convertor';
 
 const cdn = 'http://oh1n1nfk0.bkt.clouddn.com';
-// 总定制
-// 0-未定制 未支付
-// 1-已定制 未支付
-// 2-已定制 已支付
-// 3-未定制 已支付（直接购买入场券）
-const customState = 2;
-
-const customList = [
-  {
-    id: 1,
-    imgSrc: `${cdn}/rank_custom_img.png`,
-    num: 1,
-    like: 10,
-    special: ['户型A','私人影院','景观小餐厅'],
-    editDate: '2018-12-05',
-    rank: 10,
-  },
-  {
-    id: 2,
-    imgSrc: `${cdn}/rank_custom_img.png`,
-    num: 2,
-    like: 2,
-    special: ['户型A','私人影院','景观小餐厅'],
-    editDate: '2018-12-15',
-    rank: 2,
-  },
-];
-
-const rankList = [
-  {
-    id: 1,
-    src: `${cdn}/rank_star.png`,
-    like: 1012,
-    avatar: `${cdn}/rank_star_avatar.png`,
-    name: '行云流水'
-  },
-  {
-    id: 2,
-    src: `${cdn}/rank_star.png`,
-    like: 842,
-    avatar: `${cdn}/rank_star_avatar.png`,
-    name: '世纪花园'
-  },
-  {
-    id: 3,
-    src: `${cdn}/rank_star.png`,
-    like: 541,
-    avatar: `${cdn}/rank_star_avatar.png`,
-    name: '马云'
-  },
-];
 
 Page({
   data: {
@@ -72,8 +21,10 @@ Page({
   },
 
   async onLoad(parmas) {
-    const customerId = 1;
-    const houseId = 83;
+    const customerId = 16507;
+    const houseId = 10000;
+    const appData = await login();
+    console.log('appData', appData);
     const timelineSrc = `${cdn}/space_type.png`;
     const state = await endpoint('customState', { customerId, houseId });
     const {
@@ -85,9 +36,21 @@ Page({
     } = state;
     const hasPay = paymentStatus;
     const refundResons = ['我不想要了','设计不满意','其他原因'];
+    const res = await endpoint('customizedList', {
+      customerId,
+      houseId,
+    });
+
+    const rankRes = await endpoint('rankList', {
+      houseId,
+      pageNo: 1,
+      pageSize: 10,
+    });
+    let rankList = rankRes.pageModel ? rankRes.pageModel.resultSet : [];
+    rankList = rankList.map(rankMapper);
     this.setData({
       hasPay,
-      customList,
+      customList: res.list,
       refundResons,
       houseId,
       customerId,
@@ -164,19 +127,14 @@ Page({
       paySource: 1,
       uniqueCode: openid,
     });
-    const nonceStr = randomString(32);
-    const timeStamp = String(Date.now());
-    const payStr = `prepay_id=${res.single.prepayId}`;
-    const signType = 'MD5';
-    const params = {
-      appId,
+    const { 
       nonceStr,
-      package: payStr,
+      paySign,
+      prepayId,
       signType,
       timeStamp,
-      key: secret,
-    };
-    const paySign = MD5(objectToQueryStr(params));
+    } = res.single;
+    const payStr = `prepay_id=${prepayId}`;
     wx.requestPayment({
        timeStamp,
        nonceStr,
@@ -249,13 +207,13 @@ Page({
   },
 
   createCustom() {
-    const url = `/pages/customHouse/customHouse?create=true`
+    const url = `/pages/customHouse/customHouse?create=1`
     wx.navigateTo({ url });
   },
 
   onEdit(e) {
     const id = e.currentTarget.dataset.id;
-    const url = `/pages/customHouse/customHouse?customHouseId=${id}`;
+    const url = `/pages/customHouse/customHouse?update=1&id=${id}`;
     wx.navigateTo({ url });
   },
 

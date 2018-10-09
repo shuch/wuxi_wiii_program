@@ -293,6 +293,7 @@ App({
                                   app.globalData.phone = wx.getStorageSync('phone');
                                   app.globalData.identifier = data.id + "_"  + data.houseId;
                                   console.log(app.globalData)
+                                  // wx.setStorageSync('globalData', app.globalData);
                                   typeof cb == "function" && cb()
                                   app.proto_getLoginInfo(app);
                                   wx.request({
@@ -392,8 +393,8 @@ App({
       a:null,
     },
   globalData:{
-    appid:"wx393fa65352d1b735",
-    secret:"bda6d7952104872c35239fb6ce751ce1",  // 新版测试小程序 bda6d7952104872c35239fb6ce751ce1
+    appid:"wx5e18485e35c5f1f6",
+    secret:"6ac2abb378f4d5a5d16b7c6ba2850807",  // 新版测试小程序 bda6d7952104872c35239fb6ce751ce1
     shareToken:null,
     videoCustomer:null, // 看房小助手信息
     openid:null,

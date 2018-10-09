@@ -34,9 +34,10 @@ Page({
 
   async onLoad(parmas) {
     console.log(parmas);
-    const houseId = 83;
-    const customerId = 1;
-    const isCreate = parmas.create;
+    const customerId = 16507;
+    const houseId = 10000;
+    // const isCreate = parmas.create;
+    const { update, create, id } = parmas;
     const state = await endpoint('customState', { customerId, houseId });
     const {
       single: {
@@ -45,19 +46,31 @@ Page({
         customerProgrammeId,
       },
     } = state;
-    if (customizedStatus === 1 && !isCreate) {
+    const finishOne = customizedStatus || paymentStatus;
+    if (finishOne && !create) {
       wx.redirectTo({ url: '/pages/customCenter/customCenter' });
       return;
     }
 
-    const res = await endpoint('customList', houseId);
-    this.setData({
+    // 有暂存方案或编辑方案
+    const customizedId = customerProgrammeId || id;
+
+    const data = {
       houseId,
       customerId,
       customizedStatus,
       customerProgrammeId,
-      houseTypes: res.list.map(houseTypesMapper),
-    });
+    };
+    // 
+    if (customizedId) {
+      const res = await endpoint('customizedDetail', customizedId);
+      Object.assign(data, { customStep: 2, customDetail: res.single })
+    } else {
+      const res = await endpoint('customList', houseId);
+      Object.assign(data, { houseTypes: res.list.map(houseTypesMapper) })
+    }
+
+    this.setData(data);
 
     if (this.showGuide()) {
       this.setData({ popup: true, guide: true });
@@ -268,6 +281,8 @@ Page({
       customizedStatus: 1,
     });
 
-    // if (res.)
+    if (res.success) {
+      wx.navigateTo({ url: '/pages/person-info/person-info' });
+    }
   },
 });

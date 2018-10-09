@@ -5,7 +5,6 @@ const cdn = 'http://oh1n1nfk0.bkt.clouddn.com';
 
 Page({
   data: {
-    title: '补充信息',
     cdn,
     name: '',
     region: [],
@@ -13,8 +12,7 @@ Page({
     sexArray: [],
     age: 0,
     canSave: false,
-    customerId: 2,
-    houseId: 83,
+    hasPay: false,
   },
 
   generateRangeArray(start, end) {
@@ -25,11 +23,24 @@ Page({
   	return array;
   },
 
-  onLoad(parmas) {
-    console.log(parmas);
+  async onLoad(parmas) {
+    // console.log(parmas);
+    const customerId =  2;
+    const houseId = 83;
     const ageArray = this.generateRangeArray(1940, 2018);
     const sexArray = [{value: 1, text: '先生'}, {value:0, text: '女士'}];
-    this.setData({ ageArray, sexArray });
+    const state = await endpoint('customState', { customerId, houseId });
+
+    this.setData({
+      ageArray,
+      sexArray,
+      customerId,
+      houseId,
+      hasPay: state.single.paymentStatus,
+    });
+  },
+
+  async onShow() {
   },
 
   bindKeyInput(e) {
@@ -63,7 +74,7 @@ Page({
   },
 
   async onSave() {
-    const { name, sex, age, region, customerId, houseId } = this.data;
+    const { name, sex, age, region, customerId, houseId, hasPay } = this.data;
     if (!name) {
       wx.showToast({ title: '请输入昵称', icon: 'none' });
       return;
@@ -90,6 +101,12 @@ Page({
       nickName: name,
     });
     console.log(res);
+    // 支付-定制流程
+    if (hasPay) {
+      wx.navigateTo({ url: '/pages/customCenter/customCenter' });
+      return;
+    }
+    // 定制-支付流程
     if (res.success) {
       wx.navigateTo({ url: '/pages/customPay/customPay' });
     }

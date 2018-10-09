@@ -35,3 +35,21 @@ export const spaceTypeMapper = (item) => {
 		subTypes: spaces,
 	};
 }
+
+export const rankMapper = (item) => {
+	const {
+		id,
+		commentImageUrl,
+		thumbsUpNo = 0,
+		avatar = '',
+		name,
+	} = item;
+	const like = thumbsUpNo ? thumbsUpNo : 0;
+	return {
+		id,
+		src: commentImageUrl,
+		like,
+		avatar,
+		name,
+	};
+}

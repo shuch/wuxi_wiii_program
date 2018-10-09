@@ -1,23 +1,27 @@
 import endpoint from '../../lib/endpoint';
 import regeneratorRuntime from '../../lib/runtime';
-import { randomString, objectToQueryStr } from '../../lib/encrypt';
-import MD5 from '../../lib/md5';
 
 const cdn = 'http://oh1n1nfk0.bkt.clouddn.com';
+
+const app = getApp(); 
 
 Page({
   data: {
     doShare: false,
     showPopup: false,
     cdn,
-    fee: 0.02,
+    fee: 0.01,
     timelineSrc: '',
   },
 
   async onLoad(parmas) {
-    const openid = 'oUpF8uMuAJO_M2pxb1Q9zNjWeS6o';
-    const customerId = 1;
-    const houseId = 83;
+    // app.login(() => {
+
+    // });
+    const openid = 'oc6794xtWKvQ6kaLJNXUgV3keddE';//app.globalData.openid;//'oc67947G7HlBjdi8BNlKAT6fxr0w';
+    console.log('app', app.globalData);
+    const customerId = 16507;
+    const houseId = 10000;
     const appId = "wx393fa65352d1b735";
     const secret = "bda6d7952104872c35239fb6ce751ce1";
     const timelineSrc = `${cdn}/space_type.png`;
@@ -43,19 +47,14 @@ Page({
       paySource: 1,
       uniqueCode: openid,
     });
-    const nonceStr = randomString(32);
-    const timeStamp = String(Date.now());
-    const payStr = `prepay_id=${res.single.prepayId}`;
-    const signType = 'MD5';
-    const params = {
-      appId,
+    const { 
       nonceStr,
-      package: payStr,
+      paySign,
+      prepayId,
       signType,
       timeStamp,
-      key: secret,
-    };
-    const paySign = MD5(objectToQueryStr(params));
+    } = res.single;
+    const payStr = `prepay_id=${prepayId}`;
     wx.requestPayment({
        timeStamp,
        nonceStr,
@@ -76,7 +75,6 @@ Page({
             icon: 'fail',
             duration: 2000
           });
-          wx.navigateTo({ url: '/pages/customCenter/customCenter' });
        }
     });
   },
