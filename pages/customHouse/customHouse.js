@@ -1,6 +1,6 @@
 import endpoint from '../../lib/endpoint';
 import regeneratorRuntime from '../../lib/runtime';
-import { houseTypesMapper, spaceTypeMapper } from '../../utils/convertor';
+import { houseTypesMapper, spaceTypeMapper, customDetailMapper } from '../../utils/convertor';
 import { login } from '../../lib/promise';
 
 const cdn = 'http://oh1n1nfk0.bkt.clouddn.com';
@@ -50,14 +50,18 @@ Page({
         customerProgrammeId,
       },
     } = state;
-    const finishOne = customizedStatus || paymentStatus;
-    if (finishOne && !create) {
-      wx.redirectTo({ url: '/pages/customCenter/customCenter' });
-      return;
-    }
 
     // 有暂存方案或编辑方案
     const customizedId = customerProgrammeId || id;
+    const unFinished = !customizedStatus && customerProgrammeId;
+    const shouldUpdate = unFinished || update;
+    const finishOne = customizedStatus || paymentStatus;
+    const redirectCenter = finishOne && !update && !create;
+
+    if (redirectCenter) {
+      wx.redirectTo({ url: '/pages/customCenter/customCenter' });
+      return;
+    }
 
     const data = {
       houseId,
@@ -65,10 +69,14 @@ Page({
       customizedStatus,
       customerProgrammeId,
     };
-    // 
-    if (customizedId) {
+
+    if (shouldUpdate) {
       const res = await endpoint('customizedDetail', customizedId);
-      Object.assign(data, { customStep: 2, customDetail: res.single })
+      const customDetail = customDetailMapper(res.single);
+      const selectedType = {
+        name: customDetail.name,
+      };
+      Object.assign(data, { customStep: 2, customDetail, selectedType })
     } else {
       const res = await endpoint('customList', houseId);
       Object.assign(data, { houseTypes: res.list.map(houseTypesMapper) })

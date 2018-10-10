@@ -53,3 +53,10 @@ export const rankMapper = (item) => {
 		name,
 	};
 }
+
+export const customDetailMapper = (data) => {
+	return {
+		...data,
+		imageUrl: data.commentImageUrl,
+	};
+}
