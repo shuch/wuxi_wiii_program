@@ -75,7 +75,8 @@
       <view class="lt-corner corner">
         <image class="north" src="{{cdn}}/north.png" mode="scaleToFill"></image>N
       </view>
-      <image class="hx-img" src="{{customDetail.imageUrl}}" mode="scaleToFill" />
+      <component-preview-image src="{{customDetail.imageUrl}}" class="hx-img" mode="scaleToFill" />
+      <!-- <image class="hx-img" src="{{customDetail.imageUrl}}" mode="scaleToFill"  /> -->
       <view
         class="space-indicator space-left-top"
         bind:tap="editSpace"
@@ -100,8 +101,14 @@
           <image class="comment-btn" src="{{cdn}}/comment_button.png" mode="scaleToFill" />添加评论
         </block>
       </view>
-      <view class="comment-area" wx:if="{{commentList.length}}">
-        <view class="comment-title" wx:if="{{commentList.length > 2}}">收起评论</view>
+      <view class="comment-area {{commentExpand ? '' : 'comment-unfold'}}" wx:if="{{commentList.length}}">
+        <view
+          class="comment-title"
+          wx:if="{{commentList.length > 2}}"
+          bind:tap="toggleExpand"
+        >
+          {{commentExpand ? '收起' : '展开'}}评论
+        </view>
         <view class="comment-list">
           <view
             class="comment-item"
@@ -113,6 +120,7 @@
             bind:tap="delComment"
           >
             {{item.content}}
+            <image wx:if="{{commentMode}}" class="icon-close" src="{{cdn}}/close.png" mode="scaleToFill"></image>
           </view>
         </view>
       </view>

@@ -17,8 +17,6 @@ const CUSTOM_POP_UP = 'CUSTOM_POP_UP';
 
 Page({
   data: {
-    title: 'customHouse',
-    // spaceTypes: spaceTypes,
     selectedType: null,
     spaceNames: {},
     customStep: customStep,
@@ -31,6 +29,7 @@ Page({
     inputComment: '',
     coverTip: 1,
     cdn,
+    commentExpand: true,
   },
 
   async onLoad(parmas) {
@@ -242,7 +241,11 @@ Page({
 
   onComment() {
     console.log('onComment', this.data.commentMode);
-    this.setData({ commentMode: !this.data.commentMode });
+    const data = { commentMode: !this.data.commentMode };
+    if (this.data.commentMode) {
+      Object.assign(data, { commentExpand: false });
+    }
+    this.setData(data);
   },
 
   async sendComment() {
@@ -276,7 +279,10 @@ Page({
   },
 
   async delComment(e) {
-    if (!e) return;
+    console.log(this.data.commentMode);
+    if (!this.data.commentMode) {
+      return;
+    }
     const { currentTarget: { dataset: { index, id } } } = e;
     const { commentList: newList, customerId, houseId } = this.data;
     newList.splice(index, 1);
@@ -304,5 +310,10 @@ Page({
     if (res.success) {
       wx.navigateTo({ url: '/pages/person-info/person-info' });
     }
+  },
+
+  toggleExpand() {
+    const { commentExpand } = this.data;
+    this.setData({ commentExpand: !commentExpand });  
   },
 });

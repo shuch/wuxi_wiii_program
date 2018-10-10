@@ -1,4 +1,7 @@
 {
-  "component": true
+  "component": true,
+  "usingComponents": {
+  	"component-preview-image": "../preview-image/preview-image"
+  }
 }
 

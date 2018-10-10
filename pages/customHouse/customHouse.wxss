@@ -405,6 +405,10 @@
   flex-direction: column;
 }
 
+.comment-unfold {
+  top:814rpx;
+}
+
 .comment-title {
   color: #2E2E2E;
   margin-bottom: 20rpx;
@@ -421,4 +425,11 @@
   margin-bottom: 30rpx;
   border-radius: 6rpx;
   background: rgba(155, 155, 155, .7);
+}
+
+.icon-close {
+  width: 28rpx;
+  height: 28rpx;
+  margin-left: 20rpx;
+  vertical-align: middle;
 }

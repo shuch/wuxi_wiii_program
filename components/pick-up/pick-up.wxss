@@ -57,6 +57,7 @@
 }
 
 .pick-item-img {
+  display: block;
   width: 250rpx;
   height: 360rpx;
   vertical-align: top;
