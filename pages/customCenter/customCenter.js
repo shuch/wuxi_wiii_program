@@ -13,10 +13,10 @@ Page({
     showProgress: false,
     showRefund: false,
     selectedReason: '',
-    fee: 0.01,
+    fee: 0.02,
     shareCustomId: 0,
-    appId: "wx393fa65352d1b735",
-    secret: "bda6d7952104872c35239fb6ce751ce1",
+    appId: "wx5e18485e35c5f1f6",
+    secret: "6ac2abb378f4d5a5d16b7c6ba2850807",
     openid: 'oUpF8uMuAJO_M2pxb1Q9zNjWeS6o',
   },
 
@@ -57,6 +57,13 @@ Page({
       timelineSrc,
       rankList,
     });
+    if (hasPay) {
+      const res = await endpoint('ticket', { customerId, houseId });
+      const { payTime, ticketViewCode, fee: payFee, tradeCode } = res.single;
+      const inviteRes = await endpoint('invite', { customerId, houseId });
+      console.log('vi', inviteRes);
+      this.setData({ payTime, ticketViewCode, payFee, tradeCode, inviteList: inviteRes.list });
+    }
   },
 
   onShareAppMessage() {
@@ -108,7 +115,16 @@ Page({
     this.setData({ selectedReason: e.currentTarget.dataset.id });
   },
 
-  didRefund() {
+  async didRefund() {
+    const { customerId, houseId, payFee, tradeCode } = this.data;
+    const res = await endpoint('refund', {
+      customerId,
+      houseId,
+      payPlatform: 1,
+      refundFee: payFee,
+      tradeCode,
+    });
+    console.log('res', res);
     this.setData({ showRefund: false });
   },
 
@@ -202,7 +218,7 @@ Page({
   },
 
   onSharePay() {
-    this.setData({ fee: 0.02, doShare: false });
+    this.setData({ fee: 0.01, doShare: false });
     this.onPay();
   },
 

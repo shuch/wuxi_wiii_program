@@ -6,7 +6,7 @@
 // return 'https://openapi.elab-plus.com' //生产
 // return 'http://192.168.0.15:3000' //开发环境
 // return 'http://139.196.5.59:3001' // 测试
-const env = 'prod'
+const env = 'test'
 var config = function() {
     var result = {};
     if (env === 'prod') {

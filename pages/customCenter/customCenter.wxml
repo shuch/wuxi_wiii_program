@@ -30,7 +30,7 @@
 					</view>
 				</view>
 				<view class="card-number" wx:else>
-					NO.652136 <image class="qrcode" src="{{cdn}}/QRcode.png" mode="scaleToFill"></image>
+					NO.{{ticketViewCode}} <image class="qrcode" src="{{cdn}}/QRcode.png" mode="scaleToFill"></image>
 				</view>
 			</view>
 			<block wx:if="{{!hasPay}}">
@@ -48,8 +48,8 @@
 			</block>
 			<block wx:else>
 				<view class="pay-detail">
-					<view class="pay-detial-item">支付时间：2018-12-11 12:40</view>
-					<view class="pay-detial-item">支付金额：600元 定制服务入场券</view>
+					<view class="pay-detial-item">支付时间：{{payTime}}</view>
+					<view class="pay-detial-item">支付金额：{{payFee}}元 定制服务入场券</view>
 					<view class="pay-detial-item">
 						定制状态：方案评估中
 						<view class="pay-more" bind:tap="didShowProgress">查看详情 ></view>
@@ -59,10 +59,12 @@
 		</view>
 		<view wx:if="{{hasPay}}">
 			<view class="invite-list">
-				<image class="invite-avatar" src="{{cdn}}/avatar_s.png" mode="scaleToFill"></image>
-				<image class="invite-avatar" src="{{cdn}}/avatar_b.png" mode="scaleToFill"></image>
+				<block wx:for="{{[0,1,2,3,4]}}" wx:for-index="idx" wx:for-item="item" wx:key="item">
+					<image wx:if="{{inviteList[idx]}}" class="invite-avatar" src="{{headImage}}" mode="scaleToFill" wx />
+					<image wx:else class="invite-avatar" src="{{cdn}}/avatar_b.png" mode="scaleToFill"></image>
+				</block>
 			</view>
-			<view class="invite-content">您已邀请0人抢定制入场券,为您的方案排名上升了0位</view>
+			<view class="invite-content">您已邀请{{inviteList.length}}人抢定制入场券,为您的方案排名上升了0位</view>
 			<view class="btn-share btn-invite" bind:tap="menuShare">邀请好友助力</view>
 			<view class="invite-tip">
 				剩余29天28时10分
