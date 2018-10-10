@@ -1,5 +1,6 @@
 import endpoint from '../../lib/endpoint';
 import regeneratorRuntime from '../../lib/runtime';
+import { login } from '../../lib/promise';
 
 const cdn = 'http://oh1n1nfk0.bkt.clouddn.com';
 
@@ -15,13 +16,8 @@ Page({
   },
 
   async onLoad(parmas) {
-    // app.login(() => {
-
-    // });
-    const openid = 'oc6794xtWKvQ6kaLJNXUgV3keddE';//app.globalData.openid;//'oc67947G7HlBjdi8BNlKAT6fxr0w';
-    console.log('app', app.globalData);
-    const customerId = 16507;
-    const houseId = 10000;
+    const appData = await login();
+    const { id: customerId, houseId, openId: openid } = appData;
     const appId = "wx393fa65352d1b735";
     const secret = "bda6d7952104872c35239fb6ce751ce1";
     const timelineSrc = `${cdn}/space_type.png`;

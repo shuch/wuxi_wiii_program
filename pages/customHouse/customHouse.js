@@ -1,6 +1,7 @@
 import endpoint from '../../lib/endpoint';
 import regeneratorRuntime from '../../lib/runtime';
 import { houseTypesMapper, spaceTypeMapper } from '../../utils/convertor';
+import { login } from '../../lib/promise';
 
 const cdn = 'http://oh1n1nfk0.bkt.clouddn.com';
 
@@ -34,8 +35,11 @@ Page({
 
   async onLoad(parmas) {
     console.log(parmas);
-    const customerId = 16507;
-    const houseId = 10000;
+    const appData = await login();
+    const { id: customerId, houseId } = appData;
+    console.log('appData', customerId, houseId);
+    // const customerId = 16507;
+    // const houseId = 10000;
     // const isCreate = parmas.create;
     const { update, create, id } = parmas;
     const state = await endpoint('customState', { customerId, houseId });

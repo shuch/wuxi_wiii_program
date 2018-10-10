@@ -21,10 +21,10 @@ Page({
   },
 
   async onLoad(parmas) {
-    const customerId = 16507;
-    const houseId = 10000;
+    // const customerId = 16507;
+    // const houseId = 10000;
     const appData = await login();
-    console.log('appData', appData);
+    const { id: customerId, houseId, openId: openid } = appData;
     const timelineSrc = `${cdn}/space_type.png`;
     const state = await endpoint('customState', { customerId, houseId });
     const {

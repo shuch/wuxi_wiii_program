@@ -1,5 +1,6 @@
 import endpoint from '../../lib/endpoint';
 import regeneratorRuntime from '../../lib/runtime';
+import { login } from '../../lib/promise'
 
 const cdn = 'http://oh1n1nfk0.bkt.clouddn.com';
 
@@ -24,9 +25,11 @@ Page({
   },
 
   async onLoad(parmas) {
-    // console.log(parmas);
-    const customerId =  2;
-    const houseId = 83;
+    // // console.log(parmas);
+    // const customerId =  2;
+    // const houseId = 83;
+    const appData = await login();
+    const { id: customerId, houseId } = appData;
     const ageArray = this.generateRangeArray(1940, 2018);
     const sexArray = [{value: 1, text: '先生'}, {value:0, text: '女士'}];
     const state = await endpoint('customState', { customerId, houseId });
