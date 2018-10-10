@@ -19,10 +19,6 @@ Page({
     const appData = await login();
     const { id: customerId, houseId, openId: openid } = appData;
 
-    // const openid = 'oc6794xtWKvQ6kaLJNXUgV3keddE';//app.globalData.openid;//'oc67947G7HlBjdi8BNlKAT6fxr0w';
-    // console.log('app', app.globalData);
-    // const customerId = 16507;
-    // const houseId = 10000;
     const appId = "wx5e18485e35c5f1f6";
     const secret = "6ac2abb378f4d5a5d16b7c6ba2850807";
 

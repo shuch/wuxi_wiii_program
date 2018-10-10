@@ -67,13 +67,14 @@ Page({
       houseId,
       customerId,
       customizedStatus,
-      customerProgrammeId,
+      customerProgrammeId: customizedId,
     };
 
     if (shouldUpdate) {
       const res = await endpoint('customizedDetail', customizedId);
       const customDetail = customDetailMapper(res.single);
       const selectedType = {
+        layoutId: customDetail.layoutId,
         name: customDetail.name,
       };
       Object.assign(data, { customStep: 2, customDetail, selectedType })
@@ -155,8 +156,11 @@ Page({
   async editSpace(e) {
     if (!e) return;
     const { currentTarget: { dataset: { space } } } = e;
-    const { customDetail, houseId, spaceNames } = this.data;
-    const res = await endpoint('spaceList', houseId);
+    const { customDetail, houseId, spaceNames, selectedType } = this.data;
+    const res = await endpoint('spaceList', {
+      houseId,
+      customizedLayoutId: selectedType.layoutId
+    });
     const spaceTypes = res.list.map(spaceTypeMapper);
     const selectedSpace = spaceTypes.find((item) => item.id === space.spaceTypeId);
     spaceTypes.forEach((item) => {
@@ -210,6 +214,8 @@ Page({
   },
 
   async onSpaceDidUpdate(e) {
+    const { customerProgrammeId } = this.data;
+    console.log('customerProgrammeId', customerProgrammeId);
     const { detail: { update } } = e;
     const data = { spaceEdit: false };
     if (update) {
@@ -223,6 +229,7 @@ Page({
       });
       const spaceIds = spaceId.join('_');
       const res = await endpoint('customDetail', {
+        id: customerProgrammeId,
         spaceIds,
         houseId: this.data.houseId,
         customerId: this.data.customerId,
@@ -284,12 +291,13 @@ Page({
   },
 
   async onSaveCustom() {
+    const { customerProgrammeId } = this.data;
     const res = await endpoint('saveCustom', {
-      commentImageUrl: 'https://xxx/canvas',
+      // commentImageUrl: 'https://xxx/canvas',
       customerId: this.data.customerId,
       customizedProgrammeId: this.data.selectedType.id,
       houseId: this.data.houseId,
-      id: this.data.customDetail.customerProgrammeId,
+      id: customerProgrammeId,
       customizedStatus: 1,
     });
 

@@ -60,3 +60,11 @@ export const customDetailMapper = (data) => {
 		imageUrl: data.commentImageUrl,
 	};
 }
+
+export const customizedMapper = (item) => {
+	const date = item.updated || item.created;
+	
+	return {
+		...item,
+	};
+}

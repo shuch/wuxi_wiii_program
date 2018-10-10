@@ -1,7 +1,7 @@
 import endpoint from '../../lib/endpoint';
 import regeneratorRuntime from '../../lib/runtime';
 import { login } from '../../lib/promise';
-import { rankMapper } from '../../utils/convertor';
+import { rankMapper, customizedMapper } from '../../utils/convertor';
 
 const cdn = 'http://oh1n1nfk0.bkt.clouddn.com';
 
@@ -17,12 +17,13 @@ Page({
     shareCustomId: 0,
     appId: "wx5e18485e35c5f1f6",
     secret: "6ac2abb378f4d5a5d16b7c6ba2850807",
-    openid: 'oUpF8uMuAJO_M2pxb1Q9zNjWeS6o',
+    endTime: {
+      d: 30,
+      h: 12,
+    },
   },
 
   async onLoad(parmas) {
-    // const customerId = 16507;
-    // const houseId = 10000;
     const appData = await login();
     const { id: customerId, houseId, openId: openid } = appData;
     const timelineSrc = `${cdn}/space_type.png`;
@@ -50,20 +51,79 @@ Page({
     rankList = rankList.map(rankMapper);
     this.setData({
       hasPay,
-      customList: res.list,
+      customList: res.list.map(customizedMapper),
       refundResons,
       houseId,
       customerId,
       timelineSrc,
       rankList,
+      openid,
     });
     if (hasPay) {
-      const res = await endpoint('ticket', { customerId, houseId });
-      const { payTime, ticketViewCode, fee: payFee, tradeCode } = res.single;
-      const inviteRes = await endpoint('invite', { customerId, houseId });
-      console.log('vi', inviteRes);
-      this.setData({ payTime, ticketViewCode, payFee, tradeCode, inviteList: inviteRes.list });
+      const payRes = await endpoint('ticket', { customerId, houseId });
+      const {
+        ticket: {
+          payTime,
+          ticketViewCode,
+          fee: payFee,
+          tradeCode,
+        },
+        customerList: inviteList,
+      } = payRes.single;
+      // const inviteRes = await endpoint('invite', { customerId, houseId });
+      console.log('payRes', payRes);
+      this.setData({ payTime, ticketViewCode, payFee, tradeCode, inviteList });
     }
+
+    const time = await endpoint('restTime', houseId);
+    const { endTime } = time.single;
+    // console.log('time', time);
+    // const date = getRestTime(endTime);
+
+  },
+
+  getRestTime(endTime) {
+    const { createTime } = this.data.detail;
+    const nowtime = Date.now();
+    const endtime = createTime + 6 * 60 * 60 * 1000;
+    const lefttime = parseInt((endtime - nowtime) / 1000);
+    let h = parseInt(lefttime / (60 * 60) % 24);
+    let m = parseInt(lefttime / 60 % 60);
+    let s = parseInt(lefttime % 60);
+
+    if (h + s + m <= 0) {
+      console.log('timer end', this.timer);
+      clearInterval(this.timer);
+      this.timer = null;
+      return;
+      // await this.fetchGroupDetail(this.redEnvelopId);
+      // this.initData();
+      // return;
+    }
+
+    h = this.addZero(h);
+    m = this.addZero(m);
+    s = this.addZero(s);
+
+    this.setData({ endTime: { h, m, s } });
+  },
+
+  async onReady() {
+    const { houseId } = this.data;
+  },
+
+  async changePay() {
+    const { customerId, houseId } = this.data;
+    const res = await endpoint('ticket', { customerId, houseId });
+    const {
+      ticket: {
+        payTime, ticketViewCode, fee: payFee, tradeCode
+      },
+      customerList: inviteList,
+      } = res.single;
+    // const inviteRes = await endpoint('invite', { customerId, houseId });
+    console.log('vi', inviteRes);
+    this.setData({ payTime, ticketViewCode, payFee, tradeCode, inviteList });
   },
 
   onShareAppMessage() {
@@ -163,6 +223,7 @@ Page({
             icon: 'success',
             duration: 2000
           });
+          this.changePay();
           this.setData({ hasPay: true });
        },
        fail: () => {
@@ -171,7 +232,6 @@ Page({
             icon: 'fail',
             duration: 2000
           });
-          this.setData({ hasPay: true });
        }
     });
   },

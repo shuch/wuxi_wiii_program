@@ -87,7 +87,7 @@
 			>
 				<view class="custom-card">
 					<view class="custom-card-box">
-						<image class="custom-item-img" src="{{item.imgSrc}}" mode="scaleToFill"/>
+						<image class="custom-item-img" src="{{item.senceImage}}" mode="scaleToFill"/>
 						<view class="custom-feature-list">
 							<view
 								class="custom-feature"
@@ -103,7 +103,7 @@
 					</view>
 					<view class="custom-item-info">
 						<text class="custom-item-rank">方案{{index+1}}</text>
-						最后编辑 {{item.editDate}}
+						最后编辑 {{item.updated}}
 					</view>
 				</view>
 				<view class="custom-rank">
