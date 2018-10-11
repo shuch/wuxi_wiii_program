@@ -54,7 +54,7 @@ Page({
     const customizedId = customerProgrammeId || id;
     const unFinished = !customizedStatus && customerProgrammeId;
     const shouldUpdate = unFinished || update;
-    const finishOne = customizedStatus || paymentStatus;
+    const finishOne = customizedStatus || paymentStatus === 1;
     const redirectCenter = finishOne && !update && !create;
     // const redirectCenter = false;
     if (redirectCenter) {

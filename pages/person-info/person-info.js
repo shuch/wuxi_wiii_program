@@ -33,13 +33,13 @@ Page({
     const ageArray = this.generateRangeArray(1940, 2018);
     const sexArray = [{value: 1, text: '先生'}, {value:0, text: '女士'}];
     const state = await endpoint('customState', { customerId, houseId });
-
+    const hasPay = state.single.paymentStatus === 1;
     this.setData({
       ageArray,
       sexArray,
       customerId,
       houseId,
-      hasPay: state.single.paymentStatus,
+      hasPay,
     });
   },
 
