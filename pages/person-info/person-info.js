@@ -96,8 +96,8 @@ Page({
     }
     const res = await endpoint('saveCustomInfo', {
       age,
-      city: region[0],
-      province: region[1],
+      city: region[1],
+      province: region[0],
       customerId,
       gender: sex,
       houseId,

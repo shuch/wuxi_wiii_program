@@ -56,7 +56,7 @@ Page({
     const shouldUpdate = unFinished || update;
     const finishOne = customizedStatus || paymentStatus;
     const redirectCenter = finishOne && !update && !create;
-
+    // const redirectCenter = false;
     if (redirectCenter) {
       wx.redirectTo({ url: '/pages/customCenter/customCenter' });
       return;
@@ -77,10 +77,9 @@ Page({
         name: customDetail.name,
       };
       Object.assign(data, { customStep: 2, customDetail, selectedType })
-    } else {
-      const res = await endpoint('customList', houseId);
-      Object.assign(data, { houseTypes: res.list.map(houseTypesMapper) })
     }
+    const res = await endpoint('customList', houseId);
+    Object.assign(data, { houseTypes: res.list.map(houseTypesMapper) })
 
     this.setData(data);
 
@@ -122,7 +121,11 @@ Page({
       customerId: this.data.customerId,
     });
     console.log('res', res);
-    this.setData({ customStep: 2, customDetail: res.single });
+    this.setData({
+      customStep: 2,
+      customDetail: res.single,
+      customerProgrammeId: res.single.customerProgrammeId,
+    });
   },
 
   onKnown() {
@@ -142,9 +145,11 @@ Page({
     const { detail: { update } } = e;
     const data = { houseTypeUpdate: false };
     if (update) {
+      const { houseId, customerId, customerProgrammeId } = this.data;
       const res = await endpoint('customDetail', {
-        houseId: this.data.houseId,
-        customerId: this.data.customerId,
+        houseId,
+        customerId,
+        customerProgrammeId,
         customizedLayoutId: this.data.selectedType.layoutId,
       });
       Object.assign(data, { customDetail: res.single });
@@ -213,8 +218,7 @@ Page({
   },
 
   async onSpaceDidUpdate(e) {
-    const { customerProgrammeId } = this.data;
-    console.log('customerProgrammeId', customerProgrammeId);
+    const { customerProgrammeId, houseId, customerId } = this.data;
     const { detail: { update } } = e;
     const data = { spaceEdit: false };
     if (update) {
@@ -228,10 +232,10 @@ Page({
       });
       const spaceIds = spaceId.join('_');
       const res = await endpoint('customDetail', {
-        id: customerProgrammeId,
+        customerProgrammeId,
         spaceIds,
-        houseId: this.data.houseId,
-        customerId: this.data.customerId,
+        houseId,
+        customerId,
         customizedLayoutId: this.data.selectedType.layoutId,
       });
       Object.assign(data, { customDetail: res.single });
@@ -252,12 +256,12 @@ Page({
     let { inputComment } = this.data;
     inputComment = inputComment.trim();
     if (inputComment.length) {
-      const { commentList, customerId } = this.data;
+      const { commentList, customerId, customerProgrammeId, houseId  } = this.data;
       const res = await endpoint('addComment', {
         customerId,
         commentText: inputComment,
-        customerProgrammeId: 1,
-        houseId: 1,
+        customerProgrammeId,
+        houseId,
         orderNo: 1
       })
       const comment = {
@@ -316,4 +320,5 @@ Page({
     const { commentExpand } = this.data;
     this.setData({ commentExpand: !commentExpand });  
   },
+
 });

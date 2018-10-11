@@ -8,7 +8,7 @@
 				</view>
 				<view class="card-info">
 					<view class="slogan">
-						<view class="logo">无锡WILL公寓</view>
+						<view class="logo">无锡WIII公寓</view>
 						<view class="title">户型定制入场券</view>
 					</view>
 					<view class="worth" wx:if="{{!hasPay}}">
@@ -183,22 +183,25 @@
 		</view>
 	</view>
 	<view class="mask" wx:if="{{showProgress}}">
-      <view class="popup popup-progress">
-        <view class="h3 margin-7">我的定制服务进展</view>
-        <view class="pop-step {{item === 4 ? 'progress-end' : ''}}" wx:for="{{[1,2,3,4]}}" wx:key="item">
-          <view class="step-date">
-          	18-11-11 <view class="time">20:34</view>
-          </view>
-          <image wx:if="{{item !== 4}}" class="progress-img" src="{{cdn}}/progress.png" mode="scaleToFill"/>
-          <image wx:else class="progress-img-end" src="{{cdn}}/progress_end.png" mode="scaleToFill" />
-          <view class="step-desc {{item === 4 ? 'step-desc-end' : ''}}">
-            已购买定制入场券
-          </view>
-        </view>
-        <view class="pop-bottom">
-        	<view class="pop-btn pop-btn-progress" bind:tap="onRefund">申请退款</view>
-        </view>
-      </view>
+		<view class="popup">
+	      <view class="popup-progress">
+			<view class="h3 margin-7">我的定制服务进展</view>
+			<view class="pop-step {{item === 4 ? 'progress-end' : ''}}" wx:for="{{[1,2,3,4]}}" wx:key="item">
+			  <view class="step-date">
+			  	18-11-11 <view class="time">20:34</view>
+			  </view>
+			  <image wx:if="{{item !== 4}}" class="progress-img" src="{{cdn}}/progress.png" mode="scaleToFill"/>
+			  <image wx:else class="progress-img-end" src="{{cdn}}/progress_end.png" mode="scaleToFill" />
+			  <view class="step-desc {{item === 4 ? 'step-desc-end' : ''}}">
+			    已购买定制入场券
+			  </view>
+			</view>
+			<view class="pop-bottom">
+				<view class="pop-btn pop-btn-progress" bind:tap="onRefund">申请退款</view>
+			</view>
+			</view>
+			<image class="pop-close" src="{{cdn}}/close.png" mode="scaleToFill" bind:tap="closePopup" />
+		</view>
     </view>
 	<view class="mask" wx:if="{{showRefund}}">
       <view class="popup popup-progress popup-refund">
@@ -230,6 +233,25 @@
 	        <view class="refund-button refund-cancel" bind:tap="cancelRefund">先不退了</view>
         </view>
       </view>
+    </view>
+	<view class="mask" wx:if="{{showCustomPop}}">
+		<view class="popup">
+	      <view class="popup-custom">
+			<view class="pop-custom-top">
+			  <image class="pop-custom-img" src="{{cdn}}/center_dialog.png" mode="scaleToFill" />
+			  <view class="pop-custom-tip">
+			  	即刻拥有你的专属户型
+			  </view>
+			  <view class="pop-custom-tip-s">
+			  	不再等待/这一次,我们让你重新定义你的生活
+			  </view>
+			</view>
+			<view class="pop-bottom-custom">
+				<view class="pop-btn-custom btn-share" bind:tap="onRouteCustom">立即定制我的方案</view>
+			</view>
+			</view>
+			<image class="pop-close" src="{{cdn}}/close.png" mode="scaleToFill" bind:tap="closeCustomPopup" />
+		</view>
     </view>
 </view>
 

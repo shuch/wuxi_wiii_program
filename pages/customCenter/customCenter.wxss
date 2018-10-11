@@ -572,6 +572,57 @@
 .popup-progress {
 	width: 590rpx;
 	background: #fff;
+	overflow: hidden;
+	border-radius: 20rpx;
+}
+
+.popup-custom {
+	border-radius: 20rpx;
+}
+
+.pop-custom-top {
+	position: relative;
+	color: #fff;
+}
+
+.pop-custom-tip {
+	position: absolute;
+	left: 37rpx;
+	bottom: 87rpx;
+	font-size: 48rpx;
+	line-height: 66rpx;
+}
+
+.pop-custom-tip-s {
+	position: absolute;
+	left: 37rpx;
+	bottom: 54rpx;
+	font-size: 24rpx;
+	line-height: 32rpx;
+}
+
+.pop-btn-custom {
+	font-size: 32rpx;
+	color: #2A453B;
+	line-height: 80rpx;
+	border-radius: 40rpx;
+	margin: 60rpx auto 64rpx;
+	display: inline-block;
+	padding: 0 38rpx;
+	font-weight: bold;
+}
+
+.pop-bottom-custom {
+	background: #fff;
+	overflow: hidden;
+	text-align: center;
+	border-radius: 0 0 20rpx 20rpx;
+}
+
+.pop-custom-img {
+	width: 630rpx;
+	height: 588rpx;
+	vertical-align: top;
 }
 
 .pop-step{
@@ -609,6 +660,13 @@
 	margin-top: 120rpx;
 	padding: 30rpx 0;
 	box-shadow: 0 0 30rpx 1rpx rgba(0,0,0,.1);
+}
+
+.pop-close {
+	width: 50rpx;
+	height: 50rpx;
+	display: block;
+	margin: 100rpx auto 0;
 }
 
 .progress-end {

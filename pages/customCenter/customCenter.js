@@ -21,6 +21,7 @@ Page({
       d: 30,
       h: 12,
     },
+    showCustomPop: false,
   },
 
   async onLoad(parmas) {
@@ -35,7 +36,7 @@ Page({
         customerProgrammeId,
       },
     } = state;
-    const hasPay = paymentStatus;
+    const hasPay = paymentStatus === 1;
     const refundResons = ['我不想要了','设计不满意','其他原因'];
     const res = await endpoint('customizedList', {
       customerId,
@@ -58,6 +59,7 @@ Page({
       timelineSrc,
       rankList,
       openid,
+      showCustomPop: !customizedStatus,
     });
     if (hasPay) {
       const payRes = await endpoint('ticket', { customerId, houseId });
@@ -176,13 +178,14 @@ Page({
   },
 
   async didRefund() {
-    const { customerId, houseId, payFee, tradeCode } = this.data;
+    const { customerId, houseId, payFee, tradeCode, refundResons, selectedReason } = this.data;
     const res = await endpoint('refund', {
       customerId,
       houseId,
       payPlatform: 1,
       refundFee: payFee,
       tradeCode,
+      refundReason: refundResons[selectedReason],
     });
     console.log('res', res);
     this.setData({ showRefund: false });
@@ -298,5 +301,17 @@ Page({
     // 获取定制方案详情的海报
     const customTimelineSrc = 'http://oh1n1nfk0.bkt.clouddn.com/house_type_plane.png';
     this.setData({ shareCustomId: id, doShare: true, timelineSrc: customTimelineSrc });
-  }
+  },
+
+  closePopup() {
+    this.setData({ showProgress: false });
+  },
+
+  closeCustomPopup() {
+    this.setData({ showCustomPop: false });
+  },
+
+  onRouteCustom() {
+    wx.navigateTo({ url: '/pages/customHouse/customHouse' });
+  },
 });
