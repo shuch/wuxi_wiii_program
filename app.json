@@ -25,7 +25,8 @@
     "pages/customCenter/customCenter",
     "pages/person-info/person-info",
     "pages/projectIntroduction/projectIntroduction",
-    "pages/recommendedPlan/recommendedPlan"
+    "pages/recommendedPlan/recommendedPlan",
+    "pages/customDetail/customDetail"
   ],
   "window": {
     "backgroundTextStyle": "light",

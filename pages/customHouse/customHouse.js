@@ -29,17 +29,13 @@ Page({
     inputComment: '',
     coverTip: 1,
     cdn,
-    commentExpand: true,
+    commentExpand: false,
   },
 
   async onLoad(parmas) {
     console.log(parmas);
     const appData = await login();
     const { id: customerId, houseId } = appData;
-    console.log('appData', customerId, houseId);
-    // const customerId = 16507;
-    // const houseId = 10000;
-    // const isCreate = parmas.create;
     const { update, create, id } = parmas;
     const state = await endpoint('customState', { customerId, houseId });
     const {
@@ -76,7 +72,7 @@ Page({
         layoutId: customDetail.layoutId,
         name: customDetail.name,
       };
-      Object.assign(data, { customStep: 2, customDetail, selectedType })
+      Object.assign(data, { customStep: 2, customDetail, selectedType, commentList: customDetail.comments })
     }
     const res = await endpoint('customList', houseId);
     Object.assign(data, { houseTypes: res.list.map(houseTypesMapper) })
@@ -266,7 +262,7 @@ Page({
       })
       const comment = {
         id: res.id,
-        content: inputComment,
+        commentText: inputComment,
       };
       commentList.unshift(comment);
       this.setData({ commentList, inputComment: '' })

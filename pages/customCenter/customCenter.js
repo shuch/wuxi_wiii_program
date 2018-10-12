@@ -140,7 +140,7 @@ Page({
     if (shareCustomId) {
       return {
         title: '户型方案',
-        path: `/pages/customDetail/customDetail?shareId=${customerId}&from=customCenter`,
+        path: `/pages/customDetail/customDetail?shareId=${customerId}&customId=${shareCustomId}`,
         success: () => {
           wx.showToast({
             title: '分享成功',
@@ -319,5 +319,10 @@ Page({
 
   onRouteCustom() {
     wx.navigateTo({ url: '/pages/customHouse/customHouse' });
+  },
+
+  onRouteDetail(e) {
+    const url = `/pages/customDetail/customDetail?customId=${e.currentTarget.dataset.id}`;
+    wx.navigateTo({ url });
   },
 });

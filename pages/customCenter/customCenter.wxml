@@ -82,12 +82,18 @@
 			<view
 				class="custom-item"
 				wx:for="{{customList}}"
-				wx:key="item"
+				wx:key="item.id"
 				wx:for-index="index"
 			>
 				<view class="custom-card">
 					<view class="custom-card-box">
-						<image class="custom-item-img" src="{{item.senceImage}}" mode="scaleToFill"/>
+						<image
+							class="custom-item-img"
+							src="{{item.senceImage}}"
+							mode="scaleToFill"
+							data-id="{{item.id}}"
+							bind:tap="onRouteDetail"
+						/>
 						<view class="custom-feature-list">
 							<view
 								class="custom-feature"

@@ -31,7 +31,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 5,
+			"current": 6,
 			"list": [
 				{
 					"id": -1,
@@ -66,7 +66,14 @@
 				{
 					"id": -1,
 					"name": "设计师推荐方案",
-					"pathName": "pages/recommendedPlan/recommendedPlan"
+					"pathName": "pages/recommendedPlan/recommendedPlan",
+					"query": ""
+				},
+				{
+					"id": 6,
+					"name": "定制详情",
+					"pathName": "pages/customDetail/customDetail",
+					"query": "customId=307"
 				}
 			]
 		}

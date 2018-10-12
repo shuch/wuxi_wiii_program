@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "我的方案",
+  "navigationBarBackgroundColor": "#fff",
+  "navigationBarTextStyle": "black",
+  "backgroundColor": "#eeeeee",
+  "backgroundTextStyle": "light",
+  "usingComponents": {
+    "component-action-sheet": "../../components/action-sheet/action-sheet"
+  }
+
+}

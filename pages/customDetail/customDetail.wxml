@@ -1,0 +1,116 @@
+<view class="container">
+  <view class="section">
+  	<image class="section-img" src="{{cdn}}/custom_detail_img.png" mode="scaleToFill" />
+  	<image class="icon-like" src="{{cdn}}/like.png" mode="scaleToFill" />
+  </view>
+  <view class="section section-custom">
+  	<view class="like-box">
+  		<view class="like-list">
+  			<image class="like-avatar" src="{{cdn}}/avatar.png" mode="scaleToFill" wx:for="{{[1,2,3]}}"/>
+  		</view>
+  		等<text class="theme-color">123人</text>也喜欢这个方案
+  	</view>
+  	<view class="row-tabs">
+  		<view
+  			class="tabs {{tabSelected === 0 ? 'tabs-active' : ''}}"
+  			data-id="0"
+  			bind:tap="switchTab"
+  		>户型图</view>
+  		<view
+  			class="tabs {{tabSelected === (idx + 1) ? 'tabs-active' : ''}}"
+  			wx:for="{{customDetail.spaces}}"
+  			wx:for-index="idx"
+  			data-id="{{idx + 1}}"
+  			bind:tap="switchTab"
+  		>
+  			{{item.name}}
+  		</view>
+  	</view>
+  	<view class="pane" wx:if="{{tabSelected === 0 }}">
+  		<image class="center-img custom-img" src="{{customDetail.commentImageUrl}}" mode="aspectFit" />
+  		<view
+  		  class="space-indicator space-center-top"
+  		>
+  		  <image class="space-plus" src="{{cdn}}/position.png" mode="scaleToFill" />
+  		  <text class="space-name">{{customDetail.spaces[0].name}}</text>
+  		</view>
+  		<view
+  		  class="space-indicator space-center-bottom"
+  		>
+  		  <image class="space-plus" src="{{cdn}}/position.png" mode="scaleToFill" />
+  		  <text class="space-name">{{customDetail.spaces[1].name}}</text>
+  		</view>
+  		<view class="comment-area {{commentExpand ? '' : 'comment-unfold'}}" wx:if="{{customDetail.comments.length}}">
+  		  <view
+  		    class="comment-title"
+  		    wx:if="{{customDetail.comments.length > 2}}"
+  		    bind:tap="toggleExpand"
+  		  >
+  		    {{commentExpand ? '收起' : '展开'}}评论
+  		  </view>
+  		  <view class="comment-list">
+  		    <view
+  		      class="comment-item"
+  		      wx:for="{{customDetail.comments}}"
+  		      wx:for-index="idx"
+  		      wx:key="item"
+  		      data-id="{{item.id}}"
+  		      data-index="{{idx}}"
+  		      bind:tap="delComment"
+  		    >
+  		      {{item.commentText}}
+  		      <image wx:if="{{commentMode}}" class="icon-close" src="{{cdn}}/close.png" mode="scaleToFill"></image>
+  		    </view>
+  		  </view>
+  		</view>
+  	</view>
+  	<view class="pane" wx:else>
+  		<image class="center-img space-img" src="{{customDetail.spaces[tabSelected - 1].imageUrl}}" mode="scaleToFill" />
+  		<view
+  		  class="space-indicator space-center"
+  		>
+  		  <image class="space-plus" src="{{cdn}}/position.png" mode="scaleToFill" />
+  		  <text class="space-name">{{customDetail.spaces[tabSelected - 1].name}}</text>
+  		</view>
+  	</view>
+  </view>
+  <view class="section section-rank">
+  	<view class="section-title">
+  		<text class="flex-1">明星户型排行榜</text>
+  		<text class="section-more">查看更多</text>
+  		<image class="icon-right" src="{{cdn}}/more_grey.png" mode="scaleToFill"/>
+  	</view>
+  	<view class="rank-star">
+  		<view class="rank-star-box" wx:for="{{rankList}}" wx:key="{{item.id}}">
+  			<view class="rank-star-album">
+  				<image class="rank-star-img" src="{{item.src}}" mode="scaleToFill"/>
+  				<view class="custom-like">
+  					<image class="icon-like" src="{{cdn}}/like.png" mode="scaleToFill" />
+  					{{item.like}}
+  				</view>
+  			</view>
+  			<view class="rank-star-info">
+  				<image class="rank-star-avatar" src="{{item.avatar}}" mode="scaleToFill"/>
+  				{{item.name}}
+  			</view>
+  		</view>
+  	</view>
+  </view>
+  <view class="section section-banner">
+  	<image class="banner" src="{{cdn}}/custom_center_banner.png" mode="scaleToFill"/>
+  </view>
+  <view class="bottom">
+  	<view class="center service">
+  		<image class="icon-service" src="{{cdn}}/service.png" mode="scaleToFill" />
+  	</view>
+	<view class="flex-1 center btn-grey" bind:tap="onPay" bind:tap="onEdit">编辑修改</view>
+	<view class="flex-1 center btn-glod" bind:tap="menuShare">分享方案</view>
+  </view>
+</view>
+
+<component-action-sheet
+	wx:if="{{doShare}}"
+	bind:onclose="onClose"
+	timeline-src="{{timelineSrc}}"
+	bind:onsaveimage="onSaveImage"
+/>

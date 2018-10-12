@@ -75,7 +75,7 @@
       <view class="lt-corner corner">
         <image class="north" src="{{cdn}}/north.png" mode="scaleToFill"></image>N
       </view>
-      <component-preview-image src="{{customDetail.imageUrl}}" class="hx-img" mode="scaleToFill" />
+      <component-preview-image src="{{customDetail.imageUrl}}" class="hx-img" mode="aspectFit" />
       <!-- <image class="hx-img" src="{{customDetail.imageUrl}}" mode="scaleToFill"  /> -->
       <view
         class="space-indicator space-left-top"
@@ -119,7 +119,7 @@
             data-index="{{idx}}"
             bind:tap="delComment"
           >
-            {{item.content}}
+            {{item.commentText}}
             <image wx:if="{{commentMode}}" class="icon-close" src="{{cdn}}/close.png" mode="scaleToFill"></image>
           </view>
         </view>

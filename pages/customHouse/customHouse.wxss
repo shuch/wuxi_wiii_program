@@ -3,7 +3,7 @@
   overflow: hidden;
   min-height: 100vh;
   font-weight: 200;
-  padding-bottom: 100rpx;
+  /*padding-bottom: 100rpx;*/
 }
 
 .title {
@@ -237,7 +237,7 @@
 .huxing {
   position: relative;
   background: #fff;
-  height: calc(100vh - 75rpx);
+  height: calc(100vh - 170rpx);
   display: flex;
   justify-content: center;
 }
