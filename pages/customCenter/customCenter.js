@@ -2,6 +2,7 @@ import endpoint from '../../lib/endpoint';
 import regeneratorRuntime from '../../lib/runtime';
 import { login } from '../../lib/promise';
 import { rankMapper, customizedMapper } from '../../utils/convertor';
+import { formatDateTs } from '../../utils/date';
 
 const cdn = 'http://oh1n1nfk0.bkt.clouddn.com';
 
@@ -36,7 +37,7 @@ Page({
         customerProgrammeId,
       },
     } = state;
-    const hasPay = paymentStatus === 1;
+    const hasPay = paymentStatus === 2;
     const refundResons = ['我不想要了','设计不满意','其他原因'];
     const res = await endpoint('customizedList', {
       customerId,
@@ -50,17 +51,21 @@ Page({
     });
     let rankList = rankRes.pageModel ? rankRes.pageModel.resultSet : [];
     rankList = rankList.map(rankMapper);
+    // const { list } = res;
+    const customList = res && res.list ? res.list.map(customizedMapper) : [];
+    const showCustomPop = !customizedStatus && hasPay;
     this.setData({
       hasPay,
-      customList: res.list.map(customizedMapper),
+      customList,
       refundResons,
       houseId,
       customerId,
       timelineSrc,
       rankList,
       openid,
-      showCustomPop: !customizedStatus,
+      showCustomPop,
     });
+
     if (hasPay) {
       const payRes = await endpoint('ticket', { customerId, houseId });
       const {
@@ -72,9 +77,7 @@ Page({
         },
         customerList: inviteList,
       } = payRes.single;
-      // const inviteRes = await endpoint('invite', { customerId, houseId });
-      console.log('payRes', payRes);
-      this.setData({ payTime, ticketViewCode, payFee, tradeCode, inviteList });
+      this.setData({ payTime: formatDateTs(payTime), ticketViewCode, payFee, tradeCode, inviteList });
     }
 
     const time = await endpoint('restTime', houseId);
@@ -119,12 +122,15 @@ Page({
     const res = await endpoint('ticket', { customerId, houseId });
     const {
       ticket: {
-        payTime, ticketViewCode, fee: payFee, tradeCode
+        payTime,
+        ticketViewCode,
+        fee: payFee,
+        tradeCode,
       },
       customerList: inviteList,
-      } = res.single;
+    } = res.single;
     // const inviteRes = await endpoint('invite', { customerId, houseId });
-    console.log('vi', inviteRes);
+    // console.log('vi', inviteRes);
     this.setData({ payTime, ticketViewCode, payFee, tradeCode, inviteList });
   },
 
