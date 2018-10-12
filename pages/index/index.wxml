@@ -426,6 +426,7 @@
   <view class="empty-box" id="empty-box"></view>
 </scroll-view>
 <view class="IM" style="background-image: linear-gradient(-270deg, {{gradient1}} 0%, {{gradient2}} 100%);z-index:100">
+    <navigator class="" url="/pages/customHouse/customHouse" open-type="navigate">户型定制</navigator>
     <button bindtap="goChatList" class="title">
       <image src="../../image/wepy_pro/icon_liaotian.png" class="icon_liaotian" mode="widthFix"/>快速了解，一对一解答
     </button>
