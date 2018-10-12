@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "c-img": "../../components/img/img"
+  }
+}

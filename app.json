@@ -23,7 +23,9 @@
     "pages/customHouse/customHouse",
     "pages/customPay/customPay",
     "pages/customCenter/customCenter",
-    "pages/person-info/person-info"
+    "pages/person-info/person-info",
+    "pages/projectIntroduction/projectIntroduction",
+    "pages/recommendedPlan/recommendedPlan"
   ],
   "window": {
     "backgroundTextStyle": "light",

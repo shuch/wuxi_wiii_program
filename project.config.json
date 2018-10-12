@@ -31,7 +31,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 3,
+			"current": 5,
 			"list": [
 				{
 					"id": -1,
@@ -54,7 +54,19 @@
 				{
 					"id": -1,
 					"name": "补充信息",
-					"pathName": "pages/person-info/person-info"
+					"pathName": "pages/person-info/person-info",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "项目介绍",
+					"pathName": "pages/projectIntroduction/projectIntroduction",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "设计师推荐方案",
+					"pathName": "pages/recommendedPlan/recommendedPlan"
 				}
 			]
 		}

@@ -64,7 +64,7 @@ var config = function() {
             projectName: '无锡WIII',
             // 后台接口请求地址
             url: 'http://139.196.5.59:5555/',
-            newUrl: 'http://139.196.5.59:5555/', //测试
+            newUrl: 'https://gatewaytest.elab-plus.com/', //测试
             ImgUrl: 'http://skyforest.static.elab-plus.com/', // 图片地址
             //客户业务后台请求域名
             serverUrl: 'http://139.196.5.59:5555/elab-marketing-rtc', //测试

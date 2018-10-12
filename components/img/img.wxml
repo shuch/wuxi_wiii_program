@@ -1,0 +1,4 @@
+<view style="{{cStyle}}" class="{{cClass}} containView">
+  <image hidden="{{!loaded}}"  src="{{src}}" binderror="errorLoad" bindtap="click" bindload="load" class="self" mode="{{mode}}"/>
+  <image hidden="{{loaded}}" src="{{error?errorImg:loading}}"  class="loading" mode="center"/>
+</view>
