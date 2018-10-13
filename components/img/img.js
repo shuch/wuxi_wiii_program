@@ -4,10 +4,6 @@ Component({
       type: String,
       value: '',
     },
-    cClass: {
-      type: String,
-      value: '',
-    },
     cStyle: {
       type: String,
       value: '',
@@ -31,6 +27,9 @@ Component({
       error:false,
       loading:'../../image/wepy_pro/loading1.gif',
       errorImg:'../../image/wepy_pro/errorImg.png'
+  },
+  externalClasses:['cclass'],
+  ready(){
   },
   methods: {
       load(e){

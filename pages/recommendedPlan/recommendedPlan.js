@@ -4,6 +4,7 @@ var config = require('../../config.js')
 import regeneratorRuntime from '../../lib/runtime';
 import endpoint from '../../lib/endpoint';
 import { login } from '../../lib/promise';
+var pvCurPageParams=null
 
 var serverUrl = 'https://dm.static.elab-plus.com/wuXiW3/recommendedPlan/'
 Page({
@@ -22,7 +23,7 @@ Page({
 
         const appData = await login();
         const { id: customerId, houseId } = appData;
-        const data =  await endpoint('getProcessStatus', { customerId, houseId });
+        const data =  await endpoint('customState', { customerId, houseId });
         if(data.success){
             this.setData({hasPlan:data.single.customizedStatus==1})
         }
@@ -69,7 +70,39 @@ Page({
         }
     },
     toDiy(){
-        wx.navigateTo({ url: '/pages/customCenter/customCenter' });
+        const url = `/pages/customHouse/customHouse`
+        wx.navigateTo({ url });
+    },
+    toIM(){
+
+        var isSend = wx.getStorageSync('isSend'+config.houseId);
+        if (!isSend) { //没聊天
+            var para={
+                clkId:'clk_2cmina_23',
+                clkDesPage:'xuanzeguwenliebiao',//点击前往的页面名称
+                clkName:'zaixianzixun',//点击前往的页面名称
+                type:'CLK',//埋点类型
+                pvCurPageName:'zhuye',//当前页面
+                pvCurPageParams:pvCurPageParams,//当前页面参数
+            }
+            util.trackRequest(para,app)
+            wx.navigateTo({
+                url: '../counselorList/counselorList'
+            })
+        } else {
+            var para={
+                clkId:'clk_2cmina_23',
+                clkDesPage:'xiaoxiliebiao',//点击前往的页面名称
+                clkName:'zaixianzixun',//点击前往的页面名称
+                type:'CLK',//埋点类型
+                pvCurPageName:'zhuye',//当前页面
+                pvCurPageParams:pvCurPageParams,//当前页面参数
+            }
+            util.trackRequest(para,app)
+            wx.navigateTo({
+                url: '../messagesList/messagesList'
+            })
+        }
     },
     onUnload(){
     },
@@ -78,5 +111,6 @@ Page({
 
     onLoad:function(options) {
         this.initData()
+        pvCurPageParams=JSON.stringify(options)
     }
 })

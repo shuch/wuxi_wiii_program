@@ -18,7 +18,8 @@ Page({
         }
     },
     toDiy(){
-        wx.navigateTo({ url: '/pages/customCenter/customCenter' });
+        const url = `/pages/customHouse/customHouse`
+        wx.navigateTo({ url });
     },
     onUnload(){
     },

@@ -393,9 +393,8 @@ Page({
             pvCurPageParams:pvCurPageParams,//当前页面参数
         }
         util.trackRequest(para,app)
-        wx.navigateTo({
-            url: '../houseType/houseType'
-        })
+        const url = `/pages/customHouse/customHouse`
+        wx.navigateTo({ url });
     },
     //消息通知
     goToNoticeList: function() {
@@ -672,6 +671,14 @@ Page({
     },
     goJump:function(e){
         console.log(e.currentTarget.dataset)
+        const miniList=['projectIntroduction','recommendedPlan','customStars']//小程序二级页面
+        if(miniList.includes(e.currentTarget.dataset.jump)){
+            const url=`../${e.currentTarget.dataset.jump}/${e.currentTarget.dataset.jump}`
+            wx.navigateTo({
+                url
+            })
+            return ;
+        }
         if(e.currentTarget.dataset.jump){
             let param = {
                 type:'CLK',//埋点类型

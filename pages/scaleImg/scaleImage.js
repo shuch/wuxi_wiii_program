@@ -19,6 +19,9 @@ Page({
       imgTotal:[],
       currentType:{}
   },
+    toCoupon(){
+        wx.navigateTo({ url: '/pages/customPay/customPay' });
+    },
     likeAdd:function(e){
       let that = this;
       let tmpTotal = that.data.imgTotal;
