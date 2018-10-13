@@ -1,3 +1,5 @@
+import { getDate, getTime } from './date';
+
 export const houseTypesMapper = (item) => {
 	const {
 		id,
@@ -76,6 +78,18 @@ export const customizedMapper = (item) => {
 	const date = item.updated || item.created;
 	
 	return {
+		date,
 		...item,
+	};
+}
+
+export const processMapper = (item) => {
+	const { date: ts } = item;
+	const date = getDate(ts);
+	const time = getTime(ts);
+	return {
+		...item,
+		date,
+		time,
 	};
 }

@@ -51,7 +51,7 @@
 					<view class="pay-detial-item">支付时间：{{payTime}}</view>
 					<view class="pay-detial-item">支付金额：{{payFee}}元 定制服务入场券</view>
 					<view class="pay-detial-item">
-						定制状态：方案评估中
+						定制状态：{{payProcess}}
 						<view class="pay-more" bind:tap="didShowProgress">查看详情 ></view>
 					</view>
 				</view>
@@ -60,7 +60,10 @@
 		<view wx:if="{{hasPay}}">
 			<view class="invite-list">
 				<block wx:for="{{[0,1,2,3,4]}}" wx:for-index="idx" wx:for-item="item" wx:key="item">
-					<image wx:if="{{inviteList[idx]}}" class="invite-avatar" src="{{headImage}}" mode="scaleToFill" wx />
+					<block wx:if="{{inviteList[idx]}}">
+						<image wx:if="{{inviteList[idx].headImage}}" class="invite-avatar" src="{{inviteList[idx].headImage}}" mode="scaleToFill" />
+						<image wx:else class="invite-avatar" src="{{cdn}}/avatar.png" mode="scaleToFill" />
+					</block>
 					<image wx:else class="invite-avatar" src="{{cdn}}/avatar_b.png" mode="scaleToFill"></image>
 				</block>
 			</view>
@@ -192,14 +195,19 @@
 		<view class="popup">
 	      <view class="popup-progress">
 			<view class="h3 margin-7">我的定制服务进展</view>
-			<view class="pop-step {{item === 4 ? 'progress-end' : ''}}" wx:for="{{[1,2,3,4]}}" wx:key="item">
+			<view
+				class="pop-step {{index === progress.length - 1 ? 'progress-end' : ''}}"
+				wx:for="{{progress}}"
+				wx:key="item"
+				wx:for-index="index"
+			>
 			  <view class="step-date">
-			  	18-11-11 <view class="time">20:34</view>
+			  	{{item.date}} <view class="time">{{item.time}}</view>
 			  </view>
-			  <image wx:if="{{item !== 4}}" class="progress-img" src="{{cdn}}/progress.png" mode="scaleToFill"/>
+			  <image wx:if="{{index !== progress.length - 1}}" class="progress-img" src="{{cdn}}/progress.png" mode="scaleToFill"/>
 			  <image wx:else class="progress-img-end" src="{{cdn}}/progress_end.png" mode="scaleToFill" />
-			  <view class="step-desc {{item === 4 ? 'step-desc-end' : ''}}">
-			    已购买定制入场券
+			  <view class="step-desc {{index === progress.length - 1 ? 'step-desc-end' : ''}}">
+			    {{item.processName}}
 			  </view>
 			</view>
 			<view class="pop-bottom">

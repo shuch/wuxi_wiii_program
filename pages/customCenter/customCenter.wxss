@@ -636,6 +636,10 @@
 	margin-top: 45rpx;
 }
 
+.step-date {
+	flex-shrink: 0;
+}
+
 .time {
 	text-align: right;
 }

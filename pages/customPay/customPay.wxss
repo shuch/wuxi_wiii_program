@@ -93,6 +93,7 @@
   display: flex;
   color: #fff;
   font-size: 40rpx;
+  height: 100rpx;
 }
 
 .btn-item {
@@ -120,4 +121,33 @@
 .date {
   line-height: 1;
   margin-right: 20rpx;
+}
+
+.service {
+  background: #606060;
+  width: 90rpx;
+}
+
+.icon-service {
+  width: 60rpx;
+  height: 60rpx;
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-grey {
+  background-image: linear-gradient(-190deg, #5B5B5B 0%, #777777 68%);
+}
+
+.btn-orange {
+  background: #FFB64F;
+  /*background-image: linear-gradient(35deg, #EDD48D 45%, #B78D4C 100%);*/
+}
+
+.flex-1 {
+  flex: 1;
 }

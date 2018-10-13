@@ -13,9 +13,11 @@ Page({
     cdn,
     fee: 0.02,
     timelineSrc: '',
+    fromShare: false,
   },
 
   async onLoad(parmas) {
+    const { shareId } = parmas;
     const appData = await login();
     const { id: customerId, houseId, openId: openid } = appData;
 
@@ -23,7 +25,8 @@ Page({
     const secret = "6ac2abb378f4d5a5d16b7c6ba2850807";
 
     const timelineSrc = `${cdn}/space_type.png`;
-    this.setData({ openid, customerId, houseId, appId, secret, timelineSrc });
+    const fromShare = shareId &&  parseInt(shareId) !== customerId;
+    this.setData({ openid, customerId, houseId, appId, secret, timelineSrc, fromShare });
   },
 
   onShowPopup() {
@@ -82,10 +85,11 @@ Page({
   },
 
   onShareAppMessage() {
-    console.log('onShareAppMessage', this.route);
+    // console.log('onShareAppMessage', this.route);
+    const { customerId } = this.data;
     return {
       title: '户型定制入场券',
-      path: `${this.route}?from=customPay`,
+      path: `${this.route}?shareId=${customerId}&from=customPay`,
       success: () => {
         this.sharePay();
       },
@@ -123,6 +127,22 @@ Page({
   sharePay() {
     this.setData({ fee: 0.01, doShare: false });
     this.onPay();
+  },
+
+  onRouteCustom() {
+    wx.navigateTo({ url: '/pages/customHouse/customHouse' });
+  },
+
+  onRouteService() {
+    const { houseId } = this.data;
+    const isSend = wx.getStorageSync(`isSend${houseId}`);
+    let url;
+    if (!isSend) {
+      url = '../counselorList/counselorList'
+    } else {
+      url = '../messagesList/messagesList'
+    }
+    wx.navigateTo({ url });
   },
 
 });

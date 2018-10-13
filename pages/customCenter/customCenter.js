@@ -1,7 +1,7 @@
 import endpoint from '../../lib/endpoint';
 import regeneratorRuntime from '../../lib/runtime';
 import { login } from '../../lib/promise';
-import { rankMapper, customizedMapper } from '../../utils/convertor';
+import { rankMapper, customizedMapper, processMapper } from '../../utils/convertor';
 import { formatDateTs } from '../../utils/date';
 
 const cdn = 'http://oh1n1nfk0.bkt.clouddn.com';
@@ -74,10 +74,18 @@ Page({
           ticketViewCode,
           fee: payFee,
           tradeCode,
+          process: payProcess,
         },
         customerList: inviteList,
       } = payRes.single;
-      this.setData({ payTime: formatDateTs(payTime), ticketViewCode, payFee, tradeCode, inviteList });
+      this.setData({
+        payTime: formatDateTs(payTime),
+        ticketViewCode,
+        payFee,
+        tradeCode,
+        inviteList,
+        payProcess,
+      });
     }
 
     const time = await endpoint('restTime', houseId);
@@ -171,8 +179,11 @@ Page({
     this.setData({ showIntro: false });
   },
 
-  didShowProgress() {
-    this.setData({ showProgress: true });
+  async didShowProgress() {
+    const { customerId, houseId } = this.data;
+    const res = await endpoint('customStatus', { customerId, houseId });
+    const progress = res.single.processList.map(processMapper);
+    this.setData({ showProgress: true, progress });
   },
 
   onRefund() {
