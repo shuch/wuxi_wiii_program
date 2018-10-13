@@ -1,0 +1,44 @@
+<view class="container">
+  	<image class="section-img" src="{{cdn}}/banner_star.png" mode="scaleToFill" />
+  	<view class="section-rank">
+	  	<view
+	  		class="custom-item"
+	  		wx:for="{{rankList}}"
+	  		wx:key="item.id"
+	  		wx:for-index="index"
+	  	>
+	  		<view class="custom-card">
+	  			<view class="custom-card-box">
+	  				<image
+	  					class="custom-item-img"
+	  					src="{{item.senceImage}}"
+	  					mode="scaleToFill"
+	  					data-id="{{item.id}}"
+	  					bind:tap="onRouteDetail"
+	  				/>
+	  				<view class="custom-feature-list">
+	  					<view
+	  						class="custom-feature"
+	  						wx:for="{{item.special}}"
+	  						wx:for-item="special"
+	  						wx:key="special"
+	  					>{{special}}</view>
+	  				</view>
+	  				<view class="custom-like">
+	  					<image class="icon-like" src="{{cdn}}/like.png" mode="scaleToFill" />
+	  					{{item.like}}
+	  				</view>
+	  			</view>
+	  			<view class="custom-item-info">
+	  				<text class="custom-item-rank">方案{{index+1}}</text>
+	  				最后编辑 {{item.updated}}
+	  			</view>
+	  		</view>
+	  		<view class="custom-rank">
+	  			当前排名:<text class="red">{{item.rank}}</text>
+	  			<view class="section-btn" bind:tap="onShare" data-id="{{item.id}}">分享</view>
+	  			<view class="section-btn margin-right" bind:tap="onEdit" data-id="{{item.id}}">编辑</view>
+	  		</view>
+	  	</view>
+	</view>
+</view>
