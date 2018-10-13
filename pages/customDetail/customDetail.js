@@ -20,7 +20,13 @@ Page({
 
   async onLoad(parmas) {
     console.log(parmas);
-    const { customId } = parmas;
+    let customId;
+    const { scene } = parmas;
+    if (scene) {
+      customId = scene.customId;
+    } else {
+      customId = parmas.customId;
+    }
     const appData = await login();
     const { id: customerId, houseId } = appData;
     const res = await endpoint('customizedDetail', customId);
@@ -31,6 +37,7 @@ Page({
       houseId,
       pageNo: 1,
       pageSize: 10,
+      customerId,
     });
     const isSelf = customerId === customDetail.customerId;
     let rankList = rankRes.pageModel ? rankRes.pageModel.resultSet : [];

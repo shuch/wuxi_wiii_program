@@ -39,7 +39,15 @@
 				<text class="share-price">300</text>元
 			</view>
 		</view>
-		<view class="btn-group" wx:if="{{fromShare}}">
+		<view class="btn-group" wx:if="{{hasPay}}">
+			<view class="center service" bind:tap="onRouteService">
+				<image class="icon-service" src="{{cdn}}/service.png" mode="scaleToFill" />
+			</view>
+			<view class="flex-1 center btn-orange" bind:tap="menuShare">
+		    	邀请好友助力
+			</view>
+		</view>
+		<view class="btn-group" wx:elif="{{fromShare}}">
 			<view class="center service" bind:tap="onRouteService">
 				<image class="icon-service" src="{{cdn}}/service.png" mode="scaleToFill" />
 			</view>

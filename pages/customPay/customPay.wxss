@@ -144,8 +144,7 @@
 }
 
 .btn-orange {
-  background: #FFB64F;
-  /*background-image: linear-gradient(35deg, #EDD48D 45%, #B78D4C 100%);*/
+  background:linear-gradient(46deg,rgba(223,113,164,1) 0%,rgba(239,157,105,1) 100%);
 }
 
 .flex-1 {

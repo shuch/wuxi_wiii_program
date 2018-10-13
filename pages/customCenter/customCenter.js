@@ -27,8 +27,16 @@ Page({
 
   async onLoad(parmas) {
     const appData = await login();
-    const { id: customerId, houseId, openId: openid } = appData;
-    const timelineSrc = `${cdn}/space_type.png`;
+    console.log('appData', appData);
+    const {
+      houseId,
+      nickname,
+      id: customerId,
+      openId: openid,
+      headPortrait: headImage,
+    } = appData;
+    
+    // const timelineSrc = `${cdn}/space_type.png`;
     const state = await endpoint('customState', { customerId, houseId });
     const {
       single: {
@@ -60,10 +68,12 @@ Page({
       refundResons,
       houseId,
       customerId,
-      timelineSrc,
+      // timelineSrc,
       rankList,
       openid,
       showCustomPop,
+      nickname,
+      headImage,
     });
 
     if (hasPay) {
@@ -313,11 +323,19 @@ Page({
     wx.navigateTo({ url });
   },
 
-  onShare(e) {
+  async onShare(e) {
     const id = e.currentTarget.dataset.id;
     // 获取定制方案详情的海报
-    const customTimelineSrc = 'http://oh1n1nfk0.bkt.clouddn.com/house_type_plane.png';
-    this.setData({ shareCustomId: id, doShare: true, timelineSrc: customTimelineSrc });
+    const { nickname, headImage, houseId } = this.data;
+    const res = await endpoint('poster', {
+        head: headImage,
+        houseId,
+        name: nickname,
+        path: 'pages/customDetail/customDetail',
+        scene: `customId=${id}`,
+        width: 185,
+    });
+    this.setData({ shareCustomId: id, doShare: true, timelineSrc: res.single });
   },
 
   closePopup() {

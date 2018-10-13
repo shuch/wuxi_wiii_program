@@ -23,10 +23,19 @@ Page({
 
     const appId = "wx5e18485e35c5f1f6";
     const secret = "6ac2abb378f4d5a5d16b7c6ba2850807";
-
+    // const res = 
+    const state = await endpoint('customState', { customerId, houseId });
+    const {
+      single: {
+        customizedStatus,
+        paymentStatus,
+        customerProgrammeId,
+      },
+    } = state;
+    const hasPay = paymentStatus === 2;
     const timelineSrc = `${cdn}/space_type.png`;
     const fromShare = shareId &&  parseInt(shareId) !== customerId;
-    this.setData({ openid, customerId, houseId, appId, secret, timelineSrc, fromShare });
+    this.setData({ openid, customerId, houseId, appId, secret, timelineSrc, fromShare, hasPay });
   },
 
   onShowPopup() {
@@ -86,7 +95,7 @@ Page({
 
   onShareAppMessage() {
     // console.log('onShareAppMessage', this.route);
-    const { customerId } = this.data;
+    const { customerId, hasPay } = this.data;
     return {
       title: '户型定制入场券',
       path: `${this.route}?shareId=${customerId}&from=customPay`,
@@ -98,7 +107,7 @@ Page({
 
   onSaveImage() {
     const that = this;
-    const { timelineSrc } = this.data;
+    const { timelineSrc, hasPay } = this.data;
     wx.downloadFile({
       url: timelineSrc,
       success: function (res) {
@@ -125,7 +134,11 @@ Page({
   },
 
   sharePay() {
+    const { hasPay } = this.data;
     this.setData({ fee: 0.01, doShare: false });
+    if (hasPay) {
+      return;
+    }
     this.onPay();
   },
 

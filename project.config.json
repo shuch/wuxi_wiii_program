@@ -31,7 +31,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 1,
+			"current": 8,
 			"list": [
 				{
 					"id": -1,
@@ -80,6 +80,12 @@
 					"name": "明星户型排行",
 					"pathName": "pages/customStars/customStars",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "预定支付",
+					"pathName": "pages/share/share",
+					"query": "shareId=21"
 				}
 			]
 		}
