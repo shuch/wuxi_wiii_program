@@ -6,7 +6,7 @@
   <view class="section section-custom">
   	<view class="like-box">
   		<view class="like-list">
-  			<image class="like-avatar" src="{{cdn}}/avatar.png" mode="scaleToFill" wx:for="{{[1,2,3]}}"/>
+  			<image class="like-avatar" src="{{cdn}}/avatar.png" mode="scaleToFill" wx:for="{{[1,2,3]}}" wx:key="item"/>
   		</view>
   		等<text class="theme-color">123人</text>也喜欢这个方案
   	</view>
@@ -19,6 +19,7 @@
   		<view
   			class="tabs {{tabSelected === (idx + 1) ? 'tabs-active' : ''}}"
   			wx:for="{{customDetail.spaces}}"
+        wx:key="{{idx}}"
   			wx:for-index="idx"
   			data-id="{{idx + 1}}"
   			bind:tap="switchTab"
@@ -100,11 +101,17 @@
   	<image class="banner" src="{{cdn}}/custom_center_banner.png" mode="scaleToFill"/>
   </view>
   <view class="bottom">
-  	<view class="center service">
+  	<view class="center service" bind:tap="onRouteService">
   		<image class="icon-service" src="{{cdn}}/service.png" mode="scaleToFill" />
   	</view>
-	<view class="flex-1 center btn-grey" bind:tap="onPay" bind:tap="onEdit">编辑修改</view>
-	<view class="flex-1 center btn-glod" bind:tap="menuShare">分享方案</view>
+  	<view class="flex-1 center btn-grey" bind:tap="onEdit" wx:if="{{isSelf}}">
+      编辑修改
+    </view>
+    <view class="flex-1 center btn-grey" bind:tap="onSave" wx:else>
+      存入方案
+    </view>
+  	<view class="flex-1 center btn-glod" bind:tap="menuShare" wx:if="{{isSelf}}">分享方案</view>
+    <view class="flex-1 center btn-glod" bind:tap="onRouteCustom" wx:else>DIY我的house</view>
   </view>
 </view>
 

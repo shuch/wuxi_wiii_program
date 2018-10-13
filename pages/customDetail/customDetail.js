@@ -32,9 +32,10 @@ Page({
       pageNo: 1,
       pageSize: 10,
     });
+    const isSelf = customerId === customDetail.customerId;
     let rankList = rankRes.pageModel ? rankRes.pageModel.resultSet : [];
     rankList = rankList.map(rankMapper);
-    this.setData({ customId, customDetail, rankList, timelineSrc });
+    this.setData({ houseId, customerId, customId, customDetail, rankList, timelineSrc, isSelf });
   },
 
   switchTab(e) {
@@ -90,5 +91,33 @@ Page({
 
   menuShare() {
     this.setData({ doShare: true });
+  },
+
+  async onSave() {
+    const { houseId, customerId, customId } = this.data;
+    const res = await endpoint('copy', { houseId, originId: customId, customerId });
+    if (res.success) {
+      wx.showToast({
+        title: '存入成功',
+        icon: 'success',
+        duration: 2000,
+      });
+    }
+  },
+
+  onRouteCustom() {
+    wx.navigateTo({ url: '/pages/customHouse/customHouse' });
+  },
+
+  onRouteService() {
+    const { houseId } = this.data;
+    const isSend = wx.getStorageSync(`isSend${houseId}`);
+    let url;
+    if (!isSend) {
+      url = '../counselorList/counselorList'
+    } else {
+      url = '../messagesList/messagesList'
+    }
+    wx.navigateTo({ url });
   },
 });
