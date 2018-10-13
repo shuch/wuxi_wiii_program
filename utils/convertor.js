@@ -39,18 +39,29 @@ export const spaceTypeMapper = (item) => {
 export const rankMapper = (item) => {
 	const {
 		id,
-		commentImageUrl,
+		senceImage,
 		thumbsUpNo = 0,
 		avatar = '',
 		name,
+		spaces,
+		originCustomer,
 	} = item;
 	const like = thumbsUpNo ? thumbsUpNo : 0;
+	const space = spaces.map(item => item.name);
+	const special = [name, ...space];
+	const { nickname = '', headPortrait = '' } = originCustomer || {};
+	const owner = {
+		name: nickname,
+		avatar: headPortrait ,
+	};
 	return {
 		id,
-		src: commentImageUrl,
+		src: senceImage,
 		like,
 		avatar,
 		name,
+		special,
+		owner,
 	};
 }
 

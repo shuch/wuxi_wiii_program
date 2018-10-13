@@ -21,10 +21,15 @@ Page({
     });
     let rankList = rankRes.pageModel ? rankRes.pageModel.resultSet : [];
     rankList = rankList.map(rankMapper);
+    console.log('rankList', rankList);
     this.setData({
       houseId,
       customerId,
       rankList,
     });
+  },
+
+  onRouteCustom() {
+    wx.navigateTo({ url: '/pages/customHouse/customHouse' });
   },
 });
