@@ -71,8 +71,10 @@ export const rankMapper = (item) => {
 }
 
 export const customDetailMapper = (data) => {
+	const { thumbsUpCustomerList: likes } = data;
 	return {
 		...data,
+		likes,
 		imageUrl: data.commentImageUrl,
 	};
 }

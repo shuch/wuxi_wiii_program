@@ -6,9 +6,12 @@
   <view class="section section-custom">
   	<view class="like-box">
   		<view class="like-list">
-  			<image class="like-avatar" src="{{cdn}}/avatar.png" mode="scaleToFill" wx:for="{{[1,2,3]}}" wx:key="item"/>
+        <block wx:for="{{customDetail.likes}}" wx:key="item">
+          <image class="like-avatar" src="{{item.headImage}}" mode="scaleToFill" wx:if="{{item.headImage}}"/>
+          <image class="like-avatar" src="{{cdn}}/avatar.png" mode="scaleToFill" wx:else/>
+        </block>
   		</view>
-  		等<text class="theme-color">123人</text>也喜欢这个方案
+  		等<text class="theme-color">{{customDetail.likes.length}}人</text>也喜欢这个方案
   	</view>
   	<view class="row-tabs">
   		<view

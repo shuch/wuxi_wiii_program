@@ -41,6 +41,7 @@
 .like-avatar {
 	width: 50rpx;
 	height: 50rpx;
+	border-radius: 50%;
 	vertical-align: top;
 	margin-right: 20rpx;
 }
