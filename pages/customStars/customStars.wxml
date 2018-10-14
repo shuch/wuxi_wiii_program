@@ -25,8 +25,13 @@
 	  						wx:key="special"
 	  					>{{special}}</view>
 	  				</view>
-	  				<view class="custom-like">
-	  					<image class="icon-like" src="{{cdn}}/like.png" mode="scaleToFill" />
+	  				<view
+	  					class="custom-like"
+	  					data-id="{{item.id}}"
+						bind:tap="onLikeStar"
+					>
+	  					<image wx:if="{{item.isLike}}" class="icon-like" src="{{cdn}}/like.png" mode="scaleToFill" />
+	  					<image wx:else class="icon-like" src="{{cdn}}/un_like.png" mode="scaleToFill" />
 	  					{{item.like}}
 	  				</view>
 	  				<view class="custom-tag custom-tag-{{index+1}}">
@@ -42,11 +47,16 @@
 	  	</view>
 	</view>
 	<view class="section-card">
-		<view class="rank-star-box" wx:for="{{rankList}}" wx:key="{{item.id}}">
+		<view class="rank-star-box" wx:for="{{rankList}}" wx:key="{{item.id}}" wx:for-index="index" wx:if="{{index > 2}}">
 			<view class="rank-star-album">
 				<image class="rank-star-img" src="{{item.src}}" mode="scaleToFill"/>
-				<view class="custom-like">
-					<image class="icon-like" src="{{cdn}}/like.png" mode="scaleToFill" />
+				<view
+					class="custom-like"
+					data-id="{{item.id}}"
+					bind:tap="onLikeStar"
+				>
+					<image wx:if="{{item.isLike}}" class="icon-like" src="{{cdn}}/like.png" mode="scaleToFill" />
+					<image wx:else class="icon-like" src="{{cdn}}/un_like.png" mode="scaleToFill" />
 					{{item.like}}
 				</view>
 			</view>

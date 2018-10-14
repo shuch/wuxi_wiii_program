@@ -43,7 +43,7 @@
 					<view class="btn-card btn-share" bind:tap="menuShare">邀请立减</view>
 				</view>
 				<view class="date">
-					剩余29天28时10分
+					<component-count-down house-id="{{houseId}}" />
 				</view>
 			</block>
 			<block wx:else>
@@ -69,10 +69,10 @@
 			</view>
 			<view class="invite-content">您已邀请{{inviteList.length}}人抢定制入场券,为您的方案排名上升了0位</view>
 			<view class="btn-share btn-invite" bind:tap="menuShare">邀请好友助力</view>
-			<view class="invite-tip">
-				剩余29天28时10分
+			<view class="invite-tip" bind:tap="showActivityPop">
+				<component-count-down house-id="{{houseId}}" />
 				<image class="icon-info icon-info--invite" src="{{cdn}}/info_grey.png" mode="scaleToFill"/>
-				用途说明
+				活动说明
 			</view>
 		</view>
 	</view>
@@ -143,21 +143,26 @@
 	<view class="section section-rank">
 		<view class="section-title">
 			<text class="flex-1">明星户型排行榜</text>
-			<text class="section-more">查看更多</text>
+			<text class="section-more" bind:tap="onRouteStar">查看更多</text>
 			<image class="icon-right" src="{{cdn}}/more_grey.png" mode="scaleToFill"/>
 		</view>
 		<view class="rank-star">
 			<view class="rank-star-box" wx:for="{{rankList}}" wx:key="{{item.id}}">
 				<view class="rank-star-album">
 					<image class="rank-star-img" src="{{item.src}}" mode="scaleToFill"/>
-					<view class="custom-like">
-						<image class="icon-like" src="{{cdn}}/like.png" mode="scaleToFill" />
+					<view
+						class="custom-like"
+						data-id="{{item.id}}"
+						bind:tap="onLikeStar"
+					>
+						<image wx:if="{{item.isLike}}" class="icon-like" src="{{cdn}}/like.png" mode="scaleToFill" />
+						<image wx:else class="icon-like" src="{{cdn}}/un_like.png" mode="scaleToFill" />
 						{{item.like}}
 					</view>
 				</view>
 				<view class="rank-star-info">
-					<image class="rank-star-avatar" src="{{item.avatar}}" mode="scaleToFill"/>
-					{{item.name}}
+					<image class="rank-star-avatar" src="{{item.owner.avatar}}" mode="scaleToFill"/>
+					{{item.owner.name}}
 				</view>
 			</view>
 		</view>
@@ -285,4 +290,11 @@
 	bind:onclose="onClose"
 	timeline-src="{{timelineSrc}}"
 	bind:onsaveimage="onSaveImage"
+/>
+
+<component-pop-up
+	wx:if="{{showPopup}}"
+	has-close="{{true}}"
+	bind:onclose="showActivityPop"
+	content-src="{{cdn}}/pop_up_pay.png"
 />

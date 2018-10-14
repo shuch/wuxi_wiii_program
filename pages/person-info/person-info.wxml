@@ -1,7 +1,14 @@
 <view class="container">
 	<view class="title">为了我们能给您提供更贴心的服务,请填写以下信息</view>
 	<view class="form-item">
-		昵称 <input placeholder="不超过5个字" auto-focus class="input" bindinput="bindKeyInput" />
+		昵称
+		<input
+			placeholder="不超过5个字"
+			auto-focus
+			class="input"
+			bindinput="bindKeyInput"
+			bindblur="bindBlur"
+		/>
 		<view class="checkbox">
 			<view
 				class="checkbox-item"

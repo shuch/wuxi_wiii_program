@@ -18,10 +18,10 @@ Page({
       houseId,
       pageNo: 1,
       pageSize: 10,
+      customerId,
     });
     let rankList = rankRes.pageModel ? rankRes.pageModel.resultSet : [];
     rankList = rankList.map(rankMapper);
-    console.log('rankList', rankList);
     this.setData({
       houseId,
       customerId,
@@ -31,5 +31,23 @@ Page({
 
   onRouteCustom() {
     wx.navigateTo({ url: '/pages/customHouse/customHouse' });
+  },
+
+  async onLikeStar(e) {
+    const id = e.currentTarget.dataset.id;
+    const { customerId, houseId, customerProgrammeId, rankList: list } = this.data;
+    const res = await endpoint('like', {
+      houseId,
+      customerId,
+      customerProgrammeId: id,
+    });
+    if (!res.success) {
+      return;
+    }
+    const item = list.find(item =>  item.id === parseInt(id));
+    item.like = item.isLike ? item.like - 1 : item.like + 1;
+    item.isLike = !item.isLike;
+    this.setData({ rankList: list });
+    e.stopPropagation && e.stopPropagation();
   },
 });

@@ -42,6 +42,7 @@ export const rankMapper = (item) => {
 	const {
 		id,
 		senceImage,
+		isThumbsUp,
 		thumbsUpNo = 0,
 		avatar = '',
 		name,
@@ -49,12 +50,13 @@ export const rankMapper = (item) => {
 		originCustomer,
 	} = item;
 	const like = thumbsUpNo ? thumbsUpNo : 0;
+	const isLike = isThumbsUp;
 	const space = spaces.map(item => item.name);
 	const special = [name, ...space];
-	const { nickname = '', headPortrait = '' } = originCustomer || {};
+	const { nickname, headPortrait } = originCustomer || {};
 	const owner = {
-		name: nickname,
-		avatar: headPortrait ,
+		name: nickname || '',
+		avatar: headPortrait || '',
 	};
 	return {
 		id,
@@ -64,6 +66,7 @@ export const rankMapper = (item) => {
 		name,
 		special,
 		owner,
+		isLike,
 	};
 }
 

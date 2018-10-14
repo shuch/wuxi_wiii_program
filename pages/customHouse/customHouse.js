@@ -45,8 +45,7 @@ Page({
     const unFinished = !customizedStatus && customerProgrammeId;
     const shouldUpdate = unFinished || update;
     const finishOne = customizedStatus || paymentStatus === 2;
-    const redirectCenter = false;//finishOne && !update && !create;
-    // const redirectCenter = false;
+    const redirectCenter = finishOne && !update && !create;
     if (redirectCenter) {
       wx.redirectTo({ url: '/pages/customCenter/customCenter' });
       return;

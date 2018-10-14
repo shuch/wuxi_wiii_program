@@ -5,6 +5,7 @@ import { rankMapper, customizedMapper, processMapper } from '../../utils/convert
 import { formatDateTs } from '../../utils/date';
 
 const cdn = 'http://oh1n1nfk0.bkt.clouddn.com';
+const app = getApp(); 
 
 Page({
   data: {
@@ -16,8 +17,6 @@ Page({
     selectedReason: '',
     fee: 0.02,
     shareCustomId: 0,
-    appId: "wx5e18485e35c5f1f6",
-    secret: "6ac2abb378f4d5a5d16b7c6ba2850807",
     endTime: {
       d: 30,
       h: 12,
@@ -27,7 +26,6 @@ Page({
 
   async onLoad(parmas) {
     const appData = await login();
-    console.log('appData', appData);
     const {
       houseId,
       nickname,
@@ -35,8 +33,7 @@ Page({
       openId: openid,
       headPortrait: headImage,
     } = appData;
-    
-    // const timelineSrc = `${cdn}/space_type.png`;
+    const { appid: appId, secret } = app.globalData;
     const state = await endpoint('customState', { customerId, houseId });
     const {
       single: {
@@ -60,7 +57,7 @@ Page({
     });
     let rankList = rankRes.pageModel ? rankRes.pageModel.resultSet : [];
     rankList = rankList.map(rankMapper);
-    // const { list } = res;
+    console.log('rankList', rankList);
     const customList = res && res.list ? res.list.map(customizedMapper) : [];
     const showCustomPop = !customizedStatus && hasPay;
     this.setData({
@@ -75,6 +72,8 @@ Page({
       showCustomPop,
       nickname,
       headImage,
+      appId,
+      secret,
     });
 
     if (hasPay) {
@@ -99,8 +98,8 @@ Page({
       });
     }
 
-    const time = await endpoint('restTime', houseId);
-    const { endTime } = time.single;
+    // const time = await endpoint('restTime', houseId);
+    // const { endTime } = time.single;
     // console.log('time', time);
     // const date = getRestTime(endTime);
 
@@ -215,7 +214,19 @@ Page({
       tradeCode,
       refundReason: refundResons[selectedReason],
     });
-    console.log('res', res);
+    if (res.success) {
+      wx.showToast({
+        title: '退款成功',
+        icon: 'success',
+        duration: 2000,
+      });
+      this.setData({ hasPay: false });
+    } else {
+      wx.showToast({
+        title: '退款失败',
+        duration: 2000,
+      });
+    }
     this.setData({ showRefund: false });
   },
 
@@ -356,10 +367,10 @@ Page({
     wx.navigateTo({ url });
   },
 
-  onLike(e) {
+  async onLike(e) {
     const id = e.currentTarget.dataset.id;
     const { customerId, houseId, customerProgrammeId, customList: list } = this.data;
-    const res = endpoint('like', {
+    const res = await endpoint('like', {
       houseId,
       customerId,
       customerProgrammeId: id,
@@ -368,6 +379,24 @@ Page({
     item.like = item.isLike ? item.like - 1 : item.like + 1;
     item.isLike = !item.isLike;
     this.setData({ customList: list });
+    e.stopPropagation && e.stopPropagation();
+  },
+
+  async onLikeStar(e) {
+    const id = e.currentTarget.dataset.id;
+    const { customerId, houseId, customerProgrammeId, rankList: list } = this.data;
+    const res = await endpoint('like', {
+      houseId,
+      customerId,
+      customerProgrammeId: id,
+    });
+    if (!res.success) {
+      return;
+    }
+    const item = list.find(item =>  item.id === parseInt(id));
+    item.like = item.isLike ? item.like - 1 : item.like + 1;
+    item.isLike = !item.isLike;
+    this.setData({ rankList: list });
     e.stopPropagation && e.stopPropagation();
   },
 
@@ -419,7 +448,7 @@ Page({
     return 360 * Math.atan(_Y / _X) / (2 * Math.PI);
    },
 
-   onDelete(e) {
+  onDelete(e) {
     const { houseId, customList } = this.data;
     const id = e.currentTarget.dataset.id;
     const res = endpoint('delCustom', {
@@ -429,5 +458,17 @@ Page({
     });
     const list = customList.filter(item => item.id !== parseInt(id));
     this.setData({ customList: list });
-   },
+  },
+
+  onClose() {
+    this.setData({ doShare: false });
+  },
+
+  showActivityPop() {
+    this.setData({ showPopup: !this.data.showPopup });
+  },
+
+  onRouteStar() {
+    wx.navigateTo({ url: '/pages/customStars/customStars' });
+  },
 });

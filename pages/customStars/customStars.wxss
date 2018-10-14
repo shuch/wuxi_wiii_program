@@ -114,6 +114,7 @@
 	color: #9B9B9B;
 	align-items: center;
 	padding-bottom: 14rpx;
+	margin-top: 20rpx;
 }
 
 .rank-star-avatar {

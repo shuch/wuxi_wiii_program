@@ -1,6 +1,9 @@
 <view class="mask">
   <view class="sheet" wx:if="{{showMenu}}">
-    <view class="title">分享</view>
+    <view class="title">
+      分享 <image class="icon-close" src="http://oh1n1nfk0.bkt.clouddn.com/close_grey.png" mode="scaleToFill"
+      bind:tap="onClose" />
+    </view>
     <view class="share-menu">
       <button class="share-type transparent"  hover-class="none" open-type="share">
         <image class="share-img" src="http://oh1n1nfk0.bkt.clouddn.com/wechat.png" mode="scaleToFill"></image>
@@ -13,7 +16,11 @@
     </view>
   </view>
   <view class="sheet" wx:if="{{timeline}}">
-    <view class="title">分享到朋友圈</view>
+    <view class="title">
+      分享到朋友圈
+      <image class="icon-close" src="http://oh1n1nfk0.bkt.clouddn.com/close_grey.png" mode="scaleToFill"
+      bind:tap="onClose"/>
+    </view>
     <image class="share-poster" src="{{timelineSrc}}" mode="scaleToFill"></image>
     <view class="share-tip">保存图片到手机后，可分享到朋友圈</view>
     <view class="share-btn" bind:tap="saveImage">保存图片</view>

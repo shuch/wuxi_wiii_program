@@ -19,11 +19,14 @@ Page({
   async onLoad(parmas) {
     const { shareId } = parmas;
     const appData = await login();
-    const { id: customerId, houseId, openId: openid } = appData;
-
-    const appId = "wx5e18485e35c5f1f6";
-    const secret = "6ac2abb378f4d5a5d16b7c6ba2850807";
-    // const res = 
+    const {
+      houseId,
+      nickname,
+      id: customerId,
+      openId: openid,
+      headPortrait: headImage,
+    } = appData;
+    const { appid: appId, secret } = app.globalData;
     const state = await endpoint('customState', { customerId, houseId });
     const {
       single: {
@@ -33,9 +36,19 @@ Page({
       },
     } = state;
     const hasPay = paymentStatus === 2;
-    const timelineSrc = `${cdn}/space_type.png`;
-    const fromShare = shareId &&  parseInt(shareId) !== customerId;
-    this.setData({ openid, customerId, houseId, appId, secret, timelineSrc, fromShare, hasPay });
+    // const timelineSrc = `${cdn}/space_type.png`;
+    const fromShare = !!shareId && parseInt(shareId) !== customerId;
+    this.setData({
+      openid,
+      customerId,
+      houseId,
+      appId,
+      secret,
+      fromShare,
+      hasPay,
+      nickname,
+      headImage,
+    });
   },
 
   onShowPopup() {
@@ -89,15 +102,27 @@ Page({
     });
   },
 
-  menuShare() {
-    this.setData({ doShare: true });
+  async menuShare() {
+    const { nickname, headImage, houseId, customerId } = this.data;
+    const path = this.route;
+    const scene = `shareId=${customerId}`;
+    const res = await endpoint('poster', {
+      head: headImage,
+      houseId,
+      name: nickname,
+      path,
+      scene,
+      width: 185,
+    });
+    this.setData({ doShare: true, timelineSrc: res.single });
   },
 
   onShareAppMessage() {
-    // console.log('onShareAppMessage', this.route);
     const { customerId, hasPay } = this.data;
+    const imageUrl = `${cdn}/share_pay.jpg`;
     return {
-      title: '户型定制入场券',
+      title: '我邀请你一起来抢限量入场券,享无锡WIII公寓户型定制',
+      imageUrl,
       path: `${this.route}?shareId=${customerId}&from=customPay`,
       success: () => {
         this.sharePay();

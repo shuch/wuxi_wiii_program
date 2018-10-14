@@ -24,16 +24,20 @@ Page({
   	return array;
   },
 
+  generateRange() {
+    const array = ['00','95','90','85','80','70','60','50'];
+    return array.map(item => `${item}后`);
+  },
+
   async onLoad(parmas) {
-    // // console.log(parmas);
-    // const customerId =  2;
-    // const houseId = 83;
     const appData = await login();
     const { id: customerId, houseId } = appData;
     const ageArray = this.generateRangeArray(1940, 2018);
+    // const ageArray = this.generateRange();
     const sexArray = [{value: 1, text: '先生'}, {value:0, text: '女士'}];
     const state = await endpoint('customState', { customerId, houseId });
-    const hasPay = state.single.paymentStatus === 2;
+    const { single: { paymentStatus, customerSupplementStatus } } = state;
+    const hasPay = paymentStatus === 2;
     this.setData({
       ageArray,
       sexArray,
@@ -41,23 +45,35 @@ Page({
       houseId,
       hasPay,
     });
+    if (customerSupplementStatus === 1) {
+      if (hasPay) {
+        wx.navigateTo({ url: '/pages/customCenter/customCenter' });
+      } else {
+        wx.navigateTo({ url: '/pages/customPay/customPay' });
+      }
+      return;
+    }
   },
 
   async onShow() {
   },
 
   bindKeyInput(e) {
-    this.setData({
-      name: e.detail.value
-    });
-    console.log(e.detail.value);
+    this.setData({ name: e.detail.value });
+  },
+
+  bindBlur(e) {
+    const { name } = this.data;
+    if (name.trim().length > 5) {
+      wx.showToast({ title: '昵称不超过5个字噢', icon: 'none' });
+      return;
+    }
   },
 
   changeAge(e) {
   	const index = e.detail.value;
   	const value = this.data.ageArray[index];
   	this.setData({ ageIndex: index, age: value });
-  	console.log('bindPickerChange', value);
   },
 
   bindRegionChange(e) {
@@ -114,4 +130,8 @@ Page({
       wx.navigateTo({ url: '/pages/customPay/customPay' });
     }
   },
+
+  redirect() {
+
+  }
 });

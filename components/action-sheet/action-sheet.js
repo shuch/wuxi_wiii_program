@@ -1,5 +1,9 @@
 Component({
   properties: {
+    showActionSheet: {
+      type: Boolean,
+      value: true,
+    },
     contentSrc: {
       type: String,
       value: '',

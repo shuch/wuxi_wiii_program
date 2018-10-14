@@ -29,7 +29,7 @@
 			<view class="share-time" bind:tap="onShowPopup">
 				<text class="tag">限时活动</text>
 				<view class="date">
-					剩余29天28时10分
+					<component-count-down house-id="{{houseId}}" grey="grey"/>
 				</view>
 				<image class="icon-info" src="{{cdn}}/info_white.png" mode="scaleToFill"/>
 				活动说明

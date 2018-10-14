@@ -17,7 +17,8 @@
 
 .title {
   font-size: 18px;
-  line-height: 80rpx;
+  color: #9b9b9b;
+  line-height: 100rpx;
   padding-left: 30rpx;
   text-align: left;
   border-bottom: 1px solid #eee;
@@ -25,7 +26,7 @@
 
 .share-menu {
   display: flex;
-  padding: 100rpx 20rpx;
+  padding: 120rpx 20rpx;
 }
 
 .share-type {
@@ -39,9 +40,9 @@
 
 .share-img {
   display: block;
-  width: 80rpx;
-  height: 80rpx;
-  margin-bottom: 20rpx;
+  width: 120rpx;
+  height: 120rpx;
+  margin-bottom: 28rpx;
   vertical-align: top;
 }
 
@@ -51,6 +52,10 @@
   outline: none;
   line-height: 1;
   background: transparent;
+}
+
+.transparent::after {
+  border: none;
 }
 
 .share-poster {
@@ -73,4 +78,11 @@
   color: #000;
   border-radius: 40rpx;
   background-image: linear-gradient(47deg, #FAE3A0 0%, #BE985D 100%);
+}
+
+.icon-close {
+  float: right;
+  margin: 35rpx;
+  width: 30rpx;
+  height: 30rpx;
 }
