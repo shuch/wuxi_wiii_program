@@ -31,7 +31,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 1,
+			"current": 6,
 			"list": [
 				{
 					"id": -1,
@@ -46,10 +46,10 @@
 					"query": "shareId=20"
 				},
 				{
-					"id": -1,
+					"id": 2,
 					"name": "我的定制",
 					"pathName": "pages/customCenter/customCenter",
-					"query": ""
+					"query": "customId=395"
 				},
 				{
 					"id": -1,
@@ -73,7 +73,7 @@
 					"id": 6,
 					"name": "定制详情",
 					"pathName": "pages/customDetail/customDetail",
-					"query": "customId=382"
+					"query": "customId=395"
 				},
 				{
 					"id": -1,

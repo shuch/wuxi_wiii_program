@@ -127,4 +127,29 @@ Page({
     }
     wx.navigateTo({ url });
   },
+
+  async onLikeStar(e) {
+    const id = e.currentTarget.dataset.id;
+    console.log('id', id);
+    const { customerId, houseId, rankList: list, customDetail,customId } = this.data;
+    const res = await endpoint('like', {
+      houseId,
+      customerId,
+      customerProgrammeId: id,
+    });
+    if (!res.success) {
+      return;
+    }
+    // console.log(typeof customId, typeof id);
+    if (id === customId) {
+      customDetail.isThumbsUp = !customDetail.isThumbsUp;
+      this.setData({ customDetail });
+      return;
+    }
+    const item = list.find(item =>  item.id === parseInt(id));
+    item.like = item.isLike ? item.like - 1 : item.like + 1;
+    item.isLike = !item.isLike;
+    this.setData({ rankList: list });
+    e.stopPropagation && e.stopPropagation();
+  },
 });

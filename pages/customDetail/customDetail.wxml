@@ -1,18 +1,21 @@
 <view class="container">
   <view class="section">
   	<image class="section-img" src="{{cdn}}/custom_detail_img.png" mode="scaleToFill" />
-  	<image class="icon-like" src="{{cdn}}/like.png" mode="scaleToFill" />
+    <view bind:tap="onLikeStar" data-id="{{customId}}">
+    	<image class="icon-like" src="{{cdn}}/like.png" mode="scaleToFill" wx:if="{{customDetail.isThumbsUp}}" />
+      <image class="icon-like" src="{{cdn}}/un_like.png" mode="scaleToFill" wx:else />
+    </view>
   </view>
   <view class="section section-custom">
-  	<view class="like-box">
+  	<view class="like-box" wx:if="{{customDetail.likes.length}}">
   		<view class="like-list">
         <block wx:for="{{customDetail.likes}}" wx:key="item">
           <image class="like-avatar" src="{{item.headImage}}" mode="scaleToFill" wx:if="{{item.headImage}}"/>
           <image class="like-avatar" src="{{cdn}}/avatar.png" mode="scaleToFill" wx:else/>
         </block>
   		</view>
-  		等<text class="theme-color">{{customDetail.likes.length}}人</text>也喜欢这个方案
-  	</view>
+		  等<text class="theme-color">{{customDetail.likes.length}}人</text>也喜欢这个方案
+    </view>
   	<view class="row-tabs">
   		<view
   			class="tabs {{tabSelected === 0 ? 'tabs-active' : ''}}"
@@ -88,14 +91,19 @@
   		<view class="rank-star-box" wx:for="{{rankList}}" wx:key="{{item.id}}">
   			<view class="rank-star-album">
   				<image class="rank-star-img" src="{{item.src}}" mode="scaleToFill"/>
-  				<view class="custom-like">
-  					<image class="icon-like" src="{{cdn}}/like.png" mode="scaleToFill" />
-  					{{item.like}}
+  				<view
+            class="custom-like"
+            data-id="{{item.id}}"
+            bind:tap="onLikeStar"
+          >
+            <image wx:if="{{item.isLike}}" class="icon-like-rank" src="{{cdn}}/like.png" mode="scaleToFill" />
+            <image wx:else class="icon-like-rank" src="{{cdn}}/un_like.png" mode="scaleToFill" />
+            {{item.like}}
   				</view>
   			</view>
   			<view class="rank-star-info">
-  				<image class="rank-star-avatar" src="{{item.avatar}}" mode="scaleToFill"/>
-  				{{item.name}}
+  				<image class="rank-star-avatar" src="{{item.owner.avatar}}" mode="scaleToFill"/>
+  				{{item.owner.name}}
   			</view>
   		</view>
   	</view>

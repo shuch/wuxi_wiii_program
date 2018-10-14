@@ -258,6 +258,7 @@
 	height: 36rpx;
 	margin-right: 10rpx;
 	margin-left: 17rpx;
+	border-radius: 50%;
 }
 
 .section-banner {
@@ -302,4 +303,21 @@
 
 .btn-glod {
 	background-image: linear-gradient(35deg, #EDD48D 45%, #B78D4C 100%);
+}
+
+.custom-like {
+	position: absolute;
+	top: 15rpx;
+	right: 15rpx;
+	display: flex;
+	flex-direction: column;
+	align-items:center;
+	font-size: 32rpx;
+	color: #FFFFFF;
+}
+
+.icon-like-rank {
+	width: 40rpx;
+	height: 40rpx;
+	vertical-align: top;
 }
