@@ -56,6 +56,7 @@ Page({
       houseId,
       pageNo: 1,
       pageSize: 10,
+      customerId,
     });
     let rankList = rankRes.pageModel ? rankRes.pageModel.resultSet : [];
     rankList = rankList.map(rankMapper);

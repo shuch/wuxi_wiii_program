@@ -71,12 +71,18 @@
       户型-{{selectedType.name}}
       <view class="custom-btn" bind:tap="onHouseTypeUpdate">修改</view>
     </view>
-    <view class="huxing">
+    <view class="huxing" wx:if="{{drawMode}}">
+      <canvas canvas-id="draw" class="draw" style="width: 750rpx;height:900rpx"  disable-scroll="true" bindtouchstart="drawStart" bindtouchmove="drawMove"></canvas>
+    </view>
+    <view class="huxing" wx:else>
       <view class="lt-corner corner">
         <image class="north" src="{{cdn}}/north.png" mode="scaleToFill"></image>N
       </view>
-      <component-preview-image src="{{customDetail.imageUrl}}" class="hx-img" mode="aspectFit" />
-      <!-- <image class="hx-img" src="{{customDetail.imageUrl}}" mode="scaleToFill"  /> -->
+      <view class="rt-corner corner" bind:tap="onDraw">
+        涂鸦
+      </view>
+      <!-- <component-preview-image src="{{customDetail.imageUrl}}" class="hx-img" mode="aspectFit" /> -->
+      <image class="hx-img" src="{{customDetail.imageUrl}}" mode="aspectFit" bind:tap="onPreview" style="width:{{imgWidth}}px;height:{{imgHeight}}px;top:{{imgTop}}px;left:{{imgLeft}}px" disable-scroll="true" bindload="loadImage" />
       <view
         class="space-indicator space-left-top"
         bind:tap="editSpace"
@@ -93,7 +99,7 @@
         <text class="space-name">{{customDetail.spaces[1].name}}</text>
         <image class="space-plus" src="{{cdn}}/update_plus.png" mode="scaleToFill" />
       </view>
-      <view class="rb-corner corner" bind:tap="onComment">
+      <view class="rb-corner corner" bind:tap="onComment" wx:if="{{!drawMode}}">
         <block wx:if="{{commentMode}}">
           <image class="comment-btn" src="{{cdn}}/exit_button.png" mode="scaleToFill" />退出评论
         </block>
@@ -126,16 +132,20 @@
       </view>
     </view>
 
-    <view class="bottom operate-save" bind:tap="onSaveCustom">
-      保存为我的定制方案
-    </view>
-
+    <!-- comment -->
     <view class="bottom operate-comment" wx:if="{{commentMode}}">
       <view class="input-box">
         <image class="input-icon" src="{{cdn}}/comment_in_icon.png" mode="scaleToFill"></image>
         <input class="input" bindinput="bindKeyInput" value="{{inputComment}}"/>
       </view>
       <view class="btn-send" bind:tap="sendComment">发送</view>
+    </view>
+    <!-- drawMode -->
+    <view class="bottom black" bind:tap="onSaveDraw" wx:elif="{{drawMode}}">
+      完成涂鸦
+    </view>
+    <view class="bottom operate-save" bind:tap="onSaveCustom" wx:else>
+      保存为我的定制方案
     </view>
 
     <view wx:if="{{guide}}">

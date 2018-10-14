@@ -243,9 +243,10 @@
 }
 
 .hx-img {
+  position: absolute;
   width: 537rpx;
   height: 865rpx;
-  margin: 30rpx 0 0;
+  margin: 0 auto 0;
 }
 
 .corner {
@@ -265,6 +266,20 @@
   top: 63rpx;
   left: 60rpx;
   font-size: 20rpx;
+}
+
+.rt-corner {
+  top: 60rpx;
+  right: 30rpx;
+  width: 72rpx;
+  height: 72rpx;
+  font-size: 24rpx;
+  text-align: center;
+  justify-content: center;
+  color: #fff;
+  border-radius: 50%;
+  background:rgba(243,218,153,1);
+  box-shadow:0px 1px 2px 0px rgba(243,218,153,1);
 }
 
 .north {
@@ -432,4 +447,10 @@
   height: 28rpx;
   margin-left: 20rpx;
   vertical-align: middle;
+}
+
+.black {
+  color: #fff;
+  justify-content: center;
+  background:linear-gradient(197deg,rgba(91,91,91,1) 0%,rgba(18,18,15,1) 100%);
 }

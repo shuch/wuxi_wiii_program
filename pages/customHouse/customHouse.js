@@ -1,35 +1,29 @@
 import endpoint from '../../lib/endpoint';
 import regeneratorRuntime from '../../lib/runtime';
 import { houseTypesMapper, spaceTypeMapper, customDetailMapper } from '../../utils/convertor';
-import { login } from '../../lib/promise';
+import { login, getImageInfo, uploadImageFiles } from '../../lib/promise';
 
 const cdn = 'http://oh1n1nfk0.bkt.clouddn.com';
-
-// 定制步骤
-// 1-选择户型
-// 2-户型编辑
-//  21-引导1
-//  22-引导2
-//  23-引导3
-const customStep = 1;
-
 const CUSTOM_POP_UP = 'CUSTOM_POP_UP';
 
 Page({
   data: {
     selectedType: null,
     spaceNames: {},
-    customStep: customStep,
+    customStep: 1,
     popup: false,
     guide: false,
     houseTypeUpdate: false,
     spaceEdit: false,
     commentMode: false,
+    drawMode: false,
     commentList: [],
     inputComment: '',
     coverTip: 1,
     cdn,
     commentExpand: false,
+    canvasHeight: 450,
+    canvasWidth: 375,
   },
 
   async onLoad(parmas) {
@@ -47,11 +41,11 @@ Page({
     } = state;
 
     // 有暂存方案或编辑方案
-    const customizedId = customerProgrammeId || id;
+    const customizedId = update ? id : customerProgrammeId;
     const unFinished = !customizedStatus && customerProgrammeId;
     const shouldUpdate = unFinished || update;
     const finishOne = customizedStatus || paymentStatus === 2;
-    const redirectCenter = finishOne && !update && !create;
+    const redirectCenter = false;//finishOne && !update && !create;
     // const redirectCenter = false;
     if (redirectCenter) {
       wx.redirectTo({ url: '/pages/customCenter/customCenter' });
@@ -64,7 +58,7 @@ Page({
       customizedStatus,
       customerProgrammeId: customizedId,
     };
-
+    console.log('customizedId', customizedId);
     if (shouldUpdate) {
       const res = await endpoint('customizedDetail', customizedId);
       const customDetail = customDetailMapper(res.single);
@@ -105,7 +99,15 @@ Page({
     this.setData({ selectedType: houseType });
   },
 
+  isOperating() {
+    const { commentMode, drawMode } = this.data;
+    return commentMode || drawMode;
+  },
+
   onHouseTypeUpdate() {
+    if (this.isOperating()) {
+      return;
+    }
     this.setData({ houseTypeUpdate: true });
   },
 
@@ -122,6 +124,7 @@ Page({
       customDetail: res.single,
       customerProgrammeId: res.single.customerProgrammeId,
     });
+    // this.loadImage();
   },
 
   onKnown() {
@@ -154,7 +157,9 @@ Page({
   },
 
   async editSpace(e) {
-    if (!e) return;
+    if (this.isOperating()) {
+      return;
+    }
     const { currentTarget: { dataset: { space } } } = e;
     const { customDetail, houseId, spaceNames, selectedType } = this.data;
     const res = await endpoint('spaceList', {
@@ -240,7 +245,6 @@ Page({
   },
 
   onComment() {
-    console.log('onComment', this.data.commentMode);
     const data = { commentMode: !this.data.commentMode };
     if (this.data.commentMode) {
       Object.assign(data, { commentExpand: false });
@@ -297,9 +301,9 @@ Page({
   },
 
   async onSaveCustom() {
-    const { customerProgrammeId } = this.data;
+    const { customerProgrammeId, drawUrl } = this.data;
     const res = await endpoint('saveCustom', {
-      // commentImageUrl: 'https://xxx/canvas',
+      commentImageUrl: drawUrl,
       customerId: this.data.customerId,
       customizedProgrammeId: this.data.selectedType.id,
       houseId: this.data.houseId,
@@ -317,4 +321,137 @@ Page({
     this.setData({ commentExpand: !commentExpand });  
   },
 
+  onPreview() {
+    if (this.isOperating()) {
+      return;
+    }
+    const src = this.data.customDetail.imageUrl;
+    wx.previewImage({
+      urls: [src],
+      current: src,
+    })
+  },
+
+  async onDraw() {
+    // 绘制图片到画布
+    const { customDetail: { imageUrl }, canvasHeight, canvasWidth } = this.data;
+    const res = await getImageInfo(imageUrl);
+    console.log('res', res);
+    const { height, width, path } = res;
+    let initRatio = height / canvasHeight;
+    if (initRatio < width / canvasHeight) {
+      initRatio = width / canvasWidth;
+    }
+    const scaleWidth = width / initRatio;
+    const scaleHeight = height / initRatio;
+    const startX = -scaleWidth / 2;
+    const startY = -scaleHeight / 2;
+    console.log('scaleWidth', scaleWidth);
+    console.log('scaleHeight', scaleHeight);
+
+    const ctx = wx.createCanvasContext('draw');
+    ctx.translate(canvasWidth / 2, canvasHeight / 2) //原点移至中心，保证图片居中显示
+    ctx.drawImage(path, startX, startY, scaleWidth, scaleHeight);
+    ctx.draw();
+    this.ctx = ctx;
+    this.scaleWidth = scaleWidth;
+    this.scaleHeight = scaleHeight;
+    this.startX = startX;
+    this.startY = startY;
+    this.setData({ drawMode: true });
+    console.log('canvas', initRatio, startX, startY, scaleWidth, scaleHeight);
+  },
+
+  drawStart(e) {
+    var self = this;
+    const { canvasHeight, canvasWidth } = this.data;
+    self.lineWidth = self.lineWidth ? self.lineWidth:5
+    self.lineColor = self.lineColor ? self.lineColor : '#000000'
+    // 开始画图，隐藏所有的操作栏
+    // this.setData({
+    //   isChooseWidth: false,
+    //   isChooseColor: false,
+    //   // isChooseBack: false,
+    //   canvasHeight: self.device.windowHeight - 160 * self.deviceRatio
+    // }) 
+    self.doodleStartX = e.touches[0].x - canvasHeight / 2;
+    self.doodleStartY = e.touches[0].y - canvasWidth / 2;
+  },
+
+  drawMove(e) {
+    // 触摸移动，绘制中
+    var self=this
+    self.doodled=true;
+    const { canvasHeight, canvasWidth } = this.data;
+    self.ctx.setStrokeStyle(self.lineColor);
+    self.ctx.setLineWidth(self.lineWidth);
+    self.ctx.setLineCap('round');
+    self.ctx.setLineJoin('round');
+    self.ctx.moveTo(self.doodleStartX, self.doodleStartY);
+    self.ctx.lineTo(e.touches[0].x - canvasWidth / 2, e.touches[0].y - canvasHeight / 2);
+    self.ctx.stroke();
+    self.ctx.draw(true);
+    self.doodleStartX = e.touches[0].x - canvasWidth / 2
+    self.doodleStartY = e.touches[0].y - canvasHeight / 2
+  },
+
+  onSaveDraw() {
+    this.saveDraw();
+    this.setData({ drawMode: false });
+  },
+
+  saveDraw() {
+    const self = this;
+    const { startX, startY, scaleHeight, scaleWidth } = this;
+    const { canvasHeight, canvasWidth, customDetail: custom } = this.data;
+    console.log('save', canvasWidth / 2 + startX, canvasHeight / 2 + startY, scaleHeight, scaleWidth);
+    wx.canvasToTempFilePath({
+      x: canvasWidth / 2 + startX,
+      y: canvasHeight / 2 + startY,
+      width: scaleWidth,
+      height: scaleHeight,
+      canvasId: 'draw',
+      success: async (res) => {
+       console.log('res', res.tempFilePath);
+       custom.imageUrl = res.tempFilePath;
+       self.setData({
+          customDetail: custom,
+       });
+       const uploadRes = await endpoint('getUploadToken');
+       const { token, resultUrl } = uploadRes.single;
+       const qnkey = await uploadImageFiles(token, res.tempFilePath);
+       console.log('qnkey', qnkey);
+       const drawUrl = `${resultUrl}${qnkey}`;
+       console.log('drawUrl', drawUrl);
+       self.setData({ drawUrl });
+      }
+    })
+  },
+
+  async loadImage() {
+    const { customDetail: { imageUrl }, canvasHeight, canvasWidth } = this.data;
+    const res = await getImageInfo(imageUrl);
+    // self.oldScale = 1
+    const { height, width, path } = res;
+    let initRatio = height / canvasHeight;
+    if (initRatio < width / canvasHeight) {
+      initRatio = width / canvasWidth;
+    }
+    //图片显示大小
+    const scaleWidth = (width / initRatio)
+    const scaleHeight = (height / initRatio)
+
+    this.startX = canvasWidth / 2 - scaleWidth / 2;
+    this.startY = canvasHeight / 2 - scaleHeight / 2;
+    this.setData({
+      imgWidth: scaleWidth,
+      imgHeight: scaleHeight,
+      imgTop: this.startY,
+      imgLeft: this.startX
+    });
+    this.scaleWidth = scaleWidth;
+    this.scaleHeight = scaleHeight;
+    console.log('loadImage', initRatio, this.startX, this.startY, scaleWidth, scaleHeight);
+
+  }
 });
