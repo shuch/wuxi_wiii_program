@@ -75,11 +75,18 @@ export const customDetailMapper = (data) => {
 }
 
 export const customizedMapper = (item) => {
-	const date = item.updated || item.created;
-	
+	const updated = item.updated || item.created;
+	const date = getDate(updated);
+	const like = item.thumbsUpNo || 0;
+	const isLike = item.isThumbsUp;
+	const space = item.spaces.map(item => item.name);
+	const special = [item.name, ...space];
 	return {
-		date,
 		...item,
+		date,
+		like,
+		isLike,
+		special,
 	};
 }
 
