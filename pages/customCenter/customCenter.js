@@ -480,4 +480,10 @@ Page({
   onRouteStar() {
     wx.navigateTo({ url: '/pages/customStars/customStars' });
   },
+
+  onPhoneCall() {
+    wx.makePhoneCall({
+      phoneNumber: '17521216862',
+    });
+  },
 });

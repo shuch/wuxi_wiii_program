@@ -239,7 +239,7 @@
         <view class="service">
           抱歉没能让您满意,您是不是遇到什么问题？联系在线客服帮忙解决～
         </view>
-        <view class="service-btn">联系客服</view>
+        <view class="service-btn" bind:tap="onPhoneCall">联系客服</view>
         <view class="reason">
         	选择我的退款原因
         </view>
