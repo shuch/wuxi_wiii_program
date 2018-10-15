@@ -124,6 +124,8 @@ Page({
       path,
       scene,
       width: 185,
+      type: 2,
+      xcxName: "无锡WIII",
     });
     this.setData({ doShare: true, timelineSrc: res.single });
   },
@@ -148,23 +150,23 @@ Page({
       url: timelineSrc,
       success: function (res) {
         const path = res.tempFilePath;
-        wx.authorize({
-          scope: 'scope.writePhotosAlbum',
+        wx.saveImageToPhotosAlbum({
+          filePath: path,
           success: () => {
-            wx.saveImageToPhotosAlbum({
-              filePath: path,
-              success: () => {
-                wx.showToast({
-                  title: '保存成功',
-                });
-                that.sharePay();
-              },
-              fail: (e) => {
-                console.log(e);
-              }
+            wx.showToast({
+              title: '保存成功',
             });
+            that.sharePay();
+          },
+          fail: (e) => {
+            console.log(e);
           }
         });
+        // wx.authorize({
+        //   scope: 'scope.writePhotosAlbum',
+        //   success: () => {
+        //   }
+        // });
       },
     });
   },

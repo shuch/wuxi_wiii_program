@@ -28,11 +28,10 @@ Page({
       customId = parmas.customId;
     }
     const appData = await login();
-    const { id: customerId, houseId } = appData;
+    const { id: customerId, houseId, nickname, headPortrait: headImage } = appData;
     const res = await endpoint('customizedDetail', customId);
     const customDetail = customDetailMapper(res.single);
-    console.log('customDetail', customDetail);
-    const timelineSrc = `${cdn}/space_type.png`;
+    // console.log('customDetail', customDetail);
     const rankRes = await endpoint('rankList', {
       houseId,
       pageNo: 1,
@@ -42,7 +41,16 @@ Page({
     const isSelf = customerId === customDetail.customerId;
     let rankList = rankRes.pageModel ? rankRes.pageModel.resultSet : [];
     rankList = rankList.map(rankMapper);
-    this.setData({ houseId, customerId, customId, customDetail, rankList, timelineSrc, isSelf });
+    this.setData({
+      houseId,
+      customerId,
+      customId,
+      customDetail,
+      rankList,
+      isSelf,
+      nickname,
+      headImage,
+    });
   },
 
   switchTab(e) {
@@ -96,8 +104,21 @@ Page({
     };
   },
 
-  menuShare() {
-    this.setData({ doShare: true });
+  async menuShare() {
+    const { nickname, headImage, houseId, customerId } = this.data;
+    const res = await endpoint('poster', {
+        head: headImage,
+        houseId,
+        name: nickname,
+        path: 'pages/customDetail/customDetail',
+        scene: `shareId=${customerId}`,
+        width: 185,
+        type: 1,
+        xcxName: "无锡WIII",
+    });
+    // const timelineSrc = `${cdn}/space_type.png`;
+    this.setData({ doShare: true, timelineSrc: res.single });
+    // this.setData({ doShare: true });
   },
 
   async onSave() {
@@ -151,5 +172,9 @@ Page({
     item.isLike = !item.isLike;
     this.setData({ rankList: list });
     e.stopPropagation && e.stopPropagation();
+  },
+
+  onClose() {
+    this.setData({ doShare: false });
   },
 });

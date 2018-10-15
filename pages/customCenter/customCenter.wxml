@@ -67,7 +67,7 @@
 					<image wx:else class="invite-avatar" src="{{cdn}}/avatar_b.png" mode="scaleToFill"></image>
 				</block>
 			</view>
-			<view class="invite-content">您已邀请{{inviteList.length}}人抢定制入场券,为您的方案排名上升了0位</view>
+			<view class="invite-content">您已邀请{{inviteList.length}}人抢定制入场券, 排名大幅提升</view>
 			<view class="btn-share btn-invite" bind:tap="menuShare">邀请好友助力</view>
 			<view class="invite-tip" bind:tap="showActivityPop">
 				<component-count-down house-id="{{houseId}}" />

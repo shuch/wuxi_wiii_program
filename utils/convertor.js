@@ -48,16 +48,19 @@ export const rankMapper = (item) => {
 		name,
 		spaces,
 		originCustomer,
+		orderNo,
 	} = item;
 	const like = thumbsUpNo ? thumbsUpNo : 0;
 	const isLike = isThumbsUp;
-	const space = spaces.map(item => item.name);
-	const special = [name, ...space];
+	let spaceList = spaces || [];
+	spaceList = spaceList.map(item => item.name);
+	const special = [name, ...spaceList];
 	const { nickname, headPortrait } = originCustomer || {};
 	const owner = {
 		name: nickname || '',
 		avatar: headPortrait || '',
 	};
+	const rank = orderNo || '';
 	return {
 		id,
 		src: senceImage,
@@ -67,6 +70,7 @@ export const rankMapper = (item) => {
 		special,
 		owner,
 		isLike,
+		rank,
 	};
 }
 
@@ -86,8 +90,10 @@ export const customizedMapper = (item) => {
 	const isLike = item.isThumbsUp;
 	const space = item.spaces.map(item => item.name);
 	const special = [item.name, ...space];
+	const rank = item.orderNo || '';
 	return {
 		...item,
+		rank,
 		date,
 		like,
 		isLike,

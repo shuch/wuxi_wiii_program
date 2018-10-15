@@ -30,13 +30,14 @@ Page({
     console.log(parmas);
     const appData = await login();
     const { id: customerId, houseId } = appData;
-    const { update, create, id } = parmas;
+    const { update, create, id, fromCenter } = parmas;
     const state = await endpoint('customState', { customerId, houseId });
     const {
       single: {
         customizedStatus,
         paymentStatus,
         customerProgrammeId,
+        customerSupplementStatus,
       },
     } = state;
 
@@ -44,8 +45,9 @@ Page({
     const customizedId = update ? id : customerProgrammeId;
     const unFinished = !customizedStatus && customerProgrammeId;
     const shouldUpdate = unFinished || update;
-    const finishOne = customizedStatus || paymentStatus === 2;
-    const redirectCenter = finishOne && !update && !create;
+    const hasPay = paymentStatus === 2;
+    const finishOne = customizedStatus || hasPay;
+    const redirectCenter = finishOne && !update && !create && !fromCenter;
     if (redirectCenter) {
       wx.redirectTo({ url: '/pages/customCenter/customCenter' });
       return;
@@ -68,7 +70,7 @@ Page({
       Object.assign(data, { customStep: 2, customDetail, selectedType, commentList: customDetail.comments })
     }
     const res = await endpoint('customList', houseId);
-    Object.assign(data, { houseTypes: res.list.map(houseTypesMapper) })
+    Object.assign(data, { houseTypes: res.list.map(houseTypesMapper), customerSupplementStatus })
 
     this.setData(data);
 
@@ -122,8 +124,8 @@ Page({
       customStep: 2,
       customDetail: res.single,
       customerProgrammeId: res.single.customerProgrammeId,
+      customizedProgrammeId: res.single.id,
     });
-    // this.loadImage();
   },
 
   onKnown() {
@@ -150,7 +152,7 @@ Page({
         customerProgrammeId,
         customizedLayoutId: this.data.selectedType.layoutId,
       });
-      Object.assign(data, { customDetail: res.single });
+      Object.assign(data, { customDetail: res.single, customizedProgrammeId: res.single.id });
     }
     this.setData(data);
   },
@@ -300,18 +302,22 @@ Page({
   },
 
   async onSaveCustom() {
-    const { customerProgrammeId, drawUrl } = this.data;
+    const { customerProgrammeId, drawUrl, customizedProgrammeId, customerSupplementStatus } = this.data;
     const res = await endpoint('saveCustom', {
       commentImageUrl: drawUrl,
       customerId: this.data.customerId,
-      customizedProgrammeId: this.data.selectedType.id,
+      customizedProgrammeId,
       houseId: this.data.houseId,
       id: customerProgrammeId,
       customizedStatus: 1,
     });
 
     if (res.success) {
-      wx.navigateTo({ url: '/pages/person-info/person-info' });
+      if (customerSupplementStatus) {
+        wx.navigateTo({ url: '/pages/customCenter/customCenter' });
+      } else {
+        wx.navigateTo({ url: '/pages/person-info/person-info' });
+      }
     }
   },
 

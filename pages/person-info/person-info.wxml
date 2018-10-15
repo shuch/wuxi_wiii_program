@@ -3,7 +3,7 @@
 	<view class="form-item">
 		昵称
 		<input
-			placeholder="不超过5个字"
+			placeholder="不超过15个字"
 			auto-focus
 			class="input"
 			bindinput="bindKeyInput"

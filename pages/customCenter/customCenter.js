@@ -236,6 +236,7 @@ Page({
 
   async onPay() {
     const { openid, customerId, houseId, appId, secret, fee } = this.data;
+    console.log('openid', openid, customerId, houseId, appId, secret, fee);
     const res = await endpoint('buyCard', {
       customerId,
       fee,
@@ -245,6 +246,10 @@ Page({
       paySource: 1,
       uniqueCode: openid,
     });
+    if (!res.success) {
+      wx.showToast({ title: res.message, icon: 'none' });
+      return;
+    }
     const { 
       nonceStr,
       paySign,
@@ -285,38 +290,40 @@ Page({
       url: timelineSrc,
       success: function (res) {
         const path = res.tempFilePath;
-        wx.authorize({
-          scope: 'scope.writePhotosAlbum',
+        wx.saveImageToPhotosAlbum({
+          filePath: path,
           success: () => {
-            wx.saveImageToPhotosAlbum({
-              filePath: path,
-              success: () => {
-                if (!hasPay && !shareCustomId) {
-                  that.onSharePay();
-                }
-                // const data = { doShare: false };
-                // if (shareCustomId) {
-                //   Object.assign(data, { timelineSrc });
-                // }
-                that.setData({ doShare: false });
-                wx.showToast({
-                  title: '保存成功',
-                });
-              },
-              fail: (e) => {
-                console.log(e);
-              }
+            if (!hasPay && !shareCustomId) {
+              that.onSharePay();
+            }
+            that.setData({ doShare: false });
+            wx.showToast({
+              title: '保存成功',
             });
+          },
+          fail: (e) => {
+            console.log(e);
           }
         });
       },
     });
   },
 
-  menuShare() {
+  async menuShare() {
     // 获取支付页面的海报
-    const timelineSrc = `${cdn}/space_type.png`;
-    this.setData({ doShare: true, timelineSrc });
+    const { nickname, headImage, houseId, customerId } = this.data;
+    const res = await endpoint('poster', {
+        head: headImage,
+        houseId,
+        name: nickname,
+        path: 'pages/customPay/customPay',
+        scene: `shareId=${customerId}`,
+        width: 185,
+        type: 2,
+        xcxName: "无锡WIII",
+    });
+    // const timelineSrc = `${cdn}/space_type.png`;
+    this.setData({ doShare: true, timelineSrc: res.single });
   },
 
   onSharePay() {
@@ -346,6 +353,8 @@ Page({
         path: 'pages/customDetail/customDetail',
         scene: `customId=${id}`,
         width: 185,
+        type: 1,
+        xcxName: "无锡WIII",
     });
     this.setData({ shareCustomId: id, doShare: true, timelineSrc: res.single });
   },
@@ -359,7 +368,7 @@ Page({
   },
 
   onRouteCustom() {
-    wx.navigateTo({ url: '/pages/customHouse/customHouse' });
+    wx.navigateTo({ url: '/pages/customHouse/customHouse?fromCenter=1' });
   },
 
   onRouteDetail(e) {

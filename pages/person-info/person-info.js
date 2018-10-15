@@ -64,13 +64,29 @@ Page({
 
   async bindBlur(e) {
     let { name } = this.data;
-    name = name.trim();
-    if (name.length > 5) {
-      wx.showToast({ title: '昵称不超过5个字噢', icon: 'none' });
-      return;
+    this.isExceedName(name);
+    this.isRepeatName(name);
+  },
+
+  isExceedName(name) {
+    let nickname = name.trim();
+    if (nickname.length > 15) {
+      wx.showToast({ title: '昵称不超过15个字噢', icon: 'none' });
+      return true;
     }
-    const res = endpoint('existNick', name);
-    // if (res.)
+    return false;
+  },
+
+  async isRepeatName(name) {
+    if (!name) return;
+    const { houseId } = this.data;
+    const res = await endpoint('existNick', { 'nickName': name, houseId });
+    console.log('res', res);
+    if (!res.success) {
+      wx.showToast({ title: '昵称已存在，请重新填写', icon: 'none' });
+      return true;
+    }
+    return false;
   },
 
   changeAge(e) {
@@ -113,6 +129,13 @@ Page({
       wx.showToast({ title: '请选择区域', icon: 'none' });
       return;
     }
+    console.log('name', this.isRepeatName(name));
+    if (this.isRepeatName(name)) {
+      return;
+    }
+    if (this.isExceedName(name)) {
+      return;
+    }
     const res = await endpoint('saveCustomInfo', {
       age,
       city: region[1],
@@ -122,7 +145,7 @@ Page({
       houseId,
       nickName: name,
     });
-    console.log(res);
+    console.log('onSave', res, hasPay);
     // 支付-定制流程
     if (hasPay) {
       wx.navigateTo({ url: '/pages/customCenter/customCenter' });
@@ -133,8 +156,4 @@ Page({
       wx.navigateTo({ url: '/pages/customPay/customPay' });
     }
   },
-
-  redirect() {
-
-  }
 });
