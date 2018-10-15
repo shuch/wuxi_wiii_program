@@ -62,12 +62,15 @@ Page({
     this.setData({ name: e.detail.value });
   },
 
-  bindBlur(e) {
-    const { name } = this.data;
-    if (name.trim().length > 5) {
+  async bindBlur(e) {
+    let { name } = this.data;
+    name = name.trim();
+    if (name.length > 5) {
       wx.showToast({ title: '昵称不超过5个字噢', icon: 'none' });
       return;
     }
+    const res = endpoint('existNick', name);
+    // if (res.)
   },
 
   changeAge(e) {
