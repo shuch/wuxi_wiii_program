@@ -1,6 +1,6 @@
 import endpoint from '../../lib/endpoint';
 import regeneratorRuntime from '../../lib/runtime';
-var app = getApp()
+
 const TIME_INTERVAL = 1 * 1000;
 
 Component({
@@ -43,7 +43,6 @@ Component({
         sec: s,
         endtime,
       });
-      app.globalData.endTime=`剩余${this.data.day}天${this.data.hour}时${this.data.min}分`
     },
 
     addZero(t) {

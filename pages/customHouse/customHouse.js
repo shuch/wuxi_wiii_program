@@ -240,7 +240,7 @@ Page({
         customerId,
         customizedLayoutId: this.data.selectedType.layoutId,
       });
-      Object.assign(data, { customDetail: res.single });
+      Object.assign(data, { customDetail: res.single, customizedProgrammeId: res.single.id });
     }
     this.setData(data);
   },
@@ -311,7 +311,7 @@ Page({
       id: customerProgrammeId,
       customizedStatus: 1,
     });
-
+    console.log('res', res, customerSupplementStatus);
     if (res.success) {
       if (customerSupplementStatus) {
         wx.navigateTo({ url: '/pages/customCenter/customCenter' });
