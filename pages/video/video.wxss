@@ -246,7 +246,7 @@
   z-index: 10;
 }
 
-.time{
+.times{
   color: #fff;
   font-size: 20rpx;
   line-height: 60rpx;
