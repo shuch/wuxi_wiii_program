@@ -3,7 +3,10 @@
   overflow: hidden;
   min-height: 100vh;
   font-weight: 200;
-  /*padding-bottom: 100rpx;*/
+}
+
+.customList {
+  padding-bottom: 100rpx;
 }
 
 .title {

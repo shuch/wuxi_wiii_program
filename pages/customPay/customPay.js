@@ -17,7 +17,7 @@ Page({
   },
 
   async onLoad(parmas) {
-    const { shareId, fromEntry } = parmas;
+    const { shareId, fromEntry = '' } = parmas;
     const appData = await login();
     const {
       houseId,

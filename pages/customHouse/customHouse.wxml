@@ -1,5 +1,5 @@
 <view class="container">
-  <view wx:if="{{customStep === 1}}">
+  <view wx:if="{{customStep === 1}}" class="customList">
     <view class="title">请选择一种户型</view>
     <view
       class="house-card"
@@ -12,7 +12,7 @@
         <view class="house-info">
           <view class="info-type">
             <view class="type">{{item.name}}</view>
-            <text class="area">{{item.area}}</text>㎡
+            约<text class="area">{{item.area}}</text>㎡
           </view>
           <image class="room-thumb" src="{{item.thumb}}" mode="scaleToFill"></image>
           <view class="info-level">平层/超高单层约{{item.height}}m</view>

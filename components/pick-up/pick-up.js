@@ -30,7 +30,6 @@ Component({
       
     },
     onSelectChange(e) {
-      console.log(e);
       this.triggerEvent('onselectchange', e);
     },
     onPickCancel() {
