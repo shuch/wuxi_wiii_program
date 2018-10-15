@@ -26,7 +26,9 @@ Page({
 		windowHeight:0,//可视区高度
 		currentFlag:0,//视频列表当前播放
 		linkUrl: "",
-		id: ""
+		id: "",
+        houseId:config.houseId,
+		endTime:''
 	},
 	// onShareAppMessage(options) {
 	// 	return {
@@ -109,7 +111,15 @@ Page({
 			  console.log('可视区高度',res.windowHeight);
 			},
 		})
+		setTimeout(()=>{
+			this.setData({
+				endTime:app.globalData.endTime
+			})
+		},2000)
 	},
+    toCoupon(){
+        wx.navigateTo({ url: '/pages/customPay/customPay' });
+    },
 	getWeather:function(){
 		var that = this;
         wx.request({

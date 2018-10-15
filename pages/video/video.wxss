@@ -237,3 +237,31 @@
   bottom:calc(20rpx + 1.8vw);
   left:10rpx;
 }
+.coupon{
+  width: 314rpx;
+  height: 114rpx;
+  position: absolute;
+  top:calc(100vh - 200rpx);
+  right:30rpx;
+  z-index: 10;
+}
+
+.time{
+  color: #fff;
+  font-size: 20rpx;
+  line-height: 60rpx;
+  position: absolute;
+  bottom: 0rpx;
+  left: 50%;
+  width:62%;
+  transform: translate(-50%);
+  z-index: 10000;
+}
+.grey{
+  color: #ffffff !important;
+  opacity: 0;
+}
+.endTime{
+  position: absolute;
+  left: -10000px;
+}

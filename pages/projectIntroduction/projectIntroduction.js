@@ -5,6 +5,7 @@ var serverUrl = 'https://dm.static.elab-plus.com/wuXiW3/projectIntroduction/'
 Page({
     data:{
         serverUrl:serverUrl,
+        mask2:'#272A34',
     },
     onShow: function(e){
         wx.setNavigationBarTitle({

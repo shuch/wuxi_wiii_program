@@ -47,6 +47,11 @@
 			    <cover-image class="rightBtn" src="http://skyforest.static.elab-plus.com/mini-program/right-arrow.png"></cover-image>
 			</cover-view>
 		</cover-view>
+		<component-count-down house-id="{{houseId}}" grey="grey" my-class="endTime"/>
+		<cover-view class="coupon" bindtap="toCoupon">
+			<cover-view class="time">{{endTime}}</cover-view>
+			<cover-image src="https://dm.static.elab-plus.com/wuXiW3/index/quan.png" style="position: absolute;left:0;top: 0;width:314rpx;height:114rpx;z-index:1;"></cover-image>
+		</cover-view>
 	</video>
 </view>
 

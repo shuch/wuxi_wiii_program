@@ -6,6 +6,7 @@ Page({
   data:{
       // flag:true,  //防止重复提交，保证处理完毕后才能再次请求
       scaleWidth:"",
+      houseId:config.houseId,
       scaleHeight:"",
       dataimg:"",
       gradient1:'#3A4A80',

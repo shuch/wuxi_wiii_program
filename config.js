@@ -22,6 +22,8 @@ var config = function() {
             url: 'https://dm-api.elab-plus.cn/', //开发
             newUrl: 'https://dm-api.elab-plus.cn/', //开发
             ImgUrl: 'http://skyforest.static.elab-plus.com/',
+            parameterUrl:'https://m.elab-plus.com/sell/#/housePramater?houseId=',
+            tdviewUrl:'https://m.elab-plus.com/sell/#/tdview?houseId=',
             //客户业务后台请求域名
             serverUrl: 'https://dm-api.elab-plus.cn/elab-marketing-rtc', //'https://room.qcloud.com', 139.196.5.59:5757 、、https://zb.elab-plus.com//生产
             // imageUrl: 'http://skyforest.static.elab-plus.com',//'https://room.qcloud.com', 139.196.5.59:5757  
@@ -44,6 +46,8 @@ var config = function() {
             url: 'https://examopenapi.elab-plus.com',
             newUrl: 'http://192.168.0.16:5555/', //开发
             ImgUrl: 'http://skyforest.static.elab-plus.com/', // 图片地址
+            parameterUrl:'http://h5test.elab-plus.com/sell/#/housePramater?houseId=',
+            tdviewUrl:'http://h5test.elab-plus.com/sell/#/tdview?houseId=',
             //客户业务后台请求域名
             serverUrl: 'http://192.168.0.16:5555/elab-marketing-rtc',
             // imageUrl: 'http://192.168.0.16:5555',
@@ -64,6 +68,8 @@ var config = function() {
             projectName: '无锡WIII',
             // 后台接口请求地址
             url: 'http://139.196.5.59:5313',
+            parameterUrl:'https://h5test.elab-plus.com/sell/index.html#/housePramater?houseId=',
+            tdviewUrl:'http://h5test.elab-plus.com/sell/#/tdview?houseId=',
             qiniuUrl: 'http://139.196.5.59:5555/elab-marketing-file',
             newUrl: 'https://gatewaytest.elab-plus.com/', //测试
             ImgUrl: 'http://skyforest.static.elab-plus.com/', // 图片地址
@@ -85,6 +91,8 @@ var config = function() {
             color2: "#3A4A80",
             backColor: "#474952",
             projectName: '无锡WIII',
+            parameterUrl:'https://mng-uat.elaber.cn/sell/#/housePramater?houseId=',//此处URL需要调整，堡垒地址不对
+            tdviewUrl:'https://mng-uat.elaber.cn/sell/#/tdview?houseId=',
             // 后台接口请求地址
             url: 'https://api-uat.elaber.cn/',
             newUrl: 'https://api-uat.elaber.cn/', //测试

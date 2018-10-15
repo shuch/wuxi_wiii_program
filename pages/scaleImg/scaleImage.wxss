@@ -100,10 +100,14 @@
 
 .time{
 	color: #fff;
-	font-size: 18rpx;
+	font-size: 20rpx;
 	line-height: 60rpx;
 	position: absolute;
 	bottom: 0rpx;
 	left: 50%;
+	width:62%;
 	transform: translate(-50%);
+}
+.grey{
+	color: #ffffff !important;
 }

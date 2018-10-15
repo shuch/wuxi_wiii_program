@@ -672,12 +672,21 @@ Page({
     goJump:function(e){
         console.log(e.currentTarget.dataset)
         const miniList=['projectIntroduction','recommendedPlan','customStars']//小程序二级页面
-        if(miniList.includes(e.currentTarget.dataset.jump)){
-            const url=`../${e.currentTarget.dataset.jump}/${e.currentTarget.dataset.jump}`
-            wx.navigateTo({
-                url
-            })
-            return ;
+        const jumpUrl=e.currentTarget.dataset.jump
+        let flag=false
+        for(let i=0;i<miniList.length;i++){
+            let item =miniList[i]
+            if(jumpUrl&&jumpUrl.indexOf(item)>-1){
+                const url=`../${item}/${item}`
+                wx.navigateTo({
+                    url
+                })
+                flag = true
+                break
+            }
+        }
+        if(flag){
+            return
         }
         if(e.currentTarget.dataset.jump){
             let param = {
@@ -790,6 +799,56 @@ Page({
                             watchModule:data.watchModule.contentList&&data.watchModule.contentList[0]?data.watchModule.contentList[0]:{},
                             matchModule:data.matchModule.contentList&&data.matchModule.contentList[0]?data.matchModule.contentList[0]:{},
                         })
+                        if(!that.data.parameterModule.jumpUrl){
+                            wx.request({
+                                url:util.newUrl()+'elab-marketing-authentication/house/selectHouseParameter',
+                                method:'POST',
+                                data:{id:config.houseId},
+                                success:function(res){
+                                    if(res.statusCode==200){
+                                        if(res.data.single&&(res.data.single.catalogs||res.data.single.houseImage)){
+                                            that.setData({
+                                                ['parameterModule.jumpUrl']:config.parameterUrl+config.houseId
+                                            })
+                                            // that.data.parameterModule.jumpUrl = config.parameterUrl+config.houseId;
+                                            console.log(that.data.parameterModule.jumpUrl,config.parameterUrl,config.houseId)
+                                        }
+                                    }
+
+                                }
+                            })
+                        }
+                        if(!that.data.watchModule.jumpUrl){
+                            let showTdviewFlag = 0
+                            wx.request({
+                                url:util.newUrl()+'elab-marketing-authentication/layoutVr/house',
+                                method:'POST',
+                                data:{houseId:config.houseId,pageNo:1,pageSize:10},
+                                success:function(res){
+                                    if(res.statusCode==200&&res.data.success){
+                                        if(res.data.list&&res.data.list.length>0){
+                                            res.data.list.forEach((item)=>{
+                                                if(item.catalog==2){
+                                                    showTdviewFlag++
+                                                }
+                                            })
+                                            if(showTdviewFlag>1){
+                                                that.setData({
+                                                    ['watchModule.jumpUrl']:config.tdviewUrl+config.houseId
+                                                })
+                                            }
+                                            if(showTdviewFlag==1){
+                                                that.setData({
+                                                    ['watchModule.jumpUrl']:res.data.list[0].url
+                                                })
+                                            }
+                                            // that.data.parameterModule.jumpUrl = config.parameterUrl+config.houseId;
+                                            console.log(that.data.watchModule.jumpUrl,'watch')
+                                        }
+                                    }
+                                }
+                            })
+                        }
                     }
                     console.log(that.data.initData,'oooooooooooooo')
                 }

@@ -1,7 +1,13 @@
 <scroll-view>
-    <c-img src="{{serverUrl+'营销落地页内容.png'}}"  c-style="width: 100%;height: 3668rpx;"></c-img>
+    <c-img src="{{serverUrl+'二级页面_产品介绍页.png'}}"  c-style="width: 100%;height: 912rpx;"></c-img>
+    <c-img src="{{serverUrl+'二级页面_产品介绍页2.png'}}"  c-style="width: 100%;height: 793rpx;"></c-img>
+    <c-img src="{{serverUrl+'二级页面_产品介绍页3.png'}}"  c-style="width: 100%;height: 1230rpx;"></c-img>
+    <c-img src="{{serverUrl+'二级页面_产品介绍页4.png'}}"  c-style="width: 100%;height: 748rpx;"></c-img>
+    <c-img src="{{serverUrl+'二级页面_产品介绍页5.png'}}"  c-style="width: 100%;height: 1765rpx;"></c-img>
     <c-img src="{{serverUrl+'底部.png'}}"  c-style="width: 100%;height: 255rpx;"></c-img>
-    <view class="entry" bindtap="toDiy">
-        DIY定制我的house
-    </view>
+
 </scroll-view>
+<view class="entry" bindtap="toDiy">
+    DIY定制我的house
+</view>
+<view class="bg"  style="{{'background:'+mask2}}"></view>

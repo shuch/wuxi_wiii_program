@@ -1,4 +1,4 @@
-<scroll-view>
+<scroll-view >
     <c-img src="{{layout.senceImage}}" c-style="width: 100%;height: 380rpx;"></c-img>
     <view class="taplist">
         <view class="tapItem {{0==current?'current':''}}"
@@ -38,9 +38,10 @@
         </view>
         <text class="warm">定制服务，elab拥有最终完整解释权</text>
     </view>
-    <view class="entry">
-        <view class="save_icon" bindtap="toIM" style="{{'background:#606060 url('+serverUrl+'客服.png) no-repeat center center/56rpx 56rpx;'}}"></view>
-        <view class="save" bindtap="save">存入方案</view>
-        <view class="toDiy" wx:if="{{!hasPlan}}"  bindtap="toDiy">我也要DIY</view>
-    </view>
 </scroll-view>
+
+<view class="entry">
+    <view class="save_icon" bindtap="toIM" style="{{'background:#606060 url('+serverUrl+'客服.png) no-repeat center center/56rpx 56rpx;'}}"></view>
+    <view class="save" bindtap="save">存入方案</view>
+    <view class="toDiy" wx:if="{{!hasPlan}}"  bindtap="toDiy">我也要DIY</view>
+</view>

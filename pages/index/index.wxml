@@ -102,39 +102,39 @@
     <image src="{{rightButtonUrl}}" style="height:18rpx;width:11rpx;margin-right:20rpx;"></image>
 </view>
   <!--第一个banner-->
-  <view
-        data-jump="projectIntroduction"
-        data-clkId="clk_2cmina_5"
-        bindtap="goJump" class="operationModule">
-      <!-- <view class="banner1">
-          <image src="{{item.coverUrl}}" mode="aspectFill"></image>
-      </view> -->
-      <image class="banner1-image" src="https://dm.static.elab-plus.com/wuXiW3/index/banner_产品介绍.png" mode="widthFix"></image>
-      <view class="white-line">
-      </view>
-</view>
-  <view
-        data-jump="recommendedPlan"
-        data-clkId="clk_2cmina_5"
-        bindtap="goJump" class="operationModule">
-      <!-- <view class="banner1">
-          <image src="{{item.coverUrl}}" mode="aspectFill"></image>
-      </view> -->
-      <image class="banner1-image" src="https://dm.static.elab-plus.com/wuXiW3/index/设计师推荐.png" mode="widthFix"></image>
-      <view class="white-line">
-      </view>
-</view>
-  <view
-        data-jump="customStars"
-        data-clkId="clk_2cmina_5"
-        bindtap="goJump" class="operationModule">
-      <!-- <view class="banner1">
-          <image src="{{item.coverUrl}}" mode="aspectFill"></image>
-      </view> -->
-      <image class="banner1-image" src="https://dm.static.elab-plus.com/wuXiW3/index/排行榜.png" mode="widthFix"></image>
-      <view class="white-line">
-      </view>
-</view>
+  <!--<view-->
+        <!--data-jump="projectIntroduction"-->
+        <!--data-clkId="clk_2cmina_5"-->
+        <!--bindtap="goJump" class="operationModule">-->
+      <!--&lt;!&ndash; <view class="banner1">-->
+          <!--<image src="{{item.coverUrl}}" mode="aspectFill"></image>-->
+      <!--</view> &ndash;&gt;-->
+      <!--<image class="banner1-image" src="https://dm.static.elab-plus.com/wuXiW3/index/banner_产品介绍.png" mode="widthFix"></image>-->
+      <!--<view class="white-line">-->
+      <!--</view>-->
+<!--</view>-->
+  <!--<view-->
+        <!--data-jump="recommendedPlan"-->
+        <!--data-clkId="clk_2cmina_5"-->
+        <!--bindtap="goJump" class="operationModule">-->
+      <!--&lt;!&ndash; <view class="banner1">-->
+          <!--<image src="{{item.coverUrl}}" mode="aspectFill"></image>-->
+      <!--</view> &ndash;&gt;-->
+      <!--<image class="banner1-image" src="https://dm.static.elab-plus.com/wuXiW3/index/设计师推荐.png" mode="widthFix"></image>-->
+      <!--<view class="white-line">-->
+      <!--</view>-->
+<!--</view>-->
+  <!--<view-->
+        <!--data-jump="customStars"-->
+        <!--data-clkId="clk_2cmina_5"-->
+        <!--bindtap="goJump" class="operationModule">-->
+      <!--&lt;!&ndash; <view class="banner1">-->
+          <!--<image src="{{item.coverUrl}}" mode="aspectFill"></image>-->
+      <!--</view> &ndash;&gt;-->
+      <!--<image class="banner1-image" src="https://dm.static.elab-plus.com/wuXiW3/index/排行榜.png" mode="widthFix"></image>-->
+      <!--<view class="white-line">-->
+      <!--</view>-->
+<!--</view>-->
   <view wx:key="{{index}}" wx:for="{{operationModule}}"
         data-title="{{item.title}}"
         data-item="{{item}}"

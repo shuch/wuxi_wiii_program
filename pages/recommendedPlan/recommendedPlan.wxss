@@ -128,6 +128,9 @@
     width: 100%;
     height: 100rpx;
     display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
 }
 .save_icon{
     width: 12%;
@@ -153,4 +156,7 @@
     text-align: center;
     line-height: 100rpx;
     background-image: linear-gradient(-41deg, #EDD48D 14%, #B78D4C 100%);
+}
+scroll-view{
+    padding-bottom:100rpx;
 }
