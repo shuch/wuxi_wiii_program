@@ -40,6 +40,7 @@ Page({
     const fromShare = !!shareId && parseInt(shareId) !== customerId;
     this.setData({
       openid,
+      shareId,
       customerId,
       houseId,
       appId,
@@ -48,6 +49,16 @@ Page({
       hasPay,
       nickname,
       headImage,
+    });
+    this.addShareRecord();
+  },
+
+  addShareRecord() {
+    const { houseId, customerId, shareId } = this.data;
+    endpoint('addShare', {
+      houseId,
+      masterCustomerId: shareId,
+      guestCustomerId: customerId,
     });
   },
 
