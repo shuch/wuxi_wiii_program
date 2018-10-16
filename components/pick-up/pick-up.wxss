@@ -25,7 +25,7 @@
 
 .pick-item {
   margin-left: 40rpx;
-  box-shadow: 0 1rpx 1rpx 1rpx rgba(0,0,0, .2);
+  box-shadow: 0rpx 2rpx 2rpx 2rpx rgba(213,213,213, .4)
 }
 
 
@@ -54,6 +54,7 @@
 
 .pick-item--selected .pick-item-desc {
   color: #D2BE73;
+  font-weight: 600;
 }
 
 .pick-item-img {
@@ -97,6 +98,7 @@
 
 .btn-sure {
   background-image: linear-gradient(-41deg, #EDD48D 14%, #B78D4C 100%);
+  font-weight: 600;
 }
 
 .menu-type {
@@ -128,4 +130,8 @@
   overflow:hidden;
   text-overflow:ellipsis;
   width:250rpx;
+  font-family: PingFangSC-Light;
+  font-size: 28rpx;
+  letter-spacing: 0;
+  text-align: center;
 }

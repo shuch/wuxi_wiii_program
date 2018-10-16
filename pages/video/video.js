@@ -115,7 +115,7 @@ Page({
 			this.setData({
 				endTime:app.globalData.endTime
 			})
-		},2000)
+		},5000)
 	},
     toCoupon(){
         wx.navigateTo({ url: '/pages/customPay/customPay' });

@@ -1,5 +1,5 @@
 <view class="container">
-  	<c-img cclass="section-img" src="{{cdn}}/banner_star.png" mode="scaleToFill" />
+  	<c-img cclass="section-img" src="https://dm.static.elab-plus.com/wuXiW3/index/明星户型排行榜_详情页.png" mode="scaleToFill" />
   	<view class="section-rank">
 	  	<view
 	  		class="custom-item"

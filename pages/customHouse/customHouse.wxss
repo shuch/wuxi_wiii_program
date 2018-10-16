@@ -2,6 +2,7 @@
   background: #F6F6F6;
   overflow: hidden;
   font-weight: 200;
+  padding-bottom: 100rpx;
 }
 
 .title {
@@ -271,6 +272,7 @@
   top: 60rpx;
   right: 30rpx;
   width: 72rpx;
+  z-index: 1;
   height: 72rpx;
   font-size: 24rpx;
   text-align: center;

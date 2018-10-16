@@ -109,6 +109,7 @@
 									wx:key="special"
 								>{{special}}</view>
 							</view>
+							<image src="https://dm.static.elab-plus.com/wuXiW3/index/shadow.png" class="shadow"></image>
 							<view
 								class="custom-like"
 								data-id="{{item.id}}"

@@ -6,6 +6,7 @@ export const houseTypesMapper = (item) => {
 		houseId,
 		layoutId,
         thumbnail,
+        chooseImage,
 		senceImage,
 		area,
 		type,
@@ -20,6 +21,7 @@ export const houseTypesMapper = (item) => {
 		name,
 		height,
 		layoutId,
+        chooseImage,
 		thumb: senceImage,
 		thumbSm: thumbnail,
 	};

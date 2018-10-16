@@ -4,7 +4,7 @@
 
 .section-img {
 	width: 100%;
-	height: 200rpx;
+	height: 150rpx;
 	vertical-align: top;
 }
 

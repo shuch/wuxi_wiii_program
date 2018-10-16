@@ -373,8 +373,8 @@ Page({
     const { canvasHeight, canvasWidth, lineWidth, lineColor } = this.data;
     self.lineWidth = lineWidth;
     self.lineColor = lineColor;
-    self.doodleStartX = e.touches[0].x - canvasHeight / 2;
-    self.doodleStartY = e.touches[0].y - canvasWidth / 2;
+    self.doodleStartX = e.touches[0].x - canvasWidth / 2;
+    self.doodleStartY = e.touches[0].y - canvasHeight / 2;
   },
 
   drawMove(e) {

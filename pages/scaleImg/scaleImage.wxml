@@ -30,10 +30,7 @@
 </swiper>
 
 	<view class="coupon" bindtap="toCoupon">
-		<image src="https://dm.static.elab-plus.com/wuXiW3/index/付款入口_深底.png" style="width: 100%;height: 100%;"></image>
-		<view class="time">
-			<component-count-down house-id="{{houseId}}" grey="grey" my-class="endTime"/>
-		</view>
+		DIY我的专属house
 	</view>
 </view>
 <view class="swip-tab">

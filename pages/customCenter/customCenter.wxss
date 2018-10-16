@@ -17,6 +17,7 @@
 	padding-bottom: 20rpx; 
 	color: #FFD6BA;
 	box-shadow: 0 0 12px 4px rgba(0,0,0,.04);
+	border-radius: 10rpx;
 }
 
 .card {
@@ -25,7 +26,7 @@
 	width: 606rpx;
 	margin: 0 32rpx;
 	padding-bottom: 20rpx;
-	background: url('http://oh1n1nfk0.bkt.clouddn.com/custom_card_bg.png') top/606rpx 250rpx no-repeat;
+	background: url('http://oh1n1nfk0.bkt.clouddn.com/custom_card_bg.png') top/606rpx 260rpx no-repeat;
 }
 
 .desc{
@@ -157,6 +158,7 @@
 .btn-share {
 	background:linear-gradient(46deg,rgba(250,227,160,1) 0%,rgba(190,152,93,1) 100%) rgba(255,214,186,0.3);
 	/*background-image: linear-gradient(47deg, #FAE3A0 0%, #BE985D 100%);*/
+	box-shadow: 0 2px 3px 0 #FAE3A0;
 }
 
 .date {
@@ -305,6 +307,8 @@
 	display: flex;
 	padding-left: 10rpx;
 	background: #fff;
+	background-image: linear-gradient(-180deg, rgba(255,255,255,0.00) 0%, #FFFFFF 62%);
+	z-index: 1;
 }
 
 .custom-feature {
@@ -389,12 +393,14 @@
 	overflow-x: scroll;
 	margin-top: 50rpx;
 	margin-bottom: 36rpx;
+	padding-bottom:2px;
 }
 
 .rank-star-box {
 	background: #FFFFFF;
 	margin-right: 40rpx;
 	box-shadow: 1px 1px 1px 1px rgba(213,213,213,0.47);
+	position: relative;
 }
 
 .rank-star-album {
@@ -757,6 +763,9 @@
 	border-bottom:1px solid #ccc;
 	width: 100%;
 	overflow: hidden;
+	position: relative;
+	box-shadow: 0 0 12px 4px rgba(0,0,0,.04);
+	border-radius: 10rpx;
 }
 .touch-content {
 	width: 100%;
@@ -793,4 +802,11 @@
 	min-height: 400rpx;
 	padding: 10rpx 0;
 	overflow-y: scroll;
+}
+.shadow{
+	position: absolute;
+	width: 100%;
+	height: 84rpx;
+	bottom: -10rpx;
+	left: 0;
 }

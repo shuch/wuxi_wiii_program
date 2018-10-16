@@ -21,7 +21,8 @@ Page({
       currentType:{}
   },
     toCoupon(){
-        wx.navigateTo({ url: '/pages/customPay/customPay?fromEntry=1' });
+        const url = `/pages/customHouse/customHouse`
+        wx.navigateTo({ url });
     },
     likeAdd:function(e){
       let that = this;

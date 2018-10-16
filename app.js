@@ -423,7 +423,7 @@ App({
     isPhone:false,//是否手机授权过
     isUserInfo:false,//是否身份授权过
     houseTypeDetail:null,
-     endTime:'',
+    endTime:'',
     dataJson:"",  //视频通话监控日志记录字段
     pullLog:"",  //视频通话监控日志-拉流日志
     pushLog:"",  //视频通话监控日志-推流日志

@@ -501,6 +501,7 @@ Page({
         //   that.authorizeIndexPhone();
         // });
         that.authorizeIndexPhone();
+        that.getInitData();
     },
     onReady: function() {
         // console.log("-----++++-dfghkdsfhjsdklfjhk",this.data.homePapa)
@@ -554,7 +555,6 @@ Page({
     onShow: function(e) {
         wx.setStorageSync('loadTime',new Date().getTime())
         var that = this;
-        that.getInitData();
         console.log("***onShow***", this.data.name);
         wx.showShareMenu({
             withShareTicket: true
