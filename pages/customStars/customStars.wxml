@@ -13,7 +13,7 @@
 	  				<c-img
 	  					cclass="custom-item-img"
 	  					src="{{item.src}}"
-	  					mode="scaleToFill"
+	  					mode="aspectFill"
 	  					data-id="{{item.id}}"
 	  					bind:tap="onRouteDetail"
 	  				/>
