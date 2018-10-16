@@ -17,7 +17,7 @@ Page({
   },
 
   async onLoad(parmas) {
-    const { shareId } = parmas;
+    const { shareId, fromEntry = '' } = parmas;
     const appData = await login();
     const {
       houseId,
@@ -36,7 +36,6 @@ Page({
       },
     } = state;
     const hasPay = paymentStatus === 2;
-    // const timelineSrc = `${cdn}/space_type.png`;
     const fromShare = !!shareId && parseInt(shareId) !== customerId;
     this.setData({
       openid,
@@ -49,8 +48,17 @@ Page({
       hasPay,
       nickname,
       headImage,
+      fromEntry,
     });
     this.addShareRecord();
+    this.redirect();
+  },
+
+  redirect() {
+    const { fromEntry, hasPay } = this.data;
+    if (fromEntry && hasPay) {
+      wx.redirectTo({ url: '/pages/customCenter/customCenter' });
+    }
   },
 
   addShareRecord() {

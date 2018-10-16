@@ -24,10 +24,12 @@ Page({
     commentExpand: false,
     canvasHeight: 450,
     canvasWidth: 375,
+    lineWidth: 2,
+    lineColor: '#FFA546',
   },
 
   async onLoad(parmas) {
-    console.log(parmas);
+    console.log('onLoad', parmas);
     const appData = await login();
     const { id: customerId, houseId } = appData;
     const { update, create, id, fromCenter } = parmas;
@@ -64,6 +66,7 @@ Page({
       const res = await endpoint('customizedDetail', customizedId);
       const customDetail = customDetailMapper(res.single);
       const selectedType = {
+        // id: 
         layoutId: customDetail.layoutId,
         name: customDetail.name,
       };
@@ -82,7 +85,6 @@ Page({
   showGuide() {
     const popup = wx.getStorageSync(CUSTOM_POP_UP);
     const { customizedStatus } = this.data;
-    console.log('customizedStatus', customizedStatus);
     return !popup && !customizedStatus;
   },
 
@@ -109,7 +111,7 @@ Page({
     if (this.isOperating()) {
       return;
     }
-    this.setData({ houseTypeUpdate: true });
+    this.setData({ houseTypeUpdate: true, preHouseType: this.data.selectedType });
   },
 
   async onStep() {
@@ -119,7 +121,6 @@ Page({
       houseId: this.data.houseId,
       customerId: this.data.customerId,
     });
-    console.log('res', res);
     this.setData({
       customStep: 2,
       customDetail: res.single,
@@ -131,7 +132,6 @@ Page({
   onKnown() {
     wx.setStorageSync(CUSTOM_POP_UP, 1);
     this.setData({ popup: false });
-    // req save customStep
   },
 
   onCoverTip(e) {
@@ -153,6 +153,8 @@ Page({
         customizedLayoutId: this.data.selectedType.layoutId,
       });
       Object.assign(data, { customDetail: res.single, customizedProgrammeId: res.single.id });
+    } else {
+      Object.assign(data, { selectedType: this.data.preHouseType });
     }
     this.setData(data);
   },
@@ -240,7 +242,7 @@ Page({
         customerId,
         customizedLayoutId: this.data.selectedType.layoutId,
       });
-      Object.assign(data, { customDetail: res.single });
+      Object.assign(data, { customDetail: res.single, customizedProgrammeId: res.single.id });
     }
     this.setData(data);
   },
@@ -311,7 +313,7 @@ Page({
       id: customerProgrammeId,
       customizedStatus: 1,
     });
-
+    console.log('onSaveCustom', res, customerSupplementStatus);
     if (res.success) {
       if (customerSupplementStatus) {
         wx.navigateTo({ url: '/pages/customCenter/customCenter' });
@@ -341,7 +343,6 @@ Page({
     // 绘制图片到画布
     const { customDetail: { imageUrl }, canvasHeight, canvasWidth } = this.data;
     const res = await getImageInfo(imageUrl);
-    console.log('res', res);
     const { height, width, path } = res;
     let initRatio = height / canvasHeight;
     if (initRatio < width / canvasHeight) {
@@ -369,16 +370,9 @@ Page({
 
   drawStart(e) {
     var self = this;
-    const { canvasHeight, canvasWidth } = this.data;
-    self.lineWidth = self.lineWidth ? self.lineWidth:5
-    self.lineColor = self.lineColor ? self.lineColor : '#000000'
-    // 开始画图，隐藏所有的操作栏
-    // this.setData({
-    //   isChooseWidth: false,
-    //   isChooseColor: false,
-    //   // isChooseBack: false,
-    //   canvasHeight: self.device.windowHeight - 160 * self.deviceRatio
-    // }) 
+    const { canvasHeight, canvasWidth, lineWidth, lineColor } = this.data;
+    self.lineWidth = lineWidth;
+    self.lineColor = lineColor;
     self.doodleStartX = e.touches[0].x - canvasHeight / 2;
     self.doodleStartY = e.touches[0].y - canvasWidth / 2;
   },

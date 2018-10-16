@@ -57,7 +57,6 @@ Page({
     });
     let rankList = rankRes.pageModel ? rankRes.pageModel.resultSet : [];
     rankList = rankList.map(rankMapper);
-    console.log('rankList', rankList);
     const customList = res && res.list ? res.list.map(customizedMapper) : [];
     const showCustomPop = !customizedStatus && hasPay;
     this.setData({
@@ -218,13 +217,12 @@ Page({
       wx.showToast({
         title: '退款成功',
         icon: 'success',
-        duration: 2000,
       });
       this.setData({ hasPay: false });
     } else {
       wx.showToast({
         title: '退款失败',
-        duration: 2000,
+        icon: 'success',
       });
     }
     this.setData({ showRefund: false });
@@ -264,20 +262,18 @@ Page({
        package: payStr,
        signType,
        paySign,
-       success: () => {
+       success: async () => {
           wx.showToast({
-            title: '成功',
+            title: '支付成功',
             icon: 'success',
-            duration: 2000
           });
-          this.changePay();
+          await this.changePay();
           this.setData({ hasPay: true });
        },
        fail: () => {
           wx.showToast({
             title: '支付失败',
-            icon: 'fail',
-            duration: 2000
+            icon: 'none',
           });
        }
     });
@@ -458,9 +454,40 @@ Page({
    },
 
   onDelete(e) {
+    const self = this;
+    wx.showModal({
+      title: '是否删除方案',
+      content: '友情提示:删除后该方案的信息(包括排名,点赞数将不被保留)',
+      cancelText: '否',
+      cancelColor: '#9B9B9B',
+      confirmText: '是',
+      confirmColor: '#9B9B9B',
+      success(res) {
+        // console.log(res);
+        if (res.cancel) {
+          self.restore(e);
+          return;
+        }
+        self.didDelete(e);
+      },
+    });
+  },
+
+  restore(e) {
+    const id = e.currentTarget.dataset.id;
+    const { customList } = this.data;
+    customList.forEach((item) => {
+      if (item.id === parseInt(id)) {
+        item.isTouchMove = false;
+      }
+    });
+    this.setData({ customList });
+  },
+
+  didDelete(e) {
     const { houseId, customList } = this.data;
     const id = e.currentTarget.dataset.id;
-    const res = endpoint('delCustom', {
+    endpoint('delCustom', {
       houseId,
       id,
       status: -1,

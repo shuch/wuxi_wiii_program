@@ -2,8 +2,6 @@
   background: #F6F6F6;
   overflow: hidden;
   font-weight: 200;
-  padding-bottom: 100rpx;
-  /*padding-bottom: 100rpx;*/
 }
 
 .title {

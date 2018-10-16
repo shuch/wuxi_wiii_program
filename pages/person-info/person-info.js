@@ -45,6 +45,11 @@ Page({
       houseId,
       hasPay,
     });
+    // this.redirect();
+  },
+
+  redirect() {
+    const { customerSupplementStatus, hasPay } = this.data;
     if (customerSupplementStatus === 1) {
       if (hasPay) {
         wx.navigateTo({ url: '/pages/customCenter/customCenter' });
@@ -130,7 +135,8 @@ Page({
       return;
     }
     console.log('name', this.isRepeatName(name));
-    if (this.isRepeatName(name)) {
+    const isExist = await this.isRepeatName(name);
+    if (isExist) {
       return;
     }
     if (this.isExceedName(name)) {

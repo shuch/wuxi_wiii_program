@@ -97,7 +97,7 @@
 							<image
 								class="custom-item-img"
 								src="{{item.senceImage}}"
-								mode="scaleToFill"
+								mode="aspectFill"
 								data-id="{{item.id}}"
 								bind:tap="onRouteDetail"
 							/>
@@ -211,20 +211,22 @@
 		<view class="popup">
 	      <view class="popup-progress">
 			<view class="h3 margin-7">我的定制服务进展</view>
-			<view
-				class="pop-step {{index === progress.length - 1 ? 'progress-end' : ''}}"
-				wx:for="{{progress}}"
-				wx:key="item"
-				wx:for-index="index"
-			>
-			  <view class="step-date">
-			  	{{item.date}} <view class="time">{{item.time}}</view>
-			  </view>
-			  <image wx:if="{{index !== progress.length - 1}}" class="progress-img" src="{{cdn}}/progress.png" mode="scaleToFill"/>
-			  <image wx:else class="progress-img-end" src="{{cdn}}/progress_end.png" mode="scaleToFill" />
-			  <view class="step-desc {{index === progress.length - 1 ? 'step-desc-end' : ''}}">
-			    {{item.processName}}
-			  </view>
+			<view class="progress-wrap">
+				<view
+					class="pop-step {{index === progress.length - 1 ? 'progress-end' : ''}}"
+					wx:for="{{progress}}"
+					wx:key="item"
+					wx:for-index="index"
+				>
+				  <view class="step-date">
+				  	{{item.date}} <view class="time">{{item.time}}</view>
+				  </view>
+				  <image wx:if="{{index !== progress.length - 1}}" class="progress-img" src="{{cdn}}/progress.png" mode="scaleToFill"/>
+				  <image wx:else class="progress-img-end" src="{{cdn}}/progress_end.png" mode="scaleToFill" />
+				  <view class="step-desc {{index === progress.length - 1 ? 'step-desc-end' : ''}}">
+				    {{item.processName}}
+				  </view>
+				</view>
 			</view>
 			<view class="pop-bottom">
 				<view class="pop-btn pop-btn-progress" bind:tap="onRefund">申请退款</view>

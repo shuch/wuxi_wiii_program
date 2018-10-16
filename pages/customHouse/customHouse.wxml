@@ -1,5 +1,5 @@
 <view class="container">
-  <view wx:if="{{customStep === 1}}">
+  <view wx:if="{{customStep === 1}}" class="customList">
     <view class="title">请选择一种户型</view>
     <view
       class="house-card"
