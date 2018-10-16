@@ -6,6 +6,7 @@
   "backgroundTextStyle": "light",
   "usingComponents": {
     "component-pick-up": "../../components/pick-up/pick-up",
-    "component-preview-image": "../../components/preview-image/preview-image"
+    "component-preview-image": "../../components/preview-image/preview-image",
+    "c-img": "../../components/img/img"
   }
 }

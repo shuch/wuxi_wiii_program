@@ -12,27 +12,27 @@
         <view class="house-info">
           <view class="info-type">
             <view class="type">{{item.name}}</view>
-            <text class="area">{{item.area}}</text>㎡
+            约<text class="area">{{item.area}}</text>㎡
           </view>
-          <image class="room-thumb" src="{{item.thumb}}" mode="scaleToFill"></image>
+          <c-img cclass="room-thumb" src="{{item.thumb}}" mode="scaleToFill"></c-img>
           <view class="info-level">平层/超高单层约{{item.height}}m</view>
         </view>
-        <image class="house-thumb" src="{{item.thumbSm}}" mode="aspectFit"/>
+        <c-img cclass="house-thumb" src="{{item.thumbSm}}" mode="aspectFit"/>
       </view>
       <view class="select-area">
-        <image
+        <c-img
           wx:if="{{selectedType && selectedType.id === item.id}}"
-          class="select-icon" src="{{cdn}}/select.png" mode="scaleToFill"
+          cclass="select-icon" src="{{cdn}}/select.png" mode="scaleToFill"
         />
-        <image
+        <c-img
           wx:else
-          class="select-icon" src="{{cdn}}/un_select.png" mode="scaleToFill"
+          cclass="select-icon" src="{{cdn}}/un_select.png" mode="scaleToFill"
         />
       </view>
     </view>
 
     <view class="bottom operate-step1 {{!selectedType ? 'operate-disable' : ''}}">
-      <view class="operate-state">已选择：{{selectedType.name}}</view>
+      <view class="operate-state">已选择:{{selectedType.name}}</view>
       <view class="operate-step" bind:tap="onStep">下一步</view>
     </view>
 
@@ -41,21 +41,21 @@
         <view class="h3 margin-4">只需<text class="focus">3</text>步</view>
         <view class="h4 margin-4">轻松定制您的<text class="focus">心仪户型</text></view>
         <view class="pop-step">
-          <image class="step-indicate" src="{{cdn}}/step_indicate.png"/>
+          <c-img cclass="step-indicate" src="{{cdn}}/step_indicate.png"/>
           <view class="step-desc">
             <view class="step-title">STEP <text class="step-seq focus">1</text></view>
             <view class="step-description">选择户型</view>
           </view>
         </view>
         <view class="pop-step">
-          <image class="step-indicate" src="{{cdn}}/step_indicate.png"/>
+          <c-img cclass="step-indicate" src="{{cdn}}/step_indicate.png"/>
           <view class="step-desc">
             <view class="step-title">STEP <text class="step-seq focus">2</text></view>
             <view class="step-description">选择个性化空间</view>
           </view>
         </view>
         <view class="pop-step">
-          <image class="step-indicate step-end" src="{{cdn}}/step_end.png"/>
+          <c-img cclass="step-indicate step-end" src="{{cdn}}/step_end.png"/>
           <view class="step-desc">
             <view class="step-title">STEP <text class="step-seq focus">3</text></view>
             <view class="step-description">生成专属方案</view>
@@ -75,9 +75,9 @@
       <canvas canvas-id="draw" class="draw" style="width: 750rpx;height:900rpx"  disable-scroll="true" bindtouchstart="drawStart" bindtouchmove="drawMove"></canvas>
     </view>
     <view class="huxing" wx:else>
-      <view class="lt-corner corner">
-        <image class="north" src="{{cdn}}/north.png" mode="scaleToFill"></image>N
-      </view>
+      <!--<view class="lt-corner corner">-->
+        <!--<c-img cclass="north" src="{{cdn}}/north.png" mode="scaleToFill"></c-img>N-->
+      <!--</view>-->
       <view class="rt-corner corner" bind:tap="onDraw">
         涂鸦
       </view>
@@ -89,7 +89,7 @@
         data-space="{{customDetail.spaces[0]}}"
       >
         <text class="space-name">{{customDetail.spaces[0].name}}</text>
-        <image class="space-plus" src="{{cdn}}/update_plus.png" mode="scaleToFill" />
+        <c-img cclass="space-plus" src="{{cdn}}/update_plus.png" mode="scaleToFill" />
       </view>
       <view
         class="space-indicator space-left-bottom"
@@ -97,14 +97,14 @@
         data-space="{{customDetail.spaces[1]}}"
       >
         <text class="space-name">{{customDetail.spaces[1].name}}</text>
-        <image class="space-plus" src="{{cdn}}/update_plus.png" mode="scaleToFill" />
+        <c-img cclass="space-plus" src="{{cdn}}/update_plus.png" mode="scaleToFill" />
       </view>
       <view class="rb-corner corner" bind:tap="onComment" wx:if="{{!drawMode}}">
         <block wx:if="{{commentMode}}">
-          <image class="comment-btn" src="{{cdn}}/exit_button.png" mode="scaleToFill" />退出评论
+          <c-img cclass="comment-btn" src="{{cdn}}/exit_button.png" mode="scaleToFill" />退出评论
         </block>
         <block wx:else>
-          <image class="comment-btn" src="{{cdn}}/comment_button.png" mode="scaleToFill" />添加评论
+          <c-img cclass="comment-btn" src="{{cdn}}/comment_button.png" mode="scaleToFill" />添加批注
         </block>
       </view>
       <view class="comment-area {{commentExpand ? '' : 'comment-unfold'}}" wx:if="{{commentList.length}}">
@@ -123,10 +123,10 @@
             wx:key="item"
             data-id="{{item.id}}"
             data-index="{{idx}}"
-            bind:tap="delComment"
+
           >
             {{item.commentText}}
-            <image wx:if="{{commentMode}}" class="icon-close" src="{{cdn}}/close.png" mode="scaleToFill"></image>
+            <image data-id="{{item.id}}" data-index="{{idx}}" bind:tap="delComment" wx:if="{{commentMode}}" class="icon-close" src="{{cdn}}/close.png" mode="scaleToFill"></image>
           </view>
         </view>
       </view>
@@ -135,7 +135,7 @@
     <!-- comment -->
     <view class="bottom operate-comment" wx:if="{{commentMode}}">
       <view class="input-box">
-        <image class="input-icon" src="{{cdn}}/comment_in_icon.png" mode="scaleToFill"></image>
+        <c-img cclass="input-icon" src="{{cdn}}/comment_in_icon.png" mode="scaleToFill"></c-img>
         <input class="input" bindinput="bindKeyInput" value="{{inputComment}}"/>
       </view>
       <view class="btn-send" bind:tap="sendComment">发送</view>

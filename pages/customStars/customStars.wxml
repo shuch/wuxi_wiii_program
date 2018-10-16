@@ -1,5 +1,5 @@
 <view class="container">
-  	<image class="section-img" src="{{cdn}}/banner_star.png" mode="scaleToFill" />
+  	<c-img cclass="section-img" src="{{cdn}}/banner_star.png" mode="scaleToFill" />
   	<view class="section-rank">
 	  	<view
 	  		class="custom-item"
@@ -10,8 +10,8 @@
 	  	>
 	  		<view class="custom-card">
 	  			<view class="custom-card-box">
-	  				<image
-	  					class="custom-item-img"
+	  				<c-img
+	  					cclass="custom-item-img"
 	  					src="{{item.src}}"
 	  					mode="scaleToFill"
 	  					data-id="{{item.id}}"
@@ -30,13 +30,13 @@
 	  					data-id="{{item.id}}"
 						bind:tap="onLikeStar"
 					>
-	  					<image wx:if="{{item.isLike}}" class="icon-like" src="{{cdn}}/like.png" mode="scaleToFill" />
-	  					<image wx:else class="icon-like" src="{{cdn}}/un_like.png" mode="scaleToFill" />
+	  					<c-img wx:if="{{item.isLike}}" cclass="icon-like" src="{{cdn}}/like.png" mode="scaleToFill" />
+	  					<c-img wx:else cclass="icon-like" src="{{cdn}}/un_like.png" mode="scaleToFill" />
 	  					{{item.like}}
 	  				</view>
 	  				<view class="custom-tag custom-tag-{{index+1}}">
 	  					TOP {{index + 1}}
-	  					<image class="icon-hot" src="{{cdn}}/hot_icon.png" mode="scaleToFill" />
+	  					<c-img cclass="icon-hot" src="{{cdn}}/hot_icon.png" mode="scaleToFill" />
 	  				</view>
 	  			</view>
 	  		</view>
@@ -49,14 +49,14 @@
 	<view class="section-card">
 		<view class="rank-star-box" wx:for="{{rankList}}" wx:key="{{item.id}}" wx:for-index="index" wx:if="{{index > 2}}">
 			<view class="rank-star-album">
-				<image class="rank-star-img" src="{{item.src}}" mode="scaleToFill"/>
+				<c-img cclass="rank-star-img" src="{{item.src}}" mode="scaleToFill"/>
 				<view
 					class="custom-like"
 					data-id="{{item.id}}"
 					bind:tap="onLikeStar"
 				>
-					<image wx:if="{{item.isLike}}" class="icon-like" src="{{cdn}}/like.png" mode="scaleToFill" />
-					<image wx:else class="icon-like" src="{{cdn}}/un_like.png" mode="scaleToFill" />
+					<c-img wx:if="{{item.isLike}}" cclass="icon-like" src="{{cdn}}/like.png" mode="scaleToFill" />
+					<c-img wx:else cclass="icon-like" src="{{cdn}}/un_like.png" mode="scaleToFill" />
 					{{item.like}}
 				</view>
 			</view>
@@ -69,15 +69,15 @@
 
 	<view class="featrue-list">
 		<view class="feature">
-			<image class="icon-privilege" src="{{cdn}}/icon_design.png" mode="scaleToFill"/>
+			<c-img cclass="icon-privilege" src="{{cdn}}/icon_design.png" mode="scaleToFill"/>
 			定制特权
 		</view>
 		<view class="feature">
-			<image class="icon-privilege" src="{{cdn}}/icon_refund.png" mode="scaleToFill"/>
+			<c-img cclass="icon-privilege" src="{{cdn}}/icon_refund.png" mode="scaleToFill"/>
 			退款特权
 		</view>
 		<view class="feature">
-			<image class="icon-privilege" src="{{cdn}}/icon_chosen.png" mode="scaleToFill"/>
+			<c-img cclass="icon-privilege" src="{{cdn}}/icon_chosen.png" mode="scaleToFill"/>
 			入选特权
 		</view>
 	</view>

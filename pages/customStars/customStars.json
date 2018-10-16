@@ -3,5 +3,8 @@
   "navigationBarBackgroundColor": "#fff",
   "navigationBarTextStyle": "black",
   "backgroundColor": "#eeeeee",
-  "backgroundTextStyle": "light"
+  "backgroundTextStyle": "light",
+  "usingComponents": {
+    "c-img": "../../components/img/img"
+  }
 }

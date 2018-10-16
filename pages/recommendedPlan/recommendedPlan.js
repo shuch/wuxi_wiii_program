@@ -16,6 +16,7 @@ Page({
         layout:{},
         programme:{},
         designer:{},
+        imgUrlPram:[]
     },
     onShow:async function(e){
         wx.setNavigationBarTitle({
@@ -69,6 +70,12 @@ Page({
         if(data.success){
             wx.navigateTo({ url: '/pages/customPay/customPay' });
         }
+    },
+    imgOnload(e){
+        console.log(e.detail);
+        let imgUrlPram =this.data.imgUrlPram;
+        imgUrlPram[e.detail.index]=710/e.detail.width*e.detail.height;
+        this.setData({imgUrlPram})
     },
     toDiy(){
         const url = `/pages/customHouse/customHouse`

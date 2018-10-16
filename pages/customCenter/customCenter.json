@@ -9,6 +9,7 @@
     "component-pop-up": "../../components/pop-up/pop-up",
     "component-section": "../../components/section-list/section-list",
     "component-action-sheet": "../../components/action-sheet/action-sheet",
-    "component-count-down": "../../components/count-down/count-down"
+    "component-count-down": "../../components/count-down/count-down",
+    "c-img": "../../components/img/img"
   }
 }

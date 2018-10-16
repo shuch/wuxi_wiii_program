@@ -5,12 +5,12 @@ export const houseTypesMapper = (item) => {
 		id,
 		houseId,
 		layoutId,
-		imageUrl,
+        thumbnail,
 		senceImage,
 		area,
 		type,
 		name,
-		height = 0,
+        floor:height,
 	} = item;
 	const areaNum = parseInt(area);
 	return {
@@ -21,7 +21,7 @@ export const houseTypesMapper = (item) => {
 		height,
 		layoutId,
 		thumb: senceImage,
-		thumbSm: imageUrl,
+		thumbSm: thumbnail,
 	};
 }
 

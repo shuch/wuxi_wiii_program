@@ -1,5 +1,5 @@
 <scroll-view >
-    <c-img src="{{layout.senceImage}}" c-style="width: 100%;height: 380rpx;"></c-img>
+    <c-img src="{{layout.senceImage}}" c-style="width: 100%;height: 380rpx;" mode="aspectFill"></c-img>
     <view class="taplist">
         <view class="tapItem {{0==current?'current':''}}"
                data-num="0" bindtap="checkout">
@@ -12,13 +12,13 @@
             {{item.name}}
         </view>
     </view>
-    <swiper class="swiper" style="height:862rpx;width: 534rpx" current="{{current}}" bindchange="change">
+    <swiper class="swiper" style="height:{{imgUrlPram[current]||534}}rpx;width: 710rpx" current="{{current}}" bindchange="change">
         <swiper-item>
-            <c-img src="{{programme.imageUrl}}"  c-style="width: 100%;height: 100%;"></c-img>
+            <c-img src="{{programme.imageUrl}}"  c-style="width: 100%;height: 100%;" index="0" bindloaded="imgOnload"></c-img>
         </swiper-item>
         <block wx:for="{{programme.spaces}}" wx:key="index">
             <swiper-item>
-                <c-img src="{{item.imageUrl}}"  c-style="width: 100%;height: 100%;"></c-img>
+                <c-img src="{{item.imageUrl}}"  c-style="width: 100%;height: 100%;" index="{{index+1}}" bindloaded="imgOnload"></c-img>
             </swiper-item>
         </block>
     </swiper>
