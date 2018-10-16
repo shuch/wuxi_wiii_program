@@ -49,8 +49,7 @@
 		</cover-view>
 		<component-count-down house-id="{{houseId}}" grey="grey" my-class="endTime"/>
 		<cover-view class="coupon" bindtap="toCoupon">
-			<cover-image src="https://dm.static.elab-plus.com/wuXiW3/index/quan.png" style="position: absolute;left:0;top: 0;width:314rpx;height:114rpx;z-index:1;"></cover-image>
-			<cover-view class="times">{{endTime}}</cover-view>
+			限时抢定制入场券
 		</cover-view>
 	</video>
 </view>
