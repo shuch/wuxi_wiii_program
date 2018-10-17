@@ -11,7 +11,8 @@
 .custom-item {
 	color: #2E2E2E;
 	font-size: 32rpx;
-	margin-bottom: 20rpx;
+	margin-bottom: 30rpx;
+	position: relative;
 }
 
 .section-btn {
@@ -45,11 +46,13 @@
 
 .custom-feature-list {
 	position: absolute;
-	bottom: 0;
+	bottom: 16rpx;
 	width: 100%;
 	display: flex;
 	padding-left: 10rpx;
 	background: #fff;
+	position: relative;
+	z-index: 1;
 }
 
 .custom-feature {
@@ -114,7 +117,8 @@
 	color: #9B9B9B;
 	align-items: center;
 	padding-bottom: 14rpx;
-	margin-top: 20rpx;
+	/*margin-top: 20rpx;*/
+	position: relative;
 }
 
 .rank-star-avatar {
@@ -164,6 +168,7 @@
 	margin-bottom: 30rpx;
 	width: 330rpx;
 	box-shadow: 1px 1px 1px 1px rgba(213,213,213,0.47);
+	position: relative;
 }
 
 .rank-star-album {
@@ -181,7 +186,9 @@
 	font-size: 22rpx;
 	color: #9B9B9B;
 	align-items: center;
-	padding-bottom: 14rpx;
+	/*padding-bottom: 20rpx;*/
+	position: relative;
+	z-index: 1;
 }
 
 .rank-star-avatar {

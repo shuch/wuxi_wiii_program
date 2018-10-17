@@ -149,6 +149,45 @@
       <view class="white-line">
       </view>
 </view>
+<view class="container2" id="jingcaitupian">
+        <view class="left-box">
+            <view class="left-top" style="background-image: linear-gradient(-270deg, #3A4A80 0%, #6294A6 100%);">
+                <view class="text" style="line-height:60rpx">精彩图片</view>
+            </view>
+            <view class="left-down"
+                  data-type="1"
+                  data-despage="xiaoguotu"
+                  data-clkId="clk_2cmina_14"
+                  bindtap="goImgSwip">
+                <image src="{{effectModule.coverUrl||renderUrl}}"></image>
+                <view class="mask" style="background-image: linear-gradient(-180deg,{{mask1}} 0%, {{mask2}} 100%);"></view>
+                <view  class="text">{{effectModule.title||'效果图'}}</view>
+                <view class="liveCount">{{initData.effectModule.likeCount||'0'}}人点赞</view>
+            </view>
+        </view>
+        <view class="right-box">
+            <view class="right-top"
+                  data-despage="yangbanjiantu"
+                  data-type="2"
+                  data-clkId="clk_2cmina_13"
+                  bindtap="goImgSwip">
+                <image src="{{sampleModule.coverUrl||showroomsUrl}}"></image>
+                <view class="mask" style="background-image: linear-gradient(-180deg, {{mask1}} 0%,{{mask2}} 100%);"></view>
+                <view  class="text">{{sampleModule.title||'样板间图'}}</view>
+                <view class="liveCount">{{initData.sampleModule.likeCount||'0'}}人点赞</view>
+            </view>
+            <view class="right-down"
+                  data-type="3"
+                  data-despage="xiangmushijingtu"
+                  data-clkId="clk_2cmina_15"
+                  bindtap="goImgSwip">
+                <image src="{{realityModule.coverUrl||photographyUrl}}"></image>
+                <view class="mask" style="background-image: linear-gradient(-180deg, {{mask1}} 0%, {{mask2}} 100%);"></view>
+                <view  class="text">{{realityModule.title||'项目实景图'}}</view>
+                <view class="liveCount">{{initData.realityModule.likeCount||'0'}}人点赞</view>
+            </view>
+        </view>
+    </view>
 <!--项目特点-->
 <view class="container2" id="jingcaishijiao">
 <view class="left-box">
@@ -241,45 +280,6 @@
     </view>
 </view>
   <view class="white-line">
-  </view>
-<view class="container2" id="jingcaitupian">
-      <view class="left-box">
-          <view class="left-top" style="background-image: linear-gradient(-270deg, #3A4A80 0%, #6294A6 100%);">
-              <view class="text" style="line-height:60rpx">精彩图片</view>
-          </view>
-          <view class="left-down"
-                data-type="1"
-                data-despage="xiaoguotu"
-                data-clkId="clk_2cmina_14"
-                bindtap="goImgSwip">
-              <image src="{{effectModule.coverUrl||renderUrl}}"></image>
-              <view class="mask" style="background-image: linear-gradient(-180deg,{{mask1}} 0%, {{mask2}} 100%);"></view>
-              <view  class="text">{{effectModule.title||'效果图'}}</view>
-              <view class="liveCount">{{initData.effectModule.likeCount||'0'}}人点赞</view>
-          </view>
-      </view>
-      <view class="right-box">
-          <view class="right-top"
-                data-despage="yangbanjiantu"
-                data-type="2"
-                data-clkId="clk_2cmina_13"
-                bindtap="goImgSwip">
-              <image src="{{sampleModule.coverUrl||showroomsUrl}}"></image>
-              <view class="mask" style="background-image: linear-gradient(-180deg, {{mask1}} 0%,{{mask2}} 100%);"></view>
-              <view  class="text">{{sampleModule.title||'样板间图'}}</view>
-              <view class="liveCount">{{initData.sampleModule.likeCount||'0'}}人点赞</view>
-          </view>
-          <view class="right-down"
-                data-type="3"
-                data-despage="xiangmushijingtu"
-                data-clkId="clk_2cmina_15"
-                bindtap="goImgSwip">
-              <image src="{{realityModule.coverUrl||photographyUrl}}"></image>
-              <view class="mask" style="background-image: linear-gradient(-180deg, {{mask1}} 0%, {{mask2}} 100%);"></view>
-              <view  class="text">{{realityModule.title||'项目实景图'}}</view>
-              <view class="liveCount">{{initData.realityModule.likeCount||'0'}}人点赞</view>
-          </view>
-      </view>
   </view>
   <view class="banner1"
         wx:if="{{watchModule.jumpUrl}}"

@@ -6,5 +6,6 @@
   "backgroundTextStyle": "light",
   "usingComponents": {
     "c-img": "../../components/img/img"
-  }
+  },
+  "onReachBottomDistance":50
 }

@@ -1,4 +1,7 @@
 {
-  "component": true
+  "component": true,
+  "usingComponents": {
+    "c-img": "../components/img/img"
+  }
 }
 

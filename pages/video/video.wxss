@@ -238,7 +238,7 @@
   left:10rpx;
 }
 .coupon{
-  width: 280rpx;
+  width: 340rpx;
   line-height: 67rpx;
   position: absolute;
   top:calc(100vh - 300rpx);

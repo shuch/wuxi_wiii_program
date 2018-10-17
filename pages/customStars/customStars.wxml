@@ -13,7 +13,7 @@
 	  				<c-img
 	  					cclass="custom-item-img"
 	  					src="{{item.src}}"
-	  					mode="scaleToFill"
+	  					mode="aspectFill"
 	  					data-id="{{item.id}}"
 	  					bind:tap="onRouteDetail"
 	  				/>
@@ -44,12 +44,14 @@
 	  			<image class="rank-star-avatar" src="{{item.owner.avatar}}" mode="scaleToFill"/>
 	  			{{item.owner.name}}
 	  		</view>
-	  	</view>
+			<image style="position: absolute;left: 0;bottom: 0;height: 260rpx;width: 100%" src="https://dm.static.elab-plus.com/wuXiW3/index/icover.png"></image>
+		</view>
 	</view>
 	<view class="section-card">
 		<view class="rank-star-box" wx:for="{{rankList}}" wx:key="{{item.id}}" wx:for-index="index" wx:if="{{index > 2}}">
+			<image style="position: absolute;z-index:1;left: 0;bottom: 0;height: 120rpx;width: 100%" src="https://dm.static.elab-plus.com/wuXiW3/index/icover.png"></image>
 			<view class="rank-star-album">
-				<c-img cclass="rank-star-img" src="{{item.src}}" mode="scaleToFill"/>
+				<c-img cclass="rank-star-img" src="{{item.src}}" mode="aspectFill"/>
 				<view
 					class="custom-like"
 					data-id="{{item.id}}"

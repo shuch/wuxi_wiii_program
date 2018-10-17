@@ -419,6 +419,8 @@
 	color: #9B9B9B;
 	align-items: center;
 	padding-bottom: 14rpx;
+	position: relative;
+	z-index: 1;
 }
 
 .rank-star-avatar {

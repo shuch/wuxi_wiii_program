@@ -8,27 +8,43 @@ const cdn = 'http://oh1n1nfk0.bkt.clouddn.com';
 Page({
   data: {
     cdn,
+    pageNo: 1,
+    pageSize: 10,
+    rankList:[],
+    total:1
   },
 
   async onLoad(parmas) {
     console.log(parmas);
-    const appData = await login();
-    const { id: customerId, houseId } = appData;
-    const rankRes = await endpoint('rankList', {
-      houseId,
-      pageNo: 1,
-      pageSize: 10,
-      customerId,
-    });
-    let rankList = rankRes.pageModel ? rankRes.pageModel.resultSet : [];
-    rankList = rankList.map(rankMapper);
-    this.setData({
-      houseId,
-      customerId,
-      rankList,
-    });
+      this.getData()
   },
+    onReachBottom(){
+        this.getData()
+    },
+  async getData(){
+      if(this.data.total<this.data.pageNo){
+        return false
+      }
+      const appData = await login();
+      const { id: customerId, houseId } = appData;
+      const rankRes = await endpoint('rankList', {
+          houseId,
+          pageNo: this.data.pageNo,
+          pageSize: this.data.pageSize,
+          customerId,
+      });
+      let rankList = rankRes.pageModel ? rankRes.pageModel.resultSet : [];
+      rankList = rankList.map(rankMapper);
+      this.setData({
+          houseId,
+          customerId,
+          total:rankRes.pageModel.total,
+          rankList:this.data.rankList.concat(rankList),
+          pageNo: this.data.pageNo+1,
+          pageSize: this.data.pageSize,
+      });
 
+  },
   onRouteCustom() {
     wx.navigateTo({ url: '/pages/customHouse/customHouse' });
   },

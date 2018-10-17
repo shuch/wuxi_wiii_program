@@ -43,6 +43,7 @@
     width: 700rpx;
     margin: 70rpx auto;
     padding: 30rpx;
+    padding-top: 10rpx;
 }
 .icon{
     width: 40rpx;
@@ -74,9 +75,10 @@
     display: block;
     margin-left: 170rpx;
     font-family: PingFangSC-Light;
-    font-size: 32rpx;
+    font-size: 28rpx;
     color: #4D4D4D;
     letter-spacing: 2rpx;
+    line-height:28rpx;
 }
 .description{
     font-family: PingFangSC-Light;

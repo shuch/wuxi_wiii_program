@@ -24,7 +24,7 @@
     </swiper>
     <view class="manage">
         <view class="icon"></view>
-        <c-img src="{{designer.headImage}}" c-style="width: 120rpx;height: 120rpx;position: absolute;left: 40rpx;top:-40rpx" c-class="headc-img"></c-img>
+        <c-img src="{{designer.headImage}}" c-style="width: 120rpx;height: 120rpx;position: absolute;left: 40rpx;top:-20rpx" c-class="headc-img"></c-img>
         <text class="name">{{designer.name}}</text>
         <text class="level">{{designer.desc}}</text>
         <text class="description">{{designer.words}}</text>
@@ -42,6 +42,6 @@
 
 <view class="entry">
     <view class="save_icon" bindtap="toIM" style="{{'background:#606060 url('+serverUrl+'客服.png) no-repeat center center/56rpx 56rpx;'}}"></view>
-    <view class="save" bindtap="save">存入方案</view>
+    <view class="save" bindtap="save" style="background-image:{{!hasPlan?'linear-gradient(-190deg, #5B5B5B 0%, #777777 68%)':'linear-gradient(-41deg, #EDD48D 14%, #B78D4C 100%)'}}">存入方案</view>
     <view class="toDiy" wx:if="{{!hasPlan}}"  bindtap="toDiy">我也要DIY</view>
 </view>

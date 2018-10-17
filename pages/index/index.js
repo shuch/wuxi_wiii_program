@@ -77,9 +77,10 @@ Page({
         showAgree: false,
         indexLiudian: false,
         showAuth: true,
-        maidinData:[{id:'#jingcaishijiao',eventId:'exp_2cmina_0',flag:true},
-            {id:'#liaojiexiangmu',eventId:'exp_2cmina_1',flag:true},
+        maidinData:[
             {id:'#jingcaitupian',eventId:'exp_2cmina_2',flag:true},
+            {id:'#jingcaishijiao',eventId:'exp_2cmina_0',flag:true},
+            {id:'#liaojiexiangmu',eventId:'exp_2cmina_1',flag:true},
             {id:'#fenxianggeipengyou',eventId:'exp_2cmina_3',flag:true},],
         // phoneGoUrl:"",
         phoneFun: null,
@@ -593,9 +594,10 @@ Page({
 
         });
         this.setData({
-            maidinData:[{id:'#jingcaishijiao',eventId:'exp_2cmina_0',flag:true},
-                {id:'#liaojiexiangmu',eventId:'exp_2cmina_1',flag:true},
+            maidinData:[
                 {id:'#jingcaitupian',eventId:'exp_2cmina_2',flag:true},
+                {id:'#jingcaishijiao',eventId:'exp_2cmina_0',flag:true},
+                {id:'#liaojiexiangmu',eventId:'exp_2cmina_1',flag:true},
                 {id:'#fenxianggeipengyou',eventId:'exp_2cmina_3',flag:true},]
         })
 
@@ -671,23 +673,8 @@ Page({
     },
     goJump:function(e){
         console.log(e.currentTarget.dataset)
-        const miniList=['projectIntroduction','recommendedPlan','customStars']//小程序二级页面
+        const miniList=['projectIntroduction','recommendedPlan','customStars','customHouse','customPay']//小程序二级页面
         const jumpUrl=e.currentTarget.dataset.jump
-        let flag=false
-        for(let i=0;i<miniList.length;i++){
-            let item =miniList[i]
-            if(jumpUrl&&jumpUrl.indexOf(item)>-1){
-                const url=`../${item}/${item}`
-                wx.navigateTo({
-                    url
-                })
-                flag = true
-                break
-            }
-        }
-        if(flag){
-            return
-        }
         if(e.currentTarget.dataset.jump){
             let param = {
                 type:'CLK',//埋点类型
@@ -709,6 +696,21 @@ Page({
             }
             util.trackRequest(param,app)
             app.globalData.currDespage =e.currentTarget.dataset.despage;
+            let flag=false
+            for(let i=0;i<miniList.length;i++){
+                let item =miniList[i]
+                if(jumpUrl&&jumpUrl.indexOf(item)>-1){
+                    const url=`../${item}/${item}`
+                    wx.navigateTo({
+                        url
+                    })
+                    flag = true
+                    break
+                }
+            }
+            if(flag){
+                return
+            }
             wx.navigateTo({
                 url: '../webView/webView?view='+ encodeURIComponent(e.currentTarget.dataset.jump)+'&title='+e.currentTarget.dataset.title,
                 success:function(){
