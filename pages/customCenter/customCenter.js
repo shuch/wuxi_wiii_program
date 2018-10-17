@@ -373,11 +373,6 @@ Page({
   },
 
   async onSaveImage() {
-
-    // if (!timelineSrc) {
-    //   wx.showToast({ title: '生成朋友圈海报失败', icon: 'none' });
-    //   return;
-    // }
     const setting = await getSetting();
     if (setting['scope.writePhotosAlbum']) {
       this.savePhoto();
@@ -385,7 +380,6 @@ Page({
     }
     wx.showToast({ title: '暂无权限，点击授权后可保存图片', icon: 'none' });
     const authRes = await savePhoneAuth();
-    console.log('authRes', authRes);
     if (authRes) {
       this.savePhoto();
     } else {
@@ -394,18 +388,14 @@ Page({
   },
 
   handleSetting(e) {
-    console.log('handleSetting', e);
     const { detail } = e.detail;
-    // const { }
-    let that = this;
-    // 对用户的设置进行判断，如果没有授权，即使用户返回到保存页面，显示的也是“去授权”按钮；同意授权之后才显示保存按钮
     if (!detail.authSetting['scope.writePhotosAlbum']) {
       wx.showModal({
         title: '警告',
         content: '若不打开授权，则无法将图片保存在相册中！',
         showCancel: false
       })
-      that.setData({
+      this.setData({
         openSetting: true,
       })
     } else{
@@ -414,7 +404,7 @@ Page({
         content: '您已授权，赶紧将图片保存在相册中吧！',
         showCancel: false
       })
-      that.setData({
+      this.setData({
         openSetting: false,
       })
     }
@@ -423,8 +413,12 @@ Page({
   savePhoto() {
     const that = this;
     const { timelineSrc, hasPay, shareCustomId } = this.data;
+    if (!timelineSrc) {
+      wx.showToast({ title: '生成朋友圈海报失败', icon: 'none' });
+      return;
+    }
     wx.downloadFile({
-      url: timelineSrc || `${cdn}/guide1.jpg`,
+      url: timelineSrc,
       success: function (res) {
         const path = res.tempFilePath;
         wx.saveImageToPhotosAlbum({
