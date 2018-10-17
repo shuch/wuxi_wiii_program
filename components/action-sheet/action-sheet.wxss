@@ -82,7 +82,7 @@
 
 .icon-close {
   float: right;
-  margin: 35rpx;
+  padding: 35rpx;
   width: 30rpx;
   height: 30rpx;
 }

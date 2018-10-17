@@ -1,5 +1,5 @@
-<view class="mask">
-  <view class="sheet" wx:if="{{showMenu}}">
+<view class="mask" bind:tap="onClose">
+  <view class="sheet" wx:if="{{showMenu}}" catch:tap="onMenuTap">
     <view class="title">
       分享 <image class="icon-close" src="http://oh1n1nfk0.bkt.clouddn.com/close_grey.png" mode="scaleToFill"
       bind:tap="onClose" />
@@ -15,7 +15,7 @@
       </view>
     </view>
   </view>
-  <view class="sheet" wx:if="{{timeline}}">
+  <view class="sheet" wx:if="{{timeline}}" catch:tap="onMenuTap">
     <view class="title">
       分享到朋友圈
       <image class="icon-close" src="http://oh1n1nfk0.bkt.clouddn.com/close_grey.png" mode="scaleToFill"
@@ -23,6 +23,12 @@
     </view>
     <c-img cclass="share-poster" src="{{timelineSrc}}" mode="aspectFit"></c-img>
     <view class="share-tip">保存图片到手机后，可分享到朋友圈</view>
-    <view class="share-btn" bind:tap="saveImage">保存图片</view>
+    <view class="share-btn" bind:tap="saveImage" hidden="{{openSetting}}">保存图片</view>
+    <button
+      class='share-btn transparent'
+      open-type="openSetting"
+      bindopensetting="handleSetting"
+      wx:if="{{openSetting}}"
+    >去授权</button>
   </view>
 </view>

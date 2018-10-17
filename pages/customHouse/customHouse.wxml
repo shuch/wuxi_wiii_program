@@ -68,8 +68,8 @@
 
   <block wx:if="{{customStep === 2}}">
     <view class="title">
-      户型-{{selectedType.name}}
-      <view class="custom-btn" bind:tap="onHouseTypeUpdate">修改</view>
+      户型-{{selectedType.name}}-{{selectedType.area}}㎡
+      <view class="custom-btn" bind:tap="onHouseTypeUpdate" hidden="{{commentMode || drawMode}}">修改</view>
     </view>
     <view class="huxing" wx:if="{{drawMode}}">
       <canvas canvas-id="draw" class="draw" style="width: 750rpx;height:900rpx"  disable-scroll="true" bindtouchstart="drawStart" bindtouchmove="drawMove"></canvas>
@@ -78,7 +78,7 @@
       <!--<view class="lt-corner corner">-->
         <!--<c-img cclass="north" src="{{cdn}}/north.png" mode="scaleToFill"></c-img>N-->
       <!--</view>-->
-      <view class="rt-corner corner" bind:tap="onDraw">
+      <view class="rt-corner corner" bind:tap="onDraw" hidden="{{houseTypeUpdate || spaceEdit || commentMode}}">
         涂鸦
       </view>
       <!-- <component-preview-image src="{{customDetail.imageUrl}}" class="hx-img" mode="aspectFit" /> -->

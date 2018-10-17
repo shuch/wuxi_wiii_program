@@ -17,7 +17,7 @@ Page({
   },
 
   async onLoad(parmas) {
-    const { shareId, fromEntry = '' } = parmas;
+    const { shareId = '', fromEntry = '' } = parmas;
     const appData = await login();
     const {
       houseId,
@@ -89,6 +89,10 @@ Page({
       paySource: 1,
       uniqueCode: openid,
     });
+    if (!res.success) {
+      wx.showToast({ title: res.message, icon: 'none' });
+      return;
+    }
     const { 
       nonceStr,
       paySign,
@@ -189,7 +193,7 @@ Page({
   },
 
   onRouteCustom() {
-    wx.navigateTo({ url: '/pages/customHouse/customHouse' });
+    wx.navigateTo({ url: '/pages/index/index' });
   },
 
   onRouteService() {

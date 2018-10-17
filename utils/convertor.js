@@ -78,9 +78,11 @@ export const rankMapper = (item) => {
 
 export const customDetailMapper = (data) => {
 	const { thumbsUpCustomerList: likes } = data;
+	const origin = data.originCustomer || {};
 	return {
 		...data,
 		likes,
+		origin,
 		imageUrl: data.commentImageUrl,
 	};
 }
@@ -93,6 +95,7 @@ export const customizedMapper = (item) => {
 	const space = item.spaces.map(item => item.name);
 	const special = [item.name, ...space];
 	const rank = item.orderNo || '';
+	const origin = item.originCustomer || {};
 	return {
 		...item,
 		rank,
@@ -100,6 +103,7 @@ export const customizedMapper = (item) => {
 		like,
 		isLike,
 		special,
+		origin,
 	};
 }
 

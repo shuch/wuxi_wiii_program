@@ -8,7 +8,7 @@
 		"newFeature": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "1.9.91",
+	"libVersion": "2.3.0",
 	"appid": "wx5e18485e35c5f1f6",
 	"secret": "6ac2abb378f4d5a5d16b7c6ba2850807",
 	"projectname": "%E6%97%A0%E9%94%A1WIII",
@@ -31,7 +31,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 1,
+			"current": 6,
 			"list": [
 				{
 					"id": -1,
@@ -73,7 +73,7 @@
 					"id": 6,
 					"name": "定制详情",
 					"pathName": "pages/customDetail/customDetail",
-					"query": "customId=395"
+					"query": "customId=586"
 				},
 				{
 					"id": -1,

@@ -24,17 +24,28 @@ Component({
   methods: {
     updateTime() {
       const { endtime } = this.data;
+      // const endtime = 1539619199000;
       const nowtime = Date.now();
       const lefttime = parseInt((endtime - nowtime) / 1000);
-      if (lefttime <= 0) {
-        return;
-      }
-      let d = Math.floor(lefttime / (1000 * 60 * 60 * 24))
-      let h = Math.floor(lefttime / (60 * 60) % 24);
-      let m = Math.floor(lefttime / 60 % 60);
-      let s = parseInt(lefttime % 60);
+      let d;
+      let h;
+      let m;
+      let s;
 
-      h = this.addZero(h);
+      if (lefttime <= 0) {
+        d = 0;
+        h = 0;
+        m = 0;
+        s = 0;
+      } else {
+        d = Math.floor(lefttime / (60 * 60 * 24))
+        h = Math.floor(lefttime / (60 * 60) % 24);
+        m = Math.floor(lefttime / 60 % 60);
+        s = parseInt(lefttime % 60);
+      }
+
+
+      // h = this.addZero(h);
       m = this.addZero(m);
       this.setData({
         day: d,

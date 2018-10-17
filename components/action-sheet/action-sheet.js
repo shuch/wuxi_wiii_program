@@ -20,6 +20,10 @@ Component({
       type: String,
       value: '',
     },
+    openSetting: {
+      type: Boolean,
+      value: false,
+    },
   },
   data: {
     showMenu: true,
@@ -40,7 +44,14 @@ Component({
     },
     saveImage() {
       this.triggerEvent('onsaveimage');
-    }
+    },
+    onMenuTap() {
+      console.log('onMenuTap');
+    },
+    handleSetting(e) {
+      console.log('actionsheet' , e);
+      this.triggerEvent('opensetting', e);
+    },
   },
 });
 
