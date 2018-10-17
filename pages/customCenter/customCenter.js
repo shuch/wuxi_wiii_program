@@ -309,9 +309,9 @@ Page({
     // 获取支付页面的海报
     const { nickname, headImage, houseId, customerId } = this.data;
     const res = await endpoint('poster', {
-        head: headImage,
+        head: headImage || '',
         houseId,
-        name: nickname,
+        name: nickname || '',
         path: 'pages/customPay/customPay',
         scene: `shareId=${customerId}`,
         width: 185,
