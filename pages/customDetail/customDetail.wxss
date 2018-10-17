@@ -182,7 +182,7 @@
   padding: 0 10rpx;
   margin-bottom: 30rpx;
   border-radius: 6rpx;
-  background: rgba(155, 155, 155, .7);
+  background: rgba(155, 155, 155, .8);
 }
 
 .icon-close {

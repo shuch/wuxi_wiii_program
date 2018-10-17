@@ -19,7 +19,7 @@
 			<image class="icon-privilege" src="{{cdn}}/icon_chosen.png" mode="scaleToFill"/>
 			<view class="privilege-detail">
 				<view class="privilege-title">最终入选权</view>
-				<view class="privilege-desc">获得的点赞数和成功邀请好友数将决定方案的排名,排名前列的方案将有机会进入开发商的户型库.</view>
+				<view class="privilege-desc">获得的点赞数和成功邀请好友数将决定方案的排名,排名前列的方案将有机会进入开发商户型库.</view>
 			</view>
 		</view>
 	</view>
