@@ -1,7 +1,7 @@
 {
   "component": true,
   "usingComponents": {
-    "c-img": "../components/img/img"
+    "c-img": "../img/img"
   }
 }
 
