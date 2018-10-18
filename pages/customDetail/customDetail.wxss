@@ -95,8 +95,8 @@
 }
 
 .custom-img {
-	width: 537rpx;
-	height: 865rpx;
+	width: 100%;
+	/*height: auto;*/
 }
 
 .space-img {

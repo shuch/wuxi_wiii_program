@@ -341,6 +341,9 @@ Page({
 
   async onDraw() {
     // 绘制图片到画布
+    if (this.data.commentMode) {
+      return;
+    }
     const { customDetail: { imageUrl }, canvasHeight, canvasWidth } = this.data;
     const res = await getImageInfo(imageUrl);
     const { height, width, path } = res;

@@ -8,9 +8,10 @@
 .title {
   font-size: 16px;
   color: #9B9B9B;
-  margin: 10rpx 0 10rpx 30rpx;
   display: flex;
   align-items: center;
+  height:70rpx;
+  padding-left:30rpx;
 }
 
 .house-card {
@@ -388,7 +389,9 @@
   flex: auto;
   margin: 12rpx 10rpx;
   height: 76rpx;
+  line-height:76rpx;
   background: #fff;
+  max-width: 412rpx;
   padding-left: 72rpx;
 }
 

@@ -1,6 +1,6 @@
 import endpoint from '../../lib/endpoint';
 import regeneratorRuntime from '../../lib/runtime';
-import { login } from '../../lib/promise';
+import { login, getSetting, savePhoneAuth } from '../../lib/promise';
 import { rankMapper, customizedMapper, processMapper } from '../../utils/convertor';
 import { formatDateTs } from '../../utils/date';
 
@@ -22,6 +22,7 @@ Page({
       h: 12,
     },
     showCustomPop: false,
+    openSetting: false,
   },
 
   async onLoad(parmas) {
@@ -43,38 +44,82 @@ Page({
       },
     } = state;
     const hasPay = paymentStatus === 2;
-    const refundResons = ['我不想要了','设计不满意','其他原因'];
-    const res = await endpoint('customizedList', {
-      customerId,
-      houseId,
-    });
-
-    const rankRes = await endpoint('rankList', {
-      houseId,
-      pageNo: 1,
-      pageSize: 10,
-      customerId,
-    });
-    let rankList = rankRes.pageModel ? rankRes.pageModel.resultSet : [];
-    rankList = rankList.map(rankMapper);
-    const customList = res && res.list ? res.list.map(customizedMapper) : [];
     const showCustomPop = !customizedStatus && hasPay;
+    const refundResons = ['我不想要了','设计不满意','其他原因'];
+
     this.setData({
       hasPay,
-      customList,
       refundResons,
       houseId,
       customerId,
-      // timelineSrc,
-      rankList,
       openid,
-      showCustomPop,
       nickname,
       headImage,
       appId,
       secret,
+      showCustomPop,
     });
+    this.initTicket();
+    this.initCustomziedList();
+    this.initRankList();
+    // const res = await endpoint('customizedList', {
+    //   customerId,
+    //   houseId,
+    // });
 
+    // const rankRes = await endpoint('rankList', {
+    //   houseId,
+    //   pageNo: 1,
+    //   pageSize: 10,
+    //   customerId,
+    // });
+    // let rankList = rankRes.pageModel ? rankRes.pageModel.resultSet : [];
+    // rankList = rankList.map(rankMapper);
+    // const customList = res && res.list ? res.list.map(customizedMapper) : [];
+    // const showCustomPop = !customizedStatus && hasPay;
+    // this.setData({
+      // hasPay,
+      // customList,
+      // refundResons,
+      // houseId,
+      // customerId,
+      // timelineSrc,
+      // rankList,
+      // openid,
+      // showCustomPop,
+      // nickname,
+      // headImage,
+      // appId,
+      // secret,
+    // });
+
+    // if (hasPay) {
+    //   const payRes = await endpoint('ticket', { customerId, houseId });
+    //   const {
+    //     ticket: {
+    //       payTime,
+    //       ticketViewCode,
+    //       fee: payFee,
+    //       tradeCode,
+    //       process: payProcess,
+    //     },
+    //     customerList: inviteList,
+    //   } = payRes.single;
+    //   const inviteArr = this.generateInviteArr(inviteList);
+    //   this.setData({
+    //     payTime: formatDateTs(payTime),
+    //     ticketViewCode,
+    //     payFee,
+    //     tradeCode,
+    //     inviteArr,
+    //     inviteList,
+    //     payProcess,
+    //   });
+    // }
+  },
+
+  async initTicket() {
+    const { hasPay, customerId, houseId } = this.data;
     if (hasPay) {
       const payRes = await endpoint('ticket', { customerId, houseId });
       const {
@@ -87,21 +132,56 @@ Page({
         },
         customerList: inviteList,
       } = payRes.single;
+      const inviteArr = this.generateInviteArr(inviteList);
       this.setData({
         payTime: formatDateTs(payTime),
         ticketViewCode,
         payFee,
         tradeCode,
+        inviteArr,
         inviteList,
         payProcess,
       });
     }
+  },
 
-    // const time = await endpoint('restTime', houseId);
-    // const { endTime } = time.single;
-    // console.log('time', time);
-    // const date = getRestTime(endTime);
+  async initCustomziedList() {
+    const { houseId, customerId } = this.data;
+    const res = await endpoint('customizedList', {
+      customerId,
+      houseId,
+    });
+    const customList = res && res.list ? res.list.map(customizedMapper) : [];
+    this.setData({
+      customList,
+    });
+  },
 
+  async initRankList() {
+    const { houseId, customerId } = this.data;
+    const rankRes = await endpoint('rankList', {
+      houseId,
+      pageNo: 1,
+      pageSize: 10,
+      customerId,
+    });
+    let rankList = rankRes.pageModel ? rankRes.pageModel.resultSet : [];
+    rankList = rankList.map(rankMapper);
+    this.setData({
+      rankList,
+    });
+  },
+
+  generateInviteArr(inviteList) {
+    // inviteList.length = 11;
+    // inviteList.fill(inviteList[0], 0, 11);
+    const inviteRow = Math.ceil(inviteList.length / 5);
+    const arr = [];
+    for (let i = 0; i < inviteRow; i +=1) {
+      arr.push(i);
+    }
+    console.log('arr', arr);
+    return arr;
   },
 
   getRestTime(endTime) {
@@ -143,21 +223,32 @@ Page({
         ticketViewCode,
         fee: payFee,
         tradeCode,
+        process: payProcess,
       },
       customerList: inviteList,
     } = res.single;
     // const inviteRes = await endpoint('invite', { customerId, houseId });
     // console.log('vi', inviteRes);
-    this.setData({ payTime, ticketViewCode, payFee, tradeCode, inviteList });
+    this.setData({
+      payTime: formatDateTs(payTime),
+      ticketViewCode,
+      payFee,
+      tradeCode,
+      inviteList,
+      payProcess,
+    });
   },
 
   onShareAppMessage() {
     const { customerId, hasPay, shareCustomId } = this.data;
     // 分享定制方案
+    let imageUrl = `${cdn}/share_custom.jpg`;
+    console.log('shareCustomId', shareCustomId);
     if (shareCustomId) {
       return {
-        title: '户型方案',
-        path: `/pages/customDetail/customDetail?shareId=${customerId}&customId=${shareCustomId}`,
+        imageUrl,
+        title: '我刚刚在无锡WIII定制了专属house,请你来做客',
+        path: `/pages/customDetail/customDetail?customId=${shareCustomId}`,
         success: () => {
           wx.showToast({
             title: '分享成功',
@@ -168,8 +259,11 @@ Page({
         },
       };
     }
+
+    imageUrl = `${cdn}/share_pay.jpg`;
     return {
-      title: '户型定制入场券',
+      title: '我邀请你一起来抢限量入场券,享无锡WIII公寓户型定制',
+      imageUrl,
       path: `/pages/customPay/customPay?shareId=${customerId}&from=customCenter`,
       success: () => {
         if (!hasPay) {
@@ -234,7 +328,6 @@ Page({
 
   async onPay() {
     const { openid, customerId, houseId, appId, secret, fee } = this.data;
-    console.log('openid', openid, customerId, houseId, appId, secret, fee);
     const res = await endpoint('buyCard', {
       customerId,
       fee,
@@ -279,9 +372,51 @@ Page({
     });
   },
 
-  onSaveImage() {
+  async onSaveImage() {
+    const setting = await getSetting();
+    if (setting['scope.writePhotosAlbum']) {
+      this.savePhoto();
+      return;
+    }
+    wx.showToast({ title: '暂无权限，点击授权后可保存图片', icon: 'none' });
+    const authRes = await savePhoneAuth();
+    if (authRes) {
+      this.savePhoto();
+    } else {
+      this.setData({ openSetting: true });
+    }
+  },
+
+  handleSetting(e) {
+    const { detail } = e.detail;
+    if (!detail.authSetting['scope.writePhotosAlbum']) {
+      wx.showModal({
+        title: '警告',
+        content: '若不打开授权，则无法将图片保存在相册中！',
+        showCancel: false
+      })
+      this.setData({
+        openSetting: true,
+      })
+    } else{
+      wx.showModal({
+        title: '提示',
+        content: '您已授权，赶紧将图片保存在相册中吧！',
+        showCancel: false
+      })
+      this.setData({
+        openSetting: false,
+      })
+    }
+  },
+
+  savePhoto() {
     const that = this;
     const { timelineSrc, hasPay, shareCustomId } = this.data;
+    if (!timelineSrc) {
+      wx.showToast({ title: '生成朋友圈海报失败', icon: 'none' });
+      return;
+    }
     wx.downloadFile({
       url: timelineSrc,
       success: function (res) {

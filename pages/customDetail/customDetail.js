@@ -1,7 +1,7 @@
 import endpoint from '../../lib/endpoint';
 import regeneratorRuntime from '../../lib/runtime';
 import { houseTypesMapper, spaceTypeMapper, customDetailMapper, rankMapper } from '../../utils/convertor';
-import { login } from '../../lib/promise';
+import { login, getImageInfo } from '../../lib/promise';
 
 const cdn = 'http://oh1n1nfk0.bkt.clouddn.com';
 
@@ -10,12 +10,10 @@ Page({
     title: 'customDetail',
     commentExpand: false,
     cdn,
-    commentList: [
-    	{ id: 1, content: '端口数量大幅'},
-    	{ id: 2, content: '地方飓风'},
-    ],
     tabSelected: 0,
     doShare: false,
+    canvasHeight: 450,
+    canvasWidth: 375,
   },
 
   async onLoad(parmas) {
@@ -31,7 +29,8 @@ Page({
     const { id: customerId, houseId, nickname, headPortrait: headImage } = appData;
     const res = await endpoint('customizedDetail', customId);
     const customDetail = customDetailMapper(res.single);
-    // console.log('customDetail', customDetail);
+    this.loadImage(customDetail);
+
     const rankRes = await endpoint('rankList', {
       houseId,
       pageNo: 1,
@@ -55,7 +54,6 @@ Page({
 
   switchTab(e) {
     const id = e.currentTarget.dataset.id;
-    console.log(id);
     this.setData({ tabSelected: parseInt(id) });
   },
 
@@ -105,20 +103,19 @@ Page({
   },
 
   async menuShare() {
-    const { nickname, headImage, houseId, customerId } = this.data;
+    const { nickname, headImage, houseId, customerId, customId } = this.data;
     const res = await endpoint('poster', {
         head: headImage,
         houseId,
         name: nickname,
         path: 'pages/customDetail/customDetail',
-        scene: `shareId=${customerId}`,
+        scene: `customId=${customId}`,
         width: 185,
         type: 1,
         xcxName: "无锡WIII",
     });
-    // const timelineSrc = `${cdn}/space_type.png`;
+
     this.setData({ doShare: true, timelineSrc: res.single });
-    // this.setData({ doShare: true });
   },
 
   async onSave() {
@@ -176,5 +173,37 @@ Page({
 
   onClose() {
     this.setData({ doShare: false });
+  },
+
+  async loadImage(customDetail) {
+    const { canvasHeight, canvasWidth } = this.data;
+    const { commentImageUrl } = customDetail; 
+    const res = await getImageInfo(commentImageUrl);
+    const { height, width, path } = res;
+    let initRatio = height / canvasHeight;
+    if (initRatio < width / canvasHeight) {
+      initRatio = width / canvasWidth;
+    }
+    //图片显示大小
+    const scaleWidth = (width / initRatio)
+    const scaleHeight = (height / initRatio)
+
+    this.startX = canvasWidth / 2 - scaleWidth / 2;
+    this.startY = canvasHeight / 2 - scaleHeight / 2;
+    this.setData({
+      imgWidth: scaleWidth,
+      imgHeight: scaleHeight,
+      imgTop: this.startY,
+      imgLeft: this.startX,
+      customImageUrl: commentImageUrl,
+    });
+    this.scaleWidth = scaleWidth;
+    this.scaleHeight = scaleHeight;
+    console.log('loadImage', initRatio, this.startX, this.startY, scaleWidth, scaleHeight);
+
+  },
+
+  onRouteStar() {
+    wx.navigateTo({ url: '/pages/customStars/customStars' });
   },
 });

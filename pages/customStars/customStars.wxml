@@ -7,15 +7,16 @@
 	  		wx:key="item.id"
 	  		wx:for-index="index"
 	  		wx:if="{{index < 3}}"
+	  		data-id="{{item.id}}"
+	  		bind:tap="onRouteDetail"
 	  	>
-	  		<view class="custom-card">
+	  		<view class="custom-card"  data-id="{{item.id}}">
 	  			<view class="custom-card-box">
 	  				<c-img
 	  					cclass="custom-item-img"
 	  					src="{{item.src}}"
 	  					mode="aspectFill"
 	  					data-id="{{item.id}}"
-	  					bind:tap="onRouteDetail"
 	  				/>
 	  				<view class="custom-feature-list">
 	  					<view
@@ -28,7 +29,7 @@
 	  				<view
 	  					class="custom-like"
 	  					data-id="{{item.id}}"
-						bind:tap="onLikeStar"
+						catch:tap="onLikeStar"
 					>
 	  					<c-img wx:if="{{item.isLike}}" cclass="icon-like" src="{{cdn}}/like.png" mode="scaleToFill" />
 	  					<c-img wx:else cclass="icon-like" src="{{cdn}}/un_like.png" mode="scaleToFill" />
@@ -48,14 +49,22 @@
 		</view>
 	</view>
 	<view class="section-card">
-		<view class="rank-star-box" wx:for="{{rankList}}" wx:key="{{item.id}}" wx:for-index="index" wx:if="{{index > 2}}">
+		<view
+			class="rank-star-box"
+			wx:for="{{rankList}}"
+			wx:key="{{item.id}}"
+			wx:for-index="index"
+			wx:if="{{index > 2}}"
+			data-id="{{item.id}}"
+			bind:tap="onRouteDetail"
+		>
 			<image style="position: absolute;z-index:1;left: 0;bottom: 0;height: 120rpx;width: 100%" src="https://dm.static.elab-plus.com/wuXiW3/index/icover.png"></image>
 			<view class="rank-star-album">
 				<c-img cclass="rank-star-img" src="{{item.src}}" mode="aspectFill"/>
 				<view
 					class="custom-like"
 					data-id="{{item.id}}"
-					bind:tap="onLikeStar"
+					catch:tap="onLikeStar"
 				>
 					<c-img wx:if="{{item.isLike}}" cclass="icon-like" src="{{cdn}}/like.png" mode="scaleToFill" />
 					<c-img wx:else cclass="icon-like" src="{{cdn}}/un_like.png" mode="scaleToFill" />
@@ -84,5 +93,5 @@
 		</view>
 	</view>
 	<view class="copywrite">定制服务，elab拥有最终完整解释权</view>
-	<view class="bottom" bind:tap="onRouteCustom">DIY定制我的house</view>
+	<view class="bottom" bind:tap="onRouteCustom" hidden="{{customizedStatus}}">DIY定制我的house</view>
 </view>

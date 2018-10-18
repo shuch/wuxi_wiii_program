@@ -11,39 +11,53 @@ Page({
     pageNo: 1,
     pageSize: 10,
     rankList:[],
-    total:1
+    total:1,
+    customizedStatus: 0,
   },
 
   async onLoad(parmas) {
     console.log(parmas);
-      this.getData()
+    const appData = await login();
+    const { id: customerId, houseId } = appData;
+    this.setData({
+      houseId,
+      customerId,
+    });
+    this.getData();
+    this.customState();
   },
-    onReachBottom(){
-        this.getData()
-    },
+  async customState() {
+    const { customerId, houseId } = this.data;
+    const state = await endpoint('customState', { customerId, houseId });
+    const {
+      single: {
+        customizedStatus,
+      },
+    } = state;
+    this.setData({ customizedStatus });
+  },
+  onReachBottom(){
+    this.getData()
+  },
   async getData(){
-      if(this.data.total<this.data.pageNo){
-        return false
-      }
-      const appData = await login();
-      const { id: customerId, houseId } = appData;
-      const rankRes = await endpoint('rankList', {
-          houseId,
-          pageNo: this.data.pageNo,
-          pageSize: this.data.pageSize,
-          customerId,
-      });
-      let rankList = rankRes.pageModel ? rankRes.pageModel.resultSet : [];
-      rankList = rankList.map(rankMapper);
-      this.setData({
-          houseId,
-          customerId,
-          total:rankRes.pageModel.total,
-          rankList:this.data.rankList.concat(rankList),
-          pageNo: this.data.pageNo+1,
-          pageSize: this.data.pageSize,
-      });
-
+    if(this.data.total<this.data.pageNo){
+      return false
+    }
+    const { houseId, customerId } = this.data;
+    const rankRes = await endpoint('rankList', {
+        houseId,
+        pageNo: this.data.pageNo,
+        pageSize: this.data.pageSize,
+        customerId,
+    });
+    let rankList = rankRes.pageModel ? rankRes.pageModel.resultSet : [];
+    rankList = rankList.map(rankMapper);
+    this.setData({
+        total:rankRes.pageModel.total,
+        rankList:this.data.rankList.concat(rankList),
+        pageNo: this.data.pageNo+1,
+        pageSize: this.data.pageSize,
+    });
   },
   onRouteCustom() {
     wx.navigateTo({ url: '/pages/customHouse/customHouse' });
@@ -65,5 +79,10 @@ Page({
     item.isLike = !item.isLike;
     this.setData({ rankList: list });
     e.stopPropagation && e.stopPropagation();
+  },
+
+  onRouteDetail(e) {
+    const url = `/pages/customDetail/customDetail?customId=${e.currentTarget.dataset.id}`;
+    wx.navigateTo({ url });
   },
 });

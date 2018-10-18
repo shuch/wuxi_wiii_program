@@ -52,19 +52,26 @@
 					<view class="pay-detial-item">支付金额：{{payFee}}元 定制服务入场券</view>
 					<view class="pay-detial-item">
 						定制状态：{{payProcess}}
-						<view class="pay-more" bind:tap="didShowProgress">查看详情 ></view>
+						<view class="float-r" bind:tap="didShowProgress">查看详情 ></view>
 					</view>
 				</view>
 			</block>
 		</view>
 		<view wx:if="{{hasPay}}">
 			<view class="invite-list">
-				<block wx:for="{{[0,1,2,3,4]}}" wx:for-index="idx" wx:for-item="item" wx:key="item">
-					<block wx:if="{{inviteList[idx]}}">
-						<image wx:if="{{inviteList[idx].headImage}}" class="invite-avatar" src="{{inviteList[idx].headImage}}" mode="scaleToFill" />
-						<image wx:else class="invite-avatar" src="{{cdn}}/avatar.png" mode="scaleToFill" />
+				<block wx:for="{{inviteArr}}" wx:for-item="i" wx:key="{{i}}">
+					<block wx:for="{{[0,1,2,3,4]}}" wx:for-index="idx" wx:key="j">
+						<block wx:if="{{inviteList[i * 5 + idx]}}">
+							<image
+								wx:if="{{inviteList[i * 5 + idx].headImage}}"
+								src="{{inviteList[i * 5 + idx].headImage}}"
+								class="invite-avatar"
+								mode="scaleToFill"
+							/>
+							<image wx:else class="invite-avatar" src="{{cdn}}/avatar.png" mode="scaleToFill" />
+						</block>
+						<image wx:else class="invite-avatar" src="{{cdn}}/avatar_b.png" mode="scaleToFill"></image>
 					</block>
-					<image wx:else class="invite-avatar" src="{{cdn}}/avatar_b.png" mode="scaleToFill"></image>
 				</block>
 			</view>
 			<view class="invite-content">您已邀请{{inviteList.length}}人抢定制入场券, 排名大幅提升</view>
@@ -129,8 +136,17 @@
 				</view>
 				<view class="custom-rank">
 					当前排名:<text class="red">{{item.rank}}</text>
-					<view class="section-btn" bind:tap="onShare" data-id="{{item.id}}">分享</view>
-					<view class="section-btn margin-right" bind:tap="onEdit" data-id="{{item.id}}">编辑</view>
+					<block wx:if="{{item.origin.id && item.origin.id !== customerId}}">
+						<view class="rank-star-info float-r">
+							来自
+							<image class="rank-star-avatar" src="{{item.origin.headPortrait}}" mode="scaleToFill"/>
+							{{item.origin.nickname}}
+						</view>
+					</block>
+					<block wx:else>
+						<view class="section-btn" bind:tap="onShare" data-id="{{item.id}}">分享</view>
+						<view class="section-btn margin-right" bind:tap="onEdit" data-id="{{item.id}}">编辑</view>
+					</block>
 				</view>
 			</view>
 			<view class="divide">
@@ -293,7 +309,9 @@
 	wx:if="{{doShare}}"
 	bind:onclose="onClose"
 	timeline-src="{{timelineSrc}}"
+	open-setting="{{openSetting}}"
 	bind:onsaveimage="onSaveImage"
+	bind:opensetting="handleSetting"
 />
 
 <component-pop-up

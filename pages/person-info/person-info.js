@@ -14,6 +14,7 @@ Page({
     age: 0,
     canSave: false,
     hasPay: false,
+    ageIndex: 55,
   },
 
   generateRangeArray(start, end) {
@@ -34,6 +35,7 @@ Page({
     const { id: customerId, houseId } = appData;
     const ageArray = this.generateRangeArray(1940, 2018);
     // const ageArray = this.generateRange();
+    console.log('ageArray', ageArray);
     const sexArray = [{value: 1, text: '先生'}, {value:0, text: '女士'}];
     const state = await endpoint('customState', { customerId, houseId });
     const { single: { paymentStatus, customerSupplementStatus } } = state;
@@ -69,7 +71,9 @@ Page({
 
   async bindBlur(e) {
     let { name } = this.data;
-    this.isExceedName(name);
+    if (this.isExceedName(name)) {
+      return;
+    } 
     this.isRepeatName(name);
   },
 
@@ -103,7 +107,6 @@ Page({
   bindRegionChange(e) {
   	const value = e.detail.value;
   	this.setData({ region: value });
-  	console.log('bindPickerChange', value);
   },
 
   changeSex(e) {
@@ -134,12 +137,11 @@ Page({
       wx.showToast({ title: '请选择区域', icon: 'none' });
       return;
     }
-    console.log('name', this.isRepeatName(name));
-    const isExist = await this.isRepeatName(name);
-    if (isExist) {
+    if (this.isExceedName(name)) {
       return;
     }
-    if (this.isExceedName(name)) {
+    const isExist = await this.isRepeatName(name);
+    if (isExist) {
       return;
     }
     const res = await endpoint('saveCustomInfo', {
