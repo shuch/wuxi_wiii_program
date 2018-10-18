@@ -62,60 +62,6 @@ Page({
     this.initTicket();
     this.initCustomziedList();
     this.initRankList();
-    // const res = await endpoint('customizedList', {
-    //   customerId,
-    //   houseId,
-    // });
-
-    // const rankRes = await endpoint('rankList', {
-    //   houseId,
-    //   pageNo: 1,
-    //   pageSize: 10,
-    //   customerId,
-    // });
-    // let rankList = rankRes.pageModel ? rankRes.pageModel.resultSet : [];
-    // rankList = rankList.map(rankMapper);
-    // const customList = res && res.list ? res.list.map(customizedMapper) : [];
-    // const showCustomPop = !customizedStatus && hasPay;
-    // this.setData({
-      // hasPay,
-      // customList,
-      // refundResons,
-      // houseId,
-      // customerId,
-      // timelineSrc,
-      // rankList,
-      // openid,
-      // showCustomPop,
-      // nickname,
-      // headImage,
-      // appId,
-      // secret,
-    // });
-
-    // if (hasPay) {
-    //   const payRes = await endpoint('ticket', { customerId, houseId });
-    //   const {
-    //     ticket: {
-    //       payTime,
-    //       ticketViewCode,
-    //       fee: payFee,
-    //       tradeCode,
-    //       process: payProcess,
-    //     },
-    //     customerList: inviteList,
-    //   } = payRes.single;
-    //   const inviteArr = this.generateInviteArr(inviteList);
-    //   this.setData({
-    //     payTime: formatDateTs(payTime),
-    //     ticketViewCode,
-    //     payFee,
-    //     tradeCode,
-    //     inviteArr,
-    //     inviteList,
-    //     payProcess,
-    //   });
-    // }
   },
 
   async initTicket() {
@@ -180,7 +126,6 @@ Page({
     for (let i = 0; i < inviteRow; i +=1) {
       arr.push(i);
     }
-    console.log('arr', arr);
     return arr;
   },
 

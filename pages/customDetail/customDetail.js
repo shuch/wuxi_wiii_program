@@ -28,6 +28,12 @@ Page({
     const appData = await login();
     const { id: customerId, houseId, nickname, headPortrait: headImage } = appData;
     const res = await endpoint('customizedDetail', customId,customerId);
+    if (!res.success) {
+      console.log('fail', res);
+      wx.showToast({ title: '方案已删除', icon: 'none' });
+      // wx.showToast({ title: '方案已删除', icon: 'none' });
+      return;
+    }
     const customDetail = customDetailMapper(res.single);
     if(customDetail.origin.nickname!=nickname){
         wx.setNavigationBarTitle({
@@ -92,10 +98,13 @@ Page({
 
   onShareAppMessage() {
     const { customerId, customId } = this.data;
-    const path = `/pages/customDetail/customDetail?shareId=${customerId}&customId=${customId}`;
+    const imageUrl = `${cdn}/share_custom.jpg`;
+    const path = `/pages/customDetail/customDetail?customId=${customId}`;
+    const title = '我刚刚在无锡WIII定制了专属house,请你来做客';
     return {
-      title: '户型方案',
+      title,
       path,
+      imageUrl,
       success: () => {
         wx.showToast({
           title: '分享成功',
