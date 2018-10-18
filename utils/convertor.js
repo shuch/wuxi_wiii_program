@@ -19,6 +19,7 @@ export const houseTypesMapper = (item) => {
 		houseId,
 		area: areaNum,
 		name,
+		type,
 		height,
 		layoutId,
         chooseImage,

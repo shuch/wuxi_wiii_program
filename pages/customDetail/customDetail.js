@@ -29,9 +29,7 @@ Page({
     const { id: customerId, houseId, nickname, headPortrait: headImage } = appData;
     const res = await endpoint('customizedDetail', customId,customerId);
     if (!res.success) {
-      console.log('fail', res);
       wx.showToast({ title: '方案已删除', icon: 'none' });
-      // wx.showToast({ title: '方案已删除', icon: 'none' });
       return;
     }
     const customDetail = customDetailMapper(res.single);

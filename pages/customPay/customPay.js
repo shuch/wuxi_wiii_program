@@ -17,7 +17,16 @@ Page({
   },
 
   async onLoad(parmas) {
-    const { shareId = '', fromEntry = '' } = parmas;
+    console.log({ path: this.route, parmas } );
+    const { scene } = parmas;
+    let shareId;
+    let fromEntry;
+    if (scene) {
+      shareId = scene.shareId;
+    } else {
+      shareId = parmas.shareId || '';
+      fromEntry = parmas.fromEntry || '';
+    }
     const appData = await login();
     const {
       houseId,

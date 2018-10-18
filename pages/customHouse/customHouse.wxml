@@ -15,7 +15,7 @@
             约<text class="area">{{item.area}}</text>㎡
           </view>
           <c-img cclass="room-thumb" src="{{item.thumb}}" mode="scaleToFill"></c-img>
-          <view class="info-level">平层/超高单层约{{item.height}}m</view>
+          <view class="info-level">{{item.type === '1' ? '双层' : '平层'}}/层高{{item.height}}m</view>
         </view>
         <c-img cclass="house-thumb" src="{{item.thumbSm}}" mode="aspectFit"/>
       </view>
