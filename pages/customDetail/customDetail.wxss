@@ -170,6 +170,8 @@
 .comment-title {
   color: #2E2E2E;
   margin-bottom: 20rpx;
+	padding-right: 30rpx;
+	width: 130rpx;
 }
 
 .comment-list {
