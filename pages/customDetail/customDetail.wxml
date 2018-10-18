@@ -13,6 +13,9 @@
           <image class="like-avatar" src="{{item.headImage}}" mode="scaleToFill" wx:if="{{item.headImage}}"/>
           <image class="like-avatar" src="{{cdn}}/avatar.png" mode="scaleToFill" wx:else/>
         </block>
+        <block wx:for="{{['','','','','']}}" wx:key="item" wx:if="{{index+customDetail.likes.length<5}}">
+          <image class="like-avatar" src="https://dm.static.elab-plus.com/wuXiW3/index/none.png" mode="scaleToFill"/>
+        </block>
   		</view>
 		  等<text class="theme-color">{{customDetail.likes.length}}人</text>也喜欢这个方案
     </view>

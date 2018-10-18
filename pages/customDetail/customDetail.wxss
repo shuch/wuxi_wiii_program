@@ -272,7 +272,7 @@
 
 .banner {
 	width: 100%;
-	height: 230rpx;
+	height: 238rpx;
 	vertical-align: top;
 }
 
