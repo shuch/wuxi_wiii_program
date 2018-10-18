@@ -425,7 +425,7 @@
 	align-items: center;
 	padding-bottom: 14rpx;
 	position: relative;
-	/*z-index: 1;*/
+	z-index: 1;
 }
 
 .rank-star-avatar {

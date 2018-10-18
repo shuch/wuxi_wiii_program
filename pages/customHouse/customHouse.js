@@ -69,6 +69,7 @@ Page({
         // id: 
         layoutId: customDetail.layoutId,
         name: customDetail.name,
+        area:customDetail.area
       };
       Object.assign(data, { customStep: 2, customDetail, selectedType, commentList: customDetail.comments })
     }
@@ -87,7 +88,9 @@ Page({
     const { customizedStatus } = this.data;
     return !popup && !customizedStatus;
   },
-
+    touchmove(){
+    return false
+    },
   async onShow() {
     // if (this.showGuide()) {
     //   this.setData({ popup: true, guide: true });
@@ -282,7 +285,10 @@ Page({
       return;
     }
     value = value.trim();
-    this.setData({ inputComment: value })
+    this.setData({ inputComment: value ,commentExpand:true})
+  },
+   focusEvent(e) {
+    this.setData({commentExpand:true})
   },
 
   async delComment(e) {

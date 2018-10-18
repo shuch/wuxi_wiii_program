@@ -9,7 +9,7 @@
   <view class="section section-custom">
   	<view class="like-box" wx:if="{{customDetail.likes.length}}">
   		<view class="like-list">
-        <block wx:for="{{customDetail.likes}}" wx:key="item">
+        <block wx:for="{{customDetail.likes}}" wx:key="item" wx:if="{{index<5}}">
           <image class="like-avatar" src="{{item.headImage}}" mode="scaleToFill" wx:if="{{item.headImage}}"/>
           <image class="like-avatar" src="{{cdn}}/avatar.png" mode="scaleToFill" wx:else/>
         </block>
@@ -90,7 +90,7 @@
   	<view class="rank-star">
   		<view class="rank-star-box" wx:for="{{rankList}}" wx:key="{{item.id}}">
   			<view class="rank-star-album">
-  				<image class="rank-star-img" src="{{item.src}}" mode="scaleToFill"/>
+  				<image class="rank-star-img" src="{{item.src}}" mode="aspectFill"/>
   				<view
             class="custom-like"
             data-id="{{item.id}}"
@@ -105,7 +105,8 @@
   				<image class="rank-star-avatar" src="{{item.owner.avatar}}" mode="scaleToFill"/>
   				{{item.owner.name}}
   			</view>
-  		</view>
+			<image style="position: absolute;left: 0;bottom: 0;width:100%;height: 120rpx" src="https://dm.static.elab-plus.com/wuXiW3/index/icover.png"></image>
+		</view>
   	</view>
   </view>
   <view class="section section-banner">

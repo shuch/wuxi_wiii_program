@@ -233,6 +233,7 @@
 	background: #FFFFFF;
 	margin-right: 40rpx;
 	box-shadow: 1px 1px 1px 1px rgba(213,213,213,0.47);
+	position: relative;
 }
 
 .rank-star-album {
@@ -251,6 +252,8 @@
 	color: #9B9B9B;
 	align-items: center;
 	padding-bottom: 14rpx;
+	position: relative;
+	z-index: 1;
 }
 
 .rank-star-avatar {

@@ -82,7 +82,7 @@
         涂鸦
       </view>
       <!-- <component-preview-image src="{{customDetail.imageUrl}}" class="hx-img" mode="aspectFit" /> -->
-      <image class="hx-img" src="{{customDetail.imageUrl}}" mode="aspectFit" bind:tap="onPreview" style="width:{{imgWidth}}px;height:{{imgHeight}}px;top:{{imgTop}}px;left:{{imgLeft}}px" disable-scroll="true" bindload="loadImage" />
+      <image catch:touchmove="touchmove" class="hx-img" src="{{customDetail.imageUrl}}" mode="aspectFit" bind:tap="onPreview" style="width:{{imgWidth}}px;height:{{imgHeight}}px;top:{{imgTop}}px;left:{{imgLeft}}px" disable-scroll="true" bindload="loadImage" />
       <view
         class="space-indicator space-left-top"
         bind:tap="editSpace"
@@ -101,7 +101,7 @@
       </view>
       <view class="rb-corner corner" bind:tap="onComment" wx:if="{{!drawMode}}">
         <block wx:if="{{commentMode}}">
-          <c-img cclass="comment-btn" src="{{cdn}}/exit_button.png" mode="scaleToFill" />退出评论
+          <c-img cclass="comment-btn" src="{{cdn}}/exit_button.png" mode="scaleToFill" />退出批注
         </block>
         <block wx:else>
           <c-img cclass="comment-btn" src="{{cdn}}/comment_button.png" mode="scaleToFill" />添加批注
@@ -112,21 +112,24 @@
           class="comment-title"
           wx:if="{{commentList.length > 2}}"
           bind:tap="toggleExpand"
+          style="background:{{commentExpand?'#D5D5D5 url(https://dm.static.elab-plus.com/wuXiW3/index/close.png)no-repeat  120rpx center/28rpx 15rpx':'#D5D5D5 url(https://dm.static.elab-plus.com/wuXiW3/index/open.png)no-repeat 120rpx center/28rpx 15rpx'}}"
         >
           {{commentExpand ? '收起' : '展开'}}评论
         </view>
-        <view class="comment-list">
-          <view
-            class="comment-item"
-            wx:for="{{commentList}}"
-            wx:for-index="idx"
-            wx:key="item"
-            data-id="{{item.id}}"
-            data-index="{{idx}}"
+        <view style="height: calc( 100% - 60rpx );overflow-y: auto">
+          <view class="comment-list">
+            <view
+                    class="comment-item"
+                    wx:for="{{commentList}}"
+                    wx:for-index="idx"
+                    wx:key="item"
+                    data-id="{{item.id}}"
+                    data-index="{{idx}}"
 
-          >
-            {{item.commentText}}
-            <image data-id="{{item.id}}" data-index="{{idx}}" bind:tap="delComment" wx:if="{{commentMode}}" class="icon-close" src="{{cdn}}/close.png" mode="scaleToFill"></image>
+            >
+              {{item.commentText}}
+              <image data-id="{{item.id}}" data-index="{{idx}}" bind:tap="delComment" wx:if="{{commentMode}}" class="icon-close" src="{{cdn}}/close.png" mode="scaleToFill"></image>
+            </view>
           </view>
         </view>
       </view>
@@ -136,7 +139,7 @@
     <view class="bottom operate-comment" wx:if="{{commentMode}}">
       <view class="input-box">
         <c-img cclass="input-icon" src="{{cdn}}/comment_in_icon.png" mode="scaleToFill"></c-img>
-        <input class="input" bindinput="bindKeyInput" value="{{inputComment}}"/>
+        <input class="input" bindfocus="focusEvent" bindinput="bindKeyInput" value="{{inputComment}}"/>
       </view>
       <view class="btn-send" bind:tap="sendComment">发送</view>
     </view>

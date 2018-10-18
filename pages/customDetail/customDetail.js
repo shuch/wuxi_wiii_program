@@ -27,8 +27,13 @@ Page({
     }
     const appData = await login();
     const { id: customerId, houseId, nickname, headPortrait: headImage } = appData;
-    const res = await endpoint('customizedDetail', customId);
+    const res = await endpoint('customizedDetail', customId,customerId);
     const customDetail = customDetailMapper(res.single);
+    if(customDetail.origin.nickname!=nickname){
+        wx.setNavigationBarTitle({
+            title: customDetail.origin.nickname+'的方案'
+        });
+    }
     this.loadImage(customDetail);
 
     const rankRes = await endpoint('rankList', {

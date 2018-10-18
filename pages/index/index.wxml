@@ -188,6 +188,16 @@
             </view>
         </view>
     </view>
+<view class="banner1"
+      data-type="4"
+      data-despage="zhoubianpeitaotu"
+      data-clkId="clk_2cmina_17"
+      bindtap="goImgSwip">
+    <view class="mask" style="background-image: linear-gradient(-180deg, {{mask1}} 0%, {{mask2}} 100%);"></view>
+    <image src="{{matchModule.coverUrl||neighborUrl}}" mode="widthFix"></image>
+    <view class="text">{{matchModule.title||'周边配套图'}}</view>
+    <view class="liveCount">{{initData.matchModule.likeCount||'0'}}人点赞</view>
+</view>
 <!--项目特点-->
 <view class="container2" id="jingcaishijiao">
 <view class="left-box">
@@ -292,16 +302,6 @@
       <view class="mask" style="background-image: linear-gradient(-180deg, {{mask1}} 0%, {{mask2}} 100%);"></view>
       <image src="{{watchModule.coverUrl||threeDUrl}}" mode="widthFix"></image>
       <view class="text">{{watchModule.title||'3D看房'}}</view>
-  </view>
-  <view class="banner1"
-        data-type="4"
-        data-despage="zhoubianpeitaotu"
-        data-clkId="clk_2cmina_17"
-        bindtap="goImgSwip">
-      <view class="mask" style="background-image: linear-gradient(-180deg, {{mask1}} 0%, {{mask2}} 100%);"></view>
-      <image src="{{matchModule.coverUrl||neighborUrl}}" mode="widthFix"></image>
-      <view class="text">{{matchModule.title||'周边配套图'}}</view>
-      <view class="liveCount">{{initData.matchModule.likeCount||'0'}}人点赞</view>
   </view>
   <!--<view class="white-line">-->
 

@@ -166,7 +166,7 @@
 		<view class="rank-star">
 			<view class="rank-star-box" wx:for="{{rankList}}" wx:key="{{item.id}}">
 				<view class="rank-star-album">
-					<image class="rank-star-img" src="{{item.src}}" mode="scaleToFill"/>
+					<image class="rank-star-img" src="{{item.src}}" mode="aspectFill"/>
 					<view
 						class="custom-like"
 						data-id="{{item.id}}"
