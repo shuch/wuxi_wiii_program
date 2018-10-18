@@ -109,7 +109,7 @@
   	</view>
   </view>
   <view class="section section-banner">
-  	<image class="banner" src="{{cdn}}/custom_center_banner.png" mode="scaleToFill"/>
+  	<image class="banner" src="https://dm.static.elab-plus.com/wuXiW3/index/banner图1@2x.png" mode="scaleToFill"/>
   </view>
   <view class="bottom">
   	<view class="center service" bind:tap="onRouteService">
