@@ -13,6 +13,9 @@
           <image class="like-avatar" src="{{item.headImage}}" mode="scaleToFill" wx:if="{{item.headImage}}"/>
           <image class="like-avatar" src="{{cdn}}/avatar.png" mode="scaleToFill" wx:else/>
         </block>
+        <block wx:for="{{['','','','','']}}" wx:key="item" wx:if="{{index+customDetail.likes.length<5}}">
+          <image class="like-avatar" src="https://dm.static.elab-plus.com/wuXiW3/index/none.png" mode="scaleToFill"/>
+        </block>
   		</view>
 		  等<text class="theme-color">{{customDetail.likes.length}}人</text>也喜欢这个方案
     </view>
@@ -52,23 +55,27 @@
   		    class="comment-title"
   		    wx:if="{{customDetail.comments.length > 2}}"
   		    bind:tap="toggleExpand"
-  		  >
+			style="background:{{commentExpand?'#D5D5D5 url(https://dm.static.elab-plus.com/wuXiW3/index/close.png)no-repeat  120rpx center/28rpx 15rpx':'#D5D5D5 url(https://dm.static.elab-plus.com/wuXiW3/index/open.png)no-repeat 120rpx center/28rpx 15rpx'}}"
+		  >
   		    {{commentExpand ? '收起' : '展开'}}评论
   		  </view>
-  		  <view class="comment-list">
-  		    <view
-  		      class="comment-item"
-  		      wx:for="{{customDetail.comments}}"
-  		      wx:for-index="idx"
-  		      wx:key="item"
-  		      data-id="{{item.id}}"
-  		      data-index="{{idx}}"
-  		      bind:tap="delComment"
-  		    >
-  		      {{item.commentText}}
-  		      <image wx:if="{{commentMode}}" class="icon-close" src="{{cdn}}/close.png" mode="scaleToFill"></image>
-  		    </view>
-  		  </view>
+			<view style="height: calc( 100% - 60rpx );overflow-y: auto">
+				<view class="comment-list">
+					<view
+							class="comment-item"
+							wx:for="{{customDetail.comments}}"
+							wx:for-index="idx"
+							wx:key="item"
+							data-id="{{item.id}}"
+							data-index="{{idx}}"
+							bind:tap="delComment"
+					>
+						{{item.commentText}}
+						<image wx:if="{{commentMode}}" class="icon-close" src="{{cdn}}/close.png" mode="scaleToFill"></image>
+					</view>
+				</view>
+			</view>
+
   		</view>
   	</view>
   	<view class="pane" wx:else>

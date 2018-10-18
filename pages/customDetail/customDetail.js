@@ -189,6 +189,11 @@ Page({
     this.setData({ doShare: false });
   },
 
+
+    toggleExpand() {
+        const { commentExpand } = this.data;
+        this.setData({ commentExpand: !commentExpand });
+    },
   async loadImage(customDetail) {
     const { canvasHeight, canvasWidth } = this.data;
     const { commentImageUrl } = customDetail; 
