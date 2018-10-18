@@ -33,8 +33,8 @@ Page({
   async onLoad(parmas) {
     const appData = await login();
     const { id: customerId, houseId } = appData;
-    const ageArray = this.generateRangeArray(1940, 2018);
-    // const ageArray = this.generateRange();
+    // const ageArray = this.generateRangeArray(1940, 2018);
+    const ageArray = this.generateRange();
     console.log('ageArray', ageArray);
     const sexArray = [{value: 1, text: '先生'}, {value:0, text: '女士'}];
     const state = await endpoint('customState', { customerId, houseId });
@@ -99,7 +99,7 @@ Page({
   },
 
   changeAge(e) {
-  	const index = e.detail.value;
+     const index = e.detail.value;
   	const value = this.data.ageArray[index];
   	this.setData({ ageIndex: index, age: value });
   },
