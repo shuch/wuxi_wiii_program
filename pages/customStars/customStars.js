@@ -2,6 +2,7 @@ import endpoint from '../../lib/endpoint';
 import regeneratorRuntime from '../../lib/runtime';
 import { houseTypesMapper, spaceTypeMapper, customDetailMapper, rankMapper } from '../../utils/convertor';
 import { login } from '../../lib/promise';
+import { trackRequest } from '../../utils/util';
 
 const cdn = 'http://oh1n1nfk0.bkt.clouddn.com';
 
@@ -25,6 +26,14 @@ Page({
     });
     this.getData();
     this.customState();
+  },
+  onShow() {
+    const param = {
+      type: 'PV',
+      pvId: 'P_2cdinzhi_5',
+      pvCurPageName: 'fanganpaihangbang',
+    };
+    trackRequest(param);
   },
   async customState() {
     const { customerId, houseId } = this.data;

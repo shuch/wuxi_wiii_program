@@ -3,6 +3,7 @@ import regeneratorRuntime from '../../lib/runtime';
 import { login, getSetting, savePhoneAuth } from '../../lib/promise';
 import { rankMapper, customizedMapper, processMapper } from '../../utils/convertor';
 import { formatDateTs } from '../../utils/date';
+import { trackRequest } from '../../utils/util';
 
 const cdn = 'http://oh1n1nfk0.bkt.clouddn.com';
 const app = getApp(); 
@@ -62,6 +63,15 @@ Page({
     this.initTicket();
     this.initCustomziedList();
     this.initRankList();
+  },
+
+  onShow() {
+    const param = {
+      type: 'PV',
+      pvId: 'P_2cdinzhi_3',
+      pvCurPageName: 'wodedingzhi',
+    };
+    trackRequest(param);
   },
 
   async initTicket() {

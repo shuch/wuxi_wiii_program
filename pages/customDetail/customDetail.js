@@ -2,14 +2,14 @@ import endpoint from '../../lib/endpoint';
 import regeneratorRuntime from '../../lib/runtime';
 import { houseTypesMapper, spaceTypeMapper, customDetailMapper, rankMapper } from '../../utils/convertor';
 import { login, getImageInfo } from '../../lib/promise';
+import { trackRequest } from '../../utils/util';
 
 const cdn = 'http://oh1n1nfk0.bkt.clouddn.com';
 
 Page({
   data: {
-    title: 'customDetail',
-    commentExpand: false,
     cdn,
+    commentExpand: false,
     tabSelected: 0,
     doShare: false,
     canvasHeight: 450,
@@ -61,6 +61,15 @@ Page({
     });
   },
 
+  onShow() {
+    const param = {
+      type: 'PV',
+      pvId: 'P_2cdinzhi_4',
+      pvCurPageName: 'huxingfangan',
+    };
+    trackRequest(param);
+  },
+
   switchTab(e) {
     const id = e.currentTarget.dataset.id;
     this.setData({ tabSelected: parseInt(id) });
@@ -99,6 +108,12 @@ Page({
     const imageUrl = `${cdn}/share_custom.jpg`;
     const path = `/pages/customDetail/customDetail?customId=${customId}`;
     const title = '我刚刚在无锡WIII定制了专属house,请你来做客';
+    const param = {
+      type: 'CLK',
+      clkName: 'gengduo',
+      clkId: 'clk_2cdinzhi_0',
+    };
+    trackRequest(param);
     return {
       title,
       path,

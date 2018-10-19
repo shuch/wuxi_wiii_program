@@ -93,6 +93,9 @@ function trackRequest(para,app){
   if(JSON.stringify(para.pvCurPageParams)==='{}'){
       para.pvCurPageParams = '';
   }
+  if (!app) {
+    app = getApp();
+  }
   const { globalData: { single } } = app;
   const { id } = single || {};
   let data = {
@@ -106,8 +109,8 @@ function trackRequest(para,app){
       cookieId:'',
       openId:app.globalData.openid||'',
       userId:id,
-      createTime:this.formatTime(new Date()),
-      uploadTime:this.formatTime(new Date()),
+      createTime:formatTime(new Date()),
+      uploadTime:formatTime(new Date()),
       product:config.projectName,
       project:config.houseId,
       eventId:para.eventId||'',//埋点ID

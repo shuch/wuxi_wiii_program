@@ -1,6 +1,7 @@
 import endpoint from '../../lib/endpoint';
 import regeneratorRuntime from '../../lib/runtime';
-import { login } from '../../lib/promise'
+import { login } from '../../lib/promise';
+import { trackRequest } from '../../utils/util';
 
 const cdn = 'http://oh1n1nfk0.bkt.clouddn.com';
 
@@ -63,6 +64,12 @@ Page({
   },
 
   async onShow() {
+    const param = {
+      type: 'PV',
+      pvId: 'P_2cdinzhi_1',
+      pvCurPageName: 'buchongxinxi',
+    };
+    trackRequest(param);
   },
 
   bindKeyInput(e) {
