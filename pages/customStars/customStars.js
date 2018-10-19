@@ -93,5 +93,10 @@ Page({
   onRouteDetail(e) {
     const url = `/pages/customDetail/customDetail?customId=${e.currentTarget.dataset.id}`;
     wx.navigateTo({ url });
+    trackRequest({
+      type: 'CLK',
+      clkName: 'huxingfangan',
+      clkId: 'clk_2cdinzhi_30',
+    });
   },
 });

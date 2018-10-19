@@ -1,3 +1,5 @@
+import { trackRequest } from '../../utils/util';
+
 Component({
   properties: {
     showActionSheet: {
@@ -37,9 +39,18 @@ Component({
       this.triggerEvent('onclose');
     },
     onShareFriend() {
-
+      trackRequest({
+        type: 'CLK',
+        clkName: 'fenxainggeihaoyou',
+        clkId: 'clk_2cdinzhi_16',
+      });
     },
     onShareTimeline() {
+      trackRequest({
+        type: 'CLK',
+        clkName: 'fenxiangdaopengyouquan',
+        clkId: 'clk_2cdinzhi_17',
+      });
       this.setData({ timeline: true, showMenu: false });
     },
     saveImage() {

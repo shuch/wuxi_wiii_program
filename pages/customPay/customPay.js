@@ -142,6 +142,11 @@ Page({
           });
        }
     });
+    trackRequest({
+      type: 'CLK',
+      clkName: 'zhijiefukuan',
+      clkId: 'clk_2cdinzhi_14',
+    });
   },
 
   async menuShare() {
@@ -159,6 +164,11 @@ Page({
       xcxName: "无锡WIII",
     });
     this.setData({ doShare: true, timelineSrc: res.single });
+    trackRequest({
+      type: 'CLK',
+      clkName: 'xiangshoujianmian',
+      clkId: 'clk_2cdinzhi_15',
+    });
   },
 
   onShareAppMessage() {

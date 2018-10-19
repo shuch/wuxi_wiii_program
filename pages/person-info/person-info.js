@@ -160,6 +160,11 @@ Page({
       houseId,
       nickName: name,
     });
+    trackRequest({
+      type: 'CLK',
+      clkName: 'baocunyonghuxinxi',
+      clkId: 'clk_2cdinzhi_13',
+    });
     console.log('onSave', res, hasPay);
     // 支付-定制流程
     if (hasPay) {

@@ -242,9 +242,19 @@ Page({
     const res = await endpoint('customStatus', { customerId, houseId });
     const progress = res.single.processList.map(processMapper);
     this.setData({ showProgress: true, progress });
+    trackRequest({
+      type: 'CLK',
+      clkName: 'chakanxiangqing',
+      clkId: 'clk_2cdinzhi_23',
+    });
   },
 
   onRefund() {
+    trackRequest({
+      type: 'CLK',
+      clkName: 'shenqingtuikuan',
+      clkId: 'clk_2cdinzhi_24',
+    });
     this.setData({ showProgress: false, showRefund: true });
   },
 
@@ -418,6 +428,11 @@ Page({
   },
 
   createCustom() {
+    trackRequest({
+      type: 'CLK',
+      clkName: 'xinjianfengan',
+      clkId: 'clk_2cdinzhi_18',
+    });
     const url = `/pages/customHouse/customHouse?create=1`
     wx.navigateTo({ url });
   },
@@ -426,6 +441,11 @@ Page({
     const id = e.currentTarget.dataset.id;
     const url = `/pages/customHouse/customHouse?update=1&id=${id}`;
     wx.navigateTo({ url });
+    trackRequest({
+      type: 'CLK',
+      clkName: 'bianji',
+      clkId: 'clk_2cdinzhi_19',
+    });
   },
 
   async onShare(e) {
@@ -443,6 +463,11 @@ Page({
         xcxName: "无锡WIII",
     });
     this.setData({ shareCustomId: id, doShare: true, timelineSrc: res.single });
+    trackRequest({
+      type: 'CLK',
+      clkName: 'fenxiang',
+      clkId: 'clk_2cdinzhi_20',
+    });
   },
 
   closePopup() {
@@ -561,6 +586,11 @@ Page({
         self.didDelete(e);
       },
     });
+    trackRequest({
+      type: 'CLK',
+      clkName: 'youhuashancha',
+      clkId: 'clk_2cdinzhi_25',
+    });
   },
 
   restore(e) {
@@ -595,6 +625,11 @@ Page({
   },
 
   onRouteStar() {
+    trackRequest({
+      type: 'CLK',
+      clkName: 'chakangengduo',
+      clkId: 'clk_2cdinzhi_22',
+    });
     wx.navigateTo({ url: '/pages/customStars/customStars' });
   },
 

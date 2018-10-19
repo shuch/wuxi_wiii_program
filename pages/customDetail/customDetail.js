@@ -154,10 +154,22 @@ Page({
         icon: 'success',
         duration: 2000,
       });
+      wx.navigateTo({ url: '/pages/customCenter/customCenter' });
     }
+
+    trackRequest({
+      type: 'CLK',
+      clkName: 'dingzhicifangan',
+      clkId: 'clk_2cdinzhi_28',
+    });
   },
 
   onRouteCustom() {
+    trackRequest({
+      type: 'CLK',
+      clkName: 'DIYwodehouse',
+      clkId: 'clk_2cdinzhi_29',
+    });
     wx.navigateTo({ url: '/pages/customHouse/customHouse' });
   },
 
@@ -171,21 +183,29 @@ Page({
       url = '../messagesList/messagesList'
     }
     wx.navigateTo({ url });
+    trackRequest({
+      type: 'CLK',
+      clkName: 'IM',
+      clkId: 'clk_2cdinzhi_27',
+    });
   },
 
   async onLikeStar(e) {
     const id = e.currentTarget.dataset.id;
-    console.log('id', id);
     const { customerId, houseId, rankList: list, customDetail,customId } = this.data;
     const res = await endpoint('like', {
       houseId,
       customerId,
       customerProgrammeId: id,
     });
+    trackRequest({
+      type: 'CLK',
+      clkName: 'dianzan',
+      clkId: 'clk_2cdinzhi_21',
+    });
     if (!res.success) {
       return;
     }
-    // console.log(typeof customId, typeof id);
     if (id === customId) {
       customDetail.isThumbsUp = !customDetail.isThumbsUp;
       this.setData({ customDetail });
@@ -195,7 +215,6 @@ Page({
     item.like = item.isLike ? item.like - 1 : item.like + 1;
     item.isLike = !item.isLike;
     this.setData({ rankList: list });
-    e.stopPropagation && e.stopPropagation();
   },
 
   onClose() {
