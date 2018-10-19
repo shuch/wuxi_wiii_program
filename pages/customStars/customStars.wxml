@@ -80,15 +80,15 @@
 
 	<view class="featrue-list">
 		<view class="feature">
-			<c-img cclass="icon-privilege" src="{{cdn}}/icon_design.png" mode="scaleToFill"/>
+			<c-img cclass="icon-privilege" src="{{cdn}}/icon_design_c.png" mode="scaleToFill"/>
 			定制特权
 		</view>
 		<view class="feature">
-			<c-img cclass="icon-privilege" src="{{cdn}}/icon_refund.png" mode="scaleToFill"/>
+			<c-img cclass="icon-privilege" src="{{cdn}}/icon_refund_c.png" mode="scaleToFill"/>
 			退款特权
 		</view>
 		<view class="feature">
-			<c-img cclass="icon-privilege" src="{{cdn}}/icon_chosen.png" mode="scaleToFill"/>
+			<c-img cclass="icon-privilege" src="{{cdn}}/icon_chosen_c.png" mode="scaleToFill"/>
 			入选特权
 		</view>
 	</view>
