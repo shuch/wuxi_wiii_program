@@ -5,7 +5,7 @@
       bind:tap="onClose" />
     </view>
     <view class="share-menu">
-      <button class="share-type transparent"  hover-class="none" open-type="share" bind:tap="onShareFriend">
+      <button class="share-type transparent"  hover-class="none" open-type="share" catch:tap="onShareFriend">
         <image class="share-img" src="http://oh1n1nfk0.bkt.clouddn.com/wechat.png" mode="scaleToFill"></image>
         分享给好友
       </button>

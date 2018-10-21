@@ -44,6 +44,8 @@ Component({
         clkName: 'fenxainggeihaoyou',
         clkId: 'clk_2cdinzhi_16',
       });
+      console.log('onsharefriend');
+      this.triggerEvent('onsharefriend');
     },
     onShareTimeline() {
       trackRequest({

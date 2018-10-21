@@ -21,12 +21,12 @@ Page({
     console.log({ path: this.route, parmas } );
     const { scene } = parmas;
     let shareId;
-    let fromEntry;
+    // let fromEntry;
     if (scene) {
       shareId = scene.shareId;
     } else {
       shareId = parmas.shareId || '';
-      fromEntry = parmas.fromEntry || '';
+      // fromEntry = parmas.fromEntry || '';
     }
     const appData = await login();
     const {
@@ -58,9 +58,9 @@ Page({
       hasPay,
       nickname,
       headImage,
-      fromEntry,
+      // fromEntry,
     });
-    this.addShareRecord();
+    // this.addShareRecord();
     this.redirect();
   },
 
@@ -74,8 +74,8 @@ Page({
   },
 
   redirect() {
-    const { fromEntry, hasPay } = this.data;
-    if (fromEntry && hasPay) {
+    const { hasPay } = this.data;
+    if (hasPay) {
       wx.redirectTo({ url: '/pages/customCenter/customCenter' });
     }
   },
@@ -94,11 +94,11 @@ Page({
   },
 
   onClose() {
-    this.setData({ showPopup: false });
+    this.setData({ showPopup: false, doShare: false });
   },
 
   async onPay() {
-    const { openid, customerId, houseId, appId, secret, fee } = this.data;
+    const { openid, customerId, houseId, appId, secret, fee, shareId } = this.data;
     const res = await endpoint('buyCard', {
       customerId,
       fee,
@@ -107,6 +107,7 @@ Page({
       payPlatform: 1,
       paySource: 1,
       uniqueCode: openid,
+      shareCustomerId: shareId,
     });
     if (!res.success) {
       wx.showToast({ title: res.message, icon: 'none' });
@@ -174,14 +175,22 @@ Page({
   onShareAppMessage() {
     const { customerId, hasPay } = this.data;
     const imageUrl = `${cdn}/share_pay.jpg`;
+    setTimeout(() => {
+        this.sharePay();
+    }, 2000);
     return {
       title: '我邀请你一起来抢限量入场券,享无锡WIII公寓户型定制',
       imageUrl,
       path: `${this.route}?shareId=${customerId}&from=customPay`,
       success: () => {
-        this.sharePay();
+        console.log('success');
       },
     };
+  },
+
+  onShareFriend() {
+    console.log('onShareFriend');
+    this.sharePay();
   },
 
   onSaveImage() {
@@ -203,11 +212,6 @@ Page({
             console.log(e);
           }
         });
-        // wx.authorize({
-        //   scope: 'scope.writePhotosAlbum',
-        //   success: () => {
-        //   }
-        // });
       },
     });
   },
