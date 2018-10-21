@@ -144,8 +144,9 @@
       <view class="btn-send" bind:tap="sendComment">发送</view>
     </view>
     <!-- drawMode -->
-    <view class="bottom black" bind:tap="onSaveDraw" wx:elif="{{drawMode}}">
-      完成涂鸦
+    <view class="bottom" wx:elif="{{drawMode}}">
+      <view class="flex-1 black">清除除鸦</view>
+      <view class="flex-1 operate-save" bind:tap="onSaveDraw">完成涂鸦</view>
     </view>
     <view class="bottom operate-save" bind:tap="onSaveCustom" wx:else>
       保存为我的定制方案

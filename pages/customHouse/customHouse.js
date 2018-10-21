@@ -124,7 +124,7 @@ Page({
     trackRequest({
       type: 'CLK',
       clkName: 'qiehuanfangan',
-      clkId: 'clk_2cdinzhi_4',
+      clkId: 'clk_2cdinzhi_3',
     });
     this.setData({ houseTypeUpdate: true, preHouseType: this.data.selectedType });
   },
@@ -146,6 +146,7 @@ Page({
       type: 'CLK',
       clkName: 'xiayibu',
       clkId: 'clk_2cdinzhi_2',
+      clkParams: { selectedType: this.data.selectedType.layoutId },
     });
   },
 
@@ -177,6 +178,7 @@ Page({
       Object.assign(track, {
         clkName: 'querenxaunzehuxing',
         clkId: 'clk_2cdinzhi_7',
+        clkParams: { selectedType: this.data.selectedType.layoutId },
       });
     } else {
       Object.assign(data, { selectedType: this.data.preHouseType });
@@ -292,7 +294,7 @@ Page({
     trackRequest({
       type: 'CLK',
       clkName: commentMode ? 'tuchupinglun' : 'tianjiapinglun',
-      clkId: commentMode ? 'clk_2cdinzhi_10' : 'clk_2cdinzhi_9',
+      clkId: commentMode ? 'clk_2cdinzhi_10' : 'clk_2cdinzhi_6',
     });
   },
 
@@ -370,6 +372,11 @@ Page({
         wx.navigateTo({ url: '/pages/person-info/person-info' });
       }
     }
+    trackRequest({
+      type: 'CLK',
+      clkName: 'tijiaofangan',
+      clkId: 'clk_2cdinzhi_4',
+    });
   },
 
   toggleExpand() {
