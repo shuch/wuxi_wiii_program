@@ -75,14 +75,15 @@
       <canvas canvas-id="draw" class="draw" style="width: 750rpx;height:900rpx"  disable-scroll="true" bindtouchstart="drawStart" bindtouchmove="drawMove"></canvas>
     </view>
     <view class="huxing" wx:else>
-      <!--<view class="lt-corner corner">-->
-        <!--<c-img cclass="north" src="{{cdn}}/north.png" mode="scaleToFill"></c-img>N-->
-      <!--</view>-->
       <view class="rt-corner corner" bind:tap="onDraw" hidden="{{houseTypeUpdate || spaceEdit || commentMode}}">
         涂鸦
       </view>
       <!-- <component-preview-image src="{{customDetail.imageUrl}}" class="hx-img" mode="aspectFit" /> -->
       <image catch:touchmove="touchmove" class="hx-img" src="{{customDetail.imageUrl}}" mode="aspectFit" style="width:{{imgWidth}}px;height:{{imgHeight}}px;top:{{imgTop}}px;left:{{imgLeft}}px" disable-scroll="true" bindload="loadImage" />
+      <view class="lt-corner plane" bind:tap="seePlain">
+        查看平面图 <image class="icon-search" src="{{cdn}}/search.png" mode="scaleToFill"></image>
+        <!-- <c-img cclass="north" src="{{cdn}}/north.png" mode="scaleToFill"></c-img> -->
+      </view>
       <view
         class="space-indicator space-left-top"
         bind:tap="editSpace"
@@ -119,13 +120,12 @@
         <view style="height: calc( 100% - 60rpx );overflow-y: auto">
           <view class="comment-list">
             <view
-                    class="comment-item"
-                    wx:for="{{commentList}}"
-                    wx:for-index="idx"
-                    wx:key="item"
-                    data-id="{{item.id}}"
-                    data-index="{{idx}}"
-
+              class="comment-item"
+              wx:for="{{commentList}}"
+              wx:for-index="idx"
+              wx:key="item"
+              data-id="{{item.id}}"
+              data-index="{{idx}}"
             >
               {{item.commentText}}
               <image data-id="{{item.id}}" data-index="{{idx}}" bind:tap="delComment" wx:if="{{commentMode}}" class="icon-close" src="{{cdn}}/close.png" mode="scaleToFill"></image>

@@ -510,6 +510,14 @@ Page({
     this.scaleWidth = scaleWidth;
     this.scaleHeight = scaleHeight;
     console.log('loadImage', initRatio, this.startX, this.startY, scaleWidth, scaleHeight);
+  },
 
-  }
+  seePlain() {
+    const src = this.data.customDetail.imageUrl;
+    wx.previewImage({
+      urls: [src],
+      current: src,
+    });
+    // wx.previewImage({});
+  },
 });

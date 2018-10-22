@@ -263,10 +263,22 @@
 }
 
 .lt-corner {
-  width: 71rpx;
-  top: 63rpx;
-  left: 60rpx;
-  font-size: 20rpx;
+  position: absolute;
+  top: 33rpx;
+  left: 20rpx;
+}
+
+.plane {
+  display: flex;
+  align-items: center;
+  font-size: 28rpx;
+  color: #9B9B9B;
+}
+
+.icon-search {
+  width: 28rpx;
+  height: 28rpx;
+  margin-left: 6rpx;
 }
 
 .rt-corner {
