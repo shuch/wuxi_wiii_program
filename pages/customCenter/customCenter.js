@@ -182,8 +182,7 @@ Page({
       },
       customerList: inviteList,
     } = res.single;
-    // const inviteRes = await endpoint('invite', { customerId, houseId });
-    // console.log('vi', inviteRes);
+    const inviteArr = this.generateInviteArr(inviteList);
     this.setData({
       payTime: formatDateTs(payTime),
       ticketViewCode,
@@ -191,6 +190,7 @@ Page({
       tradeCode,
       inviteList,
       payProcess,
+      inviteArr,
     });
   },
 
@@ -216,16 +216,16 @@ Page({
     }
 
     imageUrl = `${cdn}/share_pay.jpg`;
+    setTimeout(() => {
+      if (!hasPay) {
+        this.onSharePay();
+      }
+      this.setData({ doShare: false });
+    }, 2000);
     return {
       title: '我邀请你一起来抢限量入场券,享无锡WIII公寓户型定制',
       imageUrl,
       path: `/pages/customPay/customPay?shareId=${customerId}&from=customCenter`,
-      success: () => {
-        if (!hasPay) {
-          this.onSharePay();
-        }
-        this.setData({ doShare: false });
-      },
     };
   },
 
@@ -325,6 +325,7 @@ Page({
             title: '支付成功',
             icon: 'success',
           });
+          console.log('支付成功');
           await this.changePay();
           this.setData({ hasPay: true });
        },
@@ -590,6 +591,7 @@ Page({
       type: 'CLK',
       clkName: 'youhuashancha',
       clkId: 'clk_2cdinzhi_25',
+      clkParams: { customId: e.currentTarget.dataset.id },
     });
   },
 

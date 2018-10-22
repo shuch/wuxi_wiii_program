@@ -461,3 +461,8 @@
   justify-content: center;
   background:linear-gradient(197deg,rgba(91,91,91,1) 0%,rgba(18,18,15,1) 100%);
 }
+
+.flex-1 {
+  flex: 1;
+  text-align: center;
+}

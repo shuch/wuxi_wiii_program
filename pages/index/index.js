@@ -501,7 +501,7 @@ Page({
         // },function(){
         //   that.authorizeIndexPhone();
         // });
-        that.authorizeIndexPhone();
+      
         that.getInitData();
     },
     onReady: function() {
@@ -579,6 +579,7 @@ Page({
             })
         }
         app.login(function(){
+            that.authorizeIndexPhone();
             let param = {
                 ip:app.globalData.ip,
                 type:'PV',
@@ -939,7 +940,7 @@ Page({
         this.setData({
             showPhoneModel: false
         });
-        app.globalData.isPhone=true;
+        app.globalData.tmpPhone=true;
         wx.setStorageSync('ISauthorizePhone', true); // 是否授权过手机号,
         var iv = e.detail.iv;
         var errMsg = e.detail.errMsg;

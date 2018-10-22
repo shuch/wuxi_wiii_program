@@ -33,9 +33,10 @@ Page({
       return;
     }
     const customDetail = customDetailMapper(res.single);
+    const nick = customDetail.origin.nickname || '用户';
     if(customDetail.origin.nickname!=nickname){
         wx.setNavigationBarTitle({
-            title: customDetail.origin.nickname+'的方案'
+            title: `${nick}的方案`,
         });
     }
     this.loadImage(customDetail);
@@ -202,6 +203,7 @@ Page({
       type: 'CLK',
       clkName: 'dianzan',
       clkId: 'clk_2cdinzhi_21',
+      clkParams: { customId: id },
     });
     if (!res.success) {
       return;

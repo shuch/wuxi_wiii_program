@@ -136,14 +136,14 @@
 				</view>
 				<view class="custom-rank">
 					当前排名:<text class="red">{{item.rank}}</text>
-					<block wx:if="{{item.origin.id && item.origin.id !== customerId}}">
+					<!-- <block wx:if="{{item.origin.id && item.origin.id !== customerId}}">
 						<view class="rank-star-info float-r">
 							来自
 							<image class="rank-star-avatar" src="{{item.origin.headPortrait}}" mode="scaleToFill"/>
 							{{item.origin.nickname}}
 						</view>
-					</block>
-					<block wx:else>
+					</block> -->
+					<block>
 						<view class="section-btn" bind:tap="onShare" data-id="{{item.id}}">分享</view>
 						<view class="section-btn margin-right" bind:tap="onEdit" data-id="{{item.id}}">编辑</view>
 					</block>
@@ -177,11 +177,11 @@
 						{{item.like}}
 					</view>
 				</view>
+				<image style="position: absolute;left: 0;bottom: 0;height: 120rpx" src="https://dm.static.elab-plus.com/wuXiW3/index/icover.png"></image>
 				<view class="rank-star-info">
 					<image class="rank-star-avatar" src="{{item.owner.avatar}}" mode="scaleToFill"/>
 					{{item.owner.name}}
 				</view>
-				<image style="position: absolute;left: 0;bottom: 0;height: 120rpx" src="https://dm.static.elab-plus.com/wuXiW3/index/icover.png"></image>
 			</view>
 		</view>
 	</view>
