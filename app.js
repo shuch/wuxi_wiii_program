@@ -290,7 +290,7 @@ App({
                                   app.globalData.loginid = data.loginNo;
                                   app.globalData.sessionKey = data.sessionKey;
                                   app.globalData.openid = data.openId || "";
-                                  app.globalData.phone = wx.getStorageSync('phone');
+                                  app.globalData.phone =res.data.single.wxAuthMobile||res.data.single.leavePhoneMobile||res.data.single.mobile||res.data.single.imBindMobile||false;
                                   app.globalData.identifier = data.id + "_"  + data.houseId;
                                   console.log(app.globalData)
                                   // wx.setStorageSync('globalData', app.globalData);
@@ -420,7 +420,6 @@ App({
     loginid:null,
     userInfo:null,
     sessionTime:new Date().getTime(),
-    isPhone:false,//是否手机授权过
     isUserInfo:false,//是否身份授权过
     houseTypeDetail:null,
     endTime:'',

@@ -122,24 +122,25 @@ Page({
     },
     onLoad(options){
         var that=this;
-        authorizeInfo.call(this,function(){
-            that.authorizeIndexPhone(function () {
-                that.getList();
-            },function () {
-                that.getList();
-            })
-        },function(){
-            that.authorizeIndexPhone(function () {
-                that.getList();
-            },function () {
-                that.getList();
-            })
-        });
+        that.getList();
+        // authorizeInfo.call(this,function(){
+        //     that.authorizeIndexPhone(function () {
+        //         that.getList();
+        //     },function () {
+        //         that.getList();
+        //     })
+        // },function(){
+        //     that.authorizeIndexPhone(function () {
+        //         that.getList();
+        //     },function () {
+        //         that.getList();
+        //     })
+        // });
     },//手机号授权
     authorizeIndexPhone(cb,failcb){
         var that = this;
         // wx.getStorageSync('ISauthorizePhone');// 是否授权过手机号,
-        if(!wx.getStorageSync('phone')&&!app.globalData.isPhone){
+        if(!wx.getStorageSync('phone')&&!app.globalData.tmpPhone){
             app.globalData.phone = wx.getStorageSync('phone');
             console.log("***authorizeIndexPhone***",app.globalData.phone,wx.getStorageSync('phone'))
             // 没有获得用户手机号
@@ -168,7 +169,7 @@ Page({
         this.setData({
             showPhoneModel: false
         });
-        app.globalData.isPhone=true;
+        app.globalData.tmpPhone=true;
         wx.setStorageSync('ISauthorizePhone', true); // 是否授权过手机号,
         var iv = e.detail.iv;
         var errMsg = e.detail.errMsg;
