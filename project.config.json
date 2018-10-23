@@ -31,7 +31,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 6,
+			"current": 10,
 			"list": [
 				{
 					"id": -1,
@@ -92,6 +92,11 @@
 					"name": "pages/video/video",
 					"pathName": "pages/video/video",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "色系选择",
+					"pathName": "pages/customTheme/customTheme"
 				}
 			]
 		}

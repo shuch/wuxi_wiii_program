@@ -27,7 +27,8 @@
     "pages/projectIntroduction/projectIntroduction",
     "pages/recommendedPlan/recommendedPlan",
     "pages/customDetail/customDetail",
-    "pages/customStars/customStars"
+    "pages/customStars/customStars",
+    "pages/customTheme/customTheme"
   ],
   "window": {
     "backgroundTextStyle": "light",

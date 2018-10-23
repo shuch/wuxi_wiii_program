@@ -58,10 +58,10 @@ export const rankMapper = (item) => {
 	let spaceList = spaces || [];
 	spaceList = spaceList.map(item => item.name);
 	const special = [name, ...spaceList];
-	const { nickname, headPortrait } = originCustomer || {};
+	const { nickName, headPic } = originCustomer || {};
 	const owner = {
-		name: nickname || '',
-		avatar: headPortrait || '',
+		name: nickName || '',
+		avatar: headPic || '',
 	};
 	const rank = orderNo || '';
 	return {
@@ -84,6 +84,7 @@ export const customDetailMapper = (data) => {
 		...data,
 		likes,
 		origin,
+		originUrl: data.imageUrl,
 		imageUrl: data.commentImageUrl,
 	};
 }

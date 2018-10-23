@@ -75,15 +75,17 @@
       <canvas canvas-id="draw" class="draw" style="width: 750rpx;height:900rpx"  disable-scroll="true" bindtouchstart="drawStart" bindtouchmove="drawMove"></canvas>
     </view>
     <view class="huxing" wx:else>
-      <view class="rt-corner corner" bind:tap="onDraw" hidden="{{houseTypeUpdate || spaceEdit || commentMode}}">
+      
+<!--       <view class="rt-corner corner" bind:tap="onDraw" hidden="{{houseTypeUpdate || spaceEdit || commentMode}}">
         涂鸦
-      </view>
+      </view> -->
       <!-- <component-preview-image src="{{customDetail.imageUrl}}" class="hx-img" mode="aspectFit" /> -->
       <image catch:touchmove="touchmove" class="hx-img" src="{{customDetail.imageUrl}}" mode="aspectFit" style="width:{{imgWidth}}px;height:{{imgHeight}}px;top:{{imgTop}}px;left:{{imgLeft}}px" disable-scroll="true" bindload="loadImage" />
       <view class="lt-corner plane" bind:tap="seePlain">
         查看平面图 <image class="icon-search" src="{{cdn}}/search.png" mode="scaleToFill"></image>
         <!-- <c-img cclass="north" src="{{cdn}}/north.png" mode="scaleToFill"></c-img> -->
       </view>
+      <image class="rt-corner corner" src="{{cdn}}/3D.png" mode="scaleToFill"></image>
       <view
         class="space-indicator space-left-top"
         bind:tap="editSpace"
@@ -100,22 +102,30 @@
         <text class="space-name">{{customDetail.spaces[1].name}}</text>
         <c-img cclass="space-plus" src="{{cdn}}/update_plus.png" mode="scaleToFill" />
       </view>
-      <view class="rb-corner corner" bind:tap="onComment" wx:if="{{!drawMode}}">
-        <block wx:if="{{commentMode}}">
-          <c-img cclass="comment-btn" src="{{cdn}}/exit_button.png" mode="scaleToFill" />退出批注
-        </block>
-        <block wx:else>
-          <c-img cclass="comment-btn" src="{{cdn}}/comment_button.png" mode="scaleToFill" />添加批注
-        </block>
+      <view class="rb-corner corner" hidden="{{drawMode}}">
+        <image class="corner-btn" src="{{cdn}}/style_button.png" bind:tap="onRouteTheme" hidden="{{commentMode}}" />
+        <view bind:tap="onComment">
+          <block wx:if="{{commentMode}}">
+            <c-img cclass="comment-btn" src="{{cdn}}/exit_button.png" mode="scaleToFill" />退出批注
+          </block>
+          <block wx:else>
+            <image class="corner-btn" src="{{cdn}}/comment_button.png" mode="scaleToFill"></image>
+          </block>
+        </view>
+        <image class="corner-btn" src="{{cdn}}/draw_button.png" bind:tap="onDraw" hidden="{{houseTypeUpdate || spaceEdit || commentMode}}"/>
       </view>
       <view class="comment-area {{commentExpand ? '' : 'comment-unfold'}}" wx:if="{{commentList.length}}">
         <view
           class="comment-title"
           wx:if="{{commentList.length > 2}}"
           bind:tap="toggleExpand"
-          style="background:{{commentExpand?'#D5D5D5 url(https://dm.static.elab-plus.com/wuXiW3/index/close.png)no-repeat  120rpx center/28rpx 15rpx':'#D5D5D5 url(https://dm.static.elab-plus.com/wuXiW3/index/open.png)no-repeat 120rpx center/28rpx 15rpx'}}"
         >
-          {{commentExpand ? '收起' : '展开'}}评论
+          <block wx:if="{{commentExpand}}">
+            收起 <image class="icon-arrow" src="{{cdn}}/down.png"/>
+          </block>
+          <block wx:else>
+            展开 <image class="icon-arrow" src="{{cdn}}/up.png"/>
+          </block>
         </view>
         <view style="height: calc( 100% - 60rpx );overflow-y: auto">
           <view class="comment-list">
@@ -145,7 +155,7 @@
     </view>
     <!-- drawMode -->
     <view class="bottom" wx:elif="{{drawMode}}">
-      <view class="flex-1 black">清除除鸦</view>
+      <view class="flex-1 black" bind:tap="resetDraw">清除涂鸦</view>
       <view class="flex-1 operate-save" bind:tap="onSaveDraw">完成涂鸦</view>
     </view>
     <view class="bottom operate-save" bind:tap="onSaveCustom" wx:else>
@@ -154,13 +164,16 @@
 
     <view wx:if="{{guide}}">
       <view class="cover-tip" wx:if="{{coverTip === 1}}">
-        <image class="cover-img" src="{{cdn}}/guide1.jpg" mode="scaleToFill" bind:tap="onCoverTip" data-step="1"/>
+        <image class="cover-img" src="{{cdn}}/guide1.png" mode="scaleToFill" bind:tap="onCoverTip" data-step="1"/>
       </view>
       <view class="cover-tip" wx:if="{{coverTip === 2}}">
-        <image class="cover-img" src="{{cdn}}/guide2.jpg" mode="scaleToFill" bind:tap="onCoverTip" data-step="2"/>
+        <image class="cover-img" src="{{cdn}}/guide2.png" mode="scaleToFill" bind:tap="onCoverTip" data-step="2"/>
       </view>
       <view class="cover-tip" wx:if="{{coverTip === 3}}">
-        <image class="cover-img" src="{{cdn}}/guide3.jpg" mode="scaleToFill" bind:tap="onCoverTip" data-step="3"/>
+        <image class="cover-img" src="{{cdn}}/guide3.png" mode="scaleToFill" bind:tap="onCoverTip" data-step="3"/>
+      </view>
+      <view class="cover-tip" wx:if="{{coverTip === 4}}">
+        <image class="cover-img" src="{{cdn}}/guide4.png" mode="scaleToFill" bind:tap="onCoverTip" data-step="4"/>
       </view>
     </view>
 

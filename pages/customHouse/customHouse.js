@@ -158,7 +158,7 @@ Page({
   onCoverTip(e) {
     if (!e) return;
     const { currentTarget: { dataset: { step } } } = e;
-    const coverTip = step > 2 ? 0 : +step + 1;
+    const coverTip = step > 3 ? 0 : +step + 1;
     this.setData({ coverTip });
   },
 
@@ -512,12 +512,23 @@ Page({
     console.log('loadImage', initRatio, this.startX, this.startY, scaleWidth, scaleHeight);
   },
 
+  resetDraw() {
+    const { customDetail } = this.data;
+    console.log('resetDraw', customDetail.imageUrl, customDetail.originUrl);
+    customDetail.imageUrl = customDetail.originUrl;
+    this.setData({ customDetail });
+    this.onDraw();
+  },
+
   seePlain() {
     const src = this.data.customDetail.imageUrl;
     wx.previewImage({
       urls: [src],
       current: src,
     });
-    // wx.previewImage({});
+  },
+
+  onRouteTheme() {
+    wx.navigateTo({ url: '/pages/customTheme/customTheme' });
   },
 });
