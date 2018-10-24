@@ -111,10 +111,10 @@
 							<view class="custom-feature-list">
 								<view
 									class="custom-feature"
-									wx:for="{{item.special}}"
-									wx:for-item="special"
-									wx:key="special"
-								>{{special}}</view>
+									wx:for="{{item.spaces}}"
+									wx:for-item="space"
+									wx:key="space.id"
+								>{{space.name}}</view>
 							</view>
 							<image src="https://dm.static.elab-plus.com/wuXiW3/index/shadow.png" class="shadow"></image>
 							<view
@@ -128,7 +128,7 @@
 							</view>
 						</view>
 						<view class="custom-item-info">
-							<text class="custom-item-rank">方案{{index+1}}</text>
+							<text class="custom-item-rank">{{item.name}}</text>
 							最后编辑 {{item.date}}
 						</view>
 					</view>

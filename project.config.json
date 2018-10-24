@@ -31,7 +31,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 10,
+			"current": 11,
 			"list": [
 				{
 					"id": -1,
@@ -49,7 +49,7 @@
 					"id": 2,
 					"name": "我的定制",
 					"pathName": "pages/customCenter/customCenter",
-					"query": "customId=395"
+					"query": "customId=668"
 				},
 				{
 					"id": -1,
@@ -73,7 +73,7 @@
 					"id": 6,
 					"name": "定制详情",
 					"pathName": "pages/customDetail/customDetail",
-					"query": "customId=586"
+					"query": "customId=668"
 				},
 				{
 					"id": -1,
@@ -96,7 +96,14 @@
 				{
 					"id": -1,
 					"name": "色系选择",
-					"pathName": "pages/customTheme/customTheme"
+					"pathName": "pages/customTheme/customTheme",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "色系选择",
+					"pathName": "pages/customTheme/customTheme",
+					"query": "houseId=83&layoutId=115"
 				}
 			]
 		}

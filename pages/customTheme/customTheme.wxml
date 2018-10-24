@@ -3,7 +3,10 @@
   <view class="bottom">
   	<view class="theme-list">
   		<view class="theme" wx:for="{{colorList}}" wx:key="item.name" wx:for-index="idx" bind:tap="onSelect" data-id="{{idx}}">
-  			<view class="{{idx === selectTheme ? 'selected-theme' : ''}} theme-img"></view>
+  			<view
+          class="{{idx === selectTheme ? 'selected-theme' : ''}} theme-img"
+          style="background: {{item.color}}"
+        />
   			<view class="{{idx === selectTheme ? 'selected' : ''}}">{{item.name}}</view>
   		</view>
   	</view>

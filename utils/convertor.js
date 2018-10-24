@@ -123,3 +123,17 @@ export const processMapper = (item) => {
 		time,
 	};
 }
+
+export const themeMapper = (data) => {
+	return data.map((item) => {
+		const { decorationStyle, imageUrl } = item;
+		const name = decorationStyle.name;
+		const color = decorationStyle.imageUrl;
+		const effect = imageUrl;
+		return {
+			name,
+			color,
+			effect,
+		};
+	});
+}

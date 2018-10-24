@@ -1,35 +1,21 @@
+import endpoint from '../../lib/endpoint';
+import regeneratorRuntime from '../../lib/runtime';
+import { themeMapper } from  '../../utils/convertor';
 
 const cdn = 'http://oh1n1nfk0.bkt.clouddn.com';
 
-const colorList = [
-	{
-		name: '蒂凡尼蓝',
-		effect: cdn + '/theme.png',
-	},
-	{
-		name: '胭脂魅力',
-		effect: cdn + '/theme2.png',
-	},
-	{
-		name: '纯净撞击',
-		effect: cdn + '/theme.png',
-	},
-	{
-		name: '原绿觉醒',
-		effect: cdn + '/theme2.png',
-	}
-];
-
 Page({
   data: {
-    title: 'customTheme',
     cdn,
-    colorList,
+    colorList: [],
     selectTheme: 0,
   },
 
-  onLoad(parmas) {
+  async onLoad(parmas) {
     console.log(parmas);
+  	const { houseId, layoutId = 115 } = parmas;
+  	const res = await endpoint('theme', parmas);
+  	this.setData({ colorList: themeMapper(res.list) });
   },
 
   onSelect(e) {

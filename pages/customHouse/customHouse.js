@@ -531,12 +531,15 @@ Page({
   },
 
   onRouteTheme() {
-    wx.navigateTo({ url: '/pages/customTheme/customTheme' });
+    const { houseId, layoutId = 115 } = this.data;
+    const url = `/pages/customTheme/customTheme?houseId=${houseId}&layoutId=${layoutId}`;
+    wx.navigateTo({ url });
   },
 
   onRoute3D() {
     const { customDetail: { image3d } } = this.data;
-    const url = `/pages/webView/webView?view=${image3d}`;
+    const src = encodeURIComponent(`https://${image3d}`);
+    const url = `/pages/webView/webView?view=${src}`;
     wx.navigateTo({ url });
   },
 });

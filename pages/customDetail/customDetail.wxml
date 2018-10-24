@@ -1,11 +1,12 @@
 <view class="container">
   <view class="section">
   	<image class="section-img" src="{{cdn}}/custom_detail_img.png" mode="scaleToFill" />
-    <view bind:tap="onLikeStar" data-id="{{customId}}">
+    <view bind:tap="onLikeStar" data-id="{{customId}}" class="custom-like-top">
     	<image class="icon-like" src="{{cdn}}/like.png" mode="scaleToFill" wx:if="{{customDetail.isThumbsUp}}" />
       <image class="icon-like" src="{{cdn}}/un_like.png" mode="scaleToFill" wx:else />
-      <!-- {{customDetail.likes.length}} -->
+      {{customDetail.likes.length}}
     </view>
+    <view class="button-3d" bind:tap="onRoute3D">查看3D效果</view>
   </view>
   <view class="section section-custom">
   	<view class="like-box" wx:if="{{customDetail.inviteList.length}}">
@@ -14,12 +15,10 @@
           <image class="like-avatar" src="{{item.headImage}}" mode="scaleToFill" wx:if="{{item.headImage}}"/>
           <image class="like-avatar" src="{{cdn}}/avatar.png" mode="scaleToFill" wx:else/>
         </block>
-        <block wx:for="{{['','','','','']}}" wx:key="item" wx:if="{{index+customDetail.likes.length<5}}">
-          <image class="like-avatar" src="https://dm.static.elab-plus.com/wuXiW3/index/none.png" mode="scaleToFill"/>
-        </block>
   		</view>
-		  等<text class="theme-color">{{customDetail.likes.length}}人</text>也喜欢这个方案
+		  成功邀请<text class="theme-color">{{customDetail.inviteList.length}}人</text>
     </view>
+    <view class="h1">{{customDetail.name}}</view>
   	<view class="row-tabs">
   		<view
   			class="tabs {{tabSelected === 0 ? 'tabs-active' : ''}}"
@@ -117,11 +116,11 @@
             {{item.like}}
   				</view>
   			</view>
-  			<view class="rank-star-info">
-  				<image class="rank-star-avatar" src="{{item.owner.avatar}}" mode="scaleToFill"/>
-  				{{item.owner.name}}
-  			</view>
-			<image style="position: absolute;left: 0;bottom: 0;width:100%;height: 120rpx" src="https://dm.static.elab-plus.com/wuXiW3/index/icover.png"></image>
+  			<image style="position: absolute;left: 0;bottom: 0;width:100%;height: 120rpx" src="https://dm.static.elab-plus.com/wuXiW3/index/icover.png"></image>
+        <view class="rank-star-info">
+          <image class="rank-star-avatar" src="{{item.owner.avatar}}" mode="scaleToFill"/>
+          {{item.owner.name}}
+        </view>
 		</view>
   	</view>
   </view>
