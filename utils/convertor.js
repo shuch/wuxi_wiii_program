@@ -78,14 +78,18 @@ export const rankMapper = (item) => {
 }
 
 export const customDetailMapper = (data) => {
-	const { thumbsUpCustomerList: likes } = data;
+	const { thumbsUpCustomerList: likes, customizedProgramme, inviteCustomerList } = data;
 	const origin = data.originCustomer || {};
+	const { image3dPlane, image3d } = customizedProgramme || {};
+	const inviteList = inviteCustomerList || [];
 	return {
 		...data,
 		likes,
 		origin,
-		originUrl: data.imageUrl,
-		imageUrl: data.commentImageUrl,
+		image3d,
+		inviteList,
+		originUrl: image3dPlane,
+		image3dPlane: data.commentImageUrl,
 	};
 }
 

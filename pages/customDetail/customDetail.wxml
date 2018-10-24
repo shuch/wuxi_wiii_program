@@ -4,12 +4,13 @@
     <view bind:tap="onLikeStar" data-id="{{customId}}">
     	<image class="icon-like" src="{{cdn}}/like.png" mode="scaleToFill" wx:if="{{customDetail.isThumbsUp}}" />
       <image class="icon-like" src="{{cdn}}/un_like.png" mode="scaleToFill" wx:else />
+      <!-- {{customDetail.likes.length}} -->
     </view>
   </view>
   <view class="section section-custom">
-  	<view class="like-box" wx:if="{{customDetail.likes.length}}">
+  	<view class="like-box" wx:if="{{customDetail.inviteList.length}}">
   		<view class="like-list">
-        <block wx:for="{{customDetail.likes}}" wx:key="item" wx:if="{{index<5}}">
+        <block wx:for="{{customDetail.inviteList}}" wx:key="item" wx:if="{{index<5}}">
           <image class="like-avatar" src="{{item.headImage}}" mode="scaleToFill" wx:if="{{item.headImage}}"/>
           <image class="like-avatar" src="{{cdn}}/avatar.png" mode="scaleToFill" wx:else/>
         </block>
@@ -24,13 +25,18 @@
   			class="tabs {{tabSelected === 0 ? 'tabs-active' : ''}}"
   			data-id="0"
   			bind:tap="switchTab"
-  		>户型图</view>
+  		>方案详情</view>
+      <view
+        class="tabs {{tabSelected === 1 ? 'tabs-active' : ''}}"
+        data-id="1"
+        bind:tap="switchTab"
+      >户型图</view>
   		<view
-  			class="tabs {{tabSelected === (idx + 1) ? 'tabs-active' : ''}}"
+  			class="tabs {{tabSelected === (idx + 2) ? 'tabs-active' : ''}}"
   			wx:for="{{customDetail.spaces}}"
         wx:key="{{idx}}"
   			wx:for-index="idx"
-  			data-id="{{idx + 1}}"
+  			data-id="{{idx + 2}}"
   			bind:tap="switchTab"
   		>
   			{{item.name}}
@@ -78,13 +84,16 @@
 
   		</view>
   	</view>
+    <view class="pane" wx:elif="{{tabSelected === 1 }}">
+      <image class="center-img custom-img" src="{{customDetail.imageUrl}}" mode="aspectFit" />
+    </view>
   	<view class="pane" wx:else>
-  		<image class="center-img space-img" src="{{customDetail.spaces[tabSelected - 1].imageUrl}}" mode="aspectFit" />
+  		<image class="center-img space-img" src="{{customDetail.spaces[tabSelected - 2].imageUrl}}" mode="aspectFit" />
   		<view
   		  class="space-indicator space-center"
   		>
   		  <image class="space-plus" src="{{cdn}}/position.png" mode="scaleToFill" />
-  		  <text class="space-name">{{customDetail.spaces[tabSelected - 1].name}}</text>
+  		  <text class="space-name">{{customDetail.spaces[tabSelected - 2].name}}</text>
   		</view>
   	</view>
   </view>

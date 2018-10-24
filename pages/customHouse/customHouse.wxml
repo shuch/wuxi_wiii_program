@@ -80,12 +80,12 @@
         涂鸦
       </view> -->
       <!-- <component-preview-image src="{{customDetail.imageUrl}}" class="hx-img" mode="aspectFit" /> -->
-      <image catch:touchmove="touchmove" class="hx-img" src="{{customDetail.imageUrl}}" mode="aspectFit" style="width:{{imgWidth}}px;height:{{imgHeight}}px;top:{{imgTop}}px;left:{{imgLeft}}px" disable-scroll="true" bindload="loadImage" />
+      <image catch:touchmove="touchmove" class="hx-img" src="{{customDetail.image3dPlane}}" mode="aspectFit" style="width:{{imgWidth}}px;height:{{imgHeight}}px;top:{{imgTop}}px;left:{{imgLeft}}px" disable-scroll="true" bindload="loadImage" />
       <view class="lt-corner plane" bind:tap="seePlain">
         查看平面图 <image class="icon-search" src="{{cdn}}/search.png" mode="scaleToFill"></image>
         <!-- <c-img cclass="north" src="{{cdn}}/north.png" mode="scaleToFill"></c-img> -->
       </view>
-      <image class="rt-corner corner" src="{{cdn}}/3D.png" mode="scaleToFill"></image>
+      <image class="rt-corner corner" src="{{cdn}}/3D.png" mode="scaleToFill" bind:tap="onRoute3D" />
       <view
         class="space-indicator space-left-top"
         bind:tap="editSpace"

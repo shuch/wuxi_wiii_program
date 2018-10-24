@@ -39,6 +39,7 @@ Page({
             title: `${nick}的方案`,
         });
     }
+    console.log('customDetail', customDetail);
     this.loadImage(customDetail);
 
     const rankRes = await endpoint('rankList', {
@@ -73,6 +74,7 @@ Page({
 
   switchTab(e) {
     const id = e.currentTarget.dataset.id;
+    console.log('switchTab', id);
     this.setData({ tabSelected: parseInt(id) });
   },
 

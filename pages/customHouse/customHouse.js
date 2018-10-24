@@ -72,6 +72,7 @@ Page({
         name: customDetail.name,
         area:customDetail.area
       };
+      console.log('customizedDetail', customDetail);
       Object.assign(data, { customStep: 2, customDetail, selectedType, commentList: customDetail.comments })
     }
     const res = await endpoint('customList', houseId);
@@ -136,6 +137,7 @@ Page({
       houseId: this.data.houseId,
       customerId: this.data.customerId,
     });
+    console.log('res', res);
     this.setData({
       customStep: 2,
       customDetail: res.single,
@@ -400,8 +402,8 @@ Page({
     if (this.data.commentMode) {
       return;
     }
-    const { customDetail: { imageUrl }, canvasHeight, canvasWidth } = this.data;
-    const res = await getImageInfo(imageUrl);
+    const { customDetail: { image3dPlane }, canvasHeight, canvasWidth } = this.data;
+    const res = await getImageInfo(image3dPlane);
     const { height, width, path } = res;
     let initRatio = height / canvasHeight;
     if (initRatio < width / canvasHeight) {
@@ -471,7 +473,7 @@ Page({
       canvasId: 'draw',
       success: async (res) => {
        console.log('res', res.tempFilePath);
-       custom.imageUrl = res.tempFilePath;
+       custom.image3dPlane = res.tempFilePath;
        self.setData({
           customDetail: custom,
        });
@@ -487,8 +489,8 @@ Page({
   },
 
   async loadImage() {
-    const { customDetail: { imageUrl }, canvasHeight, canvasWidth } = this.data;
-    const res = await getImageInfo(imageUrl);
+    const { customDetail: { image3dPlane }, canvasHeight, canvasWidth } = this.data;
+    const res = await getImageInfo(image3dPlane);
     // self.oldScale = 1
     const { height, width, path } = res;
     let initRatio = height / canvasHeight;
@@ -514,8 +516,8 @@ Page({
 
   resetDraw() {
     const { customDetail } = this.data;
-    console.log('resetDraw', customDetail.imageUrl, customDetail.originUrl);
-    customDetail.imageUrl = customDetail.originUrl;
+    console.log('resetDraw', customDetail.image3dPlane, customDetail.originUrl);
+    customDetail.image3dPlane = customDetail.originUrl;
     this.setData({ customDetail });
     this.onDraw();
   },
@@ -530,5 +532,11 @@ Page({
 
   onRouteTheme() {
     wx.navigateTo({ url: '/pages/customTheme/customTheme' });
+  },
+
+  onRoute3D() {
+    const { customDetail: { image3d } } = this.data;
+    const url = `/pages/webView/webView?view=${image3d}`;
+    wx.navigateTo({ url });
   },
 });
