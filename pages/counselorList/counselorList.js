@@ -267,7 +267,7 @@ Page({
     authorizeIndexPhone(cb,failcb){
         var that = this;
         // wx.getStorageSync('ISauthorizePhone');// 是否授权过手机号,
-        if(!wx.getStorageSync('phone')){
+        if(!wx.getStorageSync('phone')&&!app.globalData.phone){
             // app.globalData.phone = wx.getStorageSync('phone');
             console.log("***authorizeIndexPhone***",app.globalData.phone,wx.getStorageSync('phone'))
             // 没有获得用户手机号
