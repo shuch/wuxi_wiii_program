@@ -1,24 +1,34 @@
 <scroll-view >
     <c-img src="{{layout.senceImage}}" c-style="width: 100%;height: 380rpx;" mode="aspectFill"></c-img>
+    <view class="button-3d" bind:tap="onRoute3D" wx:if="programme.image3d">查看3D效果</view>
+    <view class="h1">{{layout.name}}</view>
     <view class="taplist">
         <view class="tapItem {{0==current?'current':''}}"
                data-num="0" bindtap="checkout">
             <view class="line" wx:if="{{0==current}}"></view>
+            方案详情
+        </view>
+        <view class="tapItem {{1==current?'current':''}}"
+               data-num="1" bindtap="checkout">
+            <view class="line" wx:if="{{1==current}}"></view>
             户型图
         </view>
-        <view class="tapItem {{index+1==current?'current':''}}"
-              wx:for="{{programme.spaces}}" wx:key="index" data-num="{{index+1}}" bindtap="checkout">
-            <view class="line" wx:if="{{index+1==current}}"></view>
+        <view class="tapItem {{index+2==current?'current':''}}"
+              wx:for="{{programme.spaces}}" wx:key="index" data-num="{{index+2}}" bindtap="checkout">
+            <view class="line" wx:if="{{index+2==current}}"></view>
             {{item.name}}
         </view>
     </view>
     <swiper class="swiper" style="height:{{imgUrlPram[current]||534}}rpx;width: 710rpx" current="{{current}}" bindchange="change">
         <swiper-item>
-            <c-img src="{{programme.imageUrl}}"  c-style="width: 100%;height: 100%;" index="0" bindloaded="imgOnload"></c-img>
+            <c-img src="{{programme.image3dPlane}}"  c-style="width: 100%;height: 100%;" index="0" bindloaded="imgOnload"></c-img>
+        </swiper-item>
+        <swiper-item>
+            <c-img src="{{programme.imageUrl}}"  c-style="width: 100%;height: 100%;" index="1" bindloaded="imgOnload"></c-img>
         </swiper-item>
         <block wx:for="{{programme.spaces}}" wx:key="index">
             <swiper-item>
-                <c-img src="{{item.imageUrl}}"  c-style="width: 100%;height: 100%;" index="{{index+1}}" bindloaded="imgOnload"></c-img>
+                <c-img src="{{item.imageUrl}}"  c-style="width: 100%;height: 100%;" index="{{index+2}}" bindloaded="imgOnload"></c-img>
             </swiper-item>
         </block>
     </swiper>

@@ -1,4 +1,4 @@
-<view class="container" catch:touchmove="touchmove" >
+<view class="container">
   <view wx:if="{{customStep === 1}}" class="customList">
     <view class="title">请选择一种户型</view>
     <view
@@ -85,7 +85,7 @@
         查看平面图 <image class="icon-search" src="{{cdn}}/search.png" mode="scaleToFill"></image>
         <!-- <c-img cclass="north" src="{{cdn}}/north.png" mode="scaleToFill"></c-img> -->
       </view>
-      <image class="rt-corner corner" src="{{cdn}}/3D.png" mode="scaleToFill" bind:tap="onRoute3D" />
+      <image class="rt-corner corner" src="{{cdn}}/3D.png" wx:if="customDetail.image.3d" mode="scaleToFill" bind:tap="onRoute3D" />
       <view
         class="space-indicator space-left-top"
         bind:tap="editSpace"

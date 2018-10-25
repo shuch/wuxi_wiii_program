@@ -33,7 +33,7 @@ Page({
       return;
     }
     const customDetail = customDetailMapper(res.single);
-    const nick = customDetail.origin.nickname || '用户';
+    const nick = customerId==customDetail.origin.id?'我':customDetail.origin.nickName || '用户';
     if(customDetail.origin.nickname!=nickname){
         wx.setNavigationBarTitle({
             title: `${nick}的方案`,
@@ -266,7 +266,7 @@ Page({
 
   onRoute3D() {
     const { customDetail: { image3d } } = this.data;
-    const src = encodeURIComponent(`https://${image3d}`);
+    const src = encodeURIComponent(image3d);
     const url = `/pages/webView/webView?view=${src}`;
     wx.navigateTo({ url });
   },

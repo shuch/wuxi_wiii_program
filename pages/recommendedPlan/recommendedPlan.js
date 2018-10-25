@@ -81,6 +81,12 @@ Page({
         const url = `/pages/customHouse/customHouse`
         wx.navigateTo({ url });
     },
+
+    onRoute3D() {
+        const src = encodeURIComponent(this.data.programme.image3d);
+        const url = `/pages/webView/webView?view=${src}`;
+        wx.navigateTo({ url });
+    },
     toIM(){
 
         var isSend = wx.getStorageSync('isSend'+config.houseId);

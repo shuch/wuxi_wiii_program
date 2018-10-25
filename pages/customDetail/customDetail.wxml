@@ -6,7 +6,7 @@
       <image class="icon-like" src="{{cdn}}/un_like.png" mode="scaleToFill" wx:else />
       {{customDetail.likes.length}}
     </view>
-    <view class="button-3d" bind:tap="onRoute3D">查看3D效果</view>
+    <view class="button-3d" bind:tap="onRoute3D" wx:if="customDetail.image3d">查看3D效果</view>
   </view>
   <view class="section section-custom">
   	<view class="like-box" wx:if="{{customDetail.inviteList.length}}">

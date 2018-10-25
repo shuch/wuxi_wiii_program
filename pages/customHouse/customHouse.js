@@ -538,7 +538,7 @@ Page({
 
   onRoute3D() {
     const { customDetail: { image3d } } = this.data;
-    const src = encodeURIComponent(`https://${image3d}`);
+    const src = encodeURIComponent(image3d);
     const url = `/pages/webView/webView?view=${src}`;
     wx.navigateTo({ url });
   },

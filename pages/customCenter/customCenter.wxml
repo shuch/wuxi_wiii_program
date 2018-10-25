@@ -101,13 +101,13 @@
 						data-index="{{index}}" bindtouchstart="touchstart" bindtouchmove="touchmove" 
 					>
 						<view class="custom-card-box">
-							<image
-								class="custom-item-img"
-								src="{{item.senceImage}}"
-								mode="aspectFill"
-								data-id="{{item.id}}"
-								bind:tap="onRouteDetail"
-							/>
+							<c-img cclass="custom-item-img"
+							src="{{item.senceImage}}"
+							mode="aspectFill"
+							index="{{item.id}}"
+							bind:click="onRouteDetail">
+
+							</c-img>
 							<view class="custom-feature-list">
 								<view
 									class="custom-feature"

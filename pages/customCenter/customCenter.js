@@ -484,7 +484,7 @@ Page({
   },
 
   onRouteDetail(e) {
-    const url = `/pages/customDetail/customDetail?customId=${e.currentTarget.dataset.id}`;
+    const url = `/pages/customDetail/customDetail?customId=${e.detail.index}`;
     wx.navigateTo({ url });
   },
 

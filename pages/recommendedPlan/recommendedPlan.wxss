@@ -162,3 +162,25 @@
 scroll-view{
     padding-bottom:100rpx;
 }
+
+.button-3d {
+    position: absolute;
+    top: 300rpx;
+    margin-left: -50px;
+    left: 50%;
+    width:100px;
+    background:linear-gradient(35deg,rgba(237,212,141,1) 0%,rgba(183,141,76,1) 100%);
+    box-shadow:0px 1px 1px 1px rgba(99,99,99,0.5);
+    border-radius:20px;
+    font-size:12px;
+    color:rgba(255,255,255,1);
+    line-height:22px;
+    text-align: center;
+}
+.h1 {
+    font-size: 48rpx;
+    color:rgba(0,0,0,1);
+    line-height: 68rpx;
+    margin-top: 40rpx;
+    margin-left: 40rpx;
+}
