@@ -1051,7 +1051,7 @@ Page({
             app.globalData.phone = wx.getStorageSync('phone');
             console.log("***authorizeIndexPhone***", app.globalData.phone, wx.getStorageSync('phone'));
             // 没有获得用户手机号
-            if (!wx.getStorageSync('ISauthorizePhone')&&!app.globalData.phone)) {
+            if (!wx.getStorageSync('ISauthorizePhone')&&!app.globalData.phone) {
                 that.setData({
                     showPhoneModel: true,
                     phoneFun: cb || null,
