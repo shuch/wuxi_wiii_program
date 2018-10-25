@@ -491,8 +491,29 @@ Page({
         // console.log(options,'yyyy')
         console.log("***onLoad***", options, options.shareToken);
         //将渠道存至全局，留电接口需要用
+        if(options.scene){  //如果存在该参数，则说明是通过数量无限制的小程序码进来的
+            const scene = decodeURIComponent(options.scene);
+            options.shareToken = scene;
+            console.log('被scene先覆盖了')
+            // console.log("***index-onLoad-scene***", _request.QueryString('shareToken'), options.shareToken);
+        }
+        //将渠道存至全局，留电接口需要用
         if(options&&options.shareToken&&options.shareToken!="null"&&options.shareToken!="undefined"){
             app.globalData.fromChannel = options.shareToken
+        }
+        if(app.globalData.fromChannel && app.globalData.fromChannel!="null" && app.globalData.fromChannel!="undefined"){
+            wx.request({
+                url:util.newUrl()+'elab-marketing-authentication/share/decrypt',
+                method:'POST',
+                data:{
+                    shareSign:app.globalData.fromChannel,
+                },
+                success:function (res) {
+                    if(res.data.success){
+                        app.globalData.exchangedFromChannel = JSON.stringify(res.data.single)
+                    }
+                }
+            })
         }
         // 获得用户授权
         // that.authorizePhone();

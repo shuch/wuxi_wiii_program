@@ -464,6 +464,9 @@ Page({
         var that = this;
         pvCurPageParams=JSON.stringify(options)
         //设置小程序顾问标语
+        if(options.tfbContentId){
+            app.globalData.exchangedFromChannel = JSON.stringify({tfbContentId:options.tfbContentId})
+        }
         wx.request({
             url:util.newUrl()+'elab-marketing-authentication/house/house/selectHouseLeadWork',
             method:'POST',

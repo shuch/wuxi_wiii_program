@@ -104,6 +104,7 @@ function trackRequest(para,app){
       browserName:'',
       browserVersion:app.systemInfo.SDKVersion,
       platform:'miniapp',
+      fromParam:app.globalData.exchangedFromChannel||"",  //分享用户的来源,解密后的信息
       deviceType:app.systemInfo.model||"",
       ip:app.globalData.ip||'',
       cookieId:'',
