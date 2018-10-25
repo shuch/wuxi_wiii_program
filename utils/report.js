@@ -30,12 +30,12 @@ var str_appid = 1252463788,
     }
 
 // 获取用户信息
-wx.getUserInfo({
-  withCredentials: false,
-  success: function (ret) {
-    str_nickname = ret.userInfo.nickName;
-  }
-});
+// wx.getUserInfo({
+//   withCredentials: false,
+//   success: function (ret) {
+//     str_nickname = ret.userInfo.nickName;
+//   }
+// });
 // 获取设备信息
 var systemInfo = wx.getSystemInfoSync();
 str_sdkversion = systemInfo.version;
