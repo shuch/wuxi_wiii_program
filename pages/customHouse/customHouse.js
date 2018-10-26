@@ -138,6 +138,7 @@ Page({
       customerId: this.data.customerId,
     });
     console.log('res', res);
+    res.single.originUrl = res.single.image3dPlane
     this.setData({
       customStep: 2,
       customDetail: res.single,
@@ -398,6 +399,7 @@ Page({
   },
 
   async onDraw() {
+      this.setData({ drawMode: true });
     // 绘制图片到画布
     if (this.data.commentMode) {
       return;
@@ -425,7 +427,6 @@ Page({
     this.scaleHeight = scaleHeight;
     this.startX = startX;
     this.startY = startY;
-    this.setData({ drawMode: true });
     console.log('canvas', initRatio, startX, startY, scaleWidth, scaleHeight);
   },
 

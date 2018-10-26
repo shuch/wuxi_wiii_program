@@ -38,7 +38,7 @@ page{
 }
 .titleswiper{
   width:100vw;
-  height:539rpx;
+  height:860rpx;
   margin-bottom:-5rpx;
   /*background-color:red;*/
 }

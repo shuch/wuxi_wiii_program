@@ -67,6 +67,7 @@
   top: 0;
   left: 30rpx;
   background: rgba(46,46,46,.4);
+  z-index: 10;
 }
 
 .info-level {

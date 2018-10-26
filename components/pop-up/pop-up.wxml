@@ -1,7 +1,7 @@
 <view class="mask">
   <view class="popup">
     <view class="content">
-      <image class="content-img" src="{{contentSrc}}" mode="scaleToFill" />
+      <c-img cclass="content-img" src="{{contentSrc}}" mode="scaleToFill" />
     </view>
     <view class="pop-btn" bind:tap="onKnown" wx:if="{{hasInnerBtn}}">我知道了</view>
     <image
