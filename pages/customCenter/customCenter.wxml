@@ -288,7 +288,8 @@
 		<view class="popup">
 	      <view class="popup-custom">
 			<view class="pop-custom-top">
-			  <image class="pop-custom-img" src="{{cdn}}/center_dialog.png" mode="scaleToFill" />
+			  <c-img cclass="pop-custom-img" src="{{cdn}}/center_dialog.png" mode="scaleToFill" />
+			  <!-- <image class="pop-custom-img" src="{{cdn}}/center_dialog.png" mode="scaleToFill" /> -->
 			  <view class="pop-custom-tip">
 			  	即刻拥有你的专属户型
 			  </view>

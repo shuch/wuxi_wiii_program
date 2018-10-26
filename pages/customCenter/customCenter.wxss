@@ -406,7 +406,7 @@
 .rank-star-box {
 	background: #FFFFFF;
 	margin-right: 40rpx;
-	box-shadow: 0 0 2px 1px rgba(213,213,213,0.47);
+	box-shadow: 0 0 0 1px rgba(213,213,213,0.47);
 	position: relative;
 }
 

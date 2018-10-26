@@ -210,6 +210,7 @@ Page({
     if (!res.success) {
       return;
     }
+    console.log('customDetail', customDetail);
     if (id === customId) {
       const length = customDetail.likes.length;
       customDetail.likes.length = customDetail.isThumbsUp ? length - 1 : length + 1;

@@ -67,7 +67,6 @@
   top: 0;
   left: 30rpx;
   background: rgba(46,46,46,.4);
-  z-index: 10;
 }
 
 .info-level {
@@ -172,7 +171,8 @@
 
 .pop-btn {
   margin: 70rpx auto 60rpx;
-  box-shadow: 0 0 0 1rpx #000;
+  /*box-shadow: 0 0 0 1rpx #000;*/
+  border: 1px solid #000;
   border-radius: 4rpx;
   width: 250rpx;
   height: 70rpx;
@@ -407,7 +407,7 @@
 }
 
 .input-icon {
-  position: absolute;
+  position: absolute !important;
   top: 20rpx;
   left: 20rpx;
   width: 60rpx;

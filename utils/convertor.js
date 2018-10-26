@@ -84,7 +84,7 @@ export const customDetailMapper = (data) => {
 	const inviteList = inviteCustomerList || [];
 	return {
 		...data,
-		likes,
+		likes: likes || [],
 		origin,
 		image3d,
 		inviteList,
