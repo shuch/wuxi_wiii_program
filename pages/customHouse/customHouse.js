@@ -4,7 +4,7 @@ import { houseTypesMapper, spaceTypeMapper, customDetailMapper } from '../../uti
 import { login, getImageInfo, uploadImageFiles } from '../../lib/promise';
 import { trackRequest } from '../../utils/util';
 
-const cdn = 'http://oh1n1nfk0.bkt.clouddn.com';
+const cdn = 'https://dm.static.elab-plus.com/wuXiW3/img';
 const CUSTOM_POP_UP = 'CUSTOM_POP_UP';
 
 Page({

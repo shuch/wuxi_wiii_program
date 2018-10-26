@@ -26,7 +26,7 @@
 	width: 606rpx;
 	margin: 0 32rpx;
 	padding-bottom: 20rpx;
-	background: url('http://oh1n1nfk0.bkt.clouddn.com/custom_card_bg.png') top/606rpx 260rpx no-repeat;
+	background: url('https://dm.static.elab-plus.com/wuXiW3/img/custom_card_bg.png') top/606rpx 260rpx no-repeat;
 }
 
 .desc{

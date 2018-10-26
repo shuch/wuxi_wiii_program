@@ -3,7 +3,7 @@ import regeneratorRuntime from '../../lib/runtime';
 import { login } from '../../lib/promise';
 import { trackRequest } from '../../utils/util';
 
-const cdn = 'http://oh1n1nfk0.bkt.clouddn.com';
+const cdn = 'https://dm.static.elab-plus.com/wuXiW3/img';
 
 Page({
   data: {

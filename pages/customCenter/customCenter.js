@@ -5,7 +5,7 @@ import { rankMapper, customizedMapper, processMapper } from '../../utils/convert
 import { formatDateTs } from '../../utils/date';
 import { trackRequest } from '../../utils/util';
 
-const cdn = 'http://oh1n1nfk0.bkt.clouddn.com';
+const cdn = 'https://dm.static.elab-plus.com/wuXiW3/img';
 const app = getApp(); 
 
 Page({
