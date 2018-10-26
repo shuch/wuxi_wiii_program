@@ -1,7 +1,8 @@
 {
   "component": true,
   "usingComponents": {
-  	"component-preview-image": "../preview-image/preview-image"
+  	"component-preview-image": "../preview-image/preview-image",
+    "c-img": "../../components/img/img"
   }
 }
 

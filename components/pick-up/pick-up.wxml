@@ -20,7 +20,7 @@
       >
         <view class="pick-item-media">
           <!-- <component-preview-image class="pick-item-img" src="{{item.thumbSm}}" mode="aspectFit" /> -->
-          <image class="pick-item-img" src="{{item.chooseImage}}" mode="aspectFit" />
+          <c-img cclass="pick-item-img" src="{{item.chooseImage}}" mode="aspectFit" />
         </view>
         <view class="pick-item-desc">
           <view class="nowrap">{{item.name}}</view>
@@ -38,7 +38,7 @@
       >
         <view class="pick-item-media">
           <!-- <component-preview-image class="pick-item-img" src="{{item.imageUrl}}" mode="aspectFit" /> -->
-          <image class="pick-item-img" src="{{item.imageUrl}}" mode="aspectFit" />
+          <c-img cclass="pick-item-img" src="{{item.imageUrl}}" mode="aspectFit" />
         </view>
         <view class="pick-item-desc nowrap">{{item.name}}</view>
       </view>

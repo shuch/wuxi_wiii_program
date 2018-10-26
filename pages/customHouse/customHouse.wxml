@@ -20,13 +20,13 @@
         <c-img cclass="house-thumb" src="{{item.thumbSm}}" mode="aspectFit"/>
       </view>
       <view class="select-area">
-        <c-img
+        <image
           wx:if="{{selectedType && selectedType.id === item.id}}"
-          cclass="select-icon" src="{{cdn}}/select.png" mode="scaleToFill"
+          class="select-icon" src="{{cdn}}/select.png" mode="scaleToFill"
         />
-        <c-img
+        <image
           wx:else
-          cclass="select-icon" src="{{cdn}}/un_select.png" mode="scaleToFill"
+          class="select-icon" src="{{cdn}}/un_select.png" mode="scaleToFill"
         />
       </view>
     </view>
@@ -80,7 +80,10 @@
         涂鸦
       </view> -->
       <!-- <component-preview-image src="{{customDetail.imageUrl}}" class="hx-img" mode="aspectFit" /> -->
-      <image catch:touchmove="touchmove" class="hx-img" src="{{customDetail.image3dPlane}}" mode="aspectFit" style="width:{{imgWidth}}px;height:{{imgHeight}}px;top:{{imgTop}}px;left:{{imgLeft}}px" disable-scroll="true" bindload="loadImage" />
+      <!--<image />-->
+      <view catch:touchmove="touchmove" class="hx-img" style="width:{{imgWidth}}px;height:{{imgHeight}}px;top:{{imgTop}}px;left:{{imgLeft}}px" disable-scroll="true">
+        <c-img  src="{{customDetail.image3dPlane}}" c-style="width:100%;height:100%;" mode="aspectFit" bindloaded="loadImage"></c-img>
+      </view>
       <view class="lt-corner plane" bind:tap="seePlain">
         查看平面图 <image class="icon-search" src="{{cdn}}/search.png" mode="scaleToFill"></image>
         <!-- <c-img cclass="north" src="{{cdn}}/north.png" mode="scaleToFill"></c-img> -->
@@ -92,7 +95,7 @@
         data-space="{{customDetail.spaces[0]}}"
       >
         <text class="space-name">{{customDetail.spaces[0].name}}</text>
-        <c-img cclass="space-plus" src="{{cdn}}/update_plus.png" mode="scaleToFill" />
+        <image class="space-plus" src="{{cdn}}/update_plus.png" mode="scaleToFill" />
       </view>
       <view
         class="space-indicator space-left-bottom"
@@ -100,7 +103,7 @@
         data-space="{{customDetail.spaces[1]}}"
       >
         <text class="space-name">{{customDetail.spaces[1].name}}</text>
-        <c-img cclass="space-plus" src="{{cdn}}/update_plus.png" mode="scaleToFill" />
+        <image class="space-plus" src="{{cdn}}/update_plus.png" mode="scaleToFill" />
       </view>
       <view class="rb-corner corner" hidden="{{drawMode}}">
         <image class="corner-btn" src="{{cdn}}/style_button.png" bind:tap="onRouteTheme" hidden="{{commentMode}}" />

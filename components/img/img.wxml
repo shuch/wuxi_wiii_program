@@ -1,4 +1,4 @@
 <view style="{{cStyle}}" class="cclass containView">
   <image hidden="{{!loaded}}"  src="{{src}}" binderror="errorLoad" bindtap="click" bindload="load" class="self" mode="{{mode}}"/>
-  <image hidden="{{loaded}}" src="{{error||!src?errorImg:loading}}"  class="loading" mode="center"/>
+  <image hidden="{{loaded}}" src="{{error||!src?errorImg:loading}}"  class="loading {{error?'error':''}}" mode="{{error?'aspectFit':'center'}}"/>
 </view>

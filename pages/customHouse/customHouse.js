@@ -418,7 +418,8 @@ Page({
 
     const ctx = wx.createCanvasContext('draw');
     ctx.translate(canvasWidth / 2, canvasHeight / 2) //原点移至中心，保证图片居中显示
-    ctx.drawImage(path, startX, startY, scaleWidth, scaleHeight);
+    ctx.drawImage(
+        , startX, startY, scaleWidth, scaleHeight);
     ctx.draw();
     this.ctx = ctx;
     this.scaleWidth = scaleWidth;

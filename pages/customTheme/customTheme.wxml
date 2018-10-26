@@ -1,5 +1,5 @@
 <view class="container">
-  <image class="theme-effect" src="{{colorList[selectTheme].effect}}" mode="scaleToFill"></image>
+  <c-img cclass="theme-effect" src="{{colorList[selectTheme].effect}}" mode="scaleToFill"></c-img>
   <view class="bottom">
   	<view class="theme-list">
   		<view class="theme" wx:for="{{colorList}}" wx:key="item.name" wx:for-index="idx" bind:tap="onSelect" data-id="{{idx}}">

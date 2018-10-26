@@ -1045,7 +1045,6 @@ Page({
         }
     },
     authorizeIndexPhone:function(cb, failcb) {
-        debugger
         var that = this;
         // wx.getStorageSync('ISauthorizePhone');// 是否授权过手机号,
         if (!wx.getStorageSync('ISauthorizePhone')) {
