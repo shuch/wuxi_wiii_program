@@ -6,7 +6,7 @@
     <view class="pop-btn" bind:tap="onKnown" wx:if="{{hasInnerBtn}}">我知道了</view>
     <image
       class="pop-close"
-      src="http://oh1n1nfk0.bkt.clouddn.com/close.png"
+      src="https://dm.static.elab-plus.com/wuXiW3/img/close.png"
       bind:tap="onClose" 
       wx:if="{{hasClose}}"
     />

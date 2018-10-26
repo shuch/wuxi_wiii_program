@@ -1,16 +1,16 @@
 <view class="mask" bind:tap="onClose">
   <view class="sheet" wx:if="{{showMenu}}" catch:tap="onMenuTap">
     <view class="title">
-      分享 <image class="icon-close" src="http://oh1n1nfk0.bkt.clouddn.com/close_grey.png" mode="scaleToFill"
+      分享 <image class="icon-close" src="https://dm.static.elab-plus.com/wuXiW3/img/close_grey.png" mode="scaleToFill"
       bind:tap="onClose" />
     </view>
     <view class="share-menu">
       <button class="share-type transparent"  hover-class="none" open-type="share" catch:tap="onShareFriend">
-        <image class="share-img" src="http://oh1n1nfk0.bkt.clouddn.com/wechat.png" mode="scaleToFill"></image>
+        <image class="share-img" src="https://dm.static.elab-plus.com/wuXiW3/img/wechat.png" mode="scaleToFill"></image>
         分享给好友
       </button>
       <view class="share-type" bind:tap="onShareTimeline">
-        <image class="share-img" src="http://oh1n1nfk0.bkt.clouddn.com/timeline.png" mode="scaleToFill"></image>
+        <image class="share-img" src="https://dm.static.elab-plus.com/wuXiW3/img/timeline.png" mode="scaleToFill"></image>
         分享到朋友圈
       </view>
     </view>
@@ -18,7 +18,7 @@
   <view class="sheet" wx:if="{{timeline}}" catch:tap="onMenuTap">
     <view class="title">
       分享到朋友圈
-      <image class="icon-close" src="http://oh1n1nfk0.bkt.clouddn.com/close_grey.png" mode="scaleToFill"
+      <image class="icon-close" src="https://dm.static.elab-plus.com/wuXiW3/img/close_grey.png" mode="scaleToFill"
       bind:tap="onClose"/>
     </view>
     <c-img cclass="share-poster" src="{{timelineSrc}}" mode="aspectFit"></c-img>
