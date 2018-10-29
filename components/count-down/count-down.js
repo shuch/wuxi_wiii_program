@@ -68,6 +68,10 @@ Component({
   },
   async attached() {
     const { houseId } = this.properties;
+    console.log('houseId', houseId);
+    if (!houseId) {
+      return;
+    }
     const time = await endpoint('restTime', houseId);
     const { endTime: endtime } = time.single;
     this.setData({ endtime });
