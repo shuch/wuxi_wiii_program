@@ -84,7 +84,7 @@
       </view>
       <image class="rt-corner corner" src="{{cdn}}/3D.png" wx:if="customDetail.image.3d" mode="scaleToFill" bind:tap="onRoute3D" />
       <view
-        class="space-indicator space-left-top"
+        class="space-indicator {{spaceIndicatorClass.spacetop}}"
         bind:tap="editSpace"
         data-space="{{customDetail.spaces[0]}}"
       >
@@ -92,12 +92,12 @@
         <image class="space-plus" src="{{cdn}}/update_plus.png" mode="scaleToFill" />
       </view>
       <view
-        class="space-indicator space-left-bottom"
+        class="space-indicator {{spaceIndicatorClass.spacebtm}}"
         bind:tap="editSpace"
         data-space="{{customDetail.spaces[1]}}"
       >
+        <image class="space-plus space-plus-left" src="{{cdn}}/update_plus.png" mode="scaleToFill" />
         <text class="space-name">{{customDetail.spaces[1].name}}</text>
-        <image class="space-plus" src="{{cdn}}/update_plus.png" mode="scaleToFill" />
       </view>
       <view class="rb-corner corner" hidden="{{drawMode}}">
         <image class="corner-btn" src="{{cdn}}/style_button.png" bind:tap="onRouteTheme" hidden="{{commentMode}}" />
@@ -182,6 +182,7 @@
       bind:onselectchange="onSelect"
       bind:oncancel="onHouseTypeDidUpdate"
       bind:onsure="onHouseTypeDidUpdate"
+      bind:onclose="onClosePickUp"
     />
 
     <component-pick-up
@@ -194,6 +195,7 @@
       bind:onselectsubspacechange="onSelectSubSpaceChange"
       bind:onspacecancel="onSpaceDidUpdate"
       bind:onspacesure="onSpaceDidUpdate"
+      bind:onclose="onClosePickUp"
     />
   </block>
 

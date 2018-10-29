@@ -158,8 +158,8 @@
 }
 
 .space-center {
-  left: 300rpx;
-  top: 300rpx;
+	right:100rpx;
+	top:200rpx
 }
 
 .space-center-top {

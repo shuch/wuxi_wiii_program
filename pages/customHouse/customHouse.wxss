@@ -370,13 +370,54 @@
   top: 200rpx;
 }
 
+.space11 {
+  right: 222rpx;
+  top: 327rpx;
+}
+
+.space12 {
+  left: 289rpx;
+  top: 739rpx;
+}
+
+.space21 {
+  right: 172rpx;
+  top: 327rpx;
+}
+
+.space22 {
+  left: 299rpx;
+  top: 719rpx;
+}
+
+.space31 {
+  right: 243rpx;
+  top: 65rpx;
+}
+
+.space32 {
+  left: 355rpx;
+  top: 550rpx;
+}
+
+.space41 {
+  right: 446rpx;
+  top: 99rpx;
+}
+
+.space42 {
+  left: 267rpx;
+  top: 779rpx;
+}
+
+
 .space-left-bottom {
   left: 200rpx;
   top: 700rpx;
 }
 
 .space-name {
-  padding: 0 10rpx;
+  padding: 0 20rpx;
   color: #fff;
   font-size: 24rpx;
   line-height: 50rpx;
@@ -388,6 +429,11 @@
   width: 50rpx;
   height: 50rpx;
   margin-left: 20rpx;
+}
+
+.space-plus-left {
+  margin-left: 0;
+  margin-right : 20rpx;
 }
 
 .input-box {

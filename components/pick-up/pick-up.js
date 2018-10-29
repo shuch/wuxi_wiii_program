@@ -54,6 +54,12 @@ Component({
     onSelectSubSpaceChange(e) {
       this.triggerEvent('onselectsubspacechange', e);
     },
+
+    onClose() {
+      this.triggerEvent('onclose');
+    },
+
+    onMenuTap() {},
   },
 });
 

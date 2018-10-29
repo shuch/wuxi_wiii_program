@@ -574,13 +574,12 @@ Page({
     wx.showModal({
       title: '是否删除方案',
       content: '友情提示:删除后该方案的信息(包括排名,点赞数将不被保留)',
-      cancelText: '否',
+      cancelText: '是',
       cancelColor: '#9B9B9B',
-      confirmText: '是',
+      confirmText: '否',
       confirmColor: '#9B9B9B',
       success(res) {
-        // console.log(res);
-        if (res.cancel) {
+        if (!res.cancel) {
           self.restore(e);
           return;
         }

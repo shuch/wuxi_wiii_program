@@ -1,5 +1,5 @@
-<view class="container">
-  <view class="pick-up">
+<view class="container" bind:tap="onClose">
+  <view class="pick-up" catch:tap="onMenuTap">
     <view wx:if="{{type === 'space'}}" class="menu-type">
       <text
         wx:for="{{spaceTypes}}"
@@ -38,7 +38,7 @@
       >
         <view class="pick-item-media">
           <!-- <component-preview-image class="pick-item-img" src="{{item.imageUrl}}" mode="aspectFit" /> -->
-          <c-img cclass="pick-item-img" src="{{item.imageUrl}}" mode="aspectFit" />
+          <c-img cclass="pick-item-img" src="{{item.thumbnail}}" mode="aspectFit" />
         </view>
         <view class="pick-item-desc nowrap">{{item.name}}</view>
       </view>

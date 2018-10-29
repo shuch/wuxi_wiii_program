@@ -6,6 +6,9 @@ import { trackRequest } from '../../utils/util';
 
 const cdn = 'https://dm.static.elab-plus.com/wuXiW3/img';
 const CUSTOM_POP_UP = 'CUSTOM_POP_UP';
+// const customType = {
+//   { id: 115, }
+// };
 
 Page({
   data: {
@@ -73,7 +76,13 @@ Page({
         area:customDetail.area
       };
       console.log('customizedDetail', customDetail);
-      Object.assign(data, { customStep: 2, customDetail, selectedType, commentList: customDetail.comments })
+      Object.assign(data, {
+        customStep: 2,
+        customDetail,
+        selectedType,
+        commentList: customDetail.comments,
+        spaceIndicatorClass: this.getSpaceIndicatorClass(customDetail),
+      })
     }
     const res = await endpoint('customList', houseId);
     Object.assign(data, { houseTypes: res.list.map(houseTypesMapper), customerSupplementStatus })
@@ -144,6 +153,7 @@ Page({
       customDetail: res.single,
       customerProgrammeId: res.single.customerProgrammeId,
       customizedProgrammeId: res.single.id,
+      spaceIndicatorClass: this.getSpaceIndicatorClass(res.single),
     });
     trackRequest({
       type: 'CLK',
@@ -151,6 +161,16 @@ Page({
       clkId: 'clk_2cdinzhi_2',
       clkParams: { selectedType: this.data.selectedType.layoutId },
     });
+  },
+
+  getSpaceIndicatorClass(data) {
+    switch (data.name) {
+      case 'LOFT单钥匙': return { spacetop: 'space11', spacebtm: 'space12' };
+      case 'LOFT双钥匙': return { spacetop: 'space21', spacebtm: 'space22' };
+      case '一室一厅': return { spacetop: 'space31', spacebtm: 'space32' };
+      case '平层双钥匙': return { spacetop: 'space41', spacebtm: 'space42' };
+      default: return { spacetop: 'space-left-top', spacebtm: 'space-left-bottom' };
+    }
   },
 
   onKnown() {
@@ -177,7 +197,11 @@ Page({
         customerProgrammeId,
         customizedLayoutId: this.data.selectedType.layoutId,
       });
-      Object.assign(data, { customDetail: res.single, customizedProgrammeId: res.single.id });
+      Object.assign(data, {
+        customDetail: res.single,
+        customizedProgrammeId: res.single.id,
+        spaceIndicatorClass: this.getSpaceIndicatorClass(res.single),
+      });
       Object.assign(track, {
         clkName: 'querenxaunzehuxing',
         clkId: 'clk_2cdinzhi_7',
@@ -542,5 +566,9 @@ Page({
     const src = encodeURIComponent(image3d);
     const url = `/pages/webView/webView?view=${src}`;
     wx.navigateTo({ url });
+  },
+
+  onClosePickUp() {
+    this.setData({ houseTypeUpdate: false, spaceEdit: false });
   },
 });

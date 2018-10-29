@@ -33,13 +33,13 @@ Page({
       return;
     }
     const customDetail = customDetailMapper(res.single);
-    const nick = customerId==customDetail.origin.id?'我':customDetail.origin.nickName || '用户';
+    const nick = customerId === customDetail.origin.id ? '我':customDetail.origin.nickName || '用户';
     if(customDetail.origin.nickname!=nickname){
         wx.setNavigationBarTitle({
             title: `${nick}的方案`,
         });
     }
-    console.log('customDetail', customDetail);
+    // console.log('customDetail', customDetail);
     this.loadImage(customDetail);
 
     const rankRes = await endpoint('rankList', {
