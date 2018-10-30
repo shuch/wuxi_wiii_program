@@ -146,8 +146,8 @@
           <image src="{{item.coverUrl}}" mode="aspectFill"></image>
       </view> -->
       <image class="banner1-image" src="{{item.coverUrl}}" mode="widthFix"></image>
-      <view class="white-line">
-      </view>
+      <!--<view class="white-line">-->
+      <!--</view>-->
 </view>
 <view class="container2" id="jingcaitupian">
         <view class="left-box">

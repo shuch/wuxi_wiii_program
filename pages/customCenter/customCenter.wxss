@@ -447,7 +447,7 @@
 
 .banner {
 	width: 100%;
-	height: 238rpx;
+	height: 240rpx;
 	display: block;
 	vertical-align: top;
 }
