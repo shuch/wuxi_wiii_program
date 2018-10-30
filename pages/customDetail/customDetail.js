@@ -39,7 +39,7 @@ Page({
             title: `${nick}的方案`,
         });
     }
-    // console.log('customDetail', customDetail);
+
     this.loadImage(customDetail);
 
     const rankRes = await endpoint('rankList', {
@@ -51,6 +51,8 @@ Page({
     const isSelf = customerId === customDetail.customerId;
     let rankList = rankRes.pageModel ? rankRes.pageModel.resultSet : [];
     rankList = rankList.map(rankMapper);
+
+    const spaceIndicatorClass = this.getSpaceIndicatorClass(customDetail);
     this.setData({
       houseId,
       customerId,
@@ -60,7 +62,18 @@ Page({
       isSelf,
       nickname,
       headImage,
+      spaceIndicatorClass,
     });
+  },
+
+  getSpaceIndicatorClass(data) {
+    switch (data.name) {
+      case 'LOFT单钥匙': return { spacetop: 'space11', spacebtm: 'space12' };
+      case 'LOFT双钥匙': return { spacetop: 'space21', spacebtm: 'space22' };
+      case '一室一厅': return { spacetop: 'space31', spacebtm: 'space32' };
+      case '平层双钥匙': return { spacetop: 'space41', spacebtm: 'space42' };
+      default: return { spacetop: 'space-left-top', spacebtm: 'space-left-bottom' };
+    }
   },
 
   onShow() {

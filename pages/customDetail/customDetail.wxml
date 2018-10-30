@@ -44,13 +44,13 @@
   	<view class="pane" wx:if="{{tabSelected === 0 }}">
   		<c-img cclass="center-img custom-img" src="{{customImageUrl}}" cstyle="width:{{imgWidth}}px;height:{{imgHeight}}px;top:{{imgTop}}px;left:{{imgLeft}}px" mode="aspectFit" />
   		<view
-  		  class="space-indicator space-center-top"
+  		  class="space-indicator {{spaceIndicatorClass.spacetop}}"
   		>
   		  <image class="space-plus" src="{{cdn}}/position.png" mode="scaleToFill" />
   		  <text class="space-name">{{customDetail.spaces[0].name}}</text>
   		</view>
   		<view
-  		  class="space-indicator space-center-bottom"
+  		  class="space-indicator {{spaceIndicatorClass.spacebtm}}"
   		>
   		  <image class="space-plus" src="{{cdn}}/position.png" mode="scaleToFill" />
   		  <text class="space-name">{{customDetail.spaces[1].name}}</text>

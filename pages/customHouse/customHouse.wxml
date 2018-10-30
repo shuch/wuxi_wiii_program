@@ -82,7 +82,7 @@
         查看平面图 <image class="icon-search" src="{{cdn}}/search.png" mode="scaleToFill"></image>
         <!-- <c-img cclass="north" src="{{cdn}}/north.png" mode="scaleToFill"></c-img> -->
       </view>
-      <image class="rt-corner corner" src="{{cdn}}/3D.png" wx:if="customDetail.image.3d" mode="scaleToFill" bind:tap="onRoute3D" />
+      <image class="rt-corner corner" src="{{cdn}}/3D.png" wx:if="customDetail.image.3d" mode="scaleToFill" bind:tap="onRoute3D" wx:if="{{customDetail.image3d}}"/>
       <view
         class="space-indicator {{spaceIndicatorClass.spacetop}}"
         bind:tap="editSpace"
