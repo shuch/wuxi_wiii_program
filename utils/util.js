@@ -128,17 +128,22 @@ function trackRequest(para,app){
       clkParams:typeof para.clkParams==='object'?JSON.stringify(para.clkParams):para.clkParams,//点击参数
       pvPageStayTime:para.pvPageStayTime||'',
       pvCurPageName:para.pvCurPageName||'',//当前页面名称
-      pvCurPageParams:para.pvCurPageParams||'',//当前页面参数
+      pvCurPageParams:typeof para.pvCurPageParams==='object'?JSON.stringify(para.pvCurPageParams):para.pvCurPageParams,
       pvLastPageName:para.pvLastPageName||'',//上一页页面名称
       pvLastPageParams:para.pvLastPageParams||'',//上一页页面参数
       pvPageLoadTime:para.pvPageLoadTime||'',//加载时间
       type:para.type||'',//埋点类型
   }
-  let timeNow =new Date().getTime();
-  if(timeNow - app.globalData.sessionTime>180000){
+   let timeNow =new Date().getTime();
+  let session = wx.getStorageSync('sessionNumber')||1;
+  let sessionTime = wx.getStorageSync('sessionTime')||timeNow;
+  if(timeNow - sessionTime>180000){
       session++;
       wx.setStorageSync('sessionNumber',session)
+  }else{
+      wx.setStorageSync('sessionNumber',session)
   }
+    wx.setStorageSync('sessionTime',timeNow)
     data.session = data.userId+'_'+ session;
   wx.request({
   	url:newUrl()+'elab-marketing-system/behavior/miniOrWeb/upload',
