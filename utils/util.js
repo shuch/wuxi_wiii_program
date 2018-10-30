@@ -84,13 +84,15 @@ function reformParam(methodName,para) {
   return parameter
 }
 function trackRequest(para,app){
-  if(JSON.stringify(para.clkParams)==='{}'){
+  if(JSON.stringify(para.clkParams)==='"{}"'){
       para.clkParams = '';
   }
-  if(JSON.stringify(para.expand)==='{}'){
+  if(JSON.stringify(para.expand)==='"{}"'){
       para.expand = '';
   }
-  if(JSON.stringify(para.pvCurPageParams)==='{}'){
+
+  if(JSON.stringify(para.pvCurPageParams)==='"{}"'){
+      debugger
       para.pvCurPageParams = '';
   }
   if (!app) {
