@@ -1,6 +1,6 @@
 <view class="container">
   <view class="section">
-  	<image class="section-img" src="{{cdn}}/custom_detail_img.png" mode="scaleToFill" />
+  	<c-img cclass="section-img" src="{{cdn}}/custom_detail_img.png" mode="scaleToFill" />
     <view bind:tap="onLikeStar" data-id="{{customId}}" class="custom-like-top">
     	<image class="icon-like" src="{{cdn}}/like.png" mode="scaleToFill" wx:if="{{customDetail.isThumbsUp}}" />
       <image class="icon-like" src="{{cdn}}/un_like.png" mode="scaleToFill" wx:else />
@@ -42,7 +42,7 @@
   		</view>
   	</view>
   	<view class="pane" wx:if="{{tabSelected === 0 }}">
-  		<image class="center-img custom-img" src="{{customImageUrl}}" style="width:{{imgWidth}}px;height:{{imgHeight}}px;top:{{imgTop}}px;left:{{imgLeft}}px" mode="aspectFit" />
+  		<c-img cclass="center-img custom-img" src="{{customImageUrl}}" cstyle="width:{{imgWidth}}px;height:{{imgHeight}}px;top:{{imgTop}}px;left:{{imgLeft}}px" mode="aspectFit" />
   		<view
   		  class="space-indicator space-center-top"
   		>
@@ -84,14 +84,14 @@
   		</view>
   	</view>
     <view class="pane" wx:elif="{{tabSelected === 1 }}">
-      <image class="center-img custom-img" src="{{customDetail.imageUrl}}" mode="aspectFit" />
+      <c-img cclass="center-img custom-img" src="{{customDetail.imageUrl}}" mode="aspectFit" />
     </view>
   	<view class="pane" wx:else>
-  		<image class="center-img space-img" src="{{customDetail.spaces[tabSelected - 2].imageUrl}}" mode="aspectFit" />
+  		<c-img cclass="center-img space-img" src="{{customDetail.spaces[tabSelected - 2].imageUrl}}" mode="aspectFit" />
   		<view
   		  class="space-indicator space-center"
   		>
-  		  <image class="space-plus" src="{{cdn}}/position.png" mode="scaleToFill" />
+  		  <c-img cclass="space-plus" src="{{cdn}}/position.png" mode="scaleToFill" />
   		  <text class="space-name">{{customDetail.spaces[tabSelected - 2].name}}</text>
   		</view>
   	</view>
@@ -105,7 +105,7 @@
   	<view class="rank-star">
   		<view class="rank-star-box" wx:for="{{rankList}}" wx:key="{{item.id}}">
   			<view class="rank-star-album">
-  				<image class="rank-star-img" src="{{item.src}}" mode="aspectFill"/>
+  				<c-img cclass="rank-star-img" src="{{item.src}}" mode="aspectFill"/>
   				<view
             class="custom-like"
             data-id="{{item.id}}"
@@ -125,7 +125,7 @@
   	</view>
   </view>
   <view class="section section-banner">
-  	<image class="banner" src="https://dm.static.elab-plus.com/wuXiW3/index/banner图1@2x.png" mode="scaleToFill"/>
+  	<c-img cclass="banner" src="https://dm.static.elab-plus.com/wuXiW3/index/banner图1@2x.png" mode="scaleToFill"/>
   </view>
   <view class="bottom">
   	<view class="center service" bind:tap="onRouteService">

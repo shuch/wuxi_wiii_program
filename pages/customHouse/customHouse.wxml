@@ -100,16 +100,16 @@
         <text class="space-name">{{customDetail.spaces[1].name}}</text>
       </view>
       <view class="rb-corner corner" hidden="{{drawMode}}">
-        <image class="corner-btn" src="{{cdn}}/style_button.png" bind:tap="onRouteTheme" hidden="{{commentMode}}" />
+        <image class="corner-btn" src="{{cdn}}/style-button.png" bind:tap="onRouteTheme" hidden="{{commentMode}}" />
         <view bind:tap="onComment">
           <block wx:if="{{commentMode}}">
             <c-img cclass="comment-btn" src="{{cdn}}/exit_button.png" mode="scaleToFill" />退出批注
           </block>
           <block wx:else>
-            <image class="corner-btn" src="{{cdn}}/comment_button.png" mode="scaleToFill"></image>
+            <image class="corner-btn" src="{{cdn}}/comment-button.png" mode="scaleToFill"></image>
           </block>
         </view>
-        <image class="corner-btn" src="{{cdn}}/draw_button.png" bind:tap="onDraw" hidden="{{houseTypeUpdate || spaceEdit || commentMode}}"/>
+        <image class="corner-btn" src="{{cdn}}/draw-button.png" bind:tap="onDraw" hidden="{{houseTypeUpdate || spaceEdit || commentMode}}"/>
       </view>
       <view class="comment-area {{commentExpand ? '' : 'comment-unfold'}}" wx:if="{{commentList.length}}">
         <view

@@ -67,10 +67,9 @@ var config = function() {
             backColor: "#474952",
             projectName: '无锡WIII',
             // 后台接口请求地址
-            url: 'http://139.196.5.59:5313',
+            url: 'http://139.196.5.59:5555/',
             parameterUrl:'https://h5test.elab-plus.com/sell/index.html#/housePramater?houseId=',
             tdviewUrl:'http://h5test.elab-plus.com/sell/#/tdview?houseId=',
-            qiniuUrl: 'http://139.196.5.59:5555/elab-marketing-file',
             newUrl: 'https://gatewaytest.elab-plus.com/', //测试
             ImgUrl: 'http://skyforest.static.elab-plus.com/', // 图片地址
             //客户业务后台请求域名

@@ -92,7 +92,6 @@ function trackRequest(para,app){
   }
 
   if(JSON.stringify(para.pvCurPageParams)==='"{}"'){
-      debugger
       para.pvCurPageParams = '';
   }
   if (!app) {

@@ -7,11 +7,11 @@
 
 .title {
   font-size: 16px;
-  color: #9B9B9B;
+  color: #2e2e2e;
   display: flex;
   align-items: center;
   height:70rpx;
-  padding-left:30rpx;
+  padding-left:20rpx;
 }
 
 .house-card {
@@ -290,8 +290,8 @@
 }
 
 .corner-btn {
-  width: 90rpx;
-  height: 90rpx;
+  width: 100rpx;
+  height: 100rpx;
   margin-top: 30rpx;
 }
 

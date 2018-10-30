@@ -5,7 +5,8 @@
   "backgroundColor": "#eeeeee",
   "backgroundTextStyle": "light",
   "usingComponents": {
-    "component-action-sheet": "../../components/action-sheet/action-sheet"
+    "component-action-sheet": "../../components/action-sheet/action-sheet",
+    "c-img": "../../components/img/img"
   }
 
 }
