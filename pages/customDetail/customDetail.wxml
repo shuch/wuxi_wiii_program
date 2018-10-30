@@ -11,12 +11,18 @@
   <view class="section section-custom">
   	<view class="like-box" wx:if="{{customDetail.inviteList.length}}">
   		<view class="like-list">
-        <block wx:for="{{customDetail.inviteList}}" wx:key="item" wx:if="{{index<5}}">
-          <image class="like-avatar" src="{{item.headImage}}" mode="scaleToFill" wx:if="{{item.headImage}}"/>
-          <image class="like-avatar" src="{{cdn}}/avatar.png" mode="scaleToFill" wx:else/>
+        <block wx:for="{{[0,1,2,3,4]}}" wx:for-index="idx">
+          <block wx:if="{{customDetail.inviteList[idx]}}">
+            <image class="like-avatar" src="{{customDetail.inviteList[idx].headImage}}" mode="scaleToFill" wx:if="{{customDetail.inviteList[idx].headImage}}"/>
+            <image class="like-avatar" src="{{cdn}}/avatar.png" mode="scaleToFill" wx:else/>
+          </block>
+          <block wx:else>
+            <image class="invite-avatar" src="{{cdn}}/avatar_b.png" mode="scaleToFill"></image>
+          </block>
         </block>
-  		</view>
-		  成功邀请<text class="theme-color">{{customDetail.inviteList.length}}人</text>
+      </view>
+      成功邀请<text class="theme-color">{{customDetail.inviteList.length}}人</text>
+        <image class="like-box-arraw" src="http://phey3erbt.bkt.clouddn.com/arraw.png" mode="scaleToFill"></image>
     </view>
     <view class="h1">{{customDetail.name}}</view>
   	<view class="row-tabs">
@@ -42,12 +48,12 @@
   		</view>
   	</view>
   	<view class="pane" wx:if="{{tabSelected === 0 }}">
-  		<c-img cclass="center-img custom-img" src="{{customImageUrl}}" cstyle="width:{{imgWidth}}px;height:{{imgHeight}}px;top:{{imgTop}}px;left:{{imgLeft}}px" mode="aspectFit" />
+  		<c-img cclass="center-img custom-img custom-detail-img" src="{{customImageUrl}}" cstyle="width:{{imgWidth}}px;height:{{imgHeight}}px;top:{{imgTop}}px;left:{{imgLeft}}px" mode="aspectFit" />
   		<view
   		  class="space-indicator {{spaceIndicatorClass.spacetop}}"
   		>
-  		  <image class="space-plus" src="{{cdn}}/position.png" mode="scaleToFill" />
-  		  <text class="space-name">{{customDetail.spaces[0].name}}</text>
+        <text class="space-name space-name-top">{{customDetail.spaces[0].name}}</text>
+  		  <image class="space-plus space-plus-right " src="{{cdn}}/position.png" mode="scaleToFill" />
   		</view>
   		<view
   		  class="space-indicator {{spaceIndicatorClass.spacebtm}}"
@@ -60,11 +66,15 @@
   		    class="comment-title"
   		    wx:if="{{customDetail.comments.length > 2}}"
   		    bind:tap="toggleExpand"
-			style="background:{{commentExpand?'#D5D5D5 url(https://dm.static.elab-plus.com/wuXiW3/index/close.png)no-repeat  120rpx center/28rpx 15rpx':'#D5D5D5 url(https://dm.static.elab-plus.com/wuXiW3/index/open.png)no-repeat 120rpx center/28rpx 15rpx'}}"
-		  >
-  		    {{commentExpand ? '收起' : '展开'}}评论
+		    >
+  		    <block wx:if="{{commentExpand}}">
+            收起 <image class="icon-arrow" src="{{cdn}}/down.png"/>
+          </block>
+          <block wx:else>
+            展开 <image class="icon-arrow" src="{{cdn}}/up.png"/>
+          </block>
   		  </view>
-			<view style="height: calc( 100% - 60rpx );overflow-y: auto">
+			<view class="{{commentExpand ? 'comment-wrapper-expand' : 'comment-wrapper' }}">
 				<view class="comment-list">
 					<view
 							class="comment-item"

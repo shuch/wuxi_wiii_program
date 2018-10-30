@@ -9,7 +9,7 @@
 }
 
 .section-custom {
-	overflow: hidden;
+	/*overflow: hidden;*/
 }
 
 .section-img {
@@ -51,6 +51,7 @@
 }
 
 .like-box {
+	position: relative;
 	display: flex;
 	font-size: 28rpx;
 	color: #9B9B9B;
@@ -61,7 +62,17 @@
 	box-shadow: 0 0 15px 2px rgba(0,0,0,.1)
 }
 
+.like-box-arraw{
+	position: absolute;
+	left: 50%;
+	top: -20rpx;
+	transform: translateX(-50%);
+	width: 86rpx;
+	height: 21rpx;
+}
+
 .like-list {
+	display: flex;
 	flex: 1;
 }
 
@@ -74,7 +85,7 @@
 }
 
 .theme-color {
-	color: #FFD6BA;
+	color: #D2BE73;
 }
 
 .h1 {
@@ -135,6 +146,10 @@
 	height: 900rpx;
 }
 
+.custom-detail-img {
+	margin-top: 0;
+}
+
 .space-img {
 	width: 690rpx;
 	height: 900rpx;
@@ -146,6 +161,12 @@
   top:335rpx;
   right:146rpx;
 }
+
+.space-indicator::after,
+.space-indicator::before {
+  top: 24rpx;
+}
+
 
 .space-left-top {
   left: 100rpx;
@@ -197,6 +218,80 @@
   top: 779rpx;
 }
 
+.space11::after {
+  position: absolute;
+  content: '';
+  width: 24rpx;
+  height: 100rpx;
+  right: -36rpx;
+  background: url('http://phey3erbt.bkt.clouddn.com/space11.png') center/24rpx 100rpx no-repeat;
+}
+
+.space12::before {
+  position: absolute;
+  content: '';
+  width: 52rpx;
+  height: 36rpx;
+  left: -66rpx;
+  background: url('http://phey3erbt.bkt.clouddn.com/space12.png') center/52rpx 36rpx no-repeat;
+}
+
+.space21::after {
+  position: absolute;
+  content: '';
+  width: 30rpx;
+  height: 208rpx;
+  right: -42rpx;
+  background: url('http://phey3erbt.bkt.clouddn.com/space21.png') center/30rpx 208rpx no-repeat;
+}
+
+.space22::before {
+  position: absolute;
+  content: '';
+  width: 52rpx;
+  height: 36rpx;
+  left: -66rpx;
+  background: url('http://phey3erbt.bkt.clouddn.com/space22.png') center/52rpx 36rpx no-repeat;
+}
+
+.space31::after {
+  position: absolute;
+  content: '';
+  width: 26rpx;
+  height: 146rpx;
+  right: -40rpx;
+  background: url('http://phey3erbt.bkt.clouddn.com/space11.png') center/26rpx 146rpx no-repeat;
+}
+
+.space32::before {
+  position: absolute;
+  content: '';
+  width: 52rpx;
+  height: 36rpx;
+  left: -66rpx;
+  background: url('http://phey3erbt.bkt.clouddn.com/space12.png') center/52rpx 36rpx no-repeat;
+}
+
+.space41::after {
+  position: absolute;
+  content: '';
+  width: 90rpx;
+  height: 180rpx;
+  right: -18rpx;
+  background: url('http://phey3erbt.bkt.clouddn.com/space31.png') center/90rpx 180rpx no-repeat;
+}
+
+.space42::before {
+  position: absolute;
+  content: '';
+  width: 90rpx;
+  height: 66rpx;
+  top: -86rpx;
+  left: 24rpx;
+  background: url('http://phey3erbt.bkt.clouddn.com/space32.png') center/90rpx 66rpx no-repeat;
+}
+
+
 .space-center {
 	right:100rpx;
 	top:200rpx
@@ -221,10 +316,19 @@
   background: rgba(42, 69, 59, .7);
 }
 
+.space-name-top {
+	border-radius: 0 25rpx 25rpx 0;
+}
+
 .space-plus {
   width: 50rpx;
   height: 50rpx;
   margin-right: 20rpx;
+}
+
+.space-plus-right {
+	margin-left: 20rpx;
+	margin-right : 0;
 }
 
 .comment-area {
@@ -244,13 +348,31 @@
 }
 
 .comment-title {
-  color: #2E2E2E;
-  margin-bottom: 20rpx;
+	display: table;
+	color: #fff;
+	margin-bottom: 20rpx;
 	padding-right: 30rpx;
-	width: 130rpx;
+	background: rgba(151,151,151,.904);
+	border-radius: 6rpx;
+	font-size: 14px;
+	line-height: 50rpx;
+	padding: 0 10rpx;
 }
 
-.comment-list {
+.comment-wrapper {
+  max-height: 144rpx;
+  overflow: hidden;
+}
+
+.comment-wrapper-expand {
+  max-height: 424rpx;
+  overflow: hidden;
+}
+
+.icon-arrow {
+  width: 14px;
+  height: 14px;
+  margin: 5px 0 0 2px;
 }
 
 .comment-item {
@@ -403,3 +525,16 @@
 	height: 40rpx;
 	vertical-align: top;
 }
+
+.invite-avatar {
+	width: 50rpx;
+	height: 50rpx;
+	border-radius: 50%;
+	color: #9b9b9b;
+	font-size: 34rpx;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-right: 20rpx;
+}
+

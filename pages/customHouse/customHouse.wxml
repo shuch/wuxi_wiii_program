@@ -88,7 +88,7 @@
         bind:tap="editSpace"
         data-space="{{customDetail.spaces[0]}}"
       >
-        <text class="space-name">{{customDetail.spaces[0].name}}</text>
+        <text class="space-name space-name-top">{{customDetail.spaces[0].name}}</text>
         <image class="space-plus" src="{{cdn}}/update_plus.png" mode="scaleToFill" />
       </view>
       <view
@@ -124,7 +124,7 @@
             展开 <image class="icon-arrow" src="{{cdn}}/up.png"/>
           </block>
         </view>
-        <view style="height: calc( 100% - 60rpx );overflow-y: auto">
+        <view class="{{commentExpand ? 'comment-wrapper-expand' : 'comment-wrapper' }}">
           <view class="comment-list">
             <view
               class="comment-item"

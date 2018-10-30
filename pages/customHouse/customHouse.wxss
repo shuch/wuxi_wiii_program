@@ -305,6 +305,21 @@
   height: 90rpx;
 }
 
+.comment-wrapper {
+  max-height: 144rpx;
+  overflow: hidden;
+}
+
+.comment-wrapper-expand {
+  max-height: 424rpx;
+  overflow: hidden;
+}
+
+.comment-list-expand {
+  max-height: 144rpx;
+  overflow: hidden;
+}
+
 .cover-tip{
   position: fixed;
   top: 0;
@@ -365,6 +380,11 @@
   right:146rpx;
 }
 
+.space-indicator::after,
+.space-indicator::before {
+  top: 24rpx;
+}
+
 .space-left-top {
   left: 100rpx;
   top: 200rpx;
@@ -410,6 +430,78 @@
   top: 779rpx;
 }
 
+.space11::after {
+  position: absolute;
+  content: '';
+  width: 24rpx;
+  height: 100rpx;
+  right: -36rpx;
+  background: url('http://phey3erbt.bkt.clouddn.com/space11.png') center/24rpx 100rpx no-repeat;
+}
+
+.space12::before {
+  position: absolute;
+  content: '';
+  width: 52rpx;
+  height: 36rpx;
+  left: -66rpx;
+  background: url('http://phey3erbt.bkt.clouddn.com/space12.png') center/52rpx 36rpx no-repeat;
+}
+
+.space21::after {
+  position: absolute;
+  content: '';
+  width: 30rpx;
+  height: 208rpx;
+  right: -42rpx;
+  background: url('http://phey3erbt.bkt.clouddn.com/space21.png') center/30rpx 208rpx no-repeat;
+}
+
+.space22::before {
+  position: absolute;
+  content: '';
+  width: 52rpx;
+  height: 36rpx;
+  left: -66rpx;
+  background: url('http://phey3erbt.bkt.clouddn.com/space22.png') center/52rpx 36rpx no-repeat;
+}
+
+.space31::after {
+  position: absolute;
+  content: '';
+  width: 26rpx;
+  height: 146rpx;
+  right: -40rpx;
+  background: url('http://phey3erbt.bkt.clouddn.com/space11.png') center/26rpx 146rpx no-repeat;
+}
+
+.space32::before {
+  position: absolute;
+  content: '';
+  width: 52rpx;
+  height: 36rpx;
+  left: -66rpx;
+  background: url('http://phey3erbt.bkt.clouddn.com/space12.png') center/52rpx 36rpx no-repeat;
+}
+
+.space41::after {
+  position: absolute;
+  content: '';
+  width: 90rpx;
+  height: 180rpx;
+  right: -18rpx;
+  background: url('http://phey3erbt.bkt.clouddn.com/space31.png') center/90rpx 180rpx no-repeat;
+}
+
+.space42::before {
+  position: absolute;
+  content: '';
+  width: 90rpx;
+  height: 66rpx;
+  top: -86rpx;
+  left: 24rpx;
+  background: url('http://phey3erbt.bkt.clouddn.com/space32.png') center/90rpx 66rpx no-repeat;
+}
 
 .space-left-bottom {
   left: 200rpx;
@@ -423,6 +515,10 @@
   line-height: 50rpx;
   border-radius: 25rpx 0 0 25rpx;
   background: rgba(42, 69, 59, .7);
+}
+
+.space-name-top {
+  border-radius: 0 25rpx 25rpx 0;
 }
 
 .space-plus {
