@@ -6,9 +6,7 @@ import { trackRequest } from '../../utils/util';
 
 const cdn = 'https://dm.static.elab-plus.com/wuXiW3/img';
 const CUSTOM_POP_UP = 'CUSTOM_POP_UP';
-// const customType = {
-//   { id: 115, }
-// };
+
 
 Page({
   data: {
@@ -146,14 +144,14 @@ Page({
       houseId: this.data.houseId,
       customerId: this.data.customerId,
     });
-    console.log('res', res);
-    res.single.originUrl = res.single.image3dPlane
+    res.single.originUrl = res.single.image3dPlane;
+    const { customizedLayout } = res.single || {};
     this.setData({
       customStep: 2,
       customDetail: res.single,
       customerProgrammeId: res.single.customerProgrammeId,
       customizedProgrammeId: res.single.id,
-      spaceIndicatorClass: this.getSpaceIndicatorClass(res.single),
+      spaceIndicatorClass: this.getSpaceIndicatorClass(customizedLayout),
     });
     trackRequest({
       type: 'CLK',
