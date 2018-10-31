@@ -195,10 +195,11 @@ Page({
         customerProgrammeId,
         customizedLayoutId: this.data.selectedType.layoutId,
       });
+      const { customizedLayout } = res.single || {};
       Object.assign(data, {
         customDetail: res.single,
         customizedProgrammeId: res.single.id,
-        spaceIndicatorClass: this.getSpaceIndicatorClass(res.single),
+        spaceIndicatorClass: this.getSpaceIndicatorClass(customizedLayout),
       });
       Object.assign(track, {
         clkName: 'querenxaunzehuxing',
