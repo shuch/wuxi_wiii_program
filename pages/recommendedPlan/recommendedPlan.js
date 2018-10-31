@@ -61,6 +61,7 @@ Page({
         this.setData({
             layout,programme,designer
         })
+        console.log(!!programme.image3d)
     },
     async save(){
 

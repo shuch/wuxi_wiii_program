@@ -84,6 +84,7 @@ Page({
         }
     },
     goVideo: function (e) {
+        var that = this;
         let param = {
             type:'CLK',//埋点类型
             pvPageStayTime:(new Date().getTime()-wx.getStorageSync('loadTime'))/1000,

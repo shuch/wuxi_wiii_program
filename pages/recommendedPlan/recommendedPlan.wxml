@@ -1,6 +1,6 @@
 <scroll-view >
     <c-img src="{{layout.senceImage}}" c-style="width: 100%;height: 380rpx;" mode="aspectFill"></c-img>
-    <view class="button-3d" bind:tap="onRoute3D" wx:if="programme.image3d">查看3D效果</view>
+    <view class="button-3d" bind:tap="onRoute3D" wx:if="{{programme.image3d}}">查看3D效果</view>
     <view class="h1">{{layout.name}}</view>
     <view class="taplist">
         <view class="tapItem {{0==current?'current':''}}"
