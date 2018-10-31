@@ -161,16 +161,16 @@
 
     <view wx:if="{{guide}}">
       <view class="cover-tip" wx:if="{{coverTip === 1}}">
-        <image class="cover-img" src="{{cdn}}/guide1.png" mode="scaleToFill" bind:tap="onCoverTip" data-step="1"/>
+        <image class="cover-img" src="http://phey3erbt.bkt.clouddn.com/guide1.png" mode="scaleToFill" bind:tap="onCoverTip" data-step="1"/>
       </view>
       <view class="cover-tip" wx:if="{{coverTip === 2}}">
-        <image class="cover-img" src="{{cdn}}/guide2.png" mode="scaleToFill" bind:tap="onCoverTip" data-step="2"/>
+        <image class="cover-img" src="http://phey3erbt.bkt.clouddn.com/guide2.png" mode="scaleToFill" bind:tap="onCoverTip" data-step="2"/>
       </view>
       <view class="cover-tip" wx:if="{{coverTip === 3}}">
-        <image class="cover-img" src="{{cdn}}/guide3.png" mode="scaleToFill" bind:tap="onCoverTip" data-step="3"/>
+        <image class="cover-img" src="http://phey3erbt.bkt.clouddn.com/guide3.png" mode="scaleToFill" bind:tap="onCoverTip" data-step="3"/>
       </view>
       <view class="cover-tip" wx:if="{{coverTip === 4}}">
-        <image class="cover-img" src="{{cdn}}/guide4.png" mode="scaleToFill" bind:tap="onCoverTip" data-step="4"/>
+        <image class="cover-img" src="http://phey3erbt.bkt.clouddn.com/guide4.png" mode="scaleToFill" bind:tap="onCoverTip" data-step="4"/>
       </view>
     </view>
 
