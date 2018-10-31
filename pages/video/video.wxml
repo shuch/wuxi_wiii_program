@@ -49,7 +49,7 @@
 		</cover-view>
 		<component-count-down house-id="{{houseId}}" grey="grey" my-class="endTime"/>
 		<cover-view class="coupon" bindtap="toCoupon">
-			<cover-image src="https://dm.static.elab-plus.com/wuXiW3/index/enrter.gif" style="width: 100%;height: 100%;"></cover-image>
+			<cover-image src="https://dm.static.elab-plus.com/wuXiW3/index/ruchangquan.png" style="width: 100%;height: 100%;"></cover-image>
 		</cover-view>
 	</video>
 </view>

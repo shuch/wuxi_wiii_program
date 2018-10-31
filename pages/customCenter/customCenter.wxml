@@ -50,8 +50,7 @@
 				<view class="pay-detail">
 					<view class="pay-detial-item">支付时间：{{payTime}}</view>
 					<view class="pay-detial-item">支付金额：{{payFee}}元 定制服务入场券</view>
-					<view class="pay-detial-item">
-						定制状态：{{payProcess}}
+					<view class="pay-detial-item">定制状态：{{payProcess}}
 						<view class="float-r" bind:tap="didShowProgress">查看详情 ></view>
 					</view>
 				</view>
@@ -78,7 +77,7 @@
 			<view class="btn-share btn-invite" bind:tap="menuShare">邀请好友助力</view>
 			<view class="invite-tip" bind:tap="showActivityPop">
 				<component-count-down house-id="{{houseId}}" />
-				<image class="icon-info icon-info--invite" src="{{cdn}}/info_grey.png" mode="scaleToFill"/>
+				<image class="icon-info icon-info--invite" src="{{cdn}}/info_grey1.png" mode="scaleToFill"/>
 				活动说明
 			</view>
 		</view>
@@ -123,7 +122,7 @@
 								bind:tap="onLike"
 							>
 								<image wx:if="{{item.isLike}}" class="icon-like" src="{{cdn}}/like.png" mode="scaleToFill" />
-								<image wx:else class="icon-like" src="{{cdn}}/un_like.png" mode="scaleToFill" />
+								<image wx:else class="icon-like" src="{{cdn}}/like_normal@1x.png" mode="scaleToFill" />
 								{{item.like}}
 							</view>
 						</view>
@@ -173,7 +172,7 @@
 						bind:tap="onLikeStar"
 					>
 						<image wx:if="{{item.isLike}}" class="icon-like" src="{{cdn}}/like.png" mode="scaleToFill" />
-						<image wx:else class="icon-like" src="{{cdn}}/un_like.png" mode="scaleToFill" />
+						<image wx:else class="icon-like" src="{{cdn}}/like_normal@1x.png" mode="scaleToFill" />
 						{{item.like}}
 					</view>
 				</view>
@@ -319,5 +318,5 @@
 	wx:if="{{showPopup}}"
 	has-close="{{true}}"
 	bind:onclose="showActivityPop"
-	content-src="{{cdn}}/pop_up_pay_3.png"
+	content-src="{{cdn}}/yaoqing.png"
 />

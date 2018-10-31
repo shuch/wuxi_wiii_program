@@ -636,7 +636,7 @@ Page({
 
   onPhoneCall() {
     wx.makePhoneCall({
-      phoneNumber: '17521216862',
+      phoneNumber: '13917075714',
     });
   },
 });

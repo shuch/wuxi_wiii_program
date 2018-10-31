@@ -3,7 +3,7 @@
   	<c-img cclass="section-img" src="{{cdn}}/custom_detail_img.png" mode="scaleToFill" />
     <view bind:tap="onLikeStar" data-id="{{customId}}" class="custom-like-top">
     	<image class="icon-like" src="{{cdn}}/like.png" mode="scaleToFill" wx:if="{{customDetail.isThumbsUp}}" />
-      <image class="icon-like" src="{{cdn}}/un_like.png" mode="scaleToFill" wx:else />
+      <image class="icon-like" src="{{cdn}}/like_normal@1x.png" mode="scaleToFill" wx:else />
       {{customDetail.likes.length}}
     </view>
     <view class="button-3d" bind:tap="onRoute3D" wx:if="customDetail.image3d">查看3D效果</view>
@@ -122,7 +122,7 @@
             bind:tap="onLikeStar"
           >
             <image wx:if="{{item.isLike}}" class="icon-like-rank" src="{{cdn}}/like.png" mode="scaleToFill" />
-            <image wx:else class="icon-like-rank" src="{{cdn}}/un_like.png" mode="scaleToFill" />
+            <image wx:else class="icon-like-rank" src="{{cdn}}/like_normal@1x.png" mode="scaleToFill" />
             {{item.like}}
   				</view>
   			</view>

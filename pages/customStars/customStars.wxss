@@ -38,13 +38,14 @@
 }
 
 .custom-item-img {
-	width: 670rpx;
+	width: 690rpx;
 	height: 284rpx;
 	vertical-align: top;
 	border-radius: 6rpx 6rpx 0 0;
 }
 
 .custom-feature-list {
+	box-sizing: border-box;
 	position: absolute;
 	bottom: 16rpx;
 	width: 100%;
@@ -98,7 +99,7 @@
 	flex-direction: column;
 	align-items:center;
 	font-size: 32rpx;
-	color: #FFFFFF;
+	color: #aaa;
 }
 
 .icon-like {
@@ -108,7 +109,7 @@
 }
 
 .section-rank {
-	margin: 50rpx 40rpx 0;
+	margin: 50rpx 30rpx 0;
 }
 
 .rank-star-info {
@@ -203,6 +204,7 @@
 .featrue-list {
 	display: flex;
 	padding: 90rpx 60rpx 0;
+	justify-content: space-between;
 }
 
 .feature {

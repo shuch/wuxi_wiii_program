@@ -246,6 +246,7 @@
 	justify-content: center;
 	font-size: 24rpx;
 	margin-bottom:15rpx;
+	color: rgba(155,155,155,.6);
 }
 
 .icon-info--invite {
@@ -373,7 +374,7 @@
 	align-items:center;
 	justify-content: center;
 	font-size: 32rpx;
-	color: #FFFFFF;
+	color: #aaaaaa;
 }
 
 .icon-like {
@@ -443,11 +444,14 @@
 
 .section-footer {
 	margin-top: 20rpx;
+	height:238rpx;
+	overflow:hidden;
+
 }
 
 .banner {
 	width: 100%;
-	height: 240rpx;
+	height: 242rpx;
 	display: block;
 	vertical-align: top;
 }

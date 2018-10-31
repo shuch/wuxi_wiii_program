@@ -70,7 +70,7 @@
 	has-close="{{true}}"
 	bind:onclose="onClose"
 	bind:onsharefriend="onShareFriend"
-	content-src="{{cdn}}/pop_up_pay.png"
+	content-src="{{cdn}}/yaoqing.png"
 />
 
 <component-action-sheet

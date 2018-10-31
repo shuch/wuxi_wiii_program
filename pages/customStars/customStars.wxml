@@ -32,7 +32,7 @@
 						catch:tap="onLikeStar"
 					>
 	  					<c-img wx:if="{{item.isLike}}" cclass="icon-like" src="{{cdn}}/like.png" mode="scaleToFill" />
-	  					<c-img wx:else cclass="icon-like" src="{{cdn}}/un_like.png" mode="scaleToFill" />
+	  					<c-img wx:else cclass="icon-like" src="{{cdn}}/like_normal@1x.png" mode="scaleToFill" />
 	  					{{item.like}}
 	  				</view>
 	  				<view class="custom-tag custom-tag-{{index+1}}">
@@ -45,7 +45,7 @@
 	  			<image class="rank-star-avatar" src="{{item.owner.avatar}}" mode="scaleToFill"/>
 	  			{{item.owner.name}}
 	  		</view>
-			<image style="position: absolute;left: 0;bottom: 0;height: 260rpx;width: 100%" src="https://dm.static.elab-plus.com/wuXiW3/index/icover.png"></image>
+			<image style="position: absolute;left: 0;bottom: 0;height: 260rpx;width: 100%" src="https://dm.static.elab-plus.com/wuXiW3/index/ccover.png"></image>
 		</view>
 	</view>
 	<view class="section-card">
@@ -58,7 +58,7 @@
 			data-id="{{item.id}}"
 			bind:tap="onRouteDetail"
 		>
-			<image style="position: absolute;z-index:1;left: 0;bottom: 0;height: 120rpx;width: 100%" src="https://dm.static.elab-plus.com/wuXiW3/index/icover.png"></image>
+			<image style="position: absolute;z-index:1;left: 0;bottom: 0;height: 120rpx;width: 100%" src="https://dm.static.elab-plus.com/wuXiW3/index/ccover.png"></image>
 			<view class="rank-star-album">
 				<c-img cclass="rank-star-img" src="{{item.src}}" mode="aspectFill"/>
 				<view
@@ -67,7 +67,7 @@
 					catch:tap="onLikeStar"
 				>
 					<c-img wx:if="{{item.isLike}}" cclass="icon-like" src="{{cdn}}/like.png" mode="scaleToFill" />
-					<c-img wx:else cclass="icon-like" src="{{cdn}}/un_like.png" mode="scaleToFill" />
+					<c-img wx:else cclass="icon-like" src="{{cdn}}/like_normal@1x.png" mode="scaleToFill" />
 					{{item.like}}
 				</view>
 			</view>
