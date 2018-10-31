@@ -404,6 +404,12 @@
 	-webkit-overflow-scrolling: touch;
 }
 
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+
 .rank-star-box {
 	background: #FFFFFF;
 	margin-right: 40rpx;

@@ -73,7 +73,7 @@
 					"id": 6,
 					"name": "定制详情",
 					"pathName": "pages/customDetail/customDetail",
-					"query": "customId=536"
+					"query": "customId=782"
 				},
 				{
 					"id": -1,

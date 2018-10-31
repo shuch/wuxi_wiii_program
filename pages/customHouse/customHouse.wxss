@@ -307,17 +307,19 @@
 
 .comment-wrapper {
   max-height: 144rpx;
+  height: 144rpx;
   overflow: hidden;
 }
 
 .comment-wrapper-expand {
   max-height: 424rpx;
+  height: 424rpx;
   overflow: hidden;
 }
 
-.comment-list-expand {
-  max-height: 144rpx;
-  overflow: hidden;
+.comment-list {
+  height: inherit;
+  overflow-y: scroll;
 }
 
 .cover-tip{

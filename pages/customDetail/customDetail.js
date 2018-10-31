@@ -241,11 +241,10 @@ Page({
     this.setData({ doShare: false });
   },
 
-
-    toggleExpand() {
-        const { commentExpand } = this.data;
-        this.setData({ commentExpand: !commentExpand });
-    },
+  toggleExpand() {
+      const { commentExpand } = this.data;
+      this.setData({ commentExpand: !commentExpand });
+  },
   async loadImage(customDetail) {
     const { canvasHeight, canvasWidth } = this.data;
     const { commentImageUrl } = customDetail; 
@@ -283,5 +282,17 @@ Page({
     const src = encodeURIComponent(image3d);
     const url = `/pages/webView/webView?view=${src}`;
     wx.navigateTo({ url });
+  },
+
+  imgOnload(e){
+      console.log(e.detail);
+      let imgUrlPram = this.data.imgUrlPram;
+      imgUrlPram[e.detail.index]=710/e.detail.width*e.detail.height;
+      this.setData({imgUrlPram})
+  },
+
+  swiperChange(e) {
+    console.log(e.detail.current);
+    this.setData({ tabSelected: e.detail.current });
   },
 });

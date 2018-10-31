@@ -361,12 +361,25 @@
 
 .comment-wrapper {
   max-height: 144rpx;
+  height: 144rpx;
   overflow: hidden;
 }
 
 .comment-wrapper-expand {
   max-height: 424rpx;
+  height: 424rpx;
   overflow: hidden;
+}
+
+.comment-list {
+	height: inherit;
+	overflow-y: scroll;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
 }
 
 .icon-arrow {
@@ -536,5 +549,10 @@
 	align-items: center;
 	justify-content: center;
 	margin-right: 20rpx;
+}
+
+.swiper {
+	width: 710rpx;
+	height: 534rpx;
 }
 

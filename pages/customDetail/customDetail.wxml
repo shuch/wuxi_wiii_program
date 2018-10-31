@@ -11,7 +11,7 @@
   <view class="section section-custom">
   	<view class="like-box" wx:if="{{customDetail.inviteList.length}}">
   		<view class="like-list">
-        <block wx:for="{{[0,1,2,3,4]}}" wx:for-index="idx">
+        <block wx:for="{{[0,1,2,3,4]}}" wx:for-index="idx" wx:key="item">
           <block wx:if="{{customDetail.inviteList[idx]}}">
             <image class="like-avatar" src="{{customDetail.inviteList[idx].headImage}}" mode="scaleToFill" wx:if="{{customDetail.inviteList[idx].headImage}}"/>
             <image class="like-avatar" src="{{cdn}}/avatar.png" mode="scaleToFill" wx:else/>
@@ -47,64 +47,79 @@
   			{{item.name}}
   		</view>
   	</view>
-  	<view class="pane" wx:if="{{tabSelected === 0 }}">
-  		<c-img cclass="center-img custom-img custom-detail-img" src="{{customImageUrl}}" cstyle="width:{{imgWidth}}px;height:{{imgHeight}}px;top:{{imgTop}}px;left:{{imgLeft}}px" mode="aspectFit" />
-  		<view
-  		  class="space-indicator {{spaceIndicatorClass.spacetop}}"
-  		>
-        <text class="space-name space-name-top">{{customDetail.spaces[0].name}}</text>
-  		  <image class="space-plus space-plus-right " src="{{cdn}}/position.png" mode="scaleToFill" />
-  		</view>
-  		<view
-  		  class="space-indicator {{spaceIndicatorClass.spacebtm}}"
-  		>
-  		  <image class="space-plus" src="{{cdn}}/position.png" mode="scaleToFill" />
-  		  <text class="space-name">{{customDetail.spaces[1].name}}</text>
-  		</view>
-  		<view class="comment-area {{commentExpand ? '' : 'comment-unfold'}}" wx:if="{{customDetail.comments.length}}">
-  		  <view
-  		    class="comment-title"
-  		    wx:if="{{customDetail.comments.length > 2}}"
-  		    bind:tap="toggleExpand"
-		    >
-  		    <block wx:if="{{commentExpand}}">
-            收起 <image class="icon-arrow" src="{{cdn}}/down.png"/>
-          </block>
-          <block wx:else>
-            展开 <image class="icon-arrow" src="{{cdn}}/up.png"/>
-          </block>
-  		  </view>
-			<view class="{{commentExpand ? 'comment-wrapper-expand' : 'comment-wrapper' }}">
-				<view class="comment-list">
-					<view
-							class="comment-item"
-							wx:for="{{customDetail.comments}}"
-							wx:for-index="idx"
-							wx:key="item"
-							data-id="{{item.id}}"
-							data-index="{{idx}}"
-							bind:tap="delComment"
-					>
-						{{item.commentText}}
-						<image wx:if="{{commentMode}}" class="icon-close" src="{{cdn}}/close.png" mode="scaleToFill"></image>
-					</view>
-				</view>
-			</view>
+    <swiper
+      current="{{tabSelected}}"
+      bindchange="swiperChange"
+      style="height:520px;width: 710rpx"
+    >
+      <swiper-item>
+        <view class="pane">
+          <c-img cclass="center-img custom-img custom-detail-img" src="{{customImageUrl}}" cstyle="width:{{imgWidth}}px;height:{{imgHeight}}px;top:{{imgTop}}px;left:{{imgLeft}}px" mode="aspectFit" />
+          <view
+            class="space-indicator {{spaceIndicatorClass.spacetop}}"
+          >
+            <text class="space-name space-name-top">{{customDetail.spaces[0].name}}</text>
+            <image class="space-plus space-plus-right " src="{{cdn}}/position.png" mode="scaleToFill" />
+          </view>
+          <view
+            class="space-indicator {{spaceIndicatorClass.spacebtm}}"
+          >
+            <image class="space-plus" src="{{cdn}}/position.png" mode="scaleToFill" />
+            <text class="space-name">{{customDetail.spaces[1].name}}</text>
+          </view>
+          <view class="comment-area {{commentExpand ? '' : 'comment-unfold'}}" wx:if="{{customDetail.comments.length}}">
+            <view
+              class="comment-title"
+              wx:if="{{customDetail.comments.length > 2}}"
+              bind:tap="toggleExpand"
+            >
+              <block wx:if="{{commentExpand}}">
+                收起 <image class="icon-arrow" src="{{cdn}}/down.png"/>
+              </block>
+              <block wx:else>
+                展开 <image class="icon-arrow" src="{{cdn}}/up.png"/>
+              </block>
+            </view>
+          <view class="{{commentExpand ? 'comment-wrapper-expand' : 'comment-wrapper' }}">
+            <view class="comment-list">
+              <view
+                  class="comment-item"
+                  wx:for="{{customDetail.comments}}"
+                  wx:for-index="idx"
+                  wx:key="item"
+                  data-id="{{item.id}}"
+                  data-index="{{idx}}"
+                  bind:tap="delComment"
+              >
+                {{item.commentText}}
+                <image wx:if="{{commentMode}}" class="icon-close" src="{{cdn}}/close.png" mode="scaleToFill"></image>
+              </view>
+            </view>
+          </view>
 
-  		</view>
-  	</view>
-    <view class="pane" wx:elif="{{tabSelected === 1 }}">
-      <c-img cclass="center-img custom-img" src="{{customDetail.imageUrl}}" mode="aspectFit" />
-    </view>
-  	<view class="pane" wx:else>
-  		<c-img cclass="center-img space-img" src="{{customDetail.spaces[tabSelected - 2].imageUrl}}" mode="aspectFit" />
-  		<view
-  		  class="space-indicator space-center"
-  		>
-  		  <c-img cclass="space-plus" src="{{cdn}}/position.png" mode="scaleToFill" />
-  		  <text class="space-name">{{customDetail.spaces[tabSelected - 2].name}}</text>
-  		</view>
-  	</view>
+          </view>
+        </view>
+      </swiper-item>
+      <swiper-item>
+        <view class="pane">
+          <c-img cclass="center-img custom-img" src="{{customDetail.imageUrl}}" mode="aspectFit" />
+        </view>
+      </swiper-item>
+      <block wx:for="{{customDetail.spaces}}" wx:key="item">
+        <swiper-item>
+        	<view class="pane">
+        		<c-img cclass="center-img space-img" src="{{item.imageUrl}}" mode="aspectFit" />
+        		<view
+        		  class="space-indicator space-center"
+        		>
+        		  <c-img cclass="space-plus" src="{{cdn}}/position.png" mode="scaleToFill" />
+        		  <text class="space-name">{{item.name}}</text>
+        		</view>
+        	</view>
+        </swiper-item>
+      </block>
+    </swiper>
+    
   </view>
   <view class="section section-rank">
   	<view class="section-title">
