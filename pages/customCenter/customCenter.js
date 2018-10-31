@@ -16,7 +16,7 @@ Page({
     showProgress: false,
     showRefund: false,
     selectedReason: '',
-    fee: 0.02,
+    fee: 1,
     shareCustomId: 0,
     endTime: {
       d: 30,
@@ -424,7 +424,7 @@ Page({
   },
 
   onSharePay() {
-    this.setData({ fee: 0.01, doShare: false });
+    this.setData({ fee: 0.5, doShare: false });
     this.onPay();
   },
 
