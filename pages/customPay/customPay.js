@@ -6,7 +6,7 @@ import { trackRequest } from '../../utils/util';
 const cdn = 'https://dm.static.elab-plus.com/wuXiW3/img';
 
 const app = getApp(); 
-
+var num = 1
 Page({
   data: {
     doShare: false,
@@ -28,7 +28,21 @@ Page({
       shareId = parmas.shareId || '';
       // fromEntry = parmas.fromEntry || '';
     }
+      app.globalData.shareToken=shareId;
+
     const appData = await login();
+
+      const pvCurPageParams = {
+          shareToken:app.globalData.shareToken
+      };
+      const param = {
+          type: 'PV',
+          pvId: 'P_2cdinzhi_2',
+          pvCurPageName: 'yudingfuwu',
+          pvCurPageParams:pvCurPageParams.shareToken?pvCurPageParams:"{}",
+      };
+      trackRequest(param);
+      num ++
     const {
       houseId,
       nickname,
@@ -65,14 +79,19 @@ Page({
   },
 
   async onShow() {
-      const appData = await login();
+    if(num>1){
+        const param = {
+            type: 'PV',
+            pvId: 'P_2cdinzhi_2',
+            pvCurPageName: 'yudingfuwu',
+            pvCurPageParams:  {
+                shareToken:app.globalData.shareToken
+            }
+        }
+        trackRequest(param);
 
-      const param = {
-      type: 'PV',
-      pvId: 'P_2cdinzhi_2',
-      pvCurPageName: 'yudingfuwu',
+
     };
-    trackRequest(param);
   },
 
   redirect() {

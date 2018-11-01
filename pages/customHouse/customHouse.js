@@ -102,15 +102,10 @@ Page({
     return false
   },
   async onShow() {
-      console.log(app.globalData.customId,'333333333');
-      const pvCurPageParams = {
-        customId:app.globalData.customId
-    };
     const param = {
       type: 'PV',
       pvId: 'P_2cdinzhi_0',
       pvCurPageName: 'huxingdingzhi',
-      pvCurPageParams:pvCurPageParams.customId?pvCurPageParams:"{}",
     };
     trackRequest(param);
   },

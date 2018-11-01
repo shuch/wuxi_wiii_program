@@ -94,10 +94,14 @@ Page({
           customizedStatus
       });
 
+      const pvCurPageParams = {
+          customId:app.globalData.customId
+      };
       const param = {
           type: 'PV',
           pvId: 'P_2cdinzhi_4',
           pvCurPageName: 'huxingfangan',
+          pvCurPageParams:pvCurPageParams.customId?pvCurPageParams:"{}",
       };
       trackRequest(param);
     },
