@@ -31,7 +31,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 6,
+			"current": 8,
 			"list": [
 				{
 					"id": -1,
@@ -82,28 +82,22 @@
 					"query": ""
 				},
 				{
-					"id": -1,
-					"name": "预定支付",
-					"pathName": "pages/share/share",
-					"query": "shareId=21"
-				},
-				{
-					"id": -1,
-					"name": "pages/video/video",
-					"pathName": "pages/video/video",
-					"query": ""
-				},
-				{
-					"id": -1,
+					"id": 8,
 					"name": "色系选择",
 					"pathName": "pages/customTheme/customTheme",
-					"query": ""
+					"query": "houseId=83"
 				},
 				{
 					"id": -1,
 					"name": "色系选择",
 					"pathName": "pages/customTheme/customTheme",
 					"query": "houseId=83&layoutId=115"
+				},
+				{
+					"id": -1,
+					"name": "色系",
+					"pathName": "pages/customTheme/customTheme",
+					"query": ""
 				}
 			]
 		}
