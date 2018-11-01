@@ -56,11 +56,11 @@ Page({
   },
 
   getSpaceIndicatorClass(data) {
-    switch (data.name) {
-      case 'LOFT单钥匙': return { spacetop: 'space11', spacebtm: 'space12' };
-      case 'LOFT双钥匙': return { spacetop: 'space21', spacebtm: 'space22' };
-      case '一室一厅': return { spacetop: 'space31', spacebtm: 'space32' };
-      case '平层双钥匙': return { spacetop: 'space41', spacebtm: 'space42' };
+    switch (data.spacePositions) {
+      case '1': return { spacetop: 'space11', spacebtm: 'space12' };
+      case '2': return { spacetop: 'space21', spacebtm: 'space22' };
+      case '3': return { spacetop: 'space31', spacebtm: 'space32' };
+      case '4': return { spacetop: 'space41', spacebtm: 'space42' };
       default: return { spacetop: 'space-left-top', spacebtm: 'space-left-bottom' };
     }
   },

@@ -1,5 +1,6 @@
 .container {
   background: #767676;
+  height:100vh;
 }
 
 .theme-effect {
