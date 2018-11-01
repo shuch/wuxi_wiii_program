@@ -3,7 +3,7 @@ import regeneratorRuntime from '../../lib/runtime';
 import { houseTypesMapper, spaceTypeMapper, customDetailMapper, rankMapper } from '../../utils/convertor';
 import { login, getImageInfo } from '../../lib/promise';
 import { trackRequest } from '../../utils/util';
-
+var app = getApp(); //获取应用实例
 const cdn = 'https://dm.static.elab-plus.com/wuXiW3/img';
 
 Page({
@@ -14,6 +14,7 @@ Page({
     doShare: false,
     canvasHeight: 450,
     canvasWidth: 375,
+     customizedStatus:0,
   },
 
   async onLoad(parmas) {
@@ -25,6 +26,7 @@ Page({
     } else {
       customId = parmas.customId;
     }
+    app.globalData.customId=customId;
     const appData = await login();
     const { id: customerId, houseId, nickname, headPortrait: headImage } = appData;
     const res = await endpoint('customizedDetail', customId,customerId);
@@ -34,31 +36,18 @@ Page({
     }
     const customDetail = customDetailMapper(res.single);
     const nick = customerId === customDetail.origin.id ? '我':customDetail.origin.nickName || '用户';
-    if(customDetail.origin.nickname!=nickname){
-        wx.setNavigationBarTitle({
-            title: `${nick}的方案`,
-        });
-    }
+      wx.setNavigationBarTitle({
+          title: `${nick}的方案`,
+      });
 
     this.loadImage(customDetail);
-
-    const rankRes = await endpoint('rankList', {
-      houseId,
-      pageNo: 1,
-      pageSize: 10,
-      customerId,
-    });
     const isSelf = customerId === customDetail.customerId;
-    let rankList = rankRes.pageModel ? rankRes.pageModel.resultSet : [];
-    rankList = rankList.map(rankMapper);
-
     const spaceIndicatorClass = this.getSpaceIndicatorClass(customDetail);
     this.setData({
       houseId,
       customerId,
       customId,
       customDetail,
-      rankList,
       isSelf,
       nickname,
       headImage,
@@ -77,14 +66,41 @@ Page({
   },
 
   onShow() {
-    const param = {
-      type: 'PV',
-      pvId: 'P_2cdinzhi_4',
-      pvCurPageName: 'huxingfangan',
-    };
-    trackRequest(param);
+    this.initRankList();
   },
+  async initRankList() {
+      const appData = await login();
+      const {
+          houseId,
+          id: customerId,
+      } = appData;
+      const rankRes = await endpoint('rankList', {
+          houseId,
+          pageNo: 1,
+          pageSize: 10,
+          customerId,
+      });
+      let rankList = rankRes.pageModel ? rankRes.pageModel.resultSet : [];
+      rankList = rankList.map(rankMapper);
 
+      const state = await endpoint('customState', { customerId, houseId });
+      const {
+          single: {
+              customizedStatus,
+          },
+      } = state;
+      this.setData({
+          rankList,
+          customizedStatus
+      });
+
+      const param = {
+          type: 'PV',
+          pvId: 'P_2cdinzhi_4',
+          pvCurPageName: 'huxingfangan',
+      };
+      trackRequest(param);
+    },
   switchTab(e) {
     const id = e.currentTarget.dataset.id;
     console.log('switchTab', id);
@@ -170,7 +186,7 @@ Page({
         icon: 'success',
         duration: 2000,
       });
-      wx.navigateTo({ url: '/pages/customCenter/customCenter' });
+        wx.redirectTo({ url: '/pages/customCenter/customCenter' });
     }
 
     trackRequest({
@@ -186,7 +202,7 @@ Page({
       clkName: 'DIYwodehouse',
       clkId: 'clk_2cdinzhi_29',
     });
-    wx.navigateTo({ url: '/pages/customHouse/customHouse' });
+      wx.redirectTo({ url: '/pages/customHouse/customHouse' });
   },
 
   onRouteService() {
@@ -214,12 +230,6 @@ Page({
       customerId,
       customerProgrammeId: id,
     });
-    trackRequest({
-      type: 'CLK',
-      clkName: 'dianzan',
-      clkId: 'clk_2cdinzhi_21',
-      clkParams: { customId: id },
-    });
     if (!res.success) {
       return;
     }
@@ -235,6 +245,14 @@ Page({
     item.like = item.isLike ? item.like - 1 : item.like + 1;
     item.isLike = !item.isLike;
     this.setData({ rankList: list });
+    if( item.isLike){
+        trackRequest({
+            type: 'CLK',
+            clkName: 'dianzan',
+            clkId: 'clk_2cdinzhi_21',
+            clkParams: { customId: id },
+        });
+    }
   },
 
   onClose() {

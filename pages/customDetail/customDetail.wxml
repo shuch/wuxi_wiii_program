@@ -163,7 +163,7 @@
       存入方案
     </view>
   	<view class="flex-1 center btn-glod" bind:tap="menuShare" wx:if="{{isSelf}}">分享方案</view>
-    <view class="flex-1 center btn-glod" bind:tap="onRouteCustom" wx:else>DIY我的house</view>
+    <view class="flex-1 center btn-glod" bind:tap="onRouteCustom" wx:else hidden="{{customizedStatus}}">DIY我的house</view>
   </view>
 </view>
 

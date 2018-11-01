@@ -62,10 +62,10 @@ Page({
     });
     this.initTicket();
     this.initCustomziedList();
-    this.initRankList();
   },
 
   onShow() {
+    this.initRankList();
     const param = {
       type: 'PV',
       pvId: 'P_2cdinzhi_3',
@@ -114,7 +114,11 @@ Page({
   },
 
   async initRankList() {
-    const { houseId, customerId } = this.data;
+      const appData = await login();
+      const {
+          houseId,
+          id: customerId,
+      } = appData;
     const rankRes = await endpoint('rankList', {
       houseId,
       pageNo: 1,

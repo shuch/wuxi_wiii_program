@@ -3,7 +3,7 @@ import regeneratorRuntime from '../../lib/runtime';
 import { houseTypesMapper, spaceTypeMapper, customDetailMapper } from '../../utils/convertor';
 import { login, getImageInfo, uploadImageFiles } from '../../lib/promise';
 import { trackRequest } from '../../utils/util';
-
+var app = getApp(); //获取应用实例
 const cdn = 'https://dm.static.elab-plus.com/wuXiW3/img';
 const CUSTOM_POP_UP = 'CUSTOM_POP_UP';
 
@@ -50,7 +50,8 @@ Page({
     const unFinished = !customizedStatus && customerProgrammeId;
     const shouldUpdate = unFinished || update;
     const hasPay = paymentStatus === 2;
-    const finishOne = customizedStatus || hasPay;
+    // const finishOne = customizedStatus || hasPay;
+    const finishOne = customizedStatus;
     const redirectCenter = finishOne && !update && !create && !fromCenter;
     if (redirectCenter) {
       wx.redirectTo({ url: '/pages/customCenter/customCenter' });
@@ -101,12 +102,14 @@ Page({
     return false
   },
   async onShow() {
-    const pvCurPageParams = {};
+    const pvCurPageParams = {
+        customId:app.globalData.customId
+    };
     const param = {
       type: 'PV',
       pvId: 'P_2cdinzhi_0',
       pvCurPageName: 'huxingdingzhi',
-      pvCurPageParams,
+      pvCurPageParams:pvCurPageParams.customId?pvCurPageParams:"{}",
     };
     trackRequest(param);
   },
@@ -206,15 +209,15 @@ Page({
         clkId: 'clk_2cdinzhi_7',
         clkParams: { selectedType: this.data.selectedType.layoutId },
       });
+        trackRequest(track);
     } else {
       Object.assign(data, { selectedType: this.data.preHouseType });
-      Object.assign(track, {
-        clkName: 'querenxaunzehuxing',
-        clkId: 'clk_2cdinzhi_7',
-      });
+      // Object.assign(track, {
+      //   clkName: 'querenxaunzehuxing',
+      //   clkId: 'clk_2cdinzhi_7',
+      // });
     }
     this.setData(data);
-    trackRequest(track);
   },
 
   async editSpace(e) {
@@ -288,8 +291,9 @@ Page({
     const { customerProgrammeId, houseId, customerId } = this.data;
     const { detail: { update } } = e;
     const data = { spaceEdit: false };
+      const track = { type: 'CLK' };
     if (update) {
-      const spaceId = []; 
+      const spaceId = [];
       this.data.spaceTypes.forEach((item) => {
         item.subTypes.forEach((sub) => {
           if (sub.selected) {
@@ -306,6 +310,13 @@ Page({
         customizedLayoutId: this.data.selectedType.layoutId,
       });
       Object.assign(data, { customDetail: res.single, customizedProgrammeId: res.single.id });
+
+        Object.assign(track, {
+            clkName: 'querenxaunzekongjian',
+            clkId: 'clk_2cdinzhi_11',
+            clkParams: { selectedLayoutId: res.single.id },
+        });
+        trackRequest(track);
     }
     this.setData(data);
   },
@@ -347,6 +358,7 @@ Page({
       type: 'CLK',
       clkName: 'fasongpinglun',
       clkId: 'clk_2cdinzhi_9',
+      clkParams: { commentText: inputComment },
     });
   },
 

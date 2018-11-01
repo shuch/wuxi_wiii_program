@@ -64,8 +64,10 @@ Page({
     this.redirect();
   },
 
-  onShow() {
-    const param = {
+  async onShow() {
+      const appData = await login();
+
+      const param = {
       type: 'PV',
       pvId: 'P_2cdinzhi_2',
       pvCurPageName: 'yudingfuwu',
@@ -97,7 +99,7 @@ Page({
     this.setData({ showPopup: false, doShare: false });
   },
 
-  async onPay() {
+  async onPay(flag) {
     const { openid, customerId, houseId, appId, secret, fee, shareId } = this.data;
     const res = await endpoint('buyCard', {
       customerId,
@@ -143,11 +145,19 @@ Page({
           });
        }
     });
-    trackRequest({
-      type: 'CLK',
-      clkName: 'zhijiefukuan',
-      clkId: 'clk_2cdinzhi_14',
-    });
+    if(flag){
+        trackRequest({
+            type: 'CLK',
+            clkName: 'xiangshoujianmian',
+            clkId: 'clk_2cdinzhi_15',
+        });
+    }else{
+        trackRequest({
+            type: 'CLK',
+            clkName: 'zhijiefukuan',
+            clkId: 'clk_2cdinzhi_14',
+        });
+    }
   },
 
   async menuShare() {
@@ -165,11 +175,11 @@ Page({
       xcxName: "无锡WIII",
     });
     this.setData({ doShare: true, timelineSrc: res.single });
-    trackRequest({
-      type: 'CLK',
-      clkName: 'xiangshoujianmian',
-      clkId: 'clk_2cdinzhi_15',
-    });
+    // trackRequest({
+    //   type: 'CLK',
+    //   clkName: 'xiangshoujianmian',
+    //   clkId: 'clk_2cdinzhi_15',
+    // });
   },
 
   onShareAppMessage() {
@@ -222,7 +232,7 @@ Page({
     if (hasPay) {
       return;
     }
-    this.onPay();
+    this.onPay(true);
   },
 
   onRouteCustom() {

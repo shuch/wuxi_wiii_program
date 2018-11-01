@@ -159,7 +159,7 @@
 	<view class="section section-rank">
 		<view class="section-title">
 			<text class="flex-1">明星户型排行榜</text>
-			<text class="section-more" bind:tap="onRouteStar">查看更多</text>
+			<text class="section-more" bindtap="onRouteStar">查看更多</text>
 			<image class="icon-right" src="{{cdn}}/more_grey.png" mode="scaleToFill"/>
 		</view>
 		<view class="rank-star">

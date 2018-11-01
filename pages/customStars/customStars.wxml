@@ -8,7 +8,7 @@
 	  		wx:for-index="index"
 	  		wx:if="{{index < 3}}"
 	  		data-id="{{item.id}}"
-	  		bind:tap="onRouteDetail"
+	  		bindtap="onRouteDetail"
 	  	>
 	  		<view class="custom-card"  data-id="{{item.id}}">
 	  			<view class="custom-card-box">

@@ -1,3 +1,5 @@
+import {trackRequest} from "../../utils/util";
+
 var util = require('../../utils/util.js')
 var app = getApp()
 var config = require('../../config.js')
@@ -29,6 +31,12 @@ Page({
         if(data.success){
             this.setData({hasPlan:data.single.customizedStatus==1})
         }
+         const param = {
+                type: 'PV',
+                pvId: 'P_2cdinzhi_7',
+                pvCurPageName: 'tuijianfangan',
+            };
+        trackRequest(param);
 
     },
     onShareAppMessage(options) {

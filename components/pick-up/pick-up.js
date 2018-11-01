@@ -1,3 +1,5 @@
+import {trackRequest} from "../../utils/util";
+
 Component({
   properties: {
     type: {
@@ -33,12 +35,24 @@ Component({
       this.triggerEvent('onselectchange', e);
     },
     onPickCancel() {
+      var data={};
       if (this.properties.type === 'huxing') {
         this.triggerEvent('oncancel', { update: false });
+        data={
+            type: 'CLK',
+            clkName: 'quxiaoxaunzehuxing',
+            clkId: 'clk_2cdinzhi_8',
+        }
       }
       if (this.properties.type === 'space') {
         this.triggerEvent('onspacecancel', { update: false });
+          data={
+              type: 'CLK',
+              clkName: 'quxiaoxuanzekongjian',
+              clkId: 'clk_2cdinzhi_12',
+          }
       }
+        trackRequest(data);
     },
     onPickSure() {
       if (this.properties.type === 'huxing') {
