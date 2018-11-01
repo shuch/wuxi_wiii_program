@@ -16,7 +16,7 @@ Page({
     showProgress: false,
     showRefund: false,
     selectedReason: '',
-    fee: 1,
+    fee: 600,
     shareCustomId: 0,
     endTime: {
       d: 30,
@@ -295,11 +295,12 @@ Page({
     this.setData({ showRefund: false });
   },
 
-  async onPay() {
+  async onPay({isShare}) {
     const { openid, customerId, houseId, appId, secret, fee } = this.data;
+    // console.log('isShare', isShare);
     const res = await endpoint('buyCard', {
       customerId,
-      fee,
+      fee: isShare ? 300 : 600,
       houseId,
       orderSubject: "无锡WIII公寓户型定制入场券",
       payPlatform: 1,
@@ -428,8 +429,8 @@ Page({
   },
 
   onSharePay() {
-    this.setData({ fee: 0.5, doShare: false });
-    this.onPay();
+    this.setData({ fee: 300, doShare: false });
+    this.onPay({ isShare: false });
   },
 
   createCustom() {
