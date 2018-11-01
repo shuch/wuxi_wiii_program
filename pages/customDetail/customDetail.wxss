@@ -224,7 +224,7 @@
   width: 24rpx;
   height: 100rpx;
   right: -36rpx;
-  background: url('http://phey3erbt.bkt.clouddn.com/space11.png') center/24rpx 100rpx no-repeat;
+  background: url('https://dm.static.elab-plus.com/wuXiW3/img/space11.png') center/24rpx 100rpx no-repeat;
 }
 
 .space12::before {
@@ -233,7 +233,7 @@
   width: 52rpx;
   height: 36rpx;
   left: -66rpx;
-  background: url('http://phey3erbt.bkt.clouddn.com/space12.png') center/52rpx 36rpx no-repeat;
+  background: url('https://dm.static.elab-plus.com/wuXiW3/img/space12.png') center/52rpx 36rpx no-repeat;
 }
 
 .space21::after {
@@ -242,7 +242,7 @@
   width: 30rpx;
   height: 208rpx;
   right: -42rpx;
-  background: url('http://phey3erbt.bkt.clouddn.com/space21.png') center/30rpx 208rpx no-repeat;
+  background: url('https://dm.static.elab-plus.com/wuXiW3/img/space21.png') center/30rpx 208rpx no-repeat;
 }
 
 .space22::before {
@@ -251,7 +251,7 @@
   width: 52rpx;
   height: 36rpx;
   left: -66rpx;
-  background: url('http://phey3erbt.bkt.clouddn.com/space22.png') center/52rpx 36rpx no-repeat;
+  background: url('https://dm.static.elab-plus.com/wuXiW3/img/space22.png') center/52rpx 36rpx no-repeat;
 }
 
 .space31::after {
@@ -260,7 +260,7 @@
   width: 26rpx;
   height: 146rpx;
   right: -40rpx;
-  background: url('http://phey3erbt.bkt.clouddn.com/space11.png') center/26rpx 146rpx no-repeat;
+  background: url('https://dm.static.elab-plus.com/wuXiW3/img/space11.png') center/26rpx 146rpx no-repeat;
 }
 
 .space32::before {
@@ -269,7 +269,7 @@
   width: 52rpx;
   height: 36rpx;
   left: -66rpx;
-  background: url('http://phey3erbt.bkt.clouddn.com/space12.png') center/52rpx 36rpx no-repeat;
+  background: url('https://dm.static.elab-plus.com/wuXiW3/img/space12.png') center/52rpx 36rpx no-repeat;
 }
 
 .space41::after {
@@ -278,7 +278,7 @@
   width: 90rpx;
   height: 180rpx;
   right: -18rpx;
-  background: url('http://phey3erbt.bkt.clouddn.com/space31.png') center/90rpx 180rpx no-repeat;
+  background: url('https://dm.static.elab-plus.com/wuXiW3/img/space31.png') center/90rpx 180rpx no-repeat;
 }
 
 .space42::before {
@@ -288,7 +288,7 @@
   height: 66rpx;
   top: -86rpx;
   left: 24rpx;
-  background: url('http://phey3erbt.bkt.clouddn.com/space32.png') center/90rpx 66rpx no-repeat;
+  background: url('https://dm.static.elab-plus.com/wuXiW3/img/space32.png') center/90rpx 66rpx no-repeat;
 }
 
 
