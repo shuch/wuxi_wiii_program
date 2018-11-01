@@ -99,7 +99,7 @@ Page({
     this.setData({ showPopup: false, doShare: false });
   },
 
-  async onPay(flag) {
+  async onPay(e,flag) {
     const { openid, customerId, houseId, appId, secret, fee, shareId } = this.data;
     const res = await endpoint('buyCard', {
       customerId,
@@ -175,11 +175,11 @@ Page({
       xcxName: "无锡WIII",
     });
     this.setData({ doShare: true, timelineSrc: res.single });
-    // trackRequest({
-    //   type: 'CLK',
-    //   clkName: 'xiangshoujianmian',
-    //   clkId: 'clk_2cdinzhi_15',
-    // });
+    trackRequest({
+      type: 'CLK',
+      clkName: 'xiangshoujianmian',
+      clkId: 'clk_2cdinzhi_15',
+    });
   },
 
   onShareAppMessage() {
@@ -232,7 +232,7 @@ Page({
     if (hasPay) {
       return;
     }
-    this.onPay(true);
+    this.onPay(null,true);
   },
 
   onRouteCustom() {

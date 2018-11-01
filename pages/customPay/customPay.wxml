@@ -47,7 +47,7 @@
 		    	邀请好友助力
 			</view>
 		</view>
-		<view class="btn-group" wx:elif="{{fromShare}}">
+		<view class="btn-group" wx:elif="{{!fromShare}}">
 			<view class="center service" bind:tap="onRouteService">
 				<image class="icon-service" src="{{cdn}}/service.png" mode="scaleToFill" />
 			</view>
