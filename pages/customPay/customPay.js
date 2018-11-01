@@ -12,7 +12,7 @@ Page({
     doShare: false,
     showPopup: false,
     cdn,
-    fee: 0.02,
+    fee: 0.5,
     timelineSrc: '',
     fromShare: false,
   },
@@ -218,7 +218,7 @@ Page({
 
   sharePay() {
     const { hasPay } = this.data;
-    this.setData({ fee: 0.01, doShare: false });
+    this.setData({ fee: 1, doShare: false });
     if (hasPay) {
       return;
     }
