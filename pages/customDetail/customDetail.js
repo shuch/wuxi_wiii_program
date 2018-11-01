@@ -292,6 +292,9 @@ Page({
   },
 
   swiperChange(e) {
+    if(e.detail.source!='touch'){
+        return false
+    }
     console.log(e.detail.current);
     this.setData({ tabSelected: e.detail.current });
   },
