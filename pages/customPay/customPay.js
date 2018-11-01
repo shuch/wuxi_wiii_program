@@ -100,10 +100,14 @@ Page({
   },
 
   async onPay(e,flag) {
-    const { openid, customerId, houseId, appId, secret, fee, shareId } = this.data;
+    const { openid, customerId, houseId, appId, secret, shareId } = this.data;
+    let fee = this.data;
+    if (flag) {
+      fee = 0.5;
+    }
     const res = await endpoint('buyCard', {
       customerId,
-      fee,
+      fee: flag ? .5 : 1,
       houseId,
       orderSubject: "无锡WIII公寓户型定制入场券",
       payPlatform: 1,
