@@ -1,7 +1,7 @@
 import endpoint from '../../lib/endpoint';
 import regeneratorRuntime from '../../lib/runtime';
 import { houseTypesMapper, spaceTypeMapper, customDetailMapper, rankMapper } from '../../utils/convertor';
-import { login, getImageInfo } from '../../lib/promise';
+import { login, getImageInfo, getSetting, savePhoneAuth } from '../../lib/promise';
 import { trackRequest } from '../../utils/util';
 var app = getApp(); //获取应用实例
 const cdn = 'https://dm.static.elab-plus.com/wuXiW3/img';
@@ -116,7 +116,45 @@ Page({
     wx.navigateTo({ url: `/pages/customHouse/customHouse?update=1&id=${id}` });
   },
 
-  onSaveImage() {
+  async onSaveImage() {
+    const setting = await getSetting();
+    if (setting['scope.writePhotosAlbum']) {
+      this.savePhoto();
+      return;
+    }
+    wx.showToast({ title: '暂无权限，点击授权后可保存图片', icon: 'none' });
+    const authRes = await savePhoneAuth();
+    if (authRes) {
+      this.savePhoto();
+    } else {
+      this.setData({ openSetting: true });
+    }
+  },
+
+  handleSetting(e) {
+    const { detail } = e.detail;
+    if (!detail.authSetting['scope.writePhotosAlbum']) {
+      wx.showModal({
+        title: '警告',
+        content: '若不打开授权，则无法将图片保存在相册中！',
+        showCancel: false
+      })
+      this.setData({
+        openSetting: true,
+      })
+    } else{
+      wx.showModal({
+        title: '提示',
+        content: '您已授权，赶紧将图片保存在相册中吧！',
+        showCancel: false
+      })
+      this.setData({
+        openSetting: false,
+      })
+    }
+  },
+
+  savePhoto() {
     const that = this;
     const { timelineSrc } = this.data;
     wx.downloadFile({

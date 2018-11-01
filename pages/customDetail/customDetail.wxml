@@ -171,5 +171,7 @@
 	wx:if="{{doShare}}"
 	bind:onclose="onClose"
 	timeline-src="{{timelineSrc}}"
-	bind:onsaveimage="onSaveImage"
+  open-setting="{{openSetting}}"
+  bind:onsaveimage="onSaveImage"
+  bind:opensetting="handleSetting"
 />
