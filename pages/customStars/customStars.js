@@ -84,6 +84,14 @@ Page({
       return;
     }
     const item = list.find(item =>  item.id === parseInt(id));
+      if(!item.isLike){
+          trackRequest({
+              type: 'CLK',
+              clkName: 'dianzan',
+              clkId: 'clk_2cdinzhi_21',
+              clkParams: { customId: id },
+          });
+      }
     item.like = item.isLike ? item.like - 1 : item.like + 1;
     item.isLike = !item.isLike;
     this.setData({ rankList: list });

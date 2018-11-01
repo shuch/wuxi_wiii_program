@@ -18,7 +18,7 @@ Page({
   },
 
   async onLoad(parmas) {
-    console.log(parmas);
+    console.log('3333333',parmas);
     let customId;
     const { scene } = parmas;
     if (scene) {
@@ -235,6 +235,14 @@ Page({
     }
     console.log('customDetail', customDetail);
     if (id === customId) {
+        if( !customDetail.isThumbsUp){
+            trackRequest({
+                type: 'CLK',
+                clkName: 'dianzan',
+                clkId: 'clk_2cdinzhi_21',
+                clkParams: { customId: id },
+            });
+        }
       const length = customDetail.likes.length;
       customDetail.likes.length = customDetail.isThumbsUp ? length - 1 : length + 1;
       customDetail.isThumbsUp = !customDetail.isThumbsUp;
@@ -242,10 +250,7 @@ Page({
       return;
     }
     const item = list.find(item =>  item.id === parseInt(id));
-    item.like = item.isLike ? item.like - 1 : item.like + 1;
-    item.isLike = !item.isLike;
-    this.setData({ rankList: list });
-    if( item.isLike){
+    if(!item.isLike){
         trackRequest({
             type: 'CLK',
             clkName: 'dianzan',
@@ -253,6 +258,9 @@ Page({
             clkParams: { customId: id },
         });
     }
+    item.like = item.isLike ? item.like - 1 : item.like + 1;
+    item.isLike = !item.isLike;
+    this.setData({ rankList: list });
   },
 
   onClose() {

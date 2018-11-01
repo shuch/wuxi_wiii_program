@@ -102,7 +102,8 @@ Page({
     return false
   },
   async onShow() {
-    const pvCurPageParams = {
+      console.log(app.globalData.customId,'333333333');
+      const pvCurPageParams = {
         customId:app.globalData.customId
     };
     const param = {
