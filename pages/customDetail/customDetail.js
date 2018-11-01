@@ -186,7 +186,7 @@ Page({
         icon: 'success',
         duration: 2000,
       });
-        wx.redirectTo({ url: '/pages/customCenter/customCenter' });
+      wx.redirectTo({ url: '/pages/customCenter/customCenter' });
     }
 
     trackRequest({

@@ -92,11 +92,22 @@ Page({
 
   onRouteDetail(e) {
     const url = `/pages/customDetail/customDetail?customId=${e.currentTarget.dataset.id}`;
-    wx.navigateTo({ url });
+    this.navigateCustom(url);
+    // wx.navigateTo({ url });
     trackRequest({
       type: 'CLK',
       clkName: 'huxingfangan',
       clkId: 'clk_2cdinzhi_30',
     });
+  },
+
+  navigateCustom(url) {
+    const pages = getCurrentPages();
+    console.log('pages', pages);
+    if (pages && pages.length > 4) {
+      wx.redirectTo({ url });
+    } else {
+      wx.navigateTo({ url });
+    }
   },
 });
