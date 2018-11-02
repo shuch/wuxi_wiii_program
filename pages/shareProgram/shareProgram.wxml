@@ -1,0 +1,38 @@
+<view wx:if="{{showImgModel}}" class="model">
+    <view class="modelTitle">
+        请求获取授权
+    </view>
+    <view class="modelBody">您还未授权相册权限,暂时无法使用此功能,点击确定重新获取授权。</view>
+    <view class="btns">
+        <!-- <button open-type="getUserInfo" class="agree" bindgetuserinfo="agreeGetUser" lang="zh_CN">下一步</button> -->
+        <button open-type="openSetting" class="agree" bindopensetting="getShareProgram" plain="true" lang="zh_CN">下一步</button>
+    </view>
+</view>
+<view wx:if="{{reloadModel}}" class="model">
+<view class="modelTitle">
+    请求图片超时
+</view>
+<view class="modelBody">是否重新加载？</view>
+<view class="btns">
+    <!-- <button open-type="getUserInfo" class="agree" bindgetuserinfo="agreeGetUser" lang="zh_CN">下一步</button> -->
+    <button  class="cancel" bindtap="cancel">取消</button>
+    <button  class="agree" bindtap="reload">确定</button>
+</view>
+</view>
+<view >
+    <view class="contain-box">
+        <view class="img-box" style="width:100%;min-height:86vh;position:relative">
+            <image hidden="{{loadComplete==false}}" bindload="load" mode="widthFix" src="{{shareImg}}" style="width:100%;"></image>
+            <image hidden="{{loadComplete}}" src="{{defaultImagePath}}" class="slide-image" style=""/>
+        </view>
+        <button class="save-btn" wx:if="{{!showImgBtn}}" bindtap="save" style="background-image: linear-gradient(-270deg, #3A4A80 0%, #6294A6 100%);">
+            保存至相册
+        </button>
+        <button class="save-btn" wx:else open-type="openSetting" bindopensetting="getShareProgram" style="background-image: linear-gradient(-270deg, #3A4A80 0%, #6294A6 100%);">
+            保存至相册
+        </button>
+        <view class="bottom-text">
+            分享到微信群和朋友圈，让更多人打开你的分享
+        </view>
+    </view>
+</view>

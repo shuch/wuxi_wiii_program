@@ -421,6 +421,7 @@
           </view>
           <view class="btnrow">
               <button class="btn new" open-type="share" bindTap="goToShare"> 我要分享</button>
+              <button open-type="getUserInfo" bindgetuserinfo="getUserInfo" class="btn new" >生成分享卡片</button>
               <div class="btn sharefriend" bindtap="goToShareFriend">我分享的好友</div>
           </view>
       </view>

@@ -28,7 +28,8 @@
     "pages/recommendedPlan/recommendedPlan",
     "pages/customDetail/customDetail",
     "pages/customStars/customStars",
-    "pages/customTheme/customTheme"
+    "pages/customTheme/customTheme",
+    "pages/shareProgram/shareProgram"
   ],
   "window": {
     "backgroundTextStyle": "light",

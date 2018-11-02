@@ -381,7 +381,7 @@ page{
   background-color: #fff;
   font-size: 24rpx;
   color: #6294A6 ;
-  width:270rpx;
+  width:26%;
   height:72rpx;
   text-align:center;
   line-height:72rpx;

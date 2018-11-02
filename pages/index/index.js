@@ -3,6 +3,7 @@ var util = require('../../utils/util.js');
 var config = require('../../config.js');
 var app = getApp(); //获取应用实例
 var serverUrl = util.getImgUrl();
+var {authorizeInfo,getUserInfo} = require('../../getlogininfo.js')
 var pvCurPageParams=null;
 // var serverUrl = 'http://skyforest.static.elab-plus.com/wepy_pro/'
 var startTime=(new Date()).getTime()
@@ -931,28 +932,21 @@ Page({
     },
     // 用户授权
     getUserInfo: function(e) {
-        var self = this;
-        wx.setStorageSync('ISauthorizeInfo', true); // 是否授权过用户基本信息,
-        console.log(e.detail, 'kkkkkkkkkkkkkkkkkkkk');
-        this.setData({
-            showInfoModel: false
-        });
-        if (e.detail.errMsg.includes("fail")) {
-            wx.showModal({
-                title: '提示',
-                showCancel: false,
-                content: '您点击了拒绝授权,部分功能将无法向您开放',
-                success: function(res) {
-                    typeof self.data.infoFailFun == "function" && self.data.infoFailFun();
-                }
+        getUserInfo.call(this,e,function(){
+            var that = this;
+            let param={
+                clkId:'clk_2cmina_54',
+                clkDesPage:'',//点击前往的页面名称
+                clkName:'fenxiangpengyouquan',//点击前往的页面名称
+                type:'CLK',//埋点类型
+                pvCurPageName:'zhuye',//当前页面
+                pvCurPageParams:pvCurPageParams,//当前页面参数
+            }
+            util.trackRequest(param,app)
+            wx.navigateTo({
+                url: '../shareProgram/shareProgram'
             })
-
-        } else {
-            app.globalData.userInfo = e.detail.userInfo
-            var id = this.data.userInfo.nickName;
-            wx.setStorageSync('userInfo', e.detail.userInfo);
-            typeof self.data.infoFun == "function" && self.data.infoFun(); // 执行回调函数
-        }
+        });
     },
     // 手机号授权
     getPhoneNumber: function(e) {
