@@ -284,7 +284,7 @@ Page({
       this.setData({ hasPay: false });
     } else {
       wx.showToast({
-        title: '退款失败',
+        title: '退款失败,请稍后重试！',
         icon: 'success',
       });
     }
@@ -430,7 +430,7 @@ Page({
 
   onSharePay() {
     this.setData({ fee: 300, doShare: false });
-    this.onPay({ isShare: false });
+    this.onPay({ isShare: true });
   },
 
   createCustom() {
