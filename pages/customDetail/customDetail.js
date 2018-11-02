@@ -22,7 +22,7 @@ Page({
     let customId;
     const { scene } = parmas;
     if (scene) {
-      customId = scene.customId;
+      customId = decodeURIComponent(scene);
     } else {
       customId = parmas.customId;
     }
