@@ -42,7 +42,7 @@
 					<view class="btn-card btn-pay" bind:tap="onPay">直接付款</view>
 					<view class="btn-card btn-share" bind:tap="menuShare">邀请立减</view>
 				</view>
-				<view class="date">
+				<view class="date" wx:if="{{houseId}}">
 					<component-count-down house-id="{{houseId}}" />
 				</view>
 			</block>

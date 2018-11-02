@@ -36,6 +36,7 @@ Page({
       headPortrait: headImage,
     } = appData;
     const { appid: appId, secret } = app.globalData;
+    console.log('onLoad', houseId);
     const state = await endpoint('customState', { customerId, houseId });
     const {
       single: {
