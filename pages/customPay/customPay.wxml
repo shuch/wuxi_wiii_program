@@ -28,7 +28,7 @@
 		<view class="share-help">
 			<view class="share-time" bind:tap="onShowPopup">
 				<text class="tag">限时活动</text>
-				<view class="date">
+				<view class="date" wx:if="{{houseId}}">
 					<component-count-down house-id="{{houseId}}" grey="grey"/>
 				</view>
 				<image class="icon-info" src="{{cdn}}/info_white.png" mode="scaleToFill"/>
