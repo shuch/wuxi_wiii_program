@@ -24,7 +24,7 @@ Page({
     let shareId;
     // let fromEntry;
     if (scene) {
-      shareId = scene.shareId;
+      shareId = decodeURIComponent(scene).split('=')[1];;
     } else {
       shareId = parmas.shareId || '';
       // fromEntry = parmas.fromEntry || '';
