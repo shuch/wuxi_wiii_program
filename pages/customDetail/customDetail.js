@@ -22,7 +22,8 @@ Page({
     let customId;
     const { scene } = parmas;
     if (scene) {
-      customId = decodeURIComponent(scene).split('=')[1];
+      // customId = scene.customId;
+        customId = decodeURIComponent(scene).split('=')[1];
     } else {
       customId = parmas.customId;
     }
@@ -122,7 +123,7 @@ Page({
       this.savePhoto();
       return;
     }
-    wx.showToast({ title: '暂无权限，点击授权后可保存图片', icon: 'none' });
+    // wx.showToast({ title: '暂无权限，点击授权后可保存图片', icon: 'none' });
     const authRes = await savePhoneAuth();
     if (authRes) {
       this.savePhoto();

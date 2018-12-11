@@ -6,24 +6,21 @@ Page({
   data:{
       // flag:true,  //防止重复提交，保证处理完毕后才能再次请求
       scaleWidth:"",
-      houseId:config.houseId,
       scaleHeight:"",
       dataimg:"",
       gradient1:'#3A4A80',
       gradient2:'#6294A6',
       swipIndex:0,
+      arrayStatus:[],
       despage:'tupianku',
       title:'tupianku',
       likeImg:serverUrl+'wepy_pro/v1-2/Thumbup@2x.png',
       likeImgRed:serverUrl+'wepy_pro/v1-2/Thumbup-red.png',
       isChosed:1,
       imgTotal:[],
-      currentType:{}
+      currentType:{atlasResponseList:[{}]},
+      movableWidth:0,
   },
-    toCoupon(){
-        const url = `/pages/customHouse/customHouse`
-        wx.navigateTo({ url });
-    },
     likeAdd:function(e){
       let that = this;
       let tmpTotal = that.data.imgTotal;
@@ -40,6 +37,7 @@ Page({
       })
       // 已经点赞的，不允许取消点赞
       if(likeflag == true){
+
         return false;
       }
       console.log("that.data.flag:",that.data.flag,likeflag);
@@ -63,6 +61,7 @@ Page({
               "uid":""
           },
           success:function (res) {
+
               tmpTotal.forEach(function(item){
                  if(item.groupType==e.currentTarget.dataset.type){
                      item.atlasResponseList.forEach(function(item){
@@ -90,7 +89,7 @@ Page({
               let param={
                   pvCurPageName:that.data.title||'',//当前页面名称
                   clkId:'clk_2cmina_37',//点击ID
-                  clkParams:e.currentTarget.dataset.id,//点击参数
+                  clkParams:{"imageCode":e.currentTarget.dataset.id},//点击参数
                   clkName:'dianzan',
                   type:'CLK',//埋点类型
               }
@@ -99,6 +98,20 @@ Page({
       })
     },
     selectTap:function(e){
+      switch(e.currentTarget.dataset.type){
+          case 1:
+              var real_view='xiaoguotu';
+              break;
+          case 2:
+              var real_view='yangbanjiantu';
+              break;
+          case 3:
+              var real_view='shijingtu';
+              break;
+          case 4:
+              var real_view='peitaotu';
+              break;
+      }
       var that = this;
       console.log(e.currentTarget.dataset.type)
       this.setData({
@@ -108,9 +121,21 @@ Page({
         console.log(this.data.imgTotal)
         this.data.imgTotal.forEach(function (item) {
             if(item.groupType==e.currentTarget.dataset.type){
-                console.log(item)
                 that.setData({
                     currentType:item
+                })
+
+                let emptyArray = [];
+                emptyArray.length = item.atlasResponseList.length;
+                emptyArray.fill(false);
+                if(item.atlasResponseList[0]){
+                    emptyArray[0] = item.atlasResponseList[0];
+                }
+                if(item.atlasResponseList[1]){
+                    emptyArray[1] = item.atlasResponseList[1];
+                }
+                that.setData({
+                    arrayStatus:emptyArray
                 })
             }
 
@@ -119,13 +144,27 @@ Page({
             pvCurPageName:'tupianku',//当前页面名称
             clkId:'clk_2cmina_38',//点击ID
             clkName:'tupiankuleixing',//点击ID
-            clkParams:{"imageCode":this.data.currentType.atlasResponseList[this.data.swipIndex].id,buttonTytpe:e.currentTarget.dataset.type},//点击参数
+            clkParams:{"imageCode":this.data.currentType.atlasResponseList[this.data.swipIndex].id,
+                real_view:real_view,buttonType:'show_rooom'},//点击参数
             type:'CLK',//埋点类型
         }
         util.trackRequest(param,app)
         console.log(that.data.currentType)
     },
+    swipChange:function(e){
+      if(e.detail.current<this.data.arrayStatus.length-1){
+          let item = 'arrayStatus['+(e.detail.current+1)+']'
+          this.setData({
+              [item]:this.data.currentType.atlasResponseList[e.detail.current+1]
+          })
+      }else{
+          return
+      }
+    },
   onLoad:function(options){
+      wx.showLoading({
+        title: '正在加载',
+      })
       var that = this;
       console.log(options.type);
       wx.request({
@@ -140,31 +179,62 @@ Page({
           "uid":""
           },
           success:function(res){
+              let _width=0;
               that.setData({
                   imgTotal:res.data.list
               })
               if(options.type){
                   that.data.imgTotal.forEach(function(item){
+                      _width += item.groupName.length*30 + 38;
                       if(item.groupType==options.type){
                           that.setData({
                               currentType:item,
                               isChosed:options.type
+                          });
+                          console.log(that.data.currentType)
+                          let emptyArray = [];
+                          emptyArray.length = item.atlasResponseList.length;
+                          emptyArray.fill(false);
+                          if(item.atlasResponseList[0]){
+                              emptyArray[0] = item.atlasResponseList[0];
+                          }
+                          if(item.atlasResponseList[1]){
+                              emptyArray[1] = item.atlasResponseList[1];
+                          }
+                          that.setData({
+                              arrayStatus:emptyArray
                           })
                       }
                   })
               }
-              console.log(that.data.currentType,'PPPPPPPPPPPPPPPPPPP')
+              that.setData({
+                  movableWidth:_width
+              })
+              console.log(that.data.currentType,'PPPPPPPPPPPPPPPPPPP',that.data.movableWidth);
+              wx.hideLoading();
+          },
+          fail:function(res){
+            wx.hideLoading();
           }
       })
   },
+
+    toCoupon(){
+        const url = `/pages/customHouse/customHouse`
+        wx.navigateTo({ url });
+    },
   onReady:function(){
     // 页面渲染完成
+    // wx.hideLoading();
+    wx.setNavigationBarTitle({
+      title: '图片库'
+    })
   },
     previewImage: function (e) {
-        var current = e.target.dataset.src;
+        var current = e.currentTarget.dataset.src;
         wx.previewImage({
             current: current, // 当前显示图片的http链接
-            urls: [e.target.dataset.src] // 需要预览的图片http链接列表
+            urls: [e.currentTarget.dataset.src] // 需要预览的图片http链接列表
         })
     } ,
     onShow:function(){
@@ -181,9 +251,6 @@ Page({
           type:'PV',//埋点类型
       }
       util.trackRequest(param,app)
-        wx.setNavigationBarTitle({
-            title: '图片库'
-        })
   },
   onHide:function(){
     // 页面隐藏
@@ -196,7 +263,7 @@ Page({
           clkDesPage:'zhuye',//点击前往的页面名称
           clkName:'fanhui',//点击前往的页面名称
           clkId:'clk_2cmina_36',//点击ID
-          clkParams:{"imageCode":this.data.currentType.atlasResponseList[this.data.swipIndex].id},//点击参数
+          clkParams:{"imageCode":this.data.currentType.atlasResponseList[this.data.swipIndex].id||''},//点击参数
           type:'CLK',//埋点类型
       }
       util.trackRequest(param,app)

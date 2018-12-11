@@ -35,7 +35,7 @@
 <view wx:if="{{showPhoneModel || showInfoModel}}" class="mask2"></view>
 
 <!-- 自定义弹框结束 -->
-<scroll-view bindscroll="scrollExp" scroll-into-view="{{toView}}" scroll-y="{{!showPhoneModel && !showInfoModel}}" class="container" style="height:100vh;" wx-if="{{InitFlag=='1'}}">
+<scroll-view scroll-into-view="{{toView}}" scroll-y="{{!showPhoneModel && !showInfoModel}}" class="container" style="height:100vh;" wx-if="{{InitFlag=='1'}}">
   <!-- 顶部BANNER -->
   <image src="http://skyforest.static.elab-plus.com/wepy_pro/v1-2/notification.png" class="notification"  bindtap="goToNoticeList"></image>
   <view class="banner-container">
@@ -148,55 +148,178 @@
       <image class="banner1-image" src="{{item.coverUrl}}" mode="widthFix"></image>
       <!--<view class="white-line">-->
       <!--</view>-->
-</view>
-<view class="container2" id="jingcaitupian">
-        <view class="left-box">
-            <view class="left-top" style="background-image: linear-gradient(-270deg, #3A4A80 0%, #6294A6 100%);">
-                <view class="text" style="line-height:60rpx">精彩图片</view>
-            </view>
-            <view class="left-down"
-                  data-type="1"
-                  data-despage="xiaoguotu"
-                  data-clkId="clk_2cmina_14"
-                  bindtap="goImgSwip">
-                <image src="{{effectModule.coverUrl||renderUrl}}"></image>
-                <view class="mask" style="background-image: linear-gradient(-180deg,{{mask1}} 0%, {{mask2}} 100%);"></view>
-                <view  class="text">{{effectModule.title||'效果图'}}</view>
-                <view class="liveCount">{{initData.effectModule.likeCount||'0'}}人点赞</view>
-            </view>
-        </view>
-        <view class="right-box">
-            <view class="right-top"
-                  data-despage="yangbanjiantu"
-                  data-type="2"
-                  data-clkId="clk_2cmina_13"
-                  bindtap="goImgSwip">
-                <image src="{{sampleModule.coverUrl||showroomsUrl}}"></image>
-                <view class="mask" style="background-image: linear-gradient(-180deg, {{mask1}} 0%,{{mask2}} 100%);"></view>
-                <view  class="text">{{sampleModule.title||'样板间图'}}</view>
-                <view class="liveCount">{{initData.sampleModule.likeCount||'0'}}人点赞</view>
-            </view>
-            <view class="right-down"
-                  data-type="3"
-                  data-despage="xiangmushijingtu"
-                  data-clkId="clk_2cmina_15"
-                  bindtap="goImgSwip">
-                <image src="{{realityModule.coverUrl||photographyUrl}}"></image>
-                <view class="mask" style="background-image: linear-gradient(-180deg, {{mask1}} 0%, {{mask2}} 100%);"></view>
-                <view  class="text">{{realityModule.title||'项目实景图'}}</view>
-                <view class="liveCount">{{initData.realityModule.likeCount||'0'}}人点赞</view>
-            </view>
-        </view>
+  </view>
+
+    <view class="banner1" style="margin-bottom: 0"
+          wx:if="{{watchModule.jumpUrl}}"
+          data-item="{{watchModule}}"
+          data-despage="3Dkanfang"
+          data-clkId="clk_2cmina_16"
+          data-title="{{watchModule.title||'3D看房'}}"
+          data-jump="{{watchModule.jumpUrl}}"
+          bindtap="goJump">
+        <image src="{{watchModule.coverUrl||threeDUrl}}" mode="scaleToFill"></image>
+        <view class="text">{{watchModule.title||'3D看房'}}</view>
     </view>
-    <view class="banner1"
-          data-type="4"
-          data-despage="zhoubianpeitaotu"
-          data-clkId="clk_2cmina_17"
-          bindtap="goImgSwip">
-        <view class="mask" style="background-image: linear-gradient(-180deg, {{mask1}} 0%, {{mask2}} 100%);"></view>
-        <image src="{{matchModule.coverUrl||neighborUrl}}" mode="widthFix"></image>
-        <view class="text">{{matchModule.title||'周边配套图'}}</view>
-        <view class="liveCount">{{initData.matchModule.likeCount||'0'}}人点赞</view>
+    <swiper class="tujiSwiper"
+            next-margin="60rpx" duration="500"  id="jingcaitupian">
+        <block wx:for="{{[1,2,3,4,5]}}" wx:key="index">
+            <swiper-item>
+                <view class="tujiSwiper_item"
+                data-type='{{index<3?1:2}}'
+                bindtap="goImgSwip">
+                <!--<image src="{{effectModule.coverUrl||renderUrl}}"></image>-->
+                    <c-img src="https://dm.static.elab-plus.com/wuXiW3/index/s{{index+1}}.jpg" cStyle="width:100%;height:100%"></c-img>
+                    <view  class="text">{{swiperTitle[index]}}</view>
+                <!--<view class="liveCount">{{initData.effectModule.likeCount||'0'}}人点赞</view>-->
+                </view>
+            </swiper-item>
+        </block>
+
+        <!--<swiper-item>-->
+            <!--<view class="tujiSwiper_item"-->
+                  <!--data-despage="yangbanjiantu"-->
+                  <!--data-type="2"-->
+                  <!--data-clkId="clk_2cmina_13"-->
+                  <!--bindtap="goImgSwip">-->
+                <!--<image src="{{sampleModule.coverUrl||showroomsUrl}}"></image>-->
+                <!--<view class="mask" style="background-image: linear-gradient(-180deg, {{mask1}} 0%,{{mask2}} 100%);"></view>-->
+                <!--<view  class="text">{{sampleModule.title||'样板间图'}}</view>-->
+                <!--<view class="liveCount">{{initData.sampleModule.likeCount||'0'}}人点赞</view>-->
+            <!--</view>-->
+        <!--</swiper-item>-->
+        <!--<swiper-item>-->
+            <!--<view class="tujiSwiper_item"-->
+                  <!--data-type="3"-->
+                  <!--data-despage="xiangmushijingtu"-->
+                  <!--data-clkId="clk_2cmina_15"-->
+                  <!--bindtap="goImgSwip">-->
+                <!--<image src="{{realityModule.coverUrl||photographyUrl}}"></image>-->
+                <!--<view class="mask" style="background-image: linear-gradient(-180deg, {{mask1}} 0%, {{mask2}} 100%);"></view>-->
+                <!--<view  class="text">{{realityModule.title||'项目实景图'}}</view>-->
+                <!--<view class="liveCount">{{initData.realityModule.likeCount||'0'}}人点赞</view>-->
+            <!--</view>-->
+        <!--</swiper-item>-->
+    </swiper>
+    <!--<view class="container2" id="jingcaitupian">-->
+        <!--<view class="left-box">-->
+            <!--<view class="left-top" style="background-image: linear-gradient(-270deg, #3A4A80 0%, #6294A6 100%);">-->
+                <!--<view class="text" style="line-height:60rpx">精彩图片</view>-->
+            <!--</view>-->
+            <!--<view class="left-down"-->
+                  <!--data-type="1"-->
+                  <!--data-despage="xiaoguotu"-->
+                  <!--data-clkId="clk_2cmina_14"-->
+                  <!--bindtap="goImgSwip">-->
+                <!--<image src="{{effectModule.coverUrl||renderUrl}}"></image>-->
+                <!--<view class="mask" style="background-image: linear-gradient(-180deg,{{mask1}} 0%, {{mask2}} 100%);"></view>-->
+                <!--<view  class="text">{{effectModule.title||'效果图'}}</view>-->
+                <!--<view class="liveCount">{{initData.effectModule.likeCount||'0'}}人点赞</view>-->
+            <!--</view>-->
+        <!--</view>-->
+        <!--<view class="right-box">-->
+            <!--<view class="right-top"-->
+                  <!--data-despage="yangbanjiantu"-->
+                  <!--data-type="2"-->
+                  <!--data-clkId="clk_2cmina_13"-->
+                  <!--bindtap="goImgSwip">-->
+                <!--<image src="{{sampleModule.coverUrl||showroomsUrl}}"></image>-->
+                <!--<view class="mask" style="background-image: linear-gradient(-180deg, {{mask1}} 0%,{{mask2}} 100%);"></view>-->
+                <!--<view  class="text">{{sampleModule.title||'样板间图'}}</view>-->
+                <!--<view class="liveCount">{{initData.sampleModule.likeCount||'0'}}人点赞</view>-->
+            <!--</view>-->
+            <!--<view class="right-down"-->
+                  <!--data-type="3"-->
+                  <!--data-despage="xiangmushijingtu"-->
+                  <!--data-clkId="clk_2cmina_15"-->
+                  <!--bindtap="goImgSwip">-->
+                <!--<image src="{{realityModule.coverUrl||photographyUrl}}"></image>-->
+                <!--<view class="mask" style="background-image: linear-gradient(-180deg, {{mask1}} 0%, {{mask2}} 100%);"></view>-->
+                <!--<view  class="text">{{realityModule.title||'项目实景图'}}</view>-->
+                <!--<view class="liveCount">{{initData.realityModule.likeCount||'0'}}人点赞</view>-->
+            <!--</view>-->
+        <!--</view>-->
+    <!--</view>-->
+    <view class="must_swiper">
+        <view class="swiper-head">
+            <view class="left {{currentTab==0?'current':''}}" bindtap="switchTap" data-num="0">
+                自住必看
+            </view>
+            <view class="right {{currentTab==1?'current':''}}" bindtap="switchTap" data-num="1">
+                投资必看
+            </view>
+        </view>
+        <swiper duration="500" current="{{currentTab}}" bindchange="tabChange" style="height:{{currentTab==1?'720rpx':'620rpx'}}">
+            <swiper-item>
+                <view class="contain">
+                        <!--<view class="left-top" style="background-image: linear-gradient(-270deg,#6294A6 0%,  #3A4A80 100%);">-->
+                            <!--<view class="text" style="text-align:right;padding-right:10rpx;line-height:60rpx">了解项目</view>-->
+                        <!--</view>-->
+                    <view class="left-box" bindtap="goHouseType">
+                        <image src="{{layoutModule.coverUrl||typesUrl}}"></image>
+                        <view class="text">{{layoutModule.title||'户型'}}</view>
+                    </view>
+                    <view class="right-box">
+
+                        <view class="right-box-top"
+                              data-type="4"
+                              data-despage="zhoubianpeitaotu"
+                              data-clkId="clk_2cmina_17"
+                              bindtap="goImgSwip">
+                            <image src="{{matchModule.coverUrl||neighborUrl}}"></image>
+                            <view class="text">{{matchModule.title||'周边配套图'}}</view>
+                            <view class="liveCount">{{initData.matchModule.likeCount||'0'}}人点赞</view>
+                        </view>
+                        <view class="right-box-bottom"
+                            data-item="{{parameterModule}}"
+                            data-title="{{'共享空间'}}"
+                            data-despage="loupancanshu"
+                            data-clkId="clk_2cmina_6"
+                            data-jump="{{watchModule2}}"
+                            bindtap="goJump">
+                            <image src="{{parameterModule.coverUrl||statisticsUrl}}"></image>
+                            <view  class="text">{{parameterModule.title||'楼盘参数'}}</view>
+                        </view>
+                    </view>
+                </view>
+            </swiper-item>
+            <swiper-item>
+                <view class="contain2">
+                    <view class="top-box"
+                          data-item="{{valueModule}}"
+                          data-clkId="clk_2cmina_10"
+                          data-despage="touzijiazhi"
+                          data-title="{{valueModule.title||'投资价值'}}"
+                          data-jump="{{valueModule.jumpUrl}}"
+                          bindtap="goJump">
+                        <image src="{{valueModule.coverUrl||investmentUrl}}"></image>
+                        <view  class="text">{{valueModule.title||'投资价值'}}</view>
+                    </view>
+                    <view class="bottom-box">
+                        <view class="bottom-box-left"
+                              data-item="{{areaModule}}"
+                              data-clkId="clk_2cmina_11"
+                              data-despage="diduanpeitao"
+                              data-title="{{areaModule.title||'地段·配套'}}"
+                              data-jump="{{areaModule.jumpUrl}}"
+                              bindtap="goJump">
+                            <image src="{{areaModule.coverUrl||locationUrl}}"></image>
+                            <view  class="text">{{areaModule.title||'地段·配套'}}</view>
+                        </view>
+                        <view class="bottom-box-right"
+                              data-item="{{featureModule}}"
+                              data-title="{{'项目特点'}}"
+                              data-clkId="clk_2cmina_7"
+                              data-despage="xiangmutedian"
+                              data-jump="{{featureModule.jumpUrl}}"
+                              bindtap="goJump">
+                            <image src="{{featureModule.coverUrl||projectFeatureUrl}}"  mode="aspectFill"></image>
+                            <view  class="text">{{featureModule.title||'项目特点'}}</view>
+                        </view>
+                    </view>
+                </view>
+            </swiper-item>
+        </swiper>
     </view>
     <!--<view class="white-line">-->
 
@@ -204,47 +327,47 @@
     <!--<view class="banner1">-->
     <!--<image src="{{bannerUrl}}" mode="widthFix"></image>-->
     <!--</view>-->
-    <view class="white-line">
+    <!--<view class="white-line">-->
 
-    </view>
+    <!--</view>-->
 <!--项目特点-->
-<view class="container2" id="jingcaishijiao">
-<view class="left-box">
-    <view class="left-top" style="background-image: linear-gradient(-270deg, #3A4A80 0%, #6294A6 100%);">
-        <view class="text" style="line-height:60rpx">精彩视角</view>
-    </view>
-    <view class="left-down"
-          data-item="{{featureModule}}"
-          data-title="{{'项目特点'}}"
-          data-clkId="clk_2cmina_7"
-          data-despage="xiangmutedian"
-          data-jump="{{featureModule.jumpUrl}}"
-          bindtap="goJump">
-        <image src="{{featureModule.coverUrl||projectFeatureUrl}}"  mode="aspectFill"></image>
-        <view class="mask" style="background-image: linear-gradient(-180deg,{{mask1}} 0%, {{mask2}} 100%);"></view>
-        <view  class="text">{{featureModule.title||'项目特点'}}</view>
-    </view>
-</view>
-<view class="right-box">
-    <view class="right-top"
-          data-item="{{parameterModule}}"
-          data-title="{{'楼盘参数'}}"
-          data-despage="loupancanshu"
-          data-clkId="clk_2cmina_6"
-          data-jump="{{parameterModule.jumpUrl}}"
-          bindtap="goJump">
-        <image src="{{parameterModule.coverUrl||statisticsUrl}}"></image>
-        <view class="mask" style="background-image: linear-gradient(-180deg, {{mask1}} 0%,{{mask2}} 100%);"></view>
-        <view  class="text">{{parameterModule.title||'楼盘参数'}}</view>
-    </view>
-    <view class="right-down" data-id="{{momentModule.contentList[0].id}}" data-jump="{{momentModule.contentList[0].jumpUrl}}" bindtap="goMoment">
-        <image src="{{momentModule.contentList[0].coverUrl||liveUrl}}"></image>
-        <view class="mask" style="background-image: linear-gradient(-180deg, {{mask1}} 0%, {{mask2}} 100%);"></view>
-        <view class="liveCount">{{momentModule.viewCount?(momentModule.viewCount<0?'0':momentModule.viewCount):'0'}}人正在观看</view>
-        <view  class="text">{{momentModule.contentList[0].title||'实时·实景'}}</view>
-    </view>
-</view>
-</view>
+<!--<view class="container2" id="jingcaishijiao">-->
+<!--<view class="left-box">-->
+    <!--<view class="left-top" style="background-image: linear-gradient(-270deg, #3A4A80 0%, #6294A6 100%);">-->
+        <!--<view class="text" style="line-height:60rpx">精彩视角</view>-->
+    <!--</view>-->
+    <!--<view class="left-down"-->
+          <!--data-item="{{featureModule}}"-->
+          <!--data-title="{{'项目特点'}}"-->
+          <!--data-clkId="clk_2cmina_7"-->
+          <!--data-despage="xiangmutedian"-->
+          <!--data-jump="{{featureModule.jumpUrl}}"-->
+          <!--bindtap="goJump">-->
+        <!--<image src="{{featureModule.coverUrl||projectFeatureUrl}}"  mode="aspectFill"></image>-->
+        <!--<view class="mask" style="background-image: linear-gradient(-180deg,{{mask1}} 0%, {{mask2}} 100%);"></view>-->
+        <!--<view  class="text">{{featureModule.title||'项目特点'}}</view>-->
+    <!--</view>-->
+<!--</view>-->
+<!--<view class="right-box">-->
+    <!--<view class="right-top"-->
+          <!--data-item="{{parameterModule}}"-->
+          <!--data-title="{{'楼盘参数'}}"-->
+          <!--data-despage="loupancanshu"-->
+          <!--data-clkId="clk_2cmina_6"-->
+          <!--data-jump="{{parameterModule.jumpUrl}}"-->
+          <!--bindtap="goJump">-->
+        <!--<image src="{{parameterModule.coverUrl||statisticsUrl}}"></image>-->
+        <!--<view class="mask" style="background-image: linear-gradient(-180deg, {{mask1}} 0%,{{mask2}} 100%);"></view>-->
+        <!--<view  class="text">{{parameterModule.title||'楼盘参数'}}</view>-->
+    <!--</view>-->
+    <!--<view class="right-down" data-id="{{momentModule.contentList[0].id}}" data-jump="{{momentModule.contentList[0].jumpUrl}}" bindtap="goMoment">-->
+        <!--<image src="{{momentModule.contentList[0].coverUrl||liveUrl}}"></image>-->
+        <!--<view class="mask" style="background-image: linear-gradient(-180deg, {{mask1}} 0%, {{mask2}} 100%);"></view>-->
+        <!--<view class="liveCount" wx:if="{{momentModule.viewCount>0}}">{{momentModule.viewCount?(momentModule.viewCount<0?'0':momentModule.viewCount):'0'}}人正在观看</view>-->
+        <!--<view  class="text">{{momentModule.contentList[0].title||'实时·实景'}}</view>-->
+    <!--</view>-->
+<!--</view>-->
+<!--</view>-->
 
 <view class="banner1 quanjin-box"
       data-item="{{viewModule}}"
@@ -255,63 +378,46 @@
       data-jump="{{viewModule.jumpUrl}}"
       bindtap="goJump">
     <image src="{{viewModule.coverUrl||quanjinUrl}}" mode="widthFix"></image>
-    <view class="mask" style="background-image: linear-gradient(-180deg,rgba(255,255,255,0.0) 00%, #272A34 100%)"></view>
     <image src="{{quanjinIconUrl}}" style="width:88rpx;height:54rpx" class="quanjinIcon" mode="widthFix"></image>
     <view class="text">{{viewModule.title||'项目全景'}}</view>
   </view>
-  <view class="white-line">
-  </view>
-<view class="container2" id="liaojiexiangmu">
-    <view class="right-box" >
-        <view class="right-top"
-              data-item="{{valueModule}}"
-              data-clkId="clk_2cmina_10"
-              data-despage="touzijiazhi"
-              data-title="{{valueModule.title||'投资价值'}}"
-              data-jump="{{valueModule.jumpUrl}}"
-              bindtap="goJump">
-            <image src="{{valueModule.coverUrl||investmentUrl}}"></image>
-            <view class="mask" style="background-image: linear-gradient(-180deg, {{mask1}} 0%,{{mask2}} 100%);"></view>
-            <view  class="text">{{valueModule.title||'投资价值'}}</view>
-        </view>
-        <view class="right-down"
-              data-item="{{areaModule}}"
-              data-clkId="clk_2cmina_11"
-              data-despage="diduanpeitao"
-              data-title="{{areaModule.title||'地段·配套'}}"
-              data-jump="{{areaModule.jumpUrl}}"
-              bindtap="goJump">
-            <image src="{{areaModule.coverUrl||locationUrl}}"></image>
-            <view class="mask" style="background-image: linear-gradient(-180deg, {{mask1}} 0%, {{mask2}} 100%);"></view>
-            <view  class="text">{{areaModule.title||'地段·配套'}}</view>
-        </view>
-    </view>
+<!--<view class="container2" id="liaojiexiangmu">-->
+    <!--<view class="right-box" >-->
+        <!--<view class="right-top"-->
+              <!--data-item="{{valueModule}}"-->
+              <!--data-clkId="clk_2cmina_10"-->
+              <!--data-despage="touzijiazhi"-->
+              <!--data-title="{{valueModule.title||'投资价值'}}"-->
+              <!--data-jump="{{valueModule.jumpUrl}}"-->
+              <!--bindtap="goJump">-->
+            <!--<image src="{{valueModule.coverUrl||investmentUrl}}"></image>-->
+            <!--<view class="mask" style="background-image: linear-gradient(-180deg, {{mask1}} 0%,{{mask2}} 100%);"></view>-->
+            <!--<view  class="text">{{valueModule.title||'投资价值'}}</view>-->
+        <!--</view>-->
+        <!--<view class="right-down"-->
+              <!--data-item="{{areaModule}}"-->
+              <!--data-clkId="clk_2cmina_11"-->
+              <!--data-despage="diduanpeitao"-->
+              <!--data-title="{{areaModule.title||'地段·配套'}}"-->
+              <!--data-jump="{{areaModule.jumpUrl}}"-->
+              <!--bindtap="goJump">-->
+            <!--<image src="{{areaModule.coverUrl||locationUrl}}"></image>-->
+            <!--<view class="mask" style="background-image: linear-gradient(-180deg, {{mask1}} 0%, {{mask2}} 100%);"></view>-->
+            <!--<view  class="text">{{areaModule.title||'地段·配套'}}</view>-->
+        <!--</view>-->
+    <!--</view>-->
 
-    <view class="left-box">
-        <view class="left-top" style="background-image: linear-gradient(-270deg,#6294A6 0%,  #3A4A80 100%);">
-            <view class="text" style="text-align:right;padding-right:10rpx;line-height:60rpx">了解项目</view>
-        </view>
-        <view class="left-down" bindtap="goHouseType">
-            <image src="{{layoutModule.coverUrl||typesUrl}}"></image>
-            <view class="mask" style="background-image: linear-gradient(-180deg,{{mask1}} 0%, {{mask2}} 100%);"></view>
-            <view class="text">{{layoutModule.title||'户型'}}</view>
-        </view>
-    </view>
-</view>
-  <view class="white-line">
-  </view>
-  <view class="banner1"
-        wx:if="{{watchModule.jumpUrl}}"
-        data-item="{{watchModule}}"
-        data-despage="3Dkanfang"
-        data-clkId="clk_2cmina_16"
-        data-title="{{watchModule.title||'3D看房'}}"
-        data-jump="{{watchModule.jumpUrl}}"
-        bindtap="goJump">
-      <view class="mask" style="background-image: linear-gradient(-180deg, {{mask1}} 0%, {{mask2}} 100%);"></view>
-      <image src="{{watchModule.coverUrl||threeDUrl}}" mode="widthFix"></image>
-      <view class="text">{{watchModule.title||'3D看房'}}</view>
-  </view>
+    <!--<view class="left-box">-->
+        <!--<view class="left-top" style="background-image: linear-gradient(-270deg,#6294A6 0%,  #3A4A80 100%);">-->
+            <!--<view class="text" style="text-align:right;padding-right:10rpx;line-height:60rpx">了解项目</view>-->
+        <!--</view>-->
+        <!--<view class="left-down" bindtap="goHouseType">-->
+            <!--<image src="{{layoutModule.coverUrl||typesUrl}}"></image>-->
+            <!--<view class="mask" style="background-image: linear-gradient(-180deg,{{mask1}} 0%, {{mask2}} 100%);"></view>-->
+            <!--<view class="text">{{layoutModule.title||'户型'}}</view>-->
+        <!--</view>-->
+    <!--</view>-->
+<!--</view>-->
   <!-- 精彩图集 -->
   <!--<swiper wx-if="{{homeCollect!=null && homeCollect.length > 0}}" class="swiper" duration="500" circular="true" skip-hidden-item-layout="{{false}}"  next-margin="180rpx" >    -->
   <!--<block wx:for="{{homeCollect}}"  wx:key="item.showOrder" wx:for-index="index">    -->
@@ -405,9 +511,9 @@
   <!--<image src="{{homeLive[4].linkUrl}}" class="self_live_bottom"></image> &ndash;&gt;-->
   <!--</swiper-item>-->
   <!--</swiper>-->
-  <view class="share" id="fenxianggeipengyou" style="background-image: linear-gradient(-270deg, {{gradient1}} 0%, {{gradient2}} 100%);">
+  <view class="share" id="fenxianggeipengyou">
 
-      <view class="white-border">
+      <view>
           <view class="title">
               分享给朋友
           </view>
@@ -416,19 +522,19 @@
                   <text>把项目资料分享给朋友并成交可获得大红包(详情可咨询一对一解答)</text>
                   <!-- <text>立即点击“我要分享”</text> -->
               </view>
+              <button class="sharebtn" open-type="share" bindTap="goToShare"> 我要分享</button>
               <!--<view class="sharebtn" bindtap="goToShare">我要分享</view>-->
               <!--<button open-type="share">我要分享</button>-->
           </view>
           <view class="btnrow">
-              <button class="btn new" open-type="share" bindTap="goToShare"> 我要分享</button>
               <button open-type="getUserInfo" bindgetuserinfo="getUserInfo" class="btn new" >生成分享卡片</button>
-              <div class="btn sharefriend" bindtap="goToShareFriend">我分享的好友</div>
+              <view class="btn sharefriend" bindtap="goToShareFriend">我分享的好友</view>
           </view>
       </view>
 
   </view>
   <view class="white-line"></view>
-  <view class="phone" wx-if="{{!showPhoneAuth&&!indexLiudian}}" style="background-image: linear-gradient(-270deg, {{gradient1}} 0%, {{gradient2}} 100%);">
+  <view class="phone" wx-if="{{!showPhoneAuth&&!indexLiudian}}" style="background-image: linear-gradient(-90deg, rgba(0,0,0,0.00) 0%, rgba(0,0,0,0.20) 100%);">
     <view class="title">
       请填写手机，我们将主动电话联络您
     </view>
@@ -442,9 +548,9 @@
     </view>
 
   </view>
-  <view class="phone phoneAuthorize" wx-if="{{showAuth&&(showPhoneAuth ||indexLiudian)}}" style="background-image: linear-gradient(-270deg, {{gradient1}} 0%, {{gradient2}} 100%);">
+  <view class="phone phoneAuthorize" wx-if="{{showAuth&&(showPhoneAuth ||indexLiudian)}}" style="background-image:linear-gradient(-90deg, rgba(0,0,0,0.00) 0%, rgba(0,0,0,0.20) 100%);">
     <view class="title" wx-if="{{!showAgree}}">
-      是否同意我们主动联系您？
+        是否希望我们主动联系您？
     </view>
     <!--<view class="hang" wx-if="{{!showAgree}}">-->
       <!--<div class="agree" bindtap="agree">同  意</div>-->
@@ -457,10 +563,10 @@
   </view>
   <view class="phone phoneAuthorize" style="margin:0;" wx-if="{{!showAuth}}"></view>
   <view class="rights">2018ELAB团队出品all rights reserved</view>
-  <view class="empty-box" id="empty-box"></view>
+  <view class="empty-box  {{isFullScreen?'fullScreen':''}}" id="empty-box"></view>
 </scroll-view>
-<view class="IM" style="background-image: linear-gradient(-270deg, {{gradient1}} 0%, {{gradient2}} 100%);z-index:100">
-    <button bindtap="goChatList" class="title">
+<view class="IM" style="background-image:  linear-gradient(-90deg, rgba(255,255,255,0.20) 0%, rgba(255,255,255,0.00) 100%);z-index:100">
+    <button bindtap="goChatList" class="title {{isFullScreen?'fullScreen':''}}">
       <image src="../../image/wepy_pro/icon_liaotian.png" class="icon_liaotian" mode="widthFix"/>快速了解，一对一解答
     </button>
 </view>

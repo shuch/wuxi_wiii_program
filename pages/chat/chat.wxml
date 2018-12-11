@@ -65,16 +65,16 @@
             </view>
             <view bindtap="goVideo" style="width:250px;" wx:if="{{item.content.type&&item.content.type==104}}">
                 <image src="{{videoImg}}" mode="widthFix" style="width:250px"></image>
-                <view class="video-text" >立即进入e考察</view>
+                <view class="video-text" style="margin-top: -1px">立即进入e考察</view>
             </view>
 
         </view>
           <view class="time-now">{{item.time||''}}</view>
       </view>
-        <view class="hei" id="hei"></view>
+        <view class="hei {{isFullScreen?'full-screen':''}}" id="hei"></view>
     </scroll-view>
-    <view class="bottom-box">
-    <input placeholder-style="font-size:14px;color:#cccccc" placeholder="点击输入..." confirm-hold value='{{currentMessage}}' class="input-box"
+    <view class="bottom-box {{isFullScreen?'full-screen':''}}" >
+    <input  placeholder-style="font-size:14px;color:#4d4d4d" placeholder="点击输入..." confirm-hold value='{{currentMessage}}' class="input-box"
     bindconfirm="bindButtonTap" bindinput="bindKeyInput"></input>
     </view>
     <view wx:if="{{loading}}" class="loadData">

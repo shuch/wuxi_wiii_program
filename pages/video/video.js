@@ -111,11 +111,6 @@ Page({
 			  console.log('可视区高度',res.windowHeight);
 			},
 		})
-		setTimeout(()=>{
-			this.setData({
-				endTime:app.globalData.endTime
-			})
-		},5000)
 	},
     toCoupon(){
         wx.navigateTo({ url: '/pages/customPay/customPay' });

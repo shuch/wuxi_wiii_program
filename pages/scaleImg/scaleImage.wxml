@@ -1,12 +1,16 @@
 <view class="container">
-<swiper class="scrollMsgItem" current="{{swipIndex}}">
-	<block wx:for="{{currentType.atlasResponseList}}" class="scrollMsgItem-box">
+<swiper class="scrollMsgItem" current="{{swipIndex}}" bindchange="swipChange">
+	<block wx:for="{{arrayStatus}}" wx:key="{{item.id}}" class="scrollMsgItem-box">
 		<swiper-item>
 			<scroll-view scroll-y="true" scroll-x="true" class="scroll">
 				<!--<image id="SFimg" class="imgItem" bindtouchend="endtap" bindtouchmove="movetap" bindload = "imgload"-->
 					   <!--style="width:{{ scaleWidth }}px;height:{{ scaleHeight }}px" mode="widthFix" src="{{item.imageUrl}}">-->
 				<!--</image>-->
-				<image class="imgItem" mode="aspectFit" data-src="{{item.imageUrl}}" src="{{item.imageUrl}}" bindtap="previewImage">
+				<!--<image class="imgItem" wx:if="{{item.imageUrl}}" mode="aspectFit" data-src="{{item.imageUrl}}" src="{{item.imageUrl}}" bindtap="previewImage"></image>-->
+				<view bindtap="previewImage" data-src="{{item.imageUrl}}"  wx:if="{{item.imageUrl}}">
+					<c-img src="{{item.imageUrl}}" c-style="width: 100%;height:calc(100vh - 320rpx);" mode="aspectFit" ></c-img>
+				</view>
+				<image class="imgItem" wx:else mode="aspectFit" src="../../image/mini-program/defaultImg.png" bindtap="previewImage">
 				</image>
 				<view class="swip-desc">
 					<view class="swip-title">
@@ -17,9 +21,9 @@
 							  data-type="{{currentType.groupType}}"
 							  data-like="{{item.like}}"
 							  bindtap="likeAdd">
-                            <image src="{{likeImg}}" wx:if="{{!item.like}}" style="width:34rpx;height:31rpx;margin-right:10rpx;"></image>
+                            <image src="{{likeImg}}" wx:if="{{!currentType.atlasResponseList[index].like}}" style="width:34rpx;height:31rpx;margin-right:10rpx;"></image>
                             <image src="{{likeImgRed}}" wx:else style="width:34rpx;height:31rpx;margin-right:10rpx;"></image>
-                               {{item.likeNumber||0}}
+                               {{currentType.atlasResponseList[index].likeNumber}}
                         </view>
                     </view>
 					<view class="swip-text">{{item.remark||''}}</view>
@@ -28,17 +32,24 @@
 		</swiper-item>
 	</block>
 </swiper>
-
-	<view class="coupon" bindtap="toCoupon">
-		DIY我的专属house
+	<!--<view class="coupon" bindtap="toCoupon">-->
+		<!--DIY我的专属house-->
+	<!--</view>-->
+</view>
+<!-- <view class="swip-tab">
+	<view wx:for="{{imgTotal}}" wx:key="{{imgTotal.groupType}}" class="tab-box "
+		  style="{{isChosed==item.groupType?'background-image: linear-gradient(-270deg, '+gradient1+' 0%, '+gradient2+' 100%);border: 2px solid #FFFFFF;color:#fff;':''}}"
+		  data-type="{{item.groupType}}" bindtap="selectTap">
+		{{item.groupName}}
 	</view>
-</view>
-<view class="swip-tab">
-<view wx:for="{{imgTotal}}" class="tab-box "
-	  style="{{isChosed==item.groupType?'background-image: linear-gradient(-270deg, '+gradient1+' 0%, '+gradient2+' 100%);border: 2px solid #FFFFFF;color:#fff;':''}}"
-	  data-type="{{item.groupType}}" bindtap="selectTap">
-	{{item.groupName}}
-</view>
-</view>
-
+</view> -->
+<movable-area style="height: 100rpx; width: 100%;overflow:hidden" class="swip-tab">
+    <movable-view class="top" style="width:{{((imgTotal.length-1)*40+movableWidth)>710?(imgTotal.length-1)*40+movableWidth+20+'rpx':'200%'}}" direction="horizontal">
+        <view wx:for="{{imgTotal}}" wx:key="{{imgTotal.groupType}}" id="{{imgTotal.groupType}}" class="tab-box "
+		  style="{{isChosed==item.groupType?'background:#BF9760 linear-gradient(-90deg, rgba(255,255,255,0.20) 0%, rgba(255,255,255,0.00) 100%);border: 2px solid #FFFFFF;color:#fff;':''}}"
+		  data-type="{{item.groupType}}" bindtap="selectTap">
+			{{item.groupName}}
+		</view>
+    </movable-view>
+</movable-area>
 

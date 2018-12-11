@@ -1,5 +1,7 @@
 {
   "usingComponents": {
-    "component-count-down": "../../components/count-down/count-down"
+    "component-count-down": "../../components/count-down/count-down",
+
+    "c-img": "../../components/img/img"
   }
 }

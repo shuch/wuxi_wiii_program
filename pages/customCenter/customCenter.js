@@ -36,7 +36,6 @@ Page({
       headPortrait: headImage,
     } = appData;
     const { appid: appId, secret } = app.globalData;
-    console.log('onLoad', houseId);
     const state = await endpoint('customState', { customerId, houseId });
     const {
       single: {
@@ -350,7 +349,7 @@ Page({
       this.savePhoto();
       return;
     }
-    wx.showToast({ title: '暂无权限，点击授权后可保存图片', icon: 'none' });
+    // wx.showToast({ title: '暂无权限，点击授权后可保存图片', icon: 'none' });
     const authRes = await savePhoneAuth();
     if (authRes) {
       this.savePhoto();

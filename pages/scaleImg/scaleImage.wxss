@@ -62,18 +62,26 @@
 	font-size: 22rpx;
 }
 .swip-tab{
-	width:100%;
+	/*width:auto;*/
 	background: #474952;
 	height:100rpx;
-	display: flex;
 	z-index:20;
+	/*justify-content: flex-start;*/
+	/*align-items: center;*/
+	/*position: fixed;*/
+	/*bottom:0;*/
+}
+.swip-tab .top{
+	height:100rpx;
+	padding-top:14rpx;
 	padding-left:20rpx;
-	justify-content: flex-start;
-	align-items: center;
-	position: fixed;
-	bottom:0;
+	padding-right:0rpx;
+	box-sizing: border-box;
 }
 .swip-tab .tab-box{
+	/*display:inline-block;*/
+	float:left;
+	/*width: 220rpx;*/
 	margin-right:40rpx;
 	padding-left:20rpx;
 	padding-right:20rpx;
@@ -84,6 +92,9 @@
 	text-align: center;
 	line-height: 68rpx;
 	border:1px solid transparent;
+}
+.swip-tab .tab-box:last-child{
+	margin-right:0rpx;
 }
 .chosed{
 	background-image: linear-gradient(-270deg, #6294A6 0%, #3A4A80 100%);
@@ -103,4 +114,3 @@
 	background-image: linear-gradient(-49deg, #FFD8B3 10%, #BE985D 100%);
 	border-radius: 8rpx;
 }
-

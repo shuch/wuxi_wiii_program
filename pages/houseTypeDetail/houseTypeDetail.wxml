@@ -1,35 +1,40 @@
 <scroll-view class="contain">
     <movable-area style="height: 120rpx; width: 100%;" class="top_flex">
-        <movable-view class="top" style="width:{{dataList.length>3?dataList.length*212+'rpx':'100%'}}" direction="horizontal">
-            <view wx:for="{{dataList}}" wx:key="index" data-id="{{item.id}}"data-index="{{index}}"  bindtap="checkOutHouse" class="item" style="background:{{active==item.id? 'linear-gradient(-270deg, '+jbColor1+' 0%, '+jbColor2+' 100%);opacity:1':'#272A34'}}">{{item.area}}M²</view>
+        <movable-view class="top" style="width:{{dataList.length>2?dataList.length*280+'rpx':'100%'}}" direction="horizontal">
+            <view wx:for="{{dataList}}" wx:key="index" data-id="{{item.id}}" data-index="{{index}}"  bindtap="checkOutHouse" class="item" style="background:{{active==item.id? '#BF9760 linear-gradient(-90deg, rgba(255,255,255,0.20) 0%, rgba(255,255,255,0.00) 100%);opacity:1':'#272A34'}}">{{item.name}}</view>
         </movable-view>
     </movable-area>
     <view class="preview">
         <view style="overflow: hidden">
-            <text class="left">{{houseType}}</text>
-            <text class="right">{{houseDetail}}</text>
+            <text class="left">{{houseType||""}}</text>
+            <text class="right">{{houseDetail||""}}</text>
         </view>
     </view>
 
     <view class="con">
-        <swiper class="swipe"  current="{{current}}" bindchange="bindchange">
+        <image src="../../image/wepy_pro/click-big.png" class="click-big-btn"></image>
+        <swiper class="swipe"  current="{{current}}" bindchange="bindchange" data-d1="{{current}}" data-d2="{{imgheights}}" style="height:{{imgheights[current]+20}}rpx;">
             <block wx:for="{{picList}}" wx:key="index">
-                <swiper-item current="{{current}}" bindtap="priviewPic1" data-index="{{index}}">
-                    <image src="{{item.imageUrl}}" class="slide-image"  mode="aspectFit"/>
+                <swiper-item bindtap="priviewPic1" current="{{current}}"  data-index="{{index}}">
+                    <!-- <image src="{{item.imageUrl}}" class="slide-image"  mode="aspectFit"/> -->
+                    <image hidden="{{item.loadComplete==false}}"  src="{{item.imageUrl}}" bindload="load" binderror="error" class="slide-image" data-item="{{item}}" wx:for-index="index" data-index="{{index}}" style="height:{{imgheights[index]}}rpx;width:{{imgwidth}}rpx;"  mode="widthFix"/>
+                    <image hidden="{{item.loadComplete}}" src="{{defaultImagePath}}" class="slide-image" mode="center"/>
                 </swiper-item>
             </block>
         </swiper>
         <view class="tip">
             <view class="text">
                 <image src="{{serverUrl}}left-arrow.png" bindtap="pre" wx:if="{{current!=0}}" class="pre"></image>
-                <text  style="background:{{'linear-gradient(-270deg, '+jbColor1+' 0%, '+jbColor2+' 100%);opacity:1'}}">{{picList[current].name?picList[current].name:'户型'}}</text>
+                <text  style="background:#BF9760 linear-gradient(-90deg, rgba(255,255,255,0.20) 0%, rgba(255,255,255,0.00) 100%);opacity:1'}}">{{picList[current].name?picList[current].name:'户型'}}</text>
                 <image src="{{serverUrl}}right-arrow.png" bindtap="next" wx:if="{{current!=picList.length-1}}" class="next"></image>
             </view>
         </view>
+        <!-- 户型子页区域图 -->
+        <image src="{{positionImg}}" hidden="{{!positionImg||positionImg.length==0}}" class="positionImg" mode="widthFix"/>
     </view>
     <view class="remark">注：本资料提供的所有的信息仅供参考，不作为购房交付标准，最终以政府批准文件及双方签订的买卖合同为准。</view>
-    <view class="IM">
-        <button bindtap="goChatList" class="_title" style="background:url('{{serverUrl}}wenan.png') no-repeat center center/403rpx 38rpx,{{'linear-gradient(-270deg, '+jbColor1+' 0%, '+jbColor2+' 100%);'}}">
+    <view class="IM" style="background: #BF9760 linear-gradient(-90deg, rgba(255,255,255,0.20) 0%, rgba(255,255,255,0.00) 100%)">
+        <button bindtap="goChatList" class="_title" style="background: url('{{serverUrl}}wenan.png') no-repeat center center/403rpx 38rpx">
         </button>
     </view>
 </scroll-view>

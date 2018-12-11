@@ -201,7 +201,7 @@
 						<image class="privilege-img" src="{{cdn}}/icon_design.png" mode="scaleToFill"/>
 						<view class="privilege-detail">
 							<view class="privilege-title">自主设计权</view>
-							<view class="privilege-desc">您的户型定制方案,将成为开发商为您量身打造户型的依据,您心目中完美的家,Elab为您实现.</view>
+							<view class="privilege-desc">您的户型定制方案,将成为开发商为您设计户型的依据,您心目中完美的家,Elab为您实现.</view>
 						</view>
 					</view>
 					<view class="privilege">

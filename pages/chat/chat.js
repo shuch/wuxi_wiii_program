@@ -53,6 +53,7 @@ Page({
     },
     data: {
         serverUrl:serverUrl,
+        isFullScreen:false,//是否为全面屏
         tempMessages:[],
         loading:false,//获取消息中
         putMess:false,
@@ -60,7 +61,7 @@ Page({
         messageNone:false,//是否已经没有历史消息可拉取
         lastMsgTime:0,
         msgKey:'',
-        videoImg:`${serverUrl}im/videoImg.jpg`,
+        videoImg:`https://dm.static.elab-plus.com/wuXiW3/index/videoImg1.jpg`,
         isBusy:false,
         getFirstMsg:false,
         isFirstSend:true,
@@ -741,6 +742,11 @@ Page({
         });
     },
     onLoad: function (params) {
+          if(app.systemInfo.screenHeight>735&&app.systemInfo.screenWidth<500){
+              this.setData({
+                  isFullScreen:true
+              })
+          }
         wx.showLoading({
             title: '正在加载',
         })

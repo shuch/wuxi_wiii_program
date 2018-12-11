@@ -29,6 +29,7 @@ Page({
         watchModule:{},//3d看房模块
         matchModule:{},//周围配套模块
         scrollFlag:true,
+        watchModule2:config.tdviewUrl+config.watchModule2+'&title='+encodeURIComponent('共享空间'),
         despageForChat:'xuanzeguwenliebiao',//这里的despage因为chat页面的pv记录不到上一页的页面名称，所以放在首页
         despage:'zhuye',
         title:config.projectName,
@@ -98,6 +99,15 @@ Page({
         verifyText: '完成',
         verifyCode: '',
         tel: '',
+        isFullScreen:false,
+        currentTab:0,
+        swiperTitle:[
+            '天空MINI广场',
+            '天街集市',
+            '垂直沙龙',
+            '原绿觉醒-景观餐厅',
+            '胭脂魅力-闺蜜花园',
+        ]
     },
 //滚动资讯
     scrollMsg:function(){
@@ -119,9 +129,24 @@ Page({
         }
         util.trackRequest(param,app)
         return {
-            title: config.projectName,
+            imageUrl:app.globalData.shareImage||'',
+            title: app.globalData.projectName||'',
             path: '/pages/index/index?shareToken='+app.globalData.shareToken
         }
+    },
+    tabChange(e){
+        if (e.detail.source != 'touch') {
+            return false
+        }
+        this.setData({
+            currentTab: e.detail.current
+        })
+    },
+    switchTap(e){
+        this.setData({
+            // Height: myheight,
+            currentTab: e.target.dataset.num
+        });
     },
     // 我要分享
     goToShare: function() {
@@ -395,7 +420,7 @@ Page({
             pvCurPageParams:pvCurPageParams,//当前页面参数
         }
         util.trackRequest(para,app)
-        const url = `/pages/customHouse/customHouse`
+        const url = '../houseType/houseType'
         wx.navigateTo({ url });
     },
     //消息通知
@@ -525,6 +550,8 @@ Page({
         // });
       
         that.getInitData();
+        let isFullScreen = app.systemInfo.screenHeight>740&&app.systemInfo.screenWidth<450;
+        this.setData({isFullScreen})
     },
     onReady: function() {
         // console.log("-----++++-dfghkdsfhjsdklfjhk",this.data.homePapa)
@@ -576,17 +603,21 @@ Page({
         });
     },
     onShow: function(e) {
+        this.setData({
+            maidinData:[
+                {id:'#jingcaitupian',eventId:'exp_2cmina_2',flag:true},
+                {id:'#jingcaishijiao',eventId:'exp_2cmina_0',flag:true},
+                {id:'#liaojiexiangmu',eventId:'exp_2cmina_1',flag:true},
+                {id:'#fenxianggeipengyou',eventId:'exp_2cmina_3',flag:true},]
+        })
         wx.setStorageSync('loadTime',new Date().getTime())
         var that = this;
         console.log("***onShow***", this.data.name);
-        wx.showShareMenu({
-            withShareTicket: true
-        })
         // wx.hideShareMenu() //隐藏转发按钮
-        wx.setNavigationBarTitle({
-            title: config.projectName
-        });
-        if (wx.getStorageSync('phone')) {
+        // wx.setNavigationBarTitle({
+        //     title: config.projectName
+        // });
+        if (wx.getStorageSync('phone')||app.globalData.phone) {
             this.setData({
                 showPhoneAuth: true
             })
@@ -614,16 +645,7 @@ Page({
             }
             console.log(param,'埋点')
             util.trackRequest(param,app)
-
         });
-        this.setData({
-            maidinData:[
-                {id:'#jingcaitupian',eventId:'exp_2cmina_2',flag:true},
-                {id:'#jingcaishijiao',eventId:'exp_2cmina_0',flag:true},
-                {id:'#liaojiexiangmu',eventId:'exp_2cmina_1',flag:true},
-                {id:'#fenxianggeipengyou',eventId:'exp_2cmina_3',flag:true},]
-        })
-
     },
     scrollExp:function(e){
         var that = this;

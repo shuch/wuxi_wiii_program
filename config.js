@@ -32,6 +32,7 @@ var config = function() {
             webrtcServerUrl: 'https://dm-api.elab-plus.cn/elab-marketing-rtc',
             templateUrl: 'https://m.elab-plus.com/launch/#/pages/preview?projectId=', // 模板H5链接前缀 
             newTemplateUrl: 'https://dm-mng.elab-plus.cn/touFangBao/#/pages/preview?houseId=', // 新的模板H5链接前缀
+            watchModule2:10065//3d使用
         }
     } else if (env === 'dev') {
         result = {
@@ -80,12 +81,13 @@ var config = function() {
             webrtcServerUrl: 'https://xzb.qcloud.com/webrtc/weapp/webrtc_room',
             templateUrl: 'https://h5test.elab-plus.com/launch/#/pages/preview?projectId=', // 模板H5链接前缀
             newTemplateUrl: 'https://h5test.elab-plus.com/touFangBao/#/pages/preview?houseId=', // 新的模板H5链接前缀
+            watchModule2:143//3d使用
         }
     } else if (env === 'uat') {
         result = {
             sdkAppID: '1400107457',
             accType: '30285',
-            houseId: 125,
+            houseId: 10000,
             color1: "#6193A5",
             color2: "#3A4A80",
             backColor: "#474952",
@@ -104,6 +106,7 @@ var config = function() {
             webrtcServerUrl: 'https://api-uat.elaber.cn/elab-marketing-rtc',
             templateUrl: 'https://m.elab-plus.com/launch/#/pages/preview?projectId=', // 模板H5链接前缀
             newTemplateUrl: 'https://mng-uat.elaber.cn/touFangBao/#/pages/preview?houseId=', // 新的模板H5链接前缀
+            watchModule2:10076//3d使用
         }
     }
     return result;

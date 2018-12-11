@@ -1,6 +1,6 @@
 .container-box {
   /*background-image: url(https://mc.qcloudimg.com/static/img/7da57e0050d308e2e1b1e31afbc42929/bg.png);*/
-  background-image: url(http://skyforest.static.elab-plus.com/wepy_pro/mini-wait.jpg);
+  background-image: url(https://dm.static.elab-plus.com/wuXiW3/index/mini-wait.jpg);
   background-color: #333;
   background-repeat:no-repeat;
   background-size: cover;

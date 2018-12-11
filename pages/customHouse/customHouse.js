@@ -194,6 +194,7 @@ Page({
         customerProgrammeId,
         customizedLayoutId: this.data.selectedType.layoutId,
       });
+        res.single.originUrl = res.single.image3dPlane;
       const { customizedLayout } = res.single || {};
       Object.assign(data, {
         customDetail: res.single,
@@ -305,6 +306,7 @@ Page({
         customerId,
         customizedLayoutId: this.data.selectedType.layoutId,
       });
+        res.single.originUrl = res.single.image3dPlane;
       Object.assign(data, { customDetail: res.single, customizedProgrammeId: res.single.id });
 
         Object.assign(track, {

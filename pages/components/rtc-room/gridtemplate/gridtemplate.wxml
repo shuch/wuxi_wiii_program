@@ -47,7 +47,7 @@
                     <cover-image class='bg' src="http://skyforest.static.elab-plus.com/wepy_pro/mini-wait.jpg"></cover-image>
                 </cover-view> -->
                 <!-- 这段代码是新增的 7.23 -->
-                <cover-image hidden="{{hideBg}}"  class='bg' src="http://skyforest.static.elab-plus.com/wepy_pro/mini-wait.jpg"></cover-image>
+                <cover-image hidden="{{hideBg}}"  class='bg' src="https://dm.static.elab-plus.com/wuXiW3/index/mini-wait.jpg"></cover-image>
                 <cover-view class='operate'>
                     <cover-image src='/image/wepy_pro/decline.png' class="img i1" bindtap="decline"></cover-image>
                     <cover-image src='/image/wepy_pro/{{muted ? "muted" : "mute"}}.png' class="img i2" bindtap="changeMute"></cover-image>

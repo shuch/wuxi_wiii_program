@@ -6,6 +6,13 @@ image{
   border: 0;
   vertical-align: bottom;
 }
+.click-big-btn{
+  position: absolute;
+  top:10rpx;
+  width:167rpx;
+  height:20rpx;
+  right:10px;
+}
 .top_flex{
   border-bottom:2rpx solid #666;
   position: fixed;
@@ -59,20 +66,28 @@ image{
   float: right;
 }
 .swipe image{
-  width: 690rpx;
-  height: 697rpx;
+  /*width: 690rpx;
+  height: 697rpx;*/
+  width:100%;
 }
 .swipe{
   background: #fff;
   width: 690rpx;
   height: 697rpx;
   margin: 30rpx auto;
+  margin-bottom:0rpx;
 }
 .tip{
   display: flex;
   justify-content: center;
   height: 60rpx;
-  margin-top: 30rpx;
+  margin-top: 10rpx;
+  margin-bottom:50rpx;
+  position:relative;
+  /*position:fixed;
+  width:100%;
+  z-index:999;
+  bottom:190rpx;*/
 }
 .tip image{
   width: 20rpx;
@@ -100,8 +115,14 @@ image{
   line-height: 60rpx;
 }
 .con{
-  overflow: hidden;
+  overflow: auto;
   background: #fff;
+  position: relative;
+  height:calc(100vh - 100rpx - 120rpx - 110rpx - 40rpx);
+}
+.con .positionImg{
+  width:690rpx;
+  margin:0rpx 30rpx;
 }
 .remark{
   font-family: NotoSansCJKsc-Regular;
@@ -115,7 +136,6 @@ image{
   position: fixed;
   left: 0;
   bottom: 100rpx;
-
 }
 .IM{
   position: fixed;
