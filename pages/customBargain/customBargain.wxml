@@ -24,7 +24,7 @@
       ></image>
 		</view>
 	</view>
- 
+
 	<view
 		wx:if="{{isBargain}}"
 		class="bargain-off">
