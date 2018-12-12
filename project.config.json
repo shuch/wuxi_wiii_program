@@ -8,10 +8,10 @@
 		"newFeature": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.4.2",
+	"libVersion": "2.3.0",
 	"appid": "wx5e18485e35c5f1f6",
 	"secret": "6ac2abb378f4d5a5d16b7c6ba2850807",
-	"projectname": "%E6%97%A0%E9%94%A1WIII",
+	"projectname": "无锡WIII",
 	"isGameTourist": false,
 	"condition": {
 		"search": {

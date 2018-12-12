@@ -13,15 +13,15 @@
 
     <view class="con">
         <image src="../../image/wepy_pro/click-big.png" class="click-big-btn"></image>
-        <!-- <swiper class="swipe"  current="{{current}}" bindchange="bindchange" data-d1="{{current}}" data-d2="{{imgheights}}" style="height:{{imgheights[current]+20}}rpx;">
+        <swiper class="swipe"  current="{{current}}" bindchange="bindchange" data-d1="{{current}}" data-d2="{{imgheights}}" style="height:{{imgheights[current]+20}}rpx;">
             <block wx:for="{{picList}}" wx:key="index">
                 <swiper-item bindtap="priviewPic1" current="{{current}}"  data-index="{{index}}">
-                    <image src="{{item.imageUrl}}" class="slide-image"  mode="aspectFit"/>
+                    <!-- <image src="{{item.imageUrl}}" class="slide-image"  mode="aspectFit"/> -->
                     <image hidden="{{item.loadComplete==false}}"  src="{{item.imageUrl}}" bindload="load" binderror="error" class="slide-image" data-item="{{item}}" wx:for-index="index" data-index="{{index}}" style="height:{{imgheights[index]}}rpx;width:{{imgwidth}}rpx;"  mode="widthFix"/>
                     <image hidden="{{item.loadComplete}}" src="{{defaultImagePath}}" class="slide-image" mode="center"/>
                 </swiper-item>
             </block>
-        </swiper> -->
+        </swiper>
         <view class="tip">
             <view class="text">
                 <image src="{{serverUrl}}left-arrow.png" bindtap="pre" wx:if="{{current!=0}}" class="pre"></image>
