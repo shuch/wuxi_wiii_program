@@ -15,11 +15,18 @@
 				<view class="privilege-desc">入场券非定金,您可在任意时间随时申请退款,款项将7个工作日内按原路径退至付款微信账户.</view>
 			</view>
 		</view>
-		<view class="privilege">
+		<!-- <view class="privilege">
 			<image class="icon-privilege" src="{{cdn}}/icon_chosen.png" mode="scaleToFill"/>
 			<view class="privilege-detail">
 				<view class="privilege-title">最终入选权</view>
 				<view class="privilege-desc">获得的点赞数和成功邀请好友数将决定方案的排名,排名前列的方案将有机会进入开发商户型库.</view>
+			</view>
+		</view> -->
+		<view class="privilege">
+			<image class="icon-privilege" src="{{cdn}}/icon_chosen.png" mode="scaleToFill"/>
+			<view class="privilege-detail">
+				<view class="privilege-title">好友助力砍价</view>
+				<view class="privilege-desc">最大多邀请50名好友进行砍价，你帮人场我帮钱场！上万房价抵扣不是梦！自己先来砍一刀吧！</view>
 			</view>
 		</view>
 	</view>
@@ -60,7 +67,8 @@
 		</view>
 		<view class="btn-group" wx:else>
 			<view class="btn-item btn-pay" bind:tap="onPay">直接付款</view>
-			<view class="btn-item btn-share" bind:tap="menuShare">享受减免</view>
+			<!-- <view class="btn-item btn-share" bind:tap="menuShare">享受减免</view> -->
+			<view class="btn-item btn-share" bind:tap="toBargain">砍价</view>
 		</view>
 	</view>
 </view>

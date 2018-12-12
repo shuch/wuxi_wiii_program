@@ -1,0 +1,105 @@
+<view class="container">
+	<view class="top" wx:if="{{isHaveHigh}}">最高砍价  {{highName}}  {{highValue}} 元</view>
+	<button class="share-btn" catch:tap="onShowPopup">分享</button>
+	<view class="content">
+		<view class="content-avatar-box">
+			<image class="content-avatar" src="{{headImage}}" mode="aspectFill"></image>
+		</view>
+		<view class="content-name">{{nickname || ''}}</view>
+		<view class="content-prgress">已累计邀请<text class="content-prgress-text">{{list.length}}</text>人,砍价<text class="content-prgress-text">{{total}}</text>元</view>
+		<view class="content-prgress-bar-box"></view>
+		<view class="content-prgress-bar content-prgress-bar-{{list.length}}">
+			<view class="content-prgress-triangle-back"></view>
+			<view class="content-prgress-triangle"></view>
+		</view>
+		<view class="content-friend-avatar">
+      <image
+        wx:for="{{list}}"
+				wx:key="{{item.id}}"
+				wx:for-index="idx"
+				wx:if="{{idx < 6}}"
+				class="content-friend-avatar-item item-{{idx + 1}}"
+				src="{{item.headPic || defaultAvatar}}"
+				mode="aspectFill"
+      ></image>
+		</view>
+	</view>
+ 
+	<view
+		wx:if="{{isBargain}}"
+		class="bargain-off">
+		已砍价，砍掉{{bargainValue}}元
+	</view>
+	<view
+		wx:if="{{list.length >= 50 && !isBargain}}"
+		class="bargain-off"
+		>
+		砍价名额已满
+	</view>
+	<button
+		wx:if="{{list.length < 50 && !isBargain}}"
+		class="bargain"
+		catch:tap="onClickBargain"
+	>
+		{{isMine ? '自己砍价' : '帮TA砍价'}}
+	</button>
+	<view class="rule">
+		<view class="rule-title">活动规则</view>
+		<view class="rule-title-line"></view>
+		<view class="rule-desc">最多邀请50名好友进行砍价，所砍价格计入抵房卷。</view>
+		<view class="rule-desc2">每次砍价金额随即。</view>
+	</view>
+	<view class="coupon">
+		<image class="coupon-bg" src="https://dm.static.elab-plus.com/wuXiW3/price/diyongjuan.png"></image>
+		<view class="coupon-title">无锡WIII公寓·<text class="coupon-title-text">抵房卷</text></view>
+		<view class="coupon-desc">总共可抵房款<text class="coupon-desc-text">{{total}}</text>元</view>
+	</view>
+	<view class="record">
+		<view class="record-title">砍价记录</view>
+		<view class="record-title-line"></view>
+		<view class="record-list-empty" wx:if="{{list.length <= 0}}">暂无记录，邀请朋友来砍价</view>
+		<view
+			wx:for="{{list}}"
+			wx:key="{{item.id}}"
+			wx:for-index="idx"
+			wx:if="{{isMoreOpen ? true : idx < 6}}"
+			class="record-list"
+		>
+			<image class="record-list-avatar" src="{{item.headPic || defaultAvatar}}" mode="aspectFill"></image>
+			<view class="record-list-name">{{item.bargainCustomerName || ''}}</view>
+			<view class="record-list-time">{{item.time}}</view>
+			<view class="record-list-cash">帮砍<text class="record-list-cash-text">{{item.bargainValue}}</text>元</view>
+			<view class="record-list-line"></view>
+		</view>
+		<view wx:if="{{isShowMoreBtn}}" class="record-more" bindtap="onclickmore">显示更多<image class="record-more-icon" src="https://dm.static.elab-plus.com/wuXiW3/price/icon-more.png"></image></view>
+	</view>
+</view>
+
+<view class="suss-popup" wx:if="{{sussPopup}}">
+	<view class="suss-popup-mask" bindtap="onCloseSussPopup"></view>
+	<view class="suss-popup-content">
+		<image class="suss-popup-img" src="https://dm.static.elab-plus.com/wuXiW3/price/icon-ok.png" />
+		<view class="suss-popup-title">砍价成功</view>
+		<view class="suss-popup-desc">帮TA砍掉{{bargainSussValue}}元</view>
+		<view class="suss-popup-line"></view>
+		<view class="suss-popup-btn" bindtap="onCloseSussPopup">我知道了</view>
+	</view>
+</view>
+<view class="over-popup" wx:if="{{overPopup}}">
+	<view class="over-popup-mask" bindtap="onCloseOverPopup"></view>
+	<view class="over-popup-content">
+		<view class="over-popup-title">名额已满</view>
+		<view class="over-popup-desc">砍价名额已满，不可砍价</view>
+		<view class="over-popup-line"></view>
+		<view class="over-popup-btn" bindtap="onCloseOverPopup">我知道了</view>
+	</view>
+</view>
+
+<component-action-sheet
+	wx:if="{{doShare}}"
+	timeline-src="{{timelineSrc}}"
+	bind:onclose="onClose"
+	open-setting="{{openSetting}}"
+	bind:onsaveimage="onSaveImage"
+	bind:opensetting="handleSetting"
+/>

@@ -8,10 +8,10 @@
 		"newFeature": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.3.0",
+	"libVersion": "2.4.2",
 	"appid": "wx5e18485e35c5f1f6",
 	"secret": "6ac2abb378f4d5a5d16b7c6ba2850807",
-	"projectname": "无锡WIII",
+	"projectname": "%E6%97%A0%E9%94%A1WIII",
 	"isGameTourist": false,
 	"condition": {
 		"search": {
@@ -50,6 +50,12 @@
 					"name": "我的定制",
 					"pathName": "pages/customCenter/customCenter",
 					"query": "customId=668"
+				},
+				{
+					"id": 9,
+					"name": "砍价裂变",
+					"pathName": "pages/customBargain/customBargain",
+					"query": "houseId=83&shareId=2808"
 				},
 				{
 					"id": -1,

@@ -23,6 +23,7 @@
     "pages/customHouse/customHouse",
     "pages/customPay/customPay",
     "pages/customCenter/customCenter",
+    "pages/customBargain/customBargain",
     "pages/person-info/person-info",
     "pages/projectIntroduction/projectIntroduction",
     "pages/recommendedPlan/recommendedPlan",

@@ -295,6 +295,15 @@ Page({
     this.onPay(null,true);
   },
 
+  toBargain() {
+    trackRequest({
+      type: 'CLK',
+      clkName: 'kanjiaanniu',
+      clkId: 'clk_2cmina_66',
+    });
+    wx.navigateTo({ url: '/pages/customBargain/customBargain?houseId=83' });
+  },
+
   onRouteCustom() {
     wx.navigateTo({ url: '/pages/index/index' });
   },
