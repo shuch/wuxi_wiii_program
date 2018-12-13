@@ -54,6 +54,7 @@ Component({
         clkId: 'clk_2cdinzhi_17',
       });
       this.setData({ timeline: true, showMenu: false });
+      this.triggerEvent('menushare');
     },
     saveImage() {
       this.triggerEvent('onsaveimage');

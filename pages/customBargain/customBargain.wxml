@@ -102,4 +102,5 @@
 	open-setting="{{openSetting}}"
 	bind:onsaveimage="onSaveImage"
 	bind:opensetting="handleSetting"
+	bind:menushare="menuShare"
 />

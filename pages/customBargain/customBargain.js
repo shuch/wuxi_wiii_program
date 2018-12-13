@@ -311,7 +311,7 @@ Page({
       path,
       scene,
       width: 185,
-      type: 2,
+      type: 3,
       xcxName: "无锡WIII",
     });
     this.setData({ doShare: true, timelineSrc: res.single });
