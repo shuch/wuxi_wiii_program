@@ -2,6 +2,7 @@ import endpoint from '../../lib/endpoint';
 import regeneratorRuntime from '../../lib/runtime';
 import { login, getSetting, savePhoneAuth } from '../../lib/promise';
 import { trackRequest } from '../../utils/util';
+import { authorizeInfo, getUserInfo } from '../../getlogininfo.js';
 
 const cdn = 'https://dm.static.elab-plus.com/wuXiW3/img';
 
@@ -106,6 +107,17 @@ Page({
   },
 
   async onLoad(parmas) {
+    this.track(0);
+
+    // // getUserInfo.call(this, null, function () {
+    // //   console.log('scuss');
+    // // });
+    // authorizeInfo.call(this, function() {
+    //   console.log('sucss');
+    // }, function () {
+    //   console.log('fail');
+    // });
+    // return;
     // console.log({ path: this.route, parmas } );
     let { scene, shareId = '' } = parmas;
 
@@ -150,7 +162,6 @@ Page({
       isMine: shareId ? String(customerId) === String(shareId) : true,
     });
     await this.initData();
-    this.track(0);
   },
 
   async initData() {
@@ -301,9 +312,9 @@ Page({
   },
 
   async menuShare() {
-    const { nickname, headImage, houseId, customerId } = this.data;
+    const { nickname, headImage, houseId, customerId, shareId } = this.data;
     const path = this.route;
-    const scene = `shareId=${customerId}&from=customBargain`;
+    const scene = `shareId=${shareId || customerId}&from=customBargain`;
     const res = await endpoint('poster', {
       head: headImage,
       houseId,
@@ -319,12 +330,12 @@ Page({
   },
 
   onShareAppMessage() {
-    const { customerId } = this.data;
+    const { customerId, shareId } = this.data;
     const imageUrl = 'https://dm.static.elab-plus.com/wuXiW3/price/share.jpg';
     return {
       title: '我要买房，房价你说了算！快来帮我砍价，最高10万元减免',
       imageUrl,
-      path: `${this.route}?shareId=${customerId}&from=customBargain`,
+      path: `${this.route}?shareId=${shareId || customerId}&from=customBargain`,
       success: () => {
         console.log('success');
       },
@@ -411,5 +422,59 @@ Page({
     }
     wx.navigateTo({ url });
   },
+
+
+  authorizeInfo(cb, failcb) {
+    var that = this;
+    app.globalData.userInfo = wx.getStorageSync('userInfo');
+    console.log('authorizeInfo');
+    // // 获得用户信息
+    // wx.getSetting({
+    //   success: (response) => {
+    //     console.log("getSetting", response);
+    //     // typeof cb == "function" && cb()
+    //     // 没有授权需要弹框
+    //     if (!response.authSetting['scope.userInfo']) {
+    //       that.setData({
+    //         showInfoModel: true,
+    //         infoFun: cb,
+    //         infoFailFun: failcb || null
+    //       })
+    //     } else {
+    //       // 判断用户已经授权。不需要弹框
+    //       that.setData({
+    //         showInfoModel: false
+    //       });
+    //       typeof cb == "function" && cb()
+    //     }
+    //   },
+    //   fail: function () {
+    //     wx.showToast({
+    //       title: '系统提示:网络错误',
+    //       icon: 'warn',
+    //       duration: 1500,
+    //     })
+    //   }
+    // })
+  },
+
+  // // 用户授权
+  // getUserInfo: function (e) {
+  //   getUserInfo.call(this, e, function () {
+  //     var that = this;
+  //     let param = {
+  //       clkId: 'clk_2cmina_54',
+  //       clkDesPage: '',//点击前往的页面名称
+  //       clkName: 'fenxiangpengyouquan',//点击前往的页面名称
+  //       type: 'CLK',//埋点类型
+  //       pvCurPageName: 'zhuye',//当前页面
+  //       pvCurPageParams: pvCurPageParams,//当前页面参数
+  //     }
+  //     util.trackRequest(param, app)
+  //     wx.navigateTo({
+  //       url: '../shareProgram/shareProgram'
+  //     })
+  //   });
+  // },
 
 });
