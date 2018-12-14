@@ -564,3 +564,49 @@
   color: #000;
   text-align: center;
 }
+
+
+.model{
+  position:absolute;
+  width:80vw;
+  left:10vw;
+  top:20vh;
+  border-radius:20rpx;
+  background-color:white;
+  z-index:16;
+}
+.model .modelTitle{
+  width:100%;
+  padding:20rpx 0rpx;
+  font-size:40rpx;
+  text-align:center;
+  color:block;
+  border-bottom:1rpx solid rgb(237,237,237);
+}
+.model .modelBody{
+  box-sizing: border-box;
+  width:100%;
+  padding:50rpx 50rpx;
+  text-align:center;
+  color:rgb(178,178,178);
+  font-size:30rpx;
+  border-bottom:1rpx solid rgb(237,237,237);
+}
+.model .btns{
+  width:100%;
+  text-align:center;
+}
+.model .btns .agree{
+  border-width:0px;
+  color:rgb(26,172,25);
+  /*width:100%;*/
+}
+.mask2{
+  position:fixed;
+  top:0px;
+  left:0px;
+  width:100vw;
+  height:100vh;
+  background-color:rgba(155,155,155,0.6);
+  z-index:15;
+}

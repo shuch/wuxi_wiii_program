@@ -1,3 +1,15 @@
+<view wx:if="{{showInfoModel}}" class="model">
+		<view class="modelTitle">请求获取信息</view>
+		<view class="modelBody">为了更好的为您提供服务，我们请求获取您的昵称、头像等公开信息</view>
+		<view class="btns">
+				<!-- <button open-type="getUserInfo" class="agree" bindgetuserinfo="agreeGetUser" lang="zh_CN">下一步</button> -->
+				<button open-type="getUserInfo" class="agree" bindgetuserinfo="getUserInfo" plain="true" lang="zh_CN">
+						下一步
+				</button>
+		</view>
+</view>
+<view wx:if="{{showInfoModel}}" class="mask2"></view>
+
 <view class="container">
 	<view class="top" wx:if="{{isHaveHigh}}">最高砍价  {{highName}}  {{highValue}} 元</view>
 	<button class="share-btn" catch:tap="onShowPopup">分享</button>
@@ -47,7 +59,7 @@
 		<view class="rule-title">活动规则</view>
 		<view class="rule-title-line"></view>
 		<view class="rule-desc">最多邀请50名好友进行砍价，所砍价格计入抵房卷。</view>
-		<view class="rule-desc2">每次砍价金额随即。</view>
+		<view class="rule-desc2">每次砍价金额随机。</view>
 	</view>
 	<view class="coupon">
 		<image class="coupon-bg" src="https://dm.static.elab-plus.com/wuXiW3/price/diyongjuan.png"></image>

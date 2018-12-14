@@ -87,6 +87,12 @@
   font-size: 26rpx;
   color: #fff;
 }
+/* 活动时候用的 2018-12-14 Kyunghak */
+.share-desc2 {
+  font-size: 26rpx;
+  color: #fff;
+  text-align: center;
+}
 
 .share-price {
   font-size: 48rpx;

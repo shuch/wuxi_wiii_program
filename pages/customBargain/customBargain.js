@@ -2,7 +2,7 @@ import endpoint from '../../lib/endpoint';
 import regeneratorRuntime from '../../lib/runtime';
 import { login, getSetting, savePhoneAuth } from '../../lib/promise';
 import { trackRequest } from '../../utils/util';
-import { authorizeInfo, getUserInfo } from '../../getlogininfo.js';
+import { getUserInfo } from '../../getlogininfo.js';
 
 const cdn = 'https://dm.static.elab-plus.com/wuXiW3/img';
 
@@ -12,6 +12,8 @@ const defaultAvatar = 'https://dm.static.elab-plus.com/wuXiW3/price/default_avat
 
 Page({
   data: {
+    showInfoModel: false,
+
     doShare: false,
     cdn,
     fee: 600,
@@ -107,17 +109,6 @@ Page({
   },
 
   async onLoad(parmas) {
-    this.track(0);
-
-    // // getUserInfo.call(this, null, function () {
-    // //   console.log('scuss');
-    // // });
-    // authorizeInfo.call(this, function() {
-    //   console.log('sucss');
-    // }, function () {
-    //   console.log('fail');
-    // });
-    // return;
     // console.log({ path: this.route, parmas } );
     let { scene, shareId = '' } = parmas;
 
@@ -162,6 +153,8 @@ Page({
       isMine: shareId ? String(customerId) === String(shareId) : true,
     });
     await this.initData();
+    this.track(0);
+    this.checkUserInfo();
   },
 
   async initData() {
@@ -423,58 +416,36 @@ Page({
     wx.navigateTo({ url });
   },
 
-
-  authorizeInfo(cb, failcb) {
-    var that = this;
-    app.globalData.userInfo = wx.getStorageSync('userInfo');
-    console.log('authorizeInfo');
-    // // 获得用户信息
-    // wx.getSetting({
-    //   success: (response) => {
-    //     console.log("getSetting", response);
-    //     // typeof cb == "function" && cb()
-    //     // 没有授权需要弹框
-    //     if (!response.authSetting['scope.userInfo']) {
-    //       that.setData({
-    //         showInfoModel: true,
-    //         infoFun: cb,
-    //         infoFailFun: failcb || null
-    //       })
-    //     } else {
-    //       // 判断用户已经授权。不需要弹框
-    //       that.setData({
-    //         showInfoModel: false
-    //       });
-    //       typeof cb == "function" && cb()
-    //     }
-    //   },
-    //   fail: function () {
-    //     wx.showToast({
-    //       title: '系统提示:网络错误',
-    //       icon: 'warn',
-    //       duration: 1500,
-    //     })
-    //   }
-    // })
+  getUrl() {
+    const { route, options = {} } = this;
+    let url = `/${route}`;
+    Object.keys(options).map((item, index) => {
+      const urlPart = `${item}=${options[item]}`;
+      url += index === 0 ? `?${urlPart}` : `&${urlPart}`;
+    });
+    return url;
   },
 
-  // // 用户授权
-  // getUserInfo: function (e) {
-  //   getUserInfo.call(this, e, function () {
-  //     var that = this;
-  //     let param = {
-  //       clkId: 'clk_2cmina_54',
-  //       clkDesPage: '',//点击前往的页面名称
-  //       clkName: 'fenxiangpengyouquan',//点击前往的页面名称
-  //       type: 'CLK',//埋点类型
-  //       pvCurPageName: 'zhuye',//当前页面
-  //       pvCurPageParams: pvCurPageParams,//当前页面参数
-  //     }
-  //     util.trackRequest(param, app)
-  //     wx.navigateTo({
-  //       url: '../shareProgram/shareProgram'
-  //     })
-  //   });
-  // },
+  checkUserInfo() {
+    // 微信授权 弹窗判断
+    const self = this;
+    // 可以通过 wx.getSetting 先查询一下用户是否授权了 "scope.record" 这个 scope
+    wx.getSetting({
+      success(res) {
+        if (!res.authSetting['scope.userInfo']) {
+          self.setData({
+            showInfoModel: true
+          });
+        }
+      }
+    });
+  },
 
+  // 用户授权
+  getUserInfo (e) {
+    const url = this.getUrl();
+    getUserInfo.call(this, e, () => {
+      wx.redirectTo({ url });
+    });
+  }
 });

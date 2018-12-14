@@ -41,9 +41,12 @@
 				<image class="icon-info" src="{{cdn}}/info_white.png" mode="scaleToFill"/>
 				活动说明
 			</view>
-			<view class="share-desc">
+			<!-- <view class="share-desc">
 				分享转发给好友/朋友圈您和好友均可享受 好友价
 				<text class="share-price">300</text>元
+			</view> -->
+			<view class="share-desc2">
+				分享好友，好友助力砍价
 			</view>
 		</view>
 		<view class="btn-group" wx:if="{{hasPay}}">
