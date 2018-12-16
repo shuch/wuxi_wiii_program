@@ -1,0 +1,13 @@
+<view class="title">完成资格认证，即可享受以下特权</view>
+<view class="card-list">
+  <view class="card" wx:for="{{list}}"n wx:key="{{item.id}}">
+    <image class="avatar" src="{{item.avatar}}" mode="scaleToFill"></image>
+    <view class="intro">
+      <view class="card-title">自主设计</view>
+      <view>{{item.desc}}</view>
+    </view>
+  </view>
+</view>
+<button class="btn" hover-class="none">
+  开始资格认证
+</button>

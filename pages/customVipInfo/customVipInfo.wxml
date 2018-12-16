@@ -1,0 +1,15 @@
+<text class="title">为了我们向您提供更为贴心的服务，\n请填写以下信息</text>
+<view class="form">
+  <block wx:for="{{pickers}}" wx:key="{{item.type}}">
+    <component-form-select
+      label="{{item.name}}"
+      type="{{item.type}}"
+      bind:change="bindChange"
+      value="{{item.val}}"
+      range="{{item.arr}}"
+    />
+  </block>
+</view>
+<button class="btn" hover-class="none" bind:tap="onSubmit">
+  确认信息
+</button>

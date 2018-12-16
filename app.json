@@ -30,7 +30,10 @@
     "pages/customDetail/customDetail",
     "pages/customStars/customStars",
     "pages/customTheme/customTheme",
-    "pages/shareProgram/shareProgram"
+    "pages/shareProgram/shareProgram",
+    "pages/customVipStyList/customVipStyList",
+    "pages/customVipQualification/customVipQualification",
+    "pages/customVipInfo/customVipInfo"
   ],
   "window": {
     "backgroundTextStyle": "light",

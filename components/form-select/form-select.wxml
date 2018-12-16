@@ -1,0 +1,9 @@
+<view class="form-item">
+  <text class="label">{{label}}</text>
+  <picker class="picker" bindchange="onPickChange" data-type="{{type}}" range="{{range}}">
+    <view class="picker placeholder" wx:if="{{value < 0}}">请选择</view>
+    <view wx:else class="picker">
+      {{range[value]}}
+    </view>
+  </picker>
+</view>

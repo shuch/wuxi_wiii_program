@@ -1,0 +1,14 @@
+<view class="title">请选择心仪的设计师为您服务</view>
+<view class="card-list">
+  <view class="card" wx:for="{{list}}"n wx:key="{{item.id}}">
+    <image class="avatar" src="{{item.avatar}}" mode="scaleToFill"></image>
+    <text class="card-title">国际知名建筑师 | {{item.name}}</text>
+    <view class="intro">
+      {{item.desc}}
+    </view>
+    <button class="btn" hover-class="none">
+      联系设计师
+      <image class="im" src="{{cdn}}/talk.png" mode="scaleToFill"></image>
+    </button>
+  </view>
+</view>

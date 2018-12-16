@@ -11,7 +11,7 @@
 	"libVersion": "2.3.0",
 	"appid": "wx5e18485e35c5f1f6",
 	"secret": "6ac2abb378f4d5a5d16b7c6ba2850807",
-	"projectname": "无锡WIII",
+	"projectname": "%E6%97%A0%E9%94%A1WIII",
 	"isGameTourist": false,
 	"condition": {
 		"search": {
@@ -31,7 +31,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 1,
+			"current": 14,
 			"list": [
 				{
 					"id": -1,
@@ -103,6 +103,24 @@
 					"id": -1,
 					"name": "色系",
 					"pathName": "pages/customTheme/customTheme",
+					"query": ""
+				},
+				{
+					"id": 12,
+					"name": "设计师列表",
+					"pathName": "pages/customVipStyList/customVipStyList",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "资格认证",
+					"pathName": "pages/customVipQualification/customVipQualification",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "资格认证表单",
+					"pathName": "pages/customVipInfo/customVipInfo",
 					"query": ""
 				}
 			]

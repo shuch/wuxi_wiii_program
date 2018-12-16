@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "私人定制",
+  "navigationBarBackgroundColor": "#fff",
+  "navigationBarTextStyle": "black",
+  "backgroundTextStyle": "light",
+  "usingComponents": {
+    "component-form-select": "../../components/form-select/form-select"
+  }
+}

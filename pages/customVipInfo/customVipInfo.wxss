@@ -1,0 +1,66 @@
+.title {
+  display: block;
+  font-size: 28rpx;
+  color: #9b9b9b;
+  text-align: center;
+  line-height: 40rpx;
+  margin: 70rpx 80rpx 100rpx;
+  letter-spacing: 4rpx;
+  text-align: center;
+}
+
+.form {
+  margin: 0 80rpx;
+}
+
+.form-item {
+  display: flex;
+  align-items:center;
+  margin-top: 60rpx;
+  padding-bottom: 20rpx;
+  font-size: 32rpx;
+  color: #2e2e2e;
+  line-height: 45rpx;
+  border-bottom: 1px solid #eee;
+}
+
+.picker {
+  flex: 1;
+}
+
+.placeholder {
+  color: #9b9b9b;
+}
+
+.select-icon {
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 10rpx;
+}
+
+.label {
+  font-weight: bold;
+  width: 4em;
+  padding-left: .5em;
+  margin-right: 70rpx
+}
+
+.btn {
+  width: 520rpx;
+  margin: 180rpx auto 40rpx;
+  color: #fff;
+  font-size: 28rpx;
+  padding: 0 24rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  background: #D5C396;
+  border-radius: 40rpx;
+  letter-spacing: 4rpx;
+  border: none;
+  outline: none;
+}
+
+.btn:after {
+  border: none;
+}
