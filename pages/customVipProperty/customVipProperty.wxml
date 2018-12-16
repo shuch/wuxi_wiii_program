@@ -1,0 +1,20 @@
+<view class="container">
+  <text class="h2">上传存单凭证，\n可享受Elab为您提供的以下特权</text>
+  <view class="divide">
+    <view class="privilege" wx:for="{{list}}" wx:key="item.id">
+      <image class="icon" src="{{item.icon}}" mode="scaleToFill" />
+      {{item.text}}
+    </view>
+  </view>
+  <text class="tips">请确保上传的照片中文字包括账户名称,银行分支存款金额清晰，否则视为无效，需要重新上传</text>
+  <view class="form">
+    <view class="item">
+      <image class="camera" src="{{cdn}}/camera.png" mode="scaleToFill" />
+      上传照片
+    </view>
+  </view>
+  <button class="btn" hover-class="none">
+    上传凭证
+  </button>
+  <text class="annouce">Elab十分注重客户的隐私与信息安全。未经您的允许，我们不会泄露与共享您的隐私信息给任何机构,或致电打扰。</text>
+</view>

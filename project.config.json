@@ -31,7 +31,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 14,
+			"current": 17,
 			"list": [
 				{
 					"id": -1,
@@ -121,6 +121,24 @@
 					"id": -1,
 					"name": "资格认证表单",
 					"pathName": "pages/customVipInfo/customVipInfo",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "意向定金",
+					"pathName": "pages/customVipPayment/customVipPayment",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "私人定制服务",
+					"pathName": "pages/customVipPersonal/customVipPersonal",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "资产认证",
+					"pathName": "pages/customVipProperty/customVipProperty",
 					"query": ""
 				}
 			]

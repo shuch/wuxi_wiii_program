@@ -1,0 +1,43 @@
+page {
+  background: url(http://pjrpw22gp.bkt.clouddn.com/bg-c.png) center bottom/100% no-repeat fixed;
+}
+
+.card {
+  margin: 52rpx 85rpx 0;
+  font-size: 24rpx;
+  color: #000000;
+  height: 424rpx;
+  padding: 300rpx 50rpx 0rpx;
+  background: url(http://pjrpw22gp.bkt.clouddn.com/vip_bg.png) center top/contain no-repeat;
+}
+
+.content {
+  line-height: 34rpx;
+}
+
+.btn {
+  width: 520rpx;
+  margin: 210rpx auto 0;
+  font-size: 32rpx;
+  color: #000000;
+  padding: 0 24rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  background: #D5C396;
+  border-radius: 40rpx;
+  letter-spacing: 4rpx;
+  border: none;
+  outline: none;
+}
+
+.btn:after {
+  border: none;
+}
+
+.im {
+  display: inline-block;
+  vertical-align: middle;
+  width: 44rpx;
+  height: 36rpx;
+}

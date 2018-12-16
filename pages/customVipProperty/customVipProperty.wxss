@@ -1,0 +1,115 @@
+page {
+  background: url(http://pjrpw22gp.bkt.clouddn.com/bg-c.png) center bottom/100% no-repeat fixed;
+}
+
+.container {
+  margin: 180rpx 50rpx 0;
+}
+
+.h2 {
+  font-size: 32rpx;
+  color: #000000;
+  letter-spacing: 6rpx;
+}
+
+
+.divide {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  padding: 20rpx 0;
+  margin-top: 20rpx;
+  width: 100%;
+  border-top: 4rpx solid rgba(213,195,150,1);
+  border-bottom: 4rpx solid rgba(213,195,150,1);
+}
+
+.divide::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: -12rpx;
+  width: 100%;
+  border-top: 2rpx solid rgba(213,195,150,1);
+}
+
+.divide::after {
+  content: '';
+  display: block;
+  position: absolute;
+  bottom: -12rpx;
+  width: 100%;
+  border-top: 2rpx solid rgba(213,195,150,1);
+}
+
+.privilege {
+  font-size: 22rpx;
+  color: #000000;
+  text-align: center;
+}
+
+.icon {
+  display: block;
+  width: 76rpx;
+  height: 76rpx;
+  margin: 0 auto 16rpx;
+}
+
+.tips {
+  display: block;
+  margin-top: 40rpx;
+  font-size: 24rpx;
+  color: #9B9B9B;
+}
+
+.form {
+  margin-top: 20rpx;
+  padding-bottom: 140rpx;
+  border-bottom: 1px solid rgba(201,201,201,1);
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 170rpx;
+  height: 170rpx;
+  font-size: 24rpx;
+  color: #9B9B9B;
+  border: 1px solid rgba(201,201,201,.5);
+}
+
+.camera {
+  width: 90rpx;
+  height: 90rpx;
+}
+
+.btn {
+  width: 520rpx;
+  margin: 40rpx auto 0;
+  font-size: 32rpx;
+  color: #000000;
+  padding: 0 24rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  background: #D5C396;
+  border-radius: 40rpx;
+  letter-spacing: 4rpx;
+  border: none;
+  outline: none;
+}
+
+.btn:after {
+  border: none;
+}
+
+.annouce {
+  margin-top: 38rpx;
+  display: block;
+  text-align: center;
+  font-size: 22rpx;
+  color: #FFFFFF;
+  line-height: 30rpx;
+}

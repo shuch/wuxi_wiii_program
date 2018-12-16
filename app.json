@@ -33,7 +33,10 @@
     "pages/shareProgram/shareProgram",
     "pages/customVipStyList/customVipStyList",
     "pages/customVipQualification/customVipQualification",
-    "pages/customVipInfo/customVipInfo"
+    "pages/customVipInfo/customVipInfo",
+    "pages/customVipPayment/customVipPayment",
+    "pages/customVipPersonal/customVipPersonal",
+    "pages/customVipProperty/customVipProperty"
   ],
   "window": {
     "backgroundTextStyle": "light",
