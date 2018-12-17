@@ -36,7 +36,8 @@
     "pages/customVipInfo/customVipInfo",
     "pages/customVipPayment/customVipPayment",
     "pages/customVipPersonal/customVipPersonal",
-    "pages/customVipProperty/customVipProperty"
+    "pages/customVipProperty/customVipProperty",
+    "pages/customVip/customVip"
   ],
   "window": {
     "backgroundTextStyle": "light",

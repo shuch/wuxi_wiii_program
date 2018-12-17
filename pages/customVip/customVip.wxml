@@ -1,0 +1,34 @@
+<view class="container">
+  <view class="section section-all {{all ? '': 'hide'}}"></view>
+  <view class="section section-bottom {{first ? '' : 'hide'}}" bind:tap="light" data-area="1">
+    <view class="nav nav-btm">
+      <text class="area">中层区</text>
+      <view class="intro">
+        <view class="floor">1-20F | 200-240㎡</view>
+        点击查看海景
+      </view>
+      <button class="btn btn-float btn-btm">定制此区房型</button>
+    </view>
+  </view>
+  <view class="section section-center {{second ? '' : 'hide'}}" bind:tap="light" data-area="2">
+    <view class="nav nav-center">
+      <text class="area">高层区</text>
+      <view class="intro">
+        <view class="floor">11-40F | 200-240㎡</view>
+        点击查看海景
+      </view>
+      <button class="btn btn-float btn-center">定制此区房型</button>
+    </view>
+  </view>
+  <view class="section section-top {{third ? '' : 'hide'}}" bind:tap="light" data-area="3">
+    <view class="nav nav-top">
+      <text class="area">顶豪区</text>
+      <view class="intro">
+        <view class="floor">41-60F | 200-240㎡</view>
+        点击查看海景
+      </view>
+      <button class="btn btn-float btn-top">定制此区房型</button>
+    </view>
+  </view>
+  <text class="tip">请点击楼层选择您心仪的区域</text>
+</view>

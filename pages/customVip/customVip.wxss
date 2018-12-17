@@ -1,0 +1,136 @@
+.container {
+  height: 100vh;
+  background: url(http://pjrpw22gp.bkt.clouddn.com/vip_bg.jpg) #000 center bottom/100% no-repeat fixed;
+}
+
+.hide {
+  opacity: 0;
+  /*visibility: hidden;*/
+}
+
+.section {
+  position: absolute;
+  width: 100%;
+  background-position: center;
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+
+.section-bottom {
+  bottom: 276rpx;
+  height: 500rpx;
+  background-image: url(http://pjrpw22gp.bkt.clouddn.com/vip_btm.png);
+}
+
+.section-center {
+  bottom: 647rpx;
+  height: 336rpx;
+  background-image: url(http://pjrpw22gp.bkt.clouddn.com/vip_center.png);
+}
+
+.section-top {
+  bottom: 872rpx;
+  height: 288rpx;
+  background-image: url(http://pjrpw22gp.bkt.clouddn.com/vip_top.png);
+}
+
+.section-all {
+  bottom: 276rpx;
+  height: 880rpx;
+  background-image: url(http://pjrpw22gp.bkt.clouddn.com/vip_all.png);
+}
+
+.nav {
+  position: relative;
+  margin-left: 20rpx;
+  height: 160rpx;
+  display: flex;
+  border-radius: 8rpx 0 0 8rpx;
+  background: rgba(255,218,109,0.1);
+}
+
+.nav-btm {
+  margin-top: 100rpx;
+}
+
+.nav-center {
+  margin-top: 100rpx;
+}
+
+.nav-top{
+  margin-top: 106rpx;
+}
+
+.area {
+  height: 100%;
+  font-size: 28rpx;
+  color: #FFFFFF;
+  padding: 0 20rpx;
+  background: rgba(52,68,246,.4);
+  writing-mode: vertical-lr;
+  text-align: center;
+  letter-spacing: 8rpx;
+  border-radius: 8rpx 0 0 8rpx;
+}
+
+.intro {
+  margin-top: 36rpx;
+  margin-left: auto;
+  font-size: 24rpx;
+  color: #FFFFFF;
+  text-align: center;
+  line-height: 50rpx;
+  padding-right: 30rpx;
+}
+
+.floor {
+  border-bottom: 1px solid #fff;
+  font-size: 28rpx;
+}
+
+.btn-float {
+  position: absolute;
+  right: 35rpx;
+}
+
+.btn-btm {
+  top: -160rpx;
+}
+
+.btn-center {
+  bottom: -154rpx;
+}
+
+.btn-top {
+  bottom: -190rpx;
+}
+
+.btn {
+  width: 240rpx;
+  font-size: 28rpx;
+  color: #fff;
+  padding: 0 22rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  text-align: center;
+  background: transparent;
+  border-radius: 40rpx;
+  letter-spacing: 4rpx;
+  box-shadow: 0 0 2rpx 2rpx #FFEDC0;
+  outline: none;
+}
+
+.btn:after {
+  border: none;
+}
+
+.tip {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  display: block;
+  bottom: 75rpx;
+  font-size: 24rpx;
+  color: #FFFFFF;
+  letter-spacing: 10rpx;
+}

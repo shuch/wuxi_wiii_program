@@ -31,7 +31,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 17,
+			"current": 18,
 			"list": [
 				{
 					"id": -1,
@@ -139,6 +139,12 @@
 					"id": -1,
 					"name": "资产认证",
 					"pathName": "pages/customVipProperty/customVipProperty",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "私人定制",
+					"pathName": "pages/customVip/customVip",
 					"query": ""
 				}
 			]
