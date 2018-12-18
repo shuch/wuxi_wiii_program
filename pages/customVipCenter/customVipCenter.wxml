@@ -1,0 +1,114 @@
+<view class="container">
+  <view class="section section-all {{all ? '': 'hide'}}"></view>
+  <view class="section section-bottom {{first ? '' : 'hide'}}" bind:tap="light" data-area="1">
+    <view class="nav nav-btm">
+      <text class="area">中层区</text>
+      <view class="intro">
+        <view class="floor">1-20F | 200-240㎡</view>
+        点击查看海景
+      </view>
+      <button class="btn btn-float btn-btm">定制此区房型</button>
+    </view>
+  </view>
+  <view class="section section-center {{second ? '' : 'hide'}}" bind:tap="light" data-area="2">
+    <view class="nav nav-center">
+      <text class="area">高层区</text>
+      <view class="intro">
+        <view class="floor">11-40F | 200-240㎡</view>
+        点击查看海景
+      </view>
+      <button class="btn btn-float btn-center">定制此区房型</button>
+    </view>
+  </view>
+  <view class="section section-top {{third ? '' : 'hide'}}" bind:tap="light" data-area="3">
+    <view class="nav nav-top">
+      <text class="area">顶豪区</text>
+      <view class="intro">
+        <view class="floor">41-60F | 200-240㎡</view>
+        点击查看海景
+      </view>
+      <button class="btn btn-float btn-top">定制此区房型</button>
+    </view>
+  </view>
+  <text class="tip">请点击楼层选择您心仪的区域</text>
+</view>
+
+<view class="main">
+  <view class="custom-card">
+    <view class="card">
+      <image class="card-img" src="{{cdn}}/card.jpg" mode="scaleToFill"></image>
+      <image class="card-edit" src="{{cdn}}/edit.png" mode="scaleToFill"></image>
+    </view>
+    <view class="card-title">
+      <text class="flex-1">高层区 | 标准两市一厅</text>
+      <image class="card-share" src="{{cdn}}/share.png" mode="scaleToFill"></image>
+    </view>
+    <view class="tags">
+      <text class="tag">景观会客厅</text>
+      <text class="tag">按摩浴缸</text>
+      <text class="tag">厨房导太</text>
+    </view>
+    <view class="edit-time">最后编辑时间 2018-12-02</view>
+  </view>
+  
+  <view class="custom-steps">
+    <view class="step">
+      <image class="step-img" src="{{cdn}}/property_active.png" mode="scaleToFill"></image>
+      <view>存款证明</view>
+      <view class="step-btn">已验证</view>
+    </view>
+    <view class="step">
+      <image class="step-img" src="{{cdn}}/payment.png" mode="scaleToFill"></image>
+      <view>意向定金</view>
+      <view class="step-btn">未支付</view>
+    </view>
+    <view class="step">
+      <image class="step-img" src="{{cdn}}/design.png" mode="scaleToFill"></image>
+      <view>设计服务</view>
+      <view class="step-btn">未支付</view>
+    </view>
+  </view>
+
+  <view class="designer">
+    <view class="designer-card">
+      <image class="designer-avatar" src="{{cdn}}/avatar.png" mode="scaleToFill"></image>
+      <text class="designer-title">国际知名建筑师 | 超十年建筑师</text>
+      <view class="designer-intro">
+        尊敬的客户，您好！有任何居住需求我来帮您规划设计。
+      </view>
+    </view>
+    <button class="designer-btn" hover-class="none">
+      联系设计师
+      <image class="im" src="{{cdn}}/talk.png" mode="scaleToFill"></image>
+    </button>
+  </view>
+
+  <view class="lock">
+    <view class="lock-title">
+      您已经锁定此层的房源 高区 | 15F
+    </view>
+    <view class="grid">
+      <view class="grid-left">
+        <view class="grid-title">中层区</view>
+        <view class="flex-col">
+          <view class="block" wx:for="{{[3,4,5,6,7,8,9,10,11,12]}}" wx:key="item">{{item}}F</view>
+        </view>
+      </view>
+      <view class="grid-center">
+        <view class="grid-title">高层区</view>
+        <view class="flex-col">
+          <view class="block" wx:for="{{[14,15,16,17,18]}}" wx:key="item">{{item}}F</view>
+        </view>
+      </view>
+      <view class="grid-right">
+        <view class="grid-title grid-title-active">顶豪区</view>
+        <view class="flex-col">
+          <view class="block {{item === 20 ? 'block-lock' : ''}}" wx:for="{{[19,20,21]}}" wx:key="item">{{item}}F</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class="footer">咨询专属置业顾问</view>
+  

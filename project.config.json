@@ -31,7 +31,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 18,
+			"current": 19,
 			"list": [
 				{
 					"id": -1,
@@ -146,6 +146,11 @@
 					"name": "私人定制",
 					"pathName": "pages/customVip/customVip",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "VIP定制",
+					"pathName": "pages/customVipCenter/customVipCenter"
 				}
 			]
 		}
