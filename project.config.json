@@ -31,7 +31,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 19,
+			"current": 20,
 			"list": [
 				{
 					"id": -1,
@@ -150,7 +150,13 @@
 				{
 					"id": -1,
 					"name": "VIP定制",
-					"pathName": "pages/customVipCenter/customVipCenter"
+					"pathName": "pages/customVipCenter/customVipCenter",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "night view",
+					"pathName": "pages/customVipView/customVipView"
 				}
 			]
 		}

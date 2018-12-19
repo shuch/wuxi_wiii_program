@@ -1,0 +1,29 @@
+<scroll-view scroll-x>
+  <image class="view-img" src="{{cdn}}/view.jpg" mode="aspectFit"></image>
+</scroll-view>
+<view class="bottom">
+  <swiper class="swiper">
+    <swiper-item class="swiper-item" style="width: 380rpx;">
+      <view class="card">
+        <text class="floor">高层区 | 11-40F</text>
+        <view class="area">200-240㎡</view>
+        <button class="btn">定制此区房型</button>
+      </view>
+    </swiper-item>
+    <swiper-item class="swiper-item" style="width: 380rpx;">
+      <view class="card">
+        <text class="floor">高层区 | 11-40F</text>
+        <view class="area">200-240㎡</view>
+        <button class="btn">定制此区房型</button>
+      </view>
+    </swiper-item>
+    <swiper-item class="swiper-item" style="width: 380rpx;">
+      <view class="card">
+        <text class="floor">高层区 | 11-40F</text>
+        <view class="area">200-240㎡</view>
+        <button class="btn">定制此区房型</button>
+      </view>
+    </swiper-item>
+  </swiper>
+  <text class="tip">切换至主楼视角</text>
+</view>

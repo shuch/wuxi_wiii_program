@@ -38,7 +38,8 @@
     "pages/customVipPersonal/customVipPersonal",
     "pages/customVipProperty/customVipProperty",
     "pages/customVip/customVip",
-    "pages/customVipCenter/customVipCenter"
+    "pages/customVipCenter/customVipCenter",
+    "pages/customVipView/customVipView"
   ],
   "window": {
     "backgroundTextStyle": "light",

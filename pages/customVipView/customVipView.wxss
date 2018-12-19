@@ -1,0 +1,71 @@
+.container {
+
+}
+
+.view-img {
+  height: 880rpx;
+  width: 1330rpx;
+}
+
+.tip {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  display: block;
+  bottom: 75rpx;
+  font-size: 24rpx;
+  color: #FFFFFF;
+  letter-spacing: 10rpx;
+}
+
+.bottom {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 548rpx;
+  background: url(http://pjrpw22gp.bkt.clouddn.com/view_bg.png) center/100% no-repeat;
+}
+
+.swiper {
+  margin-top: 164rpx;
+  /*width: 380rpx;*/
+}
+
+/*wx-swiper-item {
+  width:380rpx !important;
+  margin-left:5% !important;
+}*/
+
+.card {
+  background: #fff;
+  color: #5E5E5E;
+  text-align: center;
+  border-radius: 10rpx;
+  height: 198rpx;
+}
+
+.area {
+  font-size: 50rpx;
+}
+
+.floor {
+  display: inline-block;
+  font-size: 32rpx;
+  line-height: 80rpx;
+  border-bottom: 1px solid #5E5E5E;
+}
+
+.btn {
+  width: 270rpx;
+  line-height: 70rpx;
+  text-align: center;
+  color: #000;
+  font-size: 28rpx;
+  background: #D5C396;
+  border-radius: 35rpx;
+  margin-top: 23rpx;
+}
+
+.btn:after {
+  border: none;
+}
