@@ -9,7 +9,7 @@
           |
           {{list[0].minArea}}-{{list[0].maxArea}}㎡
         </view>
-        <navigator class="" url="/pages/customVipView/customVipView?id=1" open-type="navigate">点击查看海景</navigator>
+        <navigator class="" url="/pages/customVipView/customVipView?floorId={{list[0].id}}" open-type="navigate">点击查看海景</navigator>
       </view>
       <view class="guide guide-btm"></view>
       <button class="btn btn-float btn-btm" catchtap="onRouteCustom" data-id="{{list[0].id}}">定制此区房型</button>
@@ -24,7 +24,7 @@
           |
           {{list[1].minArea}}-{{list[1].maxArea}}㎡
         </view>
-        <navigator class="" url="/pages/customVipView/customVipView?id=2" open-type="navigate">点击查看海景</navigator>
+        <navigator class="" url="/pages/customVipView/customVipView?floorId={{list[1].id}}" open-type="navigate">点击查看海景</navigator>
       </view>
       <view class="guide guide-top"></view>
       <button class="btn btn-float btn-center">定制此区房型</button>
@@ -39,7 +39,7 @@
           |
           {{list[2].minArea}}-{{list[2].maxArea}}㎡
         </view>
-        <navigator class="" url="/pages/customVipView/customVipView?id=3" open-type="navigate">点击查看海景</navigator>
+        <navigator class="" url="/pages/customVipView/customVipView?floorId={{list[2].id}}" open-type="navigate">点击查看海景</navigator>
       </view>
       <view class="guide guide-top"></view>
       <button class="btn btn-float btn-top">定制此区房型</button>

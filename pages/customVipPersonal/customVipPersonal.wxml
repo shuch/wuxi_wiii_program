@@ -1,8 +1,10 @@
 <view class="card">
-  <text space="emsp" class="content" decode="{{true}}">  您将享受国际知名设计师为您量身打造的私享住宅设计方案。\n
-  您将享受国际知名设计师为您量身打造的私享住宅设计方案。\n
-  您将享受国际知名设计师为 您量身打造的私享住宅设计方案。</text>
+  <text space="emsp" class="content" decode="{{true}}">  室内空间概念生成\n
+  彩色户型平面图\n
+  室内核心空间场景意向图\n
+  室内材质选样/风格色彩设计意向\n
+  您将享受国际知名设计师为您量身打造的私享住宅设计方案。</text>
 </view>
-<button class="btn" hover-class="none">
+<button class="btn" hover-class="none" bind:tap="onPay">
   支付 ￥2,000元
 </button>

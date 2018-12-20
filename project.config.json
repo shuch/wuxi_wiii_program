@@ -31,7 +31,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 20,
+			"current": 18,
 			"list": [
 				{
 					"id": -1,
@@ -142,8 +142,8 @@
 					"query": ""
 				},
 				{
-					"id": -1,
-					"name": "私人定制",
+					"id": 18,
+					"name": "私人定制首页",
 					"pathName": "pages/customVip/customVip",
 					"query": ""
 				},
@@ -154,9 +154,10 @@
 					"query": ""
 				},
 				{
-					"id": -1,
+					"id": 20,
 					"name": "night view",
-					"pathName": "pages/customVipView/customVipView"
+					"pathName": "pages/customVipView/customVipView",
+					"query": "floorId=1"
 				}
 			]
 		}
