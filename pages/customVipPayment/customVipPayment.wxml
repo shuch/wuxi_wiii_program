@@ -3,6 +3,6 @@
   支付定金前，请务必与我们的顾问核对确认所选房子的详细信息。\n
   支付意向金后,我们的工作人员会尽快与您确认意向金是否成功锁定房源,请及时注意信息的更正变化。</text>
 </view>
-<button class="btn" hover-class="none">
-  支付 ￥2,000元
+<button class="btn" hover-class="none" bind:tap="onPay">
+  支付 ￥{{fee}}元
 </button>

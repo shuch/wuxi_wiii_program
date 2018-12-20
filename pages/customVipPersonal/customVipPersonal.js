@@ -19,16 +19,17 @@ Page({
 
   async getPayAmount() {
     const res = await endpoint('payAmount');
-    this.setData({ fee: res.single.customizedService });
+    const { customizedService, customizedServiceName } = res.single;
+    this.setData({ fee: customizedService, subject: customizedServiceName });
   },
 
   async onPay() {
-    const { customerId, fee, houseId, openId } = this.data;
+    const { customerId, fee, houseId, openId, subject } = this.data;
     const res = await endpoint('buyCard', {
       customerId,
       fee,
       houseId,
-      orderSubject: 'customizedService',
+      orderSubject: subject,
       payPlatform: 1,
       paySource: 1,
       shareCustomerId: 0,

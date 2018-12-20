@@ -6,5 +6,5 @@
   您将享受国际知名设计师为您量身打造的私享住宅设计方案。</text>
 </view>
 <button class="btn" hover-class="none" bind:tap="onPay">
-  支付 ￥2,000元
+  支付 ￥{{fee}}元
 </button>

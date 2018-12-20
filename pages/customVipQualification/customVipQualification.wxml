@@ -1,6 +1,6 @@
 <view class="title">完成资格认证，即可享受以下特权</view>
 <view class="card-list">
-  <view class="card" wx:for="{{list}}"n wx:key="{{item.id}}">
+  <view class="card" wx:for="{{list}}" wx:key="{{item.id}}">
     <image class="avatar" src="{{item.avatar}}" mode="scaleToFill"></image>
     <view class="intro">
       <view class="card-title">自主设计</view>
@@ -8,6 +8,6 @@
     </view>
   </view>
 </view>
-<button class="btn" hover-class="none">
-  开始资格认证
-</button>
+<navigator class="btn" url="/pages/customVipInfo/customVipInfo" open-type="navigate">
+  开始资格认证  
+</navigator>
