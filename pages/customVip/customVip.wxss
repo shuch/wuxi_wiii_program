@@ -1,10 +1,11 @@
 .container {
   height: 100vh;
-  background: url(http://pjrpw22gp.bkt.clouddn.com/vip_bg.jpg) #000 center bottom/100% no-repeat fixed;
+  background: url(http://pjrpw22gp.bkt.clouddn.com/vip_bg_1.jpg) #171d53 center bottom/100% no-repeat fixed;
 }
 
 .hide {
   opacity: 0;
+  transition: opacity 0.4s;
   /*visibility: hidden;*/
 }
 
@@ -19,25 +20,25 @@
 .section-bottom {
   bottom: 276rpx;
   height: 500rpx;
-  background-image: url(http://pjrpw22gp.bkt.clouddn.com/vip_btm.png);
+  background-image: url(http://pjrpw22gp.bkt.clouddn.com/vip_btm_1.png);
 }
 
 .section-center {
-  bottom: 647rpx;
+  bottom: 657rpx;
   height: 336rpx;
-  background-image: url(http://pjrpw22gp.bkt.clouddn.com/vip_center.png);
+  background-image: url(http://pjrpw22gp.bkt.clouddn.com/vip_center_1.png);
 }
 
 .section-top {
-  bottom: 872rpx;
+  bottom: 869rpx;
   height: 288rpx;
-  background-image: url(http://pjrpw22gp.bkt.clouddn.com/vip_top.png);
+  background-image: url(http://pjrpw22gp.bkt.clouddn.com/vip_top_2.png);
 }
 
 .section-all {
-  bottom: 276rpx;
+  bottom: 255rpx;
   height: 880rpx;
-  background-image: url(http://pjrpw22gp.bkt.clouddn.com/vip_all.png);
+  background-image: url(http://pjrpw22gp.bkt.clouddn.com/vip_all_1.png);
 }
 
 .nav {
@@ -93,6 +94,42 @@
   right: 35rpx;
 }
 
+.guide {
+  position: absolute;
+  width: 0;
+  height: 150rpx;
+  left: 366rpx;
+  transition: width 1s ease-in-out;
+  /*animation: spread 0.5s;*/
+}
+
+.anim {
+  z-index: 1;
+}
+
+.anim .guide {
+  width: 329rpx;
+}
+
+.guide-btm {
+  top: -80rpx;
+  background: url(http://pjrpw22gp.bkt.clouddn.com/vip_guide_btm.png) left top/329rpx 150rpx no-repeat;
+}
+
+.guide-top {
+  bottom: -80rpx;
+  background: url(http://pjrpw22gp.bkt.clouddn.com/vip_guide_top.png) left top/329rpx 150rpx no-repeat;
+}
+
+@keyframes spread {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 329rpx;
+  }
+}
+
 .btn-btm {
   top: -160rpx;
 }
@@ -102,7 +139,7 @@
 }
 
 .btn-top {
-  bottom: -190rpx;
+  bottom: -158rpx;
 }
 
 .btn {

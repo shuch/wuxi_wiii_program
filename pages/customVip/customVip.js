@@ -1,17 +1,8 @@
-const cdn = 'http://pjrpw22gp.bkt.clouddn.com';
+import endpoint from '../../lib/endpoint';
+import regeneratorRuntime from '../../lib/runtime';
+import { login } from '../../lib/promise';
 
-const list = [
-  { 
-    id: 1,
-    hide: true,
-  },
-  { 
-    id: 2,
-    avatar: `${cdn}/i-discount.png`,
-    name: 'KaiLim',
-    desc: '您将享有专属的贵宾折扣礼遇',
-  },
-];
+const cdn = 'http://pjrpw22gp.bkt.clouddn.com';
 
 Page({
   data: {
@@ -20,6 +11,15 @@ Page({
     first: false,
     second: false,
     third: false,
+    list: [],
+  },
+
+  async onLoad() {
+    const data = await login();
+    const { houseId } = data;
+    const res = await endpoint('vipFloors', houseId);
+    console.log(res);
+    this.setData({ list: res.list });
   },
 
   light(e) {
@@ -36,5 +36,10 @@ Page({
     }
 
     this.setData({ all: false });
+  },
+
+  onRouteCustom(e) {
+    const url = `/pages/customHouse/customHouse?floorId=${e.target.dataset.id}`;
+    wx.navigateTo({ url });
   }
 })

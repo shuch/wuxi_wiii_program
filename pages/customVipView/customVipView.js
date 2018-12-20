@@ -1,17 +1,7 @@
-const cdn = 'http://pjrpw22gp.bkt.clouddn.com';
+import regeneratorRuntime from '../../lib/runtime';
+import { login } from '../../lib/promise';
 
-const list = [
-  { 
-    id: 1,
-    hide: true,
-  },
-  { 
-    id: 2,
-    avatar: `${cdn}/i-discount.png`,
-    name: 'KaiLim',
-    desc: '您将享有专属的贵宾折扣礼遇',
-  },
-];
+const cdn = 'http://pjrpw22gp.bkt.clouddn.com';
 
 Page({
   data: {

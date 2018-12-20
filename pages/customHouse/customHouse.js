@@ -34,7 +34,7 @@ Page({
     console.log('onLoad', parmas);
     const appData = await login();
     const { id: customerId, houseId } = appData;
-    const { update, create, id, fromCenter } = parmas;
+    const { update, create, id, fromCenter, floorId } = parmas;
     const state = await endpoint('customState', { customerId, houseId });
     const {
       single: {
@@ -83,7 +83,7 @@ Page({
         spaceIndicatorClass: this.getSpaceIndicatorClass(customDetail),
       })
     }
-    const res = await endpoint('customList', houseId);
+    const res = await endpoint('customList', { houseId, floorScopeId: floorId });
     Object.assign(data, { houseTypes: res.list.map(houseTypesMapper), customerSupplementStatus })
 
     this.setData(data);

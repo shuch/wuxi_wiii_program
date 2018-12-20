@@ -62,7 +62,7 @@ var config = function() {
         result = {
             sdkAppID: '1400107457',
             accType: '30285',
-            houseId: 83,
+            houseId: 88,
             color1: "#6193A5",
             color2: "#3A4A80",
             backColor: "#474952",
